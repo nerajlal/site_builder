@@ -10,7 +10,7 @@
 
         <!-- Page Header -->
         <div class="mb-6 flex flex-col md:flex-row md:items-center justify-between gap-3">
-            <h1 class="text-2xl font-bold text-gray-800">Add New Products For Your Site</h1>
+            <h1 class="text-2xl font-bold text-gray-800">Add Products For Your Site</h1>
             <div class="flex flex-wrap gap-3">
                 <button id="add-brand-btn" class="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors">
                     Add Brands

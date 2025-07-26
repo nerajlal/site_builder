@@ -86,9 +86,12 @@
                 <button onclick="openPreviewModal('/index1')" class="preview-btn flex-1 px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 text-sm font-medium text-center">
                     Live Preview
                 </button>
-                <button class="use-template-btn flex-1 px-4 py-2 bg-white border border-indigo-600 text-indigo-600 rounded-md text-sm font-medium">
+                <button 
+                    class="use-template-btn flex-1 px-4 py-2 bg-white border border-indigo-600 text-indigo-600 rounded-md text-sm font-medium"
+                    onclick="window.open('/index1', '_blank')">
                     Use Template
                 </button>
+
             </div>
         </div>
     </div>
@@ -213,15 +216,15 @@
     }
 
     // Use Template button in modal
-    document.getElementById('use-template').addEventListener('click', function() {
-        alert('Template selected! You will be redirected to the editor.');
-        closePreviewModal();
-    });
+    // document.getElementById('use-template').addEventListener('click', function() {
+    //     alert('Template selected! You will be redirected to the editor.');
+    //     closePreviewModal();
+    // });
 
     // Use Template buttons on cards
     document.querySelectorAll('.use-template-btn').forEach(btn => {
         btn.addEventListener('click', function() {
-            alert('Template selected! You will be redirected to the editor.');
+            // alert('Template selected! You will be redirected to the editor.');
         });
     });
 

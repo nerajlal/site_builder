@@ -37,15 +37,25 @@
   <!-- Top Navigation -->
   <header class="bg-white shadow-sm py-4 px-6 flex justify-between items-center sticky top-0 z-50">
     <h1 class="text-2xl font-bold text-yellow-600 flex items-center">
-      <i class="fas fa-crown mr-2"></i>LuxuryTime
+      <i class="fas fa-crown mr-2"></i>
+      @if($is_default)
+        LuxuryTime
+      @else
+        {{ $headerFooter->site_name }}
+      @endif
     </h1>
     <nav class="space-x-6 hidden md:flex">
-      <a href="#" class="text-gray-700 hover:text-yellow-600 transition">Home</a>
-      <a href="#features" class="text-gray-700 hover:text-yellow-600 transition">Features</a>
-      <a href="#categories" class="text-gray-700 hover:text-yellow-600 transition">Brands</a>
-      <a href="#products" class="text-gray-700 hover:text-yellow-600 transition">Collection</a>
-      <a href="#contact" class="text-gray-700 hover:text-yellow-600 transition">Contact</a>
+      @if($is_default)
+        <a href="#" class="text-gray-700 hover:text-yellow-600 transition">Home</a>
+      @else
+        <a href="#" class="text-gray-700 hover:text-yellow-600 transition">Home</a>
+        <a href="#" id="navFeatures" class="{{ !($headerFooter->features ?? false) ? 'hidden' : '' }} hover:text-yellow-600">Features</a>
+        <a href="#" id="navBrands" class="{{ !($headerFooter->brands ?? false) ? 'hidden' : '' }} hover:text-yellow-600">Brands</a>
+        <a href="#" id="navCollections" class="{{ !($headerFooter->collections ?? false) ? 'hidden' : '' }} hover:text-yellow-600">Collection</a>
+        <a href="#" id="navContact" class="{{ !($headerFooter->contact ?? false) ? 'hidden' : '' }} hover:text-yellow-600">Contact</a>
+      @endif
     </nav>
+
     <div class="flex items-center space-x-4">
       <button class="text-gray-700 hover:text-yellow-600 transition">
         <i class="fas fa-search"></i>

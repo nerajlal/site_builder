@@ -1,7 +1,6 @@
-
-<!-- Footer -->
-
-@if($is_default)
+  <!-- Footer -->
+  
+  @if($is_default)
   <footer class="bg-gray-800 text-white py-12 px-6">
     <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
       <div>
@@ -114,21 +113,14 @@
 @endif
 
   <script>
-    // Simple FAQ toggle functionality
-    document.querySelectorAll('button').forEach(button => {
-      button.addEventListener('click', () => {
-        if (button.parentElement.classList.contains('border-b')) {
-          const content = button.nextElementSibling;
-          const icon = button.querySelector('i');
-          
-          if (content.style.maxHeight) {
-            content.style.maxHeight = null;
-            icon.style.transform = 'rotate(0deg)';
-          } else {
-            content.style.maxHeight = content.scrollHeight + 'px';
-            icon.style.transform = 'rotate(180deg)';
-          }
-        }
+    // Simple animation for testimonial stars
+    document.querySelectorAll('.fa-star').forEach(star => {
+      star.addEventListener('mouseover', () => {
+        star.style.transform = 'scale(1.2)';
+        star.style.transition = 'transform 0.2s ease';
+      });
+      star.addEventListener('mouseout', () => {
+        star.style.transform = 'scale(1)';
       });
     });
   </script>

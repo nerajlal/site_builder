@@ -160,14 +160,14 @@
                             <input type="text" name="feature2_heading" id="siteNameInput"
                                 class="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-indigo-500 focus:outline-none"
                                 placeholder="Extended Warranty"
-                                value="{{ old('feature1_heading', $section1->feature1_heading ?? '') }}">
+                                value="{{ old('feature2_heading', $section1->feature2_heading ?? '') }}">
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-1">Feature Detail</label>
                             <input type="text" name="feature2_detail" id="siteNameInput"
                                 class="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-indigo-500 focus:outline-none"
                                 placeholder="3-year comprehensive warranty on all purchases for complete peace of mind."
-                                value="{{ old('feature1_detail', $section1->feature1_detail ?? '') }}">
+                                value="{{ old('feature2_detail', $section1->feature2_detail ?? '') }}">
                         </div>
 
                         <!-- Feature 3 -->
@@ -176,14 +176,14 @@
                             <input type="text" name="feature3_heading" id="siteNameInput"
                                 class="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-indigo-500 focus:outline-none"
                                 placeholder="Concierge Service"
-                                value="{{ old('feature1_heading', $section1->feature1_heading ?? '') }}">
+                                value="{{ old('feature3_heading', $section1->feature3_heading ?? '') }}">
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-1">Feature Detail</label>
                             <input type="text" name="feature3_detail" id="siteNameInput"
                                 class="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-indigo-500 focus:outline-none"
                                 placeholder="Dedicated personal consultants for bespoke shopping experiences."
-                                value="{{ old('feature1_detail', $section1->feature1_detail ?? '') }}">
+                                value="{{ old('feature3_detail', $section1->feature3_detail ?? '') }}">
                         </div>
 
                     </div>

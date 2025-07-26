@@ -1,262 +1,243 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Horologe | Luxury Timepieces</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-    body {
-      font-family: 'Inter', sans-serif;
-      color: #333;
-      background-color: #f9f9f7;
-    }
-    h1, h2, h3, h4 {
-      font-family: 'Playfair Display', serif;
-    }
-    .nav-link {
-      position: relative;
-    }
-    .nav-link:after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 1px;
-      bottom: -2px;
-      left: 0;
-      background-color: #333;
-      transition: width 0.3s ease;
-    }
-    .nav-link:hover:after {
-      width: 100%;
-    }
-    .watch-card {
-      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-      background-color: #fff;
-    }
-    .watch-card:hover {
-      box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-      transform: translateY(-3px);
-    }
-    .brand-logo {
-      opacity: 0.7;
-      transition: all 0.3s ease;
-    }
-    .brand-logo:hover {
-      opacity: 1;
-    }
-    .testimonial-card {
-      background-color: #fff;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.03);
-    }
-  </style>
-</head>
-
-<body class="bg-[#f9f9f7]">
-  <!-- Top Navigation -->
-  <header class="py-6 px-6 bg-white/80 backdrop-blur-sm sticky top-0 z-50 border-b border-gray-100">
-    <div class="max-w-7xl mx-auto flex justify-between items-center">
-      <h1 class="text-2xl font-medium">HOROLOGE</h1>
-      <nav class="hidden md:flex space-x-8">
-        <a href="#" class="nav-link text-gray-700">Home</a>
-        <a href="#features" class="nav-link text-gray-700">Craftsmanship</a>
-        <a href="#brands" class="nav-link text-gray-700">Brands</a>
-        <a href="#collection" class="nav-link text-gray-700">Collection</a>
-        <a href="#contact" class="nav-link text-gray-700">Contact</a>
-      </nav>
-      <div class="flex items-center space-x-6">
-        <button class="text-gray-500 hover:text-gray-900">
-          <i class="fas fa-search"></i>
-        </button>
-        <button class="text-gray-500 hover:text-gray-900">
-          <i class="fas fa-user"></i>
-        </button>
-        <button class="text-gray-500 hover:text-gray-900 relative">
-          <i class="fas fa-shopping-bag"></i>
-          <span class="absolute -top-2 -right-2 bg-gray-900 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">0</span>
-        </button>
-      </div>
-    </div>
-  </header>
+  @include('template3.head3')
 
   <!-- Hero Section -->
-  <section class="relative h-[80vh] flex items-center">
-    <div class="absolute inset-0 bg-gradient-to-r from-white/90 to-white/30 z-10"></div>
-    <div class="absolute inset-0">
-      <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" 
-           alt="Luxury Watch" 
-           class="w-full h-full object-cover object-center">
-    </div>
-    <div class="relative max-w-7xl mx-auto px-6 z-20">
-      <div class="max-w-xl">
-        <h2 class="text-5xl font-medium mb-6 leading-tight">Timeless Elegance,<br>Modern Precision</h2>
-        <p class="text-gray-600 mb-8">Discover horological masterpieces that transcend generations</p>
-        <div class="flex space-x-4">
-          <button class="bg-gray-900 hover:bg-gray-800 text-white px-8 py-3 font-medium transition duration-300">
-            View Collection
-          </button>
-          <button class="border border-gray-300 hover:border-gray-900 text-gray-900 px-8 py-3 font-medium transition duration-300">
-            Book Consultation
-          </button>
+  @if($is_default)
+    <section class="relative h-[80vh] flex items-center">
+      <div class="absolute inset-0 bg-gradient-to-r from-white/90 to-white/30 z-10"></div>
+      <div class="absolute inset-0">
+        <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" 
+            alt="Luxury Watch" 
+            class="w-full h-full object-cover object-center">
+      </div>
+      <div class="relative max-w-7xl mx-auto px-6 z-20">
+        <div class="max-w-xl">
+          <h2 class="text-5xl font-medium mb-6 leading-tight">Timeless Elegance,<br>Modern Precision</h2>
+          <p class="text-gray-600 mb-8">Discover horological masterpieces that transcend generations</p>
+          <div class="flex space-x-4">
+            <button class="bg-gray-900 hover:bg-gray-800 text-white px-8 py-3 font-medium transition duration-300">
+              View Collection
+            </button>
+            <button class="border border-gray-300 hover:border-gray-900 text-gray-900 px-8 py-3 font-medium transition duration-300">
+              Book Consultation
+            </button>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  @else
+    <section class="relative h-[80vh] flex items-center">
+      <div class="absolute inset-0 bg-gradient-to-r from-white/90 to-white/30 z-10"></div>
+      <div class="absolute inset-0">
+        <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" 
+            alt="Hero Image" 
+            class="w-full h-full object-cover object-center">
+      </div>
+      <div class="relative max-w-7xl mx-auto px-6 z-20">
+        <div class="max-w-xl">
+          <h2 class="text-5xl font-medium mb-6 leading-tight">{{ $homesetting->main_text }}</h2>
+          <p class="text-gray-600 mb-8">{{ $homesetting->sub_text }}</p>
+          <div class="flex space-x-4">
+            <button class="bg-gray-900 hover:bg-gray-800 text-white px-8 py-3 font-medium transition duration-300">
+              {{ $homesetting->button1_text }}
+            </button>
+            <button class="border border-gray-300 hover:border-gray-900 text-gray-900 px-8 py-3 font-medium transition duration-300">
+              {{ $homesetting->button2_text }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  @endif
 
-  <!-- Craftsmanship -->
-  <section id="features" class="py-20 px-6 bg-white">
-    <div class="max-w-7xl mx-auto">
-      <div class="text-center mb-16">
-        <h3 class="text-3xl font-medium mb-4">The Art of Watchmaking</h3>
-        <p class="text-gray-600 max-w-2xl mx-auto">Each timepiece represents centuries of refined craftsmanship</p>
+  <!-- Features Section -->
+  @if($is_default)
+    <section id="features" class="py-20 px-6 bg-white">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+          <h3 class="text-3xl font-medium mb-4">The Art of Watchmaking</h3>
+          <p class="text-gray-600 max-w-2xl mx-auto">Each timepiece represents centuries of refined craftsmanship</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="p-8 text-center">
+            <div class="w-20 h-20 mx-auto rounded-full bg-gray-100 flex items-center justify-center mb-6">
+              <i class="fas fa-gem text-gray-700 text-2xl"></i>
+            </div>
+            <h4 class="text-xl font-medium mb-3">Authenticity</h4>
+            <p class="text-gray-600">Every watch undergoes rigorous authentication by our master watchmakers</p>
+          </div>
+          <div class="p-8 text-center">
+            <div class="w-20 h-20 mx-auto rounded-full bg-gray-100 flex items-center justify-center mb-6">
+              <i class="fas fa-cogs text-gray-700 text-2xl"></i>
+            </div>
+            <h4 class="text-xl font-medium mb-3">Precision</h4>
+            <p class="text-gray-600">Swiss-made movements with chronometer certification for unmatched accuracy</p>
+          </div>
+          <div class="p-8 text-center">
+            <div class="w-20 h-20 mx-auto rounded-full bg-gray-100 flex items-center justify-center mb-6">
+              <i class="fas fa-history text-gray-700 text-2xl"></i>
+            </div>
+            <h4 class="text-xl font-medium mb-3">Heritage</h4>
+            <p class="text-gray-600">Timepieces with storied histories from the world's most respected maisons</p>
+          </div>
+        </div>
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="p-8 text-center">
-          <div class="w-20 h-20 mx-auto rounded-full bg-gray-100 flex items-center justify-center mb-6">
-            <i class="fas fa-gem text-gray-700 text-2xl"></i>
-          </div>
-          <h4 class="text-xl font-medium mb-3">Authenticity</h4>
-          <p class="text-gray-600">Every watch undergoes rigorous authentication by our master watchmakers</p>
+    </section>
+  @else
+    <section id="features" class="py-20 px-6 bg-white">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+          <h3 class="text-3xl font-medium mb-4">{{ $section1->main_heading }}</h3>
+          <p class="text-gray-600 max-w-2xl mx-auto">{{ $section1->sub_heading }}</p>
         </div>
-        <div class="p-8 text-center">
-          <div class="w-20 h-20 mx-auto rounded-full bg-gray-100 flex items-center justify-center mb-6">
-            <i class="fas fa-cogs text-gray-700 text-2xl"></i>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="p-8 text-center">
+            <div class="w-20 h-20 mx-auto rounded-full bg-gray-100 flex items-center justify-center mb-6">
+              <i class="fas fa-gem text-gray-700 text-2xl"></i>
+            </div>
+            <h4 class="text-xl font-medium mb-3">{{ $section1->feature1_heading }}</h4>
+            <p class="text-gray-600">{{ $section1->feature1_detail }}</p>
           </div>
-          <h4 class="text-xl font-medium mb-3">Precision</h4>
-          <p class="text-gray-600">Swiss-made movements with chronometer certification for unmatched accuracy</p>
-        </div>
-        <div class="p-8 text-center">
-          <div class="w-20 h-20 mx-auto rounded-full bg-gray-100 flex items-center justify-center mb-6">
-            <i class="fas fa-history text-gray-700 text-2xl"></i>
+          <div class="p-8 text-center">
+            <div class="w-20 h-20 mx-auto rounded-full bg-gray-100 flex items-center justify-center mb-6">
+              <i class="fas fa-cogs text-gray-700 text-2xl"></i>
+            </div>
+            <h4 class="text-xl font-medium mb-3">{{ $section1->feature2_heading }}</h4>
+            <p class="text-gray-600">{{ $section1->feature2_detail }}</p>
           </div>
-          <h4 class="text-xl font-medium mb-3">Heritage</h4>
-          <p class="text-gray-600">Timepieces with storied histories from the world's most respected maisons</p>
+          <div class="p-8 text-center">
+            <div class="w-20 h-20 mx-auto rounded-full bg-gray-100 flex items-center justify-center mb-6">
+              <i class="fas fa-history text-gray-700 text-2xl"></i>
+            </div>
+            <h4 class="text-xl font-medium mb-3">{{ $section1->feature3_heading }}</h4>
+            <p class="text-gray-600">{{ $section1->feature3_detail }}</p>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  @endif
 
-  <!-- Brands -->
-  <section id="brands" class="py-20 px-6 bg-[#f9f9f7]">
-    <div class="max-w-7xl mx-auto">
-      <div class="text-center mb-16">
-        <h3 class="text-3xl font-medium mb-4">Our Partners</h3>
-        <p class="text-gray-600 max-w-2xl mx-auto">Representing the pinnacle of horological excellence</p>
+  <!-- Brands Section -->
+  @if($is_default)
+    <section id="brands" class="py-20 px-6 bg-[#f9f9f7]">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+          <h3 class="text-3xl font-medium mb-4">Our Partners</h3>
+          <p class="text-gray-600 max-w-2xl mx-auto">Representing the pinnacle of horological excellence</p>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-6 gap-8">
+          <div class="flex items-center justify-center p-6">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Rolex_logo.svg/2560px-Rolex_logo.svg.png" 
+                alt="Rolex" 
+                class="brand-logo h-8">
+          </div>
+          <div class="flex items-center justify-center p-6">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Omega_Logo.svg/1200px-Omega_Logo.svg.png" 
+                alt="Omega" 
+                class="brand-logo h-6">
+          </div>
+          <div class="flex items-center justify-center p-6">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Patek_Philippe_Logo.svg/2560px-Patek_Philippe_Logo.svg.png" 
+                alt="Patek Philippe" 
+                class="brand-logo h-8">
+          </div>
+          <div class="flex items-center justify-center p-6">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Cartier_logo.svg/2560px-Cartier_logo.svg.png" 
+                alt="Cartier" 
+                class="brand-logo h-6">
+          </div>
+          <div class="flex items-center justify-center p-6">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/IWC_logo.svg/2560px-IWC_logo.svg.png" 
+                alt="IWC" 
+                class="brand-logo h-6">
+          </div>
+          <div class="flex items-center justify-center p-6">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Audemars_Piguet_Logo.svg/2560px-Audemars_Piguet_Logo.svg.png" 
+                alt="Audemars Piguet" 
+                class="brand-logo h-6">
+          </div>
+        </div>
       </div>
-      <div class="grid grid-cols-2 md:grid-cols-6 gap-8">
-        <div class="flex items-center justify-center p-6">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Rolex_logo.svg/2560px-Rolex_logo.svg.png" 
-               alt="Rolex" 
-               class="brand-logo h-8">
+    </section>
+  @else
+    <section id="brands" class="py-20 px-6 bg-[#f9f9f7]">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+          <h3 class="text-3xl font-medium mb-4">{{ $section2->main_text1 }}</h3>
+          <p class="text-gray-600 max-w-2xl mx-auto">{{ $section2->sub_text1 }}</p>
         </div>
-        <div class="flex items-center justify-center p-6">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Omega_Logo.svg/1200px-Omega_Logo.svg.png" 
-               alt="Omega" 
-               class="brand-logo h-6">
-        </div>
-        <div class="flex items-center justify-center p-6">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Patek_Philippe_Logo.svg/2560px-Patek_Philippe_Logo.svg.png" 
-               alt="Patek Philippe" 
-               class="brand-logo h-8">
-        </div>
-        <div class="flex items-center justify-center p-6">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Cartier_logo.svg/2560px-Cartier_logo.svg.png" 
-               alt="Cartier" 
-               class="brand-logo h-6">
-        </div>
-        <div class="flex items-center justify-center p-6">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/IWC_logo.svg/2560px-IWC_logo.svg.png" 
-               alt="IWC" 
-               class="brand-logo h-6">
-        </div>
-        <div class="flex items-center justify-center p-6">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Audemars_Piguet_Logo.svg/2560px-Audemars_Piguet_Logo.svg.png" 
-               alt="Audemars Piguet" 
-               class="brand-logo h-6">
+        <div class="grid grid-cols-2 md:grid-cols-6 gap-8">
+          @foreach (range(1,6) as $i)
+            <div class="flex items-center justify-center p-6">
+              <div class="w-24 h-24 rounded-full bg-white shadow-md flex items-center justify-center overflow-hidden transition-transform duration-300 hover:scale-110 hover:shadow-xl">
+                <img src="{{ $section2->{'image'.$i} }}" 
+                    alt="Brand {{ $i }}" 
+                    class="object-cover w-full h-full">
+              </div>
+            </div>
+          @endforeach
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  @endif
 
   <!-- Collection -->
-  <section id="collection" class="py-20 px-6 bg-white">
-    <div class="max-w-7xl mx-auto">
-      <div class="text-center mb-16">
-        <h3 class="text-3xl font-medium mb-4">Curated Collection</h3>
-        <p class="text-gray-600 max-w-2xl mx-auto">Select timepieces for the discerning collector</p>
-      </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-        <div class="watch-card p-6 rounded-lg">
-          <div class="relative h-64 mb-6 overflow-hidden rounded-lg">
-            <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1099&q=80" 
-                 alt="Rolex Submariner" 
-                 class="absolute inset-0 w-full h-full object-cover">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
-            <span class="absolute top-4 right-4 bg-white text-gray-900 text-xs font-medium px-2 py-1 rounded">NEW</span>
-          </div>
-          <h4 class="font-medium text-lg mb-1">Rolex Submariner</h4>
-          <p class="text-gray-500 text-sm mb-3">Oystersteel, Ceramic Bezel</p>
-          <p class="text-gray-900 font-medium text-xl mb-4">$8,950.00</p>
-          <button class="w-full border border-gray-900 hover:bg-gray-900 hover:text-white text-gray-900 py-2 rounded-lg font-medium transition duration-300">
-            Add to Collection
-          </button>
+  @if($is_default)
+    <section id="collection" class="py-20 px-6 bg-white">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+          <h3 class="text-3xl font-medium mb-4">Curated Collection</h3>
+          <p class="text-gray-600 max-w-2xl mx-auto">Select timepieces for the discerning collector</p>
         </div>
-        <div class="watch-card p-6 rounded-lg">
-          <div class="relative h-64 mb-6 overflow-hidden rounded-lg">
-            <img src="https://images.unsplash.com/photo-1542496658-e33a6d0d50f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" 
-                 alt="Omega Speedmaster" 
-                 class="absolute inset-0 w-full h-full object-cover">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
-          </div>
-          <h4 class="font-medium text-lg mb-1">Omega Speedmaster</h4>
-          <p class="text-gray-500 text-sm mb-3">Moonwatch Professional</p>
-          <p class="text-gray-900 font-medium text-xl mb-4">$6,300.00</p>
-          <button class="w-full border border-gray-900 hover:bg-gray-900 hover:text-white text-gray-900 py-2 rounded-lg font-medium transition duration-300">
-            Add to Collection
-          </button>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <!-- Static Product Cards -->
+          @include('template2.collection-default')
         </div>
-        <div class="watch-card p-6 rounded-lg">
-          <div class="relative h-64 mb-6 overflow-hidden rounded-lg">
-            <img src="https://images.unsplash.com/photo-1611591437281-4608be122683?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" 
-                 alt="Patek Philippe Calatrava" 
-                 class="absolute inset-0 w-full h-full object-cover">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
-            <span class="absolute top-4 right-4 bg-white text-gray-900 text-xs font-medium px-2 py-1 rounded">LIMITED</span>
-          </div>
-          <h4 class="font-medium text-lg mb-1">Patek Philippe Calatrava</h4>
-          <p class="text-gray-500 text-sm mb-3">White Gold, Hand-Guilloché</p>
-          <p class="text-gray-900 font-medium text-xl mb-4">$29,900.00</p>
-          <button class="w-full border border-gray-900 hover:bg-gray-900 hover:text-white text-gray-900 py-2 rounded-lg font-medium transition duration-300">
-            Add to Collection
-          </button>
-        </div>
-        <div class="watch-card p-6 rounded-lg">
-          <div class="relative h-64 mb-6 overflow-hidden rounded-lg">
-            <img src="https://images.unsplash.com/photo-1612817159949-195b6eb9e31a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" 
-                 alt="Cartier Tank" 
-                 class="absolute inset-0 w-full h-full object-cover">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
-          </div>
-          <h4 class="font-medium text-lg mb-1">Cartier Tank Solo</h4>
-          <p class="text-gray-500 text-sm mb-3">Stainless Steel, Black Leather</p>
-          <p class="text-gray-900 font-medium text-xl mb-4">$2,850.00</p>
-          <button class="w-full border border-gray-900 hover:bg-gray-900 hover:text-white text-gray-900 py-2 rounded-lg font-medium transition duration-300">
-            Add to Collection
+        <div class="text-center mt-12">
+          <button class="border border-gray-900 hover:bg-gray-900 hover:text-white text-gray-900 px-8 py-3 rounded-lg font-medium transition duration-300">
+            View Full Collection
           </button>
         </div>
       </div>
-      <div class="text-center mt-12">
-        <button class="border border-gray-900 hover:bg-gray-900 hover:text-white text-gray-900 px-8 py-3 rounded-lg font-medium transition duration-300">
-          View Full Collection
-        </button>
+    </section>
+  @else
+    <section id="collection" class="py-20 px-6 bg-white">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+          <h3 class="text-3xl font-medium mb-4">{{ $section3->main_text ?? 'Best Collections' }}</h3>
+          <p class="text-gray-600 max-w-2xl mx-auto">{{ $section3->sub_text ?? 'Perfect choices specially for you' }}</p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          @foreach($products as $product)
+            <div class="watch-card p-6 rounded-lg border border-gray-100 shadow-sm hover:shadow-md transition">
+              <div class="relative h-64 mb-6 overflow-hidden rounded-lg">
+                <img src="{{ $product->image_url }}" alt="{{ $product->name }}" class="absolute inset-0 w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
+                @if($product->is_new)
+                  <span class="absolute top-4 right-4 bg-white text-gray-900 text-xs font-medium px-2 py-1 rounded">NEW</span>
+                @elseif($product->is_limited)
+                  <span class="absolute top-4 right-4 bg-white text-gray-900 text-xs font-medium px-2 py-1 rounded">LIMITED</span>
+                @endif
+              </div>
+              <h4 class="font-medium text-lg mb-1">{{ $product->name }}</h4>
+              <p class="text-gray-500 text-sm mb-3">{{ $product->description }}</p>
+              <p class="text-gray-900 font-medium text-xl mb-4">${{ number_format($product->price, 2) }}</p>
+              <button class="w-full border border-gray-900 hover:bg-gray-900 hover:text-white text-gray-900 py-2 rounded-lg font-medium transition duration-300">
+                Add to Cart
+              </button>
+            </div>
+          @endforeach
+        </div>
+        <div class="text-center mt-12">
+          <button class="border border-gray-900 hover:bg-gray-900 hover:text-white text-gray-900 px-8 py-3 rounded-lg font-medium transition duration-300">
+            View Full Collection
+          </button>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  @endif
 
   <!-- Testimonials -->
+@if($is_default)
   <section class="py-20 px-6 bg-[#f9f9f7]">
     <div class="max-w-7xl mx-auto">
       <div class="text-center mb-16">
@@ -264,72 +245,70 @@
         <p class="text-gray-600 max-w-2xl mx-auto">Experiences from our community of horology enthusiasts</p>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="testimonial-card p-8 rounded-lg">
-          <div class="flex mb-4">
-            <div class="text-yellow-500">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-            </div>
+        @include('template2.testimonials-default')
+      </div>
+    </div>
+  </section>
+@else
+  <section class="py-20 px-6 bg-[#f9f9f7]">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16">
+        <h3 class="text-3xl font-medium mb-4">{{ $testimonials->testi_main ?? 'Collector Testimonials' }}</h3>
+        <p class="text-gray-600 max-w-2xl mx-auto">{{ $testimonials->testi_sub ?? 'Experiences from our community of horology enthusiasts' }}</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Testimonial 1 -->
+        <div class="testimonial-card p-8 rounded-lg bg-white shadow">
+          <div class="flex mb-4 text-yellow-500">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
           </div>
-          <p class="text-gray-700 mb-6 italic">"The authentication process gave me complete confidence in my purchase. My Patek arrived in impeccable condition with all original papers."</p>
+          <p class="text-gray-700 mb-6 italic">"{{ $testimonials->testi1 }}"</p>
           <div class="flex items-center">
             <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
-              <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Client" class="w-full h-full object-cover">
+              <img src="{{ $testimonials->image1 ?? 'https://randomuser.me/api/portraits/men/32.jpg' }}" alt="{{ $testimonials->testi_user1 }}" class="w-full h-full object-cover">
             </div>
             <div>
-              <h5 class="font-medium">James Wilson</h5>
-              <p class="text-gray-500 text-sm">Collector since 2015</p>
+              <h5 class="font-medium">{{ $testimonials->testi_user1 }}</h5>
             </div>
           </div>
         </div>
-        <div class="testimonial-card p-8 rounded-lg">
-          <div class="flex mb-4">
-            <div class="text-yellow-500">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-            </div>
+
+        <!-- Testimonial 2 -->
+        <div class="testimonial-card p-8 rounded-lg bg-white shadow">
+          <div class="flex mb-4 text-yellow-500">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
           </div>
-          <p class="text-gray-700 mb-6 italic">"Exceptional service from start to finish. My consultant helped me find the perfect Rolex Daytona that I'd been searching for years."</p>
+          <p class="text-gray-700 mb-6 italic">"{{ $testimonials->testi2 }}"</p>
           <div class="flex items-center">
             <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
-              <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Client" class="w-full h-full object-cover">
+              <img src="{{ $testimonials->image2 ?? 'https://randomuser.me/api/portraits/women/44.jpg' }}" alt="{{ $testimonials->testi_user2 }}" class="w-full h-full object-cover">
             </div>
             <div>
-              <h5 class="font-medium">Sarah Johnson</h5>
-              <p class="text-gray-500 text-sm">Collector since 2018</p>
+              <h5 class="font-medium">{{ $testimonials->testi_user2 }}</h5>
             </div>
           </div>
         </div>
-        <div class="testimonial-card p-8 rounded-lg">
-          <div class="flex mb-4">
-            <div class="text-yellow-500">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star-half-alt"></i>
-            </div>
+
+        <!-- Testimonial 3 -->
+        <div class="testimonial-card p-8 rounded-lg bg-white shadow">
+          <div class="flex mb-4 text-yellow-500">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
           </div>
-          <p class="text-gray-700 mb-6 italic">"The after-sales service is unparalleled. When my watch needed servicing, they handled everything seamlessly."</p>
+          <p class="text-gray-700 mb-6 italic">"{{ $testimonials->testi3 }}"</p>
           <div class="flex items-center">
             <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
-              <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Client" class="w-full h-full object-cover">
+              <img src="{{ $testimonials->image3 ?? 'https://randomuser.me/api/portraits/men/75.jpg' }}" alt="{{ $testimonials->testi_user3 }}" class="w-full h-full object-cover">
             </div>
             <div>
-              <h5 class="font-medium">Michael Chen</h5>
-              <p class="text-gray-500 text-sm">Collector since 2012</p>
+              <h5 class="font-medium">{{ $testimonials->testi_user3 }}</h5>
             </div>
           </div>
         </div>
       </div>
     </div>
   </section>
+@endif
+
 
   <!-- Contact -->
   <section id="contact" class="py-20 px-6 bg-white">
@@ -409,68 +388,4 @@
   </section>
 
   <!-- Footer -->
-  <footer class="py-12 px-6 bg-white border-t border-gray-100">
-    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
-      <div>
-        <h4 class="text-xl font-medium mb-4">HOROLOGE</h4>
-        <p class="text-gray-500 mb-4">The premier destination for discerning collectors of fine timepieces.</p>
-        <div class="flex space-x-4">
-          <a href="#" class="text-gray-500 hover:text-gray-900">
-            <i class="fab fa-instagram"></i>
-          </a>
-          <a href="#" class="text-gray-500 hover:text-gray-900">
-            <i class="fab fa-facebook-f"></i>
-          </a>
-          <a href="#" class="text-gray-500 hover:text-gray-900">
-            <i class="fab fa-twitter"></i>
-          </a>
-        </div>
-      </div>
-      <div>
-        <h5 class="font-medium text-lg mb-4">Collections</h5>
-        <ul class="space-y-2">
-          <li><a href="#" class="text-gray-500 hover:text-gray-900">New Arrivals</a></li>
-          <li><a href="#" class="text-gray-500 hover:text-gray-900">Limited Editions</a></li>
-          <li><a href="#" class="text-gray-500 hover:text-gray-900">Vintage Selection</a></li>
-          <li><a href="#" class="text-gray-500 hover:text-gray-900">Investment Grade</a></li>
-        </ul>
-      </div>
-      <div>
-        <h5 class="font-medium text-lg mb-4">Services</h5>
-        <ul class="space-y-2">
-          <li><a href="#" class="text-gray-500 hover:text-gray-900">Authentication</a></li>
-          <li><a href="#" class="text-gray-500 hover:text-gray-900">Valuation</a></li>
-          <li><a href="#" class="text-gray-500 hover:text-gray-900">Servicing</a></li>
-          <li><a href="#" class="text-gray-500 hover:text-gray-900">Trade-In</a></li>
-        </ul>
-      </div>
-      <div>
-        <h5 class="font-medium text-lg mb-4">Company</h5>
-        <ul class="space-y-2">
-          <li><a href="#" class="text-gray-500 hover:text-gray-900">About Us</a></li>
-          <li><a href="#" class="text-gray-500 hover:text-gray-900">Our Experts</a></li>
-          <li><a href="#" class="text-gray-500 hover:text-gray-900">Privacy Policy</a></li>
-          <li><a href="#" class="text-gray-500 hover:text-gray-900">Terms of Service</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="border-t border-gray-100 mt-12 pt-8 text-center text-gray-500">
-      <p>&copy; 2025 Horologe. All rights reserved.</p>
-    </div>
-  </footer>
-
-  <script>
-    // Simple animation for testimonial stars
-    document.querySelectorAll('.fa-star').forEach(star => {
-      star.addEventListener('mouseover', () => {
-        star.style.transform = 'scale(1.2)';
-        star.style.transition = 'transform 0.2s ease';
-      });
-      star.addEventListener('mouseout', () => {
-        star.style.transform = 'scale(1)';
-      });
-    });
-  </script>
-</body>
-
-</html>
+  @include('template3.footer3')

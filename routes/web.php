@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TemplateController;
+use App\Http\Controllers\LuxuryController;
 
 
 /*
@@ -77,6 +78,7 @@ Route::delete('/delete-product/{id}', [TemplateController::class, 'deleteProduct
 Route::put('/products/update/{id}', [TemplateController::class, 'updateProduct'])->name('updateProduct');
 
 Route::get('/data', [TemplateController::class, 'show'])->name('d.storedata');
+Route::get('/index1', [LuxuryController::class, 'index'])->name('template1.index1');
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
