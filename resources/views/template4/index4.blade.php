@@ -559,8 +559,6 @@
     </div>
   </section>
 @endif
-
-
   <!-- Newsletter -->
   <section class="py-16 px-6 bg-[#d4af37] text-white">
     <div class="max-w-4xl mx-auto text-center">
