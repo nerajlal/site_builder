@@ -4,7 +4,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TemplateController;
-use App\Http\Controllers\LuxuryController;
+use App\Http\Controllers\LuxuryController1;
+use App\Http\Controllers\LuxuryController2;
+use App\Http\Controllers\LuxuryController3;
+use App\Http\Controllers\LuxuryController4;
 
 
 /*
@@ -78,7 +81,10 @@ Route::delete('/delete-product/{id}', [TemplateController::class, 'deleteProduct
 Route::put('/products/update/{id}', [TemplateController::class, 'updateProduct'])->name('updateProduct');
 
 Route::get('/data', [TemplateController::class, 'show'])->name('d.storedata');
-Route::get('/index1', [LuxuryController::class, 'index'])->name('template1.index1');
+Route::get('/index1', [LuxuryController1::class, 'index'])->name('template1.index1');
+Route::get('/index2', [LuxuryController2::class, 'index'])->name('template2.index2');
+Route::get('/index3', [LuxuryController3::class, 'index'])->name('template3.index3');
+Route::get('/index4', [LuxuryController4::class, 'index'])->name('template4.index4');
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');

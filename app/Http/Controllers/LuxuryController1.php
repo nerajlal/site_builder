@@ -13,7 +13,7 @@ use App\Models\Section1;
 use App\Models\Section2;
 use App\Models\ContactUs;
 
-class LuxuryController extends Controller
+class LuxuryController1 extends Controller
 {
     public function index()
     {
@@ -42,7 +42,7 @@ class LuxuryController extends Controller
         $testimonials = Testimonial::where('header_footer_id', $headerFooter->id)->first();
         $contactus = ContactUs::where('header_footer_id', $headerFooter->id)->first();
 
-        return view('template4.index4', compact('headerFooter', 'homesetting', 'section1', 'section2', 'categories', 'products', 'testimonials', 'contactus'))
+        return view('template1.index1', compact('headerFooter', 'homesetting', 'section1', 'section2', 'categories', 'products', 'testimonials', 'contactus'))
             ->with('is_default', false);
     }
 
