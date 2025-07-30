@@ -28,7 +28,7 @@ class ProfileController extends Controller
             $validated
         );
 
-        return response()->json(['message' => 'Profile updated successfully', 'profile' => $profile]);
+        return response()->json(['message' => 'Profile updated successfully', 'redirect' => '/login', 'profile' => $profile]);
     }
 
     public function getProfile()
