@@ -64,5 +64,26 @@
         <i class="fas fa-shopping-cart"></i>
       </button>
       <button class="bg-yellow-600 hover:bg-yellow-700 text-white px-4 py-2 rounded transition">Sign In</button>
+      <!-- <button onclick="openLoginModal()" class="bg-yellow-600 hover:bg-yellow-700 text-white px-4 py-2 rounded transition">Sign In</button> -->
     </div>
   </header>
+
+
+
+  <!-- Login Modal -->
+
+
+
+
+
+
+<script>
+  function openLoginModal() {
+    document.getElementById('loginModal').classList.remove('hidden');
+    document.getElementById('loginModal').classList.add('flex');
+  }
+
+  function closeLoginModal() {
+    document.getElementById('loginModal').classList.add('hidden');
+  }
+</script>

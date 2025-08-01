@@ -12,6 +12,7 @@ use App\Http\Controllers\ProductController1;
 use App\Http\Controllers\ProductController2;
 use App\Http\Controllers\ProductController3;
 use App\Http\Controllers\ProductController4;
+use App\Http\Controllers\TemplateSelectionController;
 
 // Public routes
 Route::get('/', fn() => view('index'));
@@ -40,6 +41,7 @@ Route::post('/profile/update', [ProfileController::class, 'update'])->name('prof
 
 // Template view routes
 Route::get('/template', fn() => view('d_template'));
+Route::post('/select-template', [TemplateSelectionController::class, 'store'])->name('template.select');
 
 // Template data routes
 Route::get('/data', [TemplateController::class, 'show'])->name('d.storedata');
@@ -67,14 +69,3 @@ Route::get('/product4', [ProductController4::class, 'index'])->name('template4.p
 
 // Template save route
 Route::post('/template1/save', [TemplateController::class, 'store'])->name('template1.save');
-
-// Customer auth routes
-Route::prefix('customer')->namespace('App\Http\Controllers\Customer')->group(function () {
-    Route::get('/login', 'AuthController@showLoginForm')->name('customer.login');
-    Route::post('/send-otp', 'AuthController@sendOtp')->name('customer.sendOtp');
-    Route::get('/verify', 'AuthController@showVerifyForm')->name('customer.verify');
-    Route::post('/verify-otp', 'AuthController@verifyOtp')->name('customer.verifyOtp');
-    Route::get('/set-password', 'AuthController@showSetPasswordForm')->name('customer.setPasswordForm');
-    Route::post('/set-password', 'AuthController@setPassword')->name('customer.setPassword');
-    Route::get('/logout', 'AuthController@logout')->name('customer.logout');
-});

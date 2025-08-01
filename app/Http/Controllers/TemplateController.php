@@ -12,6 +12,7 @@ use App\Models\ContactUs;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Template;
 
 class TemplateController extends Controller
 {
@@ -249,7 +250,23 @@ class TemplateController extends Controller
         return response()->json(['message' => 'Product updated successfully!']);
     }
 
-    
+    public function temp_save(Request $request)
+    {
+        $request->validate([
+            'template_path' => 'required|string',
+        ]);
+
+        $userId = session('userid'); // Businesser session ID
+        $headerFooter = HeaderFooter::where('user_id', $userId)->first();
+
+        Template::create([
+            'user_id' => $userId,
+            'headerfooter_id' => $headerFooter ? $headerFooter->id : null,
+            'template_path' => $request->template_path,
+        ]);
+
+        return response()->json(['status' => 'success', 'message' => 'Template saved successfully.']);
+    }
 
 
 }

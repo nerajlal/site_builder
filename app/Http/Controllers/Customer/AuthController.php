@@ -31,7 +31,7 @@ class AuthController extends Controller
         \Log::info("OTP for {$request->whatsapp}: $otp");
 
         Session::put('otp_number', $request->whatsapp);
-        return redirect()->route('customer.verify')->with('success', 'OTP sent to WhatsApp.');
+        return redirect('/index1')->with('success', 'OTP sent to WhatsApp.');
     }
 
     public function showVerifyForm()
@@ -47,7 +47,7 @@ class AuthController extends Controller
 
         if ($customer) {
             Session::put('customer_id', $customer->id);
-            return redirect()->route('customer.setPasswordForm');
+            return redirect('/index1')->with('success', 'Logged in successfully.');
         }
 
         return back()->with('error', 'Invalid OTP');
