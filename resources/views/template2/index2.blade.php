@@ -37,10 +37,10 @@
         <h2 class="text-5xl font-light mb-6 leading-tight">{{ $homesetting->main_text }}</h2>
         <p class="text-gray-300 mb-8">{{ $homesetting->sub_text }}</p>
         <div class="flex space-x-4">
-          <button class="bg-yellow-600 hover:bg-yellow-700 text-black px-8 py-3 font-medium transition duration-300">
+          <button class="bg-yellow-600 hover:bg-yellow-700 text-black px-8 py-3 font-medium transition duration-300" onclick="window.location.href='/product2'">
             {{ $homesetting->button1_text }}
           </button>
-          <button class="border border-gray-400 hover:border-white text-white px-8 py-3 font-medium transition duration-300">
+          <button class="border border-gray-400 hover:border-white text-white px-8 py-3 font-medium transition duration-300" onclick="window.location.href='/product2'">
             {{ $homesetting->button2_text }}
           </button>
         </div>
@@ -292,7 +292,7 @@
         @endforeach
       </div>
       <div class="text-center mt-12">
-        <button class="border border-gray-600 hover:border-white text-white px-8 py-3 rounded-lg font-medium transition duration-300">
+        <button class="border border-gray-600 hover:border-white text-white px-8 py-3 rounded-lg font-medium transition duration-300" onclick="window.location.href='/product2'">
           View Full Collection
         </button>
       </div>

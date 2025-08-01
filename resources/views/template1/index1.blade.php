@@ -1,4 +1,4 @@
-@include('template1.head1')
+@include('template1.head1', ['is_default' => $is_default, 'headerFooter' => $headerFooter])
 
   <!-- Hero Banner -->
   @if($is_default)
@@ -25,10 +25,10 @@
         <h2 class="text-5xl font-bold mb-6">{{ $homesetting->main_text }}</h2>
         <p class="text-xl mb-8">{{ $homesetting->sub_text }}</p>
         <div class="flex flex-col sm:flex-row justify-center gap-4">
-          <button class="bg-yellow-600 hover:bg-yellow-700 text-white px-8 py-3 rounded-lg font-medium transition">
+          <button class="bg-yellow-600 hover:bg-yellow-700 text-white px-8 py-3 rounded-lg font-medium transition" onclick="window.location.href='/product1'">
             {{ $homesetting->button1_text }} <i class="fas fa-arrow-right ml-2"></i>
           </button>
-          <button class="bg-transparent hover:bg-white hover:text-gray-900 border-2 border-white text-white px-8 py-3 rounded-lg font-medium transition">
+          <button class="bg-transparent hover:bg-white hover:text-gray-900 border-2 border-white text-white px-8 py-3 rounded-lg font-medium transition" onclick="window.location.href='/product1'">
             {{ $homesetting->button2_text }}
           </button>
         </div>
@@ -253,7 +253,7 @@
 
         <div class="text-center mt-12">
             <a href="#">
-                <button class="bg-transparent hover:bg-gray-900 text-gray-900 hover:text-white border-2 border-gray-900 px-8 py-3 rounded-lg font-medium transition">
+                <button class="bg-transparent hover:bg-gray-900 text-gray-900 hover:text-white border-2 border-gray-900 px-8 py-3 rounded-lg font-medium transition"onclick="window.location.href='/product1'">
                     View Full Collection <i class="fas fa-arrow-right ml-2"></i>
                 </button>
             </a>
