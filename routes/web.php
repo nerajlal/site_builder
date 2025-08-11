@@ -13,6 +13,7 @@ use App\Http\Controllers\ProductController2;
 use App\Http\Controllers\ProductController3;
 use App\Http\Controllers\ProductController4;
 use App\Http\Controllers\TemplateSelectionController;
+use App\Http\Controllers\TemplateViewController;
 
 // Public routes
 Route::get('/', fn() => view('index'));
@@ -42,6 +43,9 @@ Route::post('/profile/update', [ProfileController::class, 'update'])->name('prof
 // Template view routes
 Route::get('/template', fn() => view('d_template'));
 Route::post('/select-template', [TemplateSelectionController::class, 'store'])->name('template.select');
+
+Route::get('/template-view/{headerFooterId}', [TemplateViewController::class, 'show']);
+Route::get('/view/{headerFooterId}', [WebsiteViewController::class, 'show']);
 
 // Template data routes
 Route::get('/data', [TemplateController::class, 'show'])->name('d.storedata');
