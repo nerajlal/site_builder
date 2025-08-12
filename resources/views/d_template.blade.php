@@ -96,6 +96,9 @@
                             <button type="button" onclick="openPreviewModal('{{ $template['preview'] }}')" class="preview-btn flex-1 px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 text-sm font-medium">
                                 Live Preview
                             </button>
+                            <!-- <a href="{{ $template['preview'] }}" target="_blank" class="flex-1 px-4 py-2 bg-gray-200 border border-gray-400 text-gray-700 rounded-md text-sm font-medium text-center hover:bg-gray-300">
+                                Full Screen
+                            </a> -->
                             <button type="button" class="use-template-btn flex-1 px-4 py-2 bg-white border border-indigo-600 text-indigo-600 rounded-md text-sm font-medium" onclick="submitTemplate('{{ $template['blade'] }}')">
                                 Use Template
                             </button>

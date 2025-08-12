@@ -36,13 +36,30 @@
         <div class="max-w-xl">
           <h2 class="text-5xl font-medium mb-6 leading-tight">{{ $homesetting->main_text }}</h2>
           <p class="text-gray-600 mb-8">{{ $homesetting->sub_text }}</p>
+          @php
+            $currentUrl = request()->url();
+            $headerFooterId = null;
+            if (preg_match('/\/index3\/(\d+)/', $currentUrl, $matches)) {
+              $headerFooterId = $matches[1];
+            }
+          @endphp
+          
           <div class="flex space-x-4">
-            <button class="bg-gray-900 hover:bg-gray-800 text-white px-8 py-3 font-medium transition duration-300" onclick="window.location.href='/product3'">
-              {{ $homesetting->button1_text }}
-            </button>
-            <button class="border border-gray-300 hover:border-gray-900 text-gray-900 px-8 py-3 font-medium transition duration-300" onclick="window.location.href='/product3'">
-              {{ $homesetting->button2_text }}
-            </button>
+            @if($headerFooterId)
+              <button class="bg-gray-900 hover:bg-gray-800 text-white px-8 py-3 font-medium transition duration-300" onclick="window.location.href='/product3/{{ $headerFooterId }}'">
+                {{ $homesetting->button1_text }}
+              </button>
+              <button class="border border-gray-300 hover:border-gray-900 text-gray-900 px-8 py-3 font-medium transition duration-300" onclick="window.location.href='/product3/{{ $headerFooterId }}'">
+                {{ $homesetting->button2_text }}
+              </button>
+            @else
+              <button class="bg-gray-900 hover:bg-gray-800 text-white px-8 py-3 font-medium transition duration-300" onclick="window.location.href='/product3'">
+                {{ $homesetting->button1_text }}
+              </button>
+              <button class="border border-gray-300 hover:border-gray-900 text-gray-900 px-8 py-3 font-medium transition duration-300" onclick="window.location.href='/product3'">
+                {{ $homesetting->button2_text }}
+              </button>
+            @endif
           </div>
         </div>
       </div>
@@ -228,9 +245,19 @@
           @endforeach
         </div>
         <div class="text-center mt-12">
-          <button class="border border-gray-900 hover:bg-gray-900 hover:text-white text-gray-900 px-8 py-3 rounded-lg font-medium transition duration-300" onclick="window.location.href='/product3'">
-            View Full Collection
-          </button>
+          @if($headerFooterId)
+            <a href="/product3/{{ $headerFooterId }}">
+              <button class="border border-gray-900 hover:bg-gray-900 hover:text-white text-gray-900 px-8 py-3 rounded-lg font-medium transition duration-300">
+                View Full Collection
+              </button>
+            </a>
+          @else
+            <a href="/product3">
+              <button class="border border-gray-900 hover:bg-gray-900 hover:text-white text-gray-900 px-8 py-3 rounded-lg font-medium transition duration-300">
+                View Full Collection
+              </button>
+            </a>
+          @endif
         </div>
       </div>
     </section>

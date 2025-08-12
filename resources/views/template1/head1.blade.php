@@ -48,11 +48,29 @@
       @if($is_default)
         <a href="#" class="text-gray-700 hover:text-yellow-600 transition">Home</a>
       @else
-        <a href="/index1" class="text-gray-700 hover:text-yellow-600 transition">Home</a>
-        <a href="#features" id="navFeatures" class="{{ !($headerFooter->features ?? false) ? 'hidden' : '' }} hover:text-yellow-600">Features</a>
-        <a href="#categories" id="navBrands" class="{{ !($headerFooter->brands ?? false) ? 'hidden' : '' }} hover:text-yellow-600">Brands</a>
-        <a href="#products" id="navCollections" class="{{ !($headerFooter->collections ?? false) ? 'hidden' : '' }} hover:text-yellow-600">Collection</a>
-        <a href="#contact" id="navContact" class="{{ !($headerFooter->contact ?? false) ? 'hidden' : '' }} hover:text-yellow-600">Contact</a>
+        @php
+          $currentUrl = request()->url();
+          $headerFooterId = null;
+          if (preg_match('/\/index1\/(\d+)/', $currentUrl, $matches)) {
+            $headerFooterId = $matches[1];
+          } elseif (preg_match('/\/product1\/(\d+)/', $currentUrl, $matches)) {
+            $headerFooterId = $matches[1];
+          }
+        @endphp
+        
+        @if($headerFooterId)
+          <a href="/index1/{{ $headerFooterId }}" class="text-gray-700 hover:text-yellow-600 transition">Home</a>
+          <a href="#features" id="navFeatures" class="{{ !($headerFooter->features ?? false) ? 'hidden' : '' }} hover:text-yellow-600">Features</a>
+          <a href="#categories" id="navBrands" class="{{ !($headerFooter->brands ?? false) ? 'hidden' : '' }} hover:text-yellow-600">Brands</a>
+          <a href="#products" id="navCollections" class="{{ !($headerFooter->collections ?? false) ? 'hidden' : '' }} hover:text-yellow-600">Collection</a>
+          <a href="#contact" id="navContact" class="{{ !($headerFooter->contact ?? false) ? 'hidden' : '' }} hover:text-yellow-600">Contact</a>
+        @else
+          <a href="/index1" class="text-gray-700 hover:text-yellow-600 transition">Home</a>
+          <a href="#features" id="navFeatures" class="{{ !($headerFooter->features ?? false) ? 'hidden' : '' }} hover:text-yellow-600">Features</a>
+          <a href="#categories" id="navBrands" class="{{ !($headerFooter->brands ?? false) ? 'hidden' : '' }} hover:text-yellow-600">Brands</a>
+          <a href="#products" id="navCollections" class="{{ !($headerFooter->collections ?? false) ? 'hidden' : '' }} hover:text-yellow-600">Collection</a>
+          <a href="#contact" id="navContact" class="{{ !($headerFooter->contact ?? false) ? 'hidden' : '' }} hover:text-yellow-600">Contact</a>
+        @endif
       @endif
     </nav>
 

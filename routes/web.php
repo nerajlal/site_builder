@@ -66,10 +66,22 @@ Route::get('/index2', [LuxuryController2::class, 'index'])->name('template2.inde
 Route::get('/index3', [LuxuryController3::class, 'index'])->name('template3.index3');
 Route::get('/index4', [LuxuryController4::class, 'index'])->name('template4.index4');
 
+// Customer-facing template routes with header_footer_id
+Route::get('/index1/{headerFooterId}', [LuxuryController1::class, 'showCustomer'])->name('template1.index1.customer');
+Route::get('/index2/{headerFooterId}', [LuxuryController2::class, 'showCustomer'])->name('template2.index2.customer');
+Route::get('/index3/{headerFooterId}', [LuxuryController3::class, 'showCustomer'])->name('template3.index3.customer');
+Route::get('/index4/{headerFooterId}', [LuxuryController4::class, 'showCustomer'])->name('template4.index4.customer');
+
 Route::get('/product1', [ProductController1::class, 'index'])->name('template1.product1');
 Route::get('/product2', [ProductController2::class, 'index'])->name('template2.product2');
 Route::get('/product3', [ProductController3::class, 'index'])->name('template3.product3');
 Route::get('/product4', [ProductController4::class, 'index'])->name('template4.product4');
+
+// Customer-facing product routes with header_footer_id
+Route::get('/product1/{headerFooterId}', [ProductController1::class, 'showCustomer'])->name('template1.product1.customer');
+Route::get('/product2/{headerFooterId}', [ProductController2::class, 'showCustomer'])->name('template2.product2.customer');
+Route::get('/product3/{headerFooterId}', [ProductController3::class, 'showCustomer'])->name('template3.product3.customer');
+Route::get('/product4/{headerFooterId}', [ProductController4::class, 'showCustomer'])->name('template4.product4.customer');
 
 // Template save route
 Route::post('/template1/save', [TemplateController::class, 'store'])->name('template1.save');

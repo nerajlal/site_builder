@@ -12,6 +12,7 @@ use App\Models\HomeSetting;
 use App\Models\Section1;
 use App\Models\Section2;
 use App\Models\ContactUs;
+use App\Models\SelectedTemplate;
 
 class LuxuryController2 extends Controller
 {
@@ -39,6 +40,32 @@ class LuxuryController2 extends Controller
         $section2 = section2::where('header_footer_id', $headerFooter->id)->first();
         $categories = Category::where('header_footer_id', $headerFooter->id)->get();
         $products = Product::where('header_footer_id', $headerFooter->id) ->take(4) ->get();
+        $testimonials = Testimonial::where('header_footer_id', $headerFooter->id)->first();
+        $contactus = ContactUs::where('header_footer_id', $headerFooter->id)->first();
+
+        return view('template2.index2', compact('headerFooter', 'homesetting', 'section1', 'section2', 'categories', 'products', 'testimonials', 'contactus'))
+            ->with('is_default', false);
+    }
+
+    public function showCustomer($headerFooterId)
+    {
+        $headerFooter = HeaderFooter::find($headerFooterId);
+
+        if (!$headerFooter) {
+            abort(404, 'Header/Footer not found');
+        }
+
+        // Check if header_footer_id exists in selected_templates table
+        $selectedTemplate = SelectedTemplate::where('header_footer_id', $headerFooterId)->first();
+        if (!$selectedTemplate) {
+            abort(404, 'Template not found');
+        }
+
+        $homesetting = HomeSetting::where('header_footer_id', $headerFooter->id)->first();
+        $section1 = section1::where('header_footer_id', $headerFooter->id)->first();
+        $section2 = section2::where('header_footer_id', $headerFooter->id)->first();
+        $categories = Category::where('header_footer_id', $headerFooter->id)->get();
+        $products = Product::where('header_footer_id', $headerFooter->id)->take(4)->get();
         $testimonials = Testimonial::where('header_footer_id', $headerFooter->id)->first();
         $contactus = ContactUs::where('header_footer_id', $headerFooter->id)->first();
 

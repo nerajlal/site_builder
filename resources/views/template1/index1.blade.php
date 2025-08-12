@@ -24,13 +24,30 @@
       <div class="relative z-10 max-w-4xl mx-auto px-4">
         <h2 class="text-5xl font-bold mb-6">{{ $homesetting->main_text }}</h2>
         <p class="text-xl mb-8">{{ $homesetting->sub_text }}</p>
+        @php
+          $currentUrl = request()->url();
+          $headerFooterId = null;
+          if (preg_match('/\/index1\/(\d+)/', $currentUrl, $matches)) {
+            $headerFooterId = $matches[1];
+          }
+        @endphp
+        
         <div class="flex flex-col sm:flex-row justify-center gap-4">
-          <button class="bg-yellow-600 hover:bg-yellow-700 text-white px-8 py-3 rounded-lg font-medium transition" onclick="window.location.href='/product1'">
-            {{ $homesetting->button1_text }} <i class="fas fa-arrow-right ml-2"></i>
-          </button>
-          <button class="bg-transparent hover:bg-white hover:text-gray-900 border-2 border-white text-white px-8 py-3 rounded-lg font-medium transition" onclick="window.location.href='/product1'">
-            {{ $homesetting->button2_text }}
-          </button>
+          @if($headerFooterId)
+            <button class="bg-yellow-600 hover:bg-yellow-700 text-white px-8 py-3 rounded-lg font-medium transition" onclick="window.location.href='/product1/{{ $headerFooterId }}'">
+              {{ $homesetting->button1_text }} <i class="fas fa-arrow-right ml-2"></i>
+            </button>
+            <button class="bg-transparent hover:bg-white hover:text-gray-900 border-2 border-white text-white px-8 py-3 rounded-lg font-medium transition" onclick="window.location.href='/product1/{{ $headerFooterId }}'">
+              {{ $homesetting->button2_text }}
+            </button>
+          @else
+            <button class="bg-yellow-600 hover:bg-yellow-700 text-white px-8 py-3 rounded-lg font-medium transition" onclick="window.location.href='/product1'">
+              {{ $homesetting->button1_text }} <i class="fas fa-arrow-right ml-2"></i>
+            </button>
+            <button class="bg-transparent hover:bg-white hover:text-gray-900 border-2 border-white text-white px-8 py-3 rounded-lg font-medium transition" onclick="window.location.href='/product1'">
+              {{ $homesetting->button2_text }}
+            </button>
+          @endif
         </div>
       </div>
       <img src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1480&q=80" alt="Luxury Watch" class="absolute inset-0 w-full h-full object-cover">
@@ -252,11 +269,19 @@
         </div>
 
         <div class="text-center mt-12">
-            <a href="#">
-                <button class="bg-transparent hover:bg-gray-900 text-gray-900 hover:text-white border-2 border-gray-900 px-8 py-3 rounded-lg font-medium transition"onclick="window.location.href='/product1'">
-                    View Full Collection <i class="fas fa-arrow-right ml-2"></i>
-                </button>
-            </a>
+            @if($headerFooterId)
+                <a href="/product1/{{ $headerFooterId }}">
+                    <button class="bg-transparent hover:bg-gray-900 text-gray-900 hover:text-white border-2 border-gray-900 px-8 py-3 rounded-lg font-medium transition">
+                        View Full Collection <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                </a>
+            @else
+                <a href="/product1">
+                    <button class="bg-transparent hover:bg-gray-900 text-gray-900 hover:text-white border-2 border-gray-900 px-8 py-3 rounded-lg font-medium transition">
+                        View Full Collection <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                </a>
+            @endif
         </div>
     </section>
   @endif

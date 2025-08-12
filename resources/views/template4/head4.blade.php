@@ -92,11 +92,29 @@
         @if($is_default)
           <a href="#" class="text-gray-700 nav-link transition">Home</a>
         @else
-          <a href="/index4" class="text-gray-700 nav-link">Home</a>
-          <a href="#features" id="navFeatures" class="{{ !($headerFooter->features ?? false) ? 'hidden' : '' }}  nav-link">Features</a>
-          <a href="#brands" id="navBrands" class="{{ !($headerFooter->brands ?? false) ? 'hidden' : '' }}  nav-link">Brands</a>
-          <a href="#collection" id="navCollections" class="{{ !($headerFooter->collections ?? false) ? 'hidden' : '' }}  nav-link">Collection</a>
-          <a href="#contact" id="navContact" class="{{ !($headerFooter->contact ?? false) ? 'hidden' : '' }}  nav-link">Contact</a>
+          @php
+            $currentUrl = request()->url();
+            $headerFooterId = null;
+            if (preg_match('/\/index4\/(\d+)/', $currentUrl, $matches)) {
+              $headerFooterId = $matches[1];
+            } elseif (preg_match('/\/product4\/(\d+)/', $currentUrl, $matches)) {
+              $headerFooterId = $matches[1];
+            }
+          @endphp
+          
+          @if($headerFooterId)
+            <a href="/index4/{{ $headerFooterId }}" class="text-gray-700 nav-link">Home</a>
+            <a href="#features" id="navFeatures" class="{{ !($headerFooter->features ?? false) ? 'hidden' : '' }}  nav-link">Features</a>
+            <a href="#brands" id="navBrands" class="{{ !($headerFooter->brands ?? false) ? 'hidden' : '' }}  nav-link">Brands</a>
+            <a href="#collection" id="navCollections" class="{{ !($headerFooter->collections ?? false) ? 'hidden' : '' }}  nav-link">Collection</a>
+            <a href="#contact" id="navContact" class="{{ !($headerFooter->contact ?? false) ? 'hidden' : '' }}  nav-link">Contact</a>
+          @else
+            <a href="/index4" class="text-gray-700 nav-link">Home</a>
+            <a href="#features" id="navFeatures" class="{{ !($headerFooter->features ?? false) ? 'hidden' : '' }}  nav-link">Features</a>
+            <a href="#brands" id="navBrands" class="{{ !($headerFooter->brands ?? false) ? 'hidden' : '' }}  nav-link">Brands</a>
+            <a href="#collection" id="navCollections" class="{{ !($headerFooter->collections ?? false) ? 'hidden' : '' }}  nav-link">Collection</a>
+            <a href="#contact" id="navContact" class="{{ !($headerFooter->contact ?? false) ? 'hidden' : '' }}  nav-link">Contact</a>
+          @endif
         @endif
       </nav>
       <div class="flex items-center space-x-6">

@@ -22,13 +22,30 @@
         <p class="text-white mb-8">
           {{ $is_default ? 'Where precision meets legacy in every golden detail' : $homesetting->sub_text }}
         </p>
+        @php
+          $currentUrl = request()->url();
+          $headerFooterId = null;
+          if (preg_match('/\/index4\/(\d+)/', $currentUrl, $matches)) {
+            $headerFooterId = $matches[1];
+          }
+        @endphp
+        
         <div class="flex space-x-4">
-          <button class="btn-gold px-8 py-3 rounded font-medium" onclick="window.location.href='/product4'">
-            {{ $is_default ? 'Discover Collection' : $homesetting->button1_text }}
-          </button>
-          <button class="btn-outline px-8 py-3 rounded font-medium"onclick="window.location.href='/product4'">
-            {{ $is_default ? 'Book Appointment' : $homesetting->button2_text }}
-          </button>
+          @if($headerFooterId)
+            <button class="btn-gold px-8 py-3 rounded font-medium" onclick="window.location.href='/product4/{{ $headerFooterId }}'">
+              {{ $is_default ? 'Discover Collection' : $homesetting->button1_text }}
+            </button>
+            <button class="btn-outline px-8 py-3 rounded font-medium" onclick="window.location.href='/product4/{{ $headerFooterId }}'">
+              {{ $is_default ? 'Book Appointment' : $homesetting->button2_text }}
+            </button>
+          @else
+            <button class="btn-gold px-8 py-3 rounded font-medium" onclick="window.location.href='/product4'">
+              {{ $is_default ? 'Discover Collection' : $homesetting->button1_text }}
+            </button>
+            <button class="btn-outline px-8 py-3 rounded font-medium" onclick="window.location.href='/product4'">
+              {{ $is_default ? 'Book Appointment' : $homesetting->button2_text }}
+            </button>
+          @endif
         </div>
       </div>
     </div>
@@ -307,16 +324,32 @@
               <h4 class="font-semibold text-lg mb-1">{{ $product->name }}</h4>
               <p class="text-gray-500 text-sm mb-3">{{ $product->description }}</p>
               <p class="text-gray-900 font-semibold text-xl mb-4">${{ number_format($product->price, 2) }}</p>
-              <button class="w-full btn-gold py-2 rounded font-medium" onclick="window.location.href='/product4'">
-                Add to Collection
-              </button>
+              @if($headerFooterId)
+                <button class="w-full btn-gold py-2 rounded font-medium" onclick="window.location.href='/product4/{{ $headerFooterId }}'">
+                  Add to Collection
+                </button>
+              @else
+                <button class="w-full btn-gold py-2 rounded font-medium" onclick="window.location.href='/product4'">
+                  Add to Collection
+                </button>
+              @endif
             </div>
           @endforeach
         </div>
         <div class="text-center mt-12">
-          <button class="btn-outline px-8 py-3 rounded font-medium" onclick="window.location.href='/product4'">
-            View Full Collection
-          </button>
+          @if($headerFooterId)
+            <a href="/product4/{{ $headerFooterId }}">
+              <button class="btn-outline px-8 py-3 rounded font-medium">
+                View Full Collection
+              </button>
+            </a>
+          @else
+            <a href="/product4">
+              <button class="btn-outline px-8 py-3 rounded font-medium">
+                View Full Collection
+              </button>
+            </a>
+          @endif
         </div>
       </div>
     </section>
