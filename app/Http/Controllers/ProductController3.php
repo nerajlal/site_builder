@@ -37,8 +37,10 @@ class ProductController3 extends Controller
             abort(404, 'Header/Footer not found');
         }
 
-        // Check if header_footer_id exists in selected_templates table
-        $selectedTemplate = SelectedTemplate::where('header_footer_id', $headerFooterId)->first();
+        // Check if header_footer_id exists in selected_templates table and matches this template
+        $selectedTemplate = SelectedTemplate::where('header_footer_id', $headerFooterId)
+            ->where('template_name', 'template3.index3')
+            ->first();
         if (!$selectedTemplate) {
             abort(404, 'Template not found');
         }
