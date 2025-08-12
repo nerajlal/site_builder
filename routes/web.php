@@ -14,6 +14,7 @@ use App\Http\Controllers\ProductController3;
 use App\Http\Controllers\ProductController4;
 use App\Http\Controllers\TemplateSelectionController;
 use App\Http\Controllers\TemplateViewController;
+use App\Http\Controllers\Customer\SiteCustomerAuthController;
 
 // Public routes
 Route::get('/', fn() => view('index'));
@@ -82,6 +83,11 @@ Route::get('/product1/{headerFooterId}', [ProductController1::class, 'showCustom
 Route::get('/product2/{headerFooterId}', [ProductController2::class, 'showCustomer'])->name('template2.product2.customer');
 Route::get('/product3/{headerFooterId}', [ProductController3::class, 'showCustomer'])->name('template3.product3.customer');
 Route::get('/product4/{headerFooterId}', [ProductController4::class, 'showCustomer'])->name('template4.product4.customer');
+
+// Site customer auth endpoints (AJAX)
+Route::post('/customer/send-otp', [SiteCustomerAuthController::class, 'sendOtp']);
+Route::post('/customer/verify-otp', [SiteCustomerAuthController::class, 'verifyOtp']);
+Route::post('/customer/set-credentials', [SiteCustomerAuthController::class, 'setCredentials']);
 
 // Template save route
 Route::post('/template1/save', [TemplateController::class, 'store'])->name('template1.save');
