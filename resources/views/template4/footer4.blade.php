@@ -7,16 +7,16 @@
         <h4 class="text-2xl font-semibold mb-4">BoutiqueStyle</h4>
         <p class="text-gray-600 mb-4">Vintage elegance for the modern woman.</p>
         <div class="flex space-x-4">
-          <a href="#" class="text-gray-600 hover:text-[#ec4899] transition">
+          <a href="#" class="text-gray-600 hover:text-pink-600 transition">
             <i class="fab fa-facebook-f"></i>
           </a>
-          <a href="#" class="text-gray-600 hover:text-[#ec4899] transition">
+          <a href="#" class="text-gray-600 hover:text-pink-600 transition">
             <i class="fab fa-instagram"></i>
           </a>
-          <a href="#" class="text-gray-600 hover:text-[#ec4899] transition">
+          <a href="#" class="text-gray-600 hover:text-pink-600 transition">
             <i class="fab fa-twitter"></i>
           </a>
-          <a href="#" class="text-gray-600 hover:text-[#ec4899] transition">
+          <a href="#" class="text-gray-600 hover:text-pink-600 transition">
             <i class="fab fa-pinterest"></i>
           </a>
         </div>
@@ -24,28 +24,28 @@
       <div>
         <h5 class="font-semibold text-lg mb-4">Shop</h5>
         <ul class="space-y-2">
-          <li><a href="#" class="text-gray-600 hover:text-[#ec4899] transition">New Arrivals</a></li>
-          <li><a href="#" class="text-gray-600 hover:text-[#ec4899] transition">Best Sellers</a></li>
-          <li><a href="#" class="text-gray-600 hover:text-[#ec4899] transition">Sale</a></li>
-          <li><a href="#" class="text-gray-600 hover:text-[#ec4899] transition">Gift Cards</a></li>
+          <li><a href="#" class="text-gray-600 hover:text-pink-600 transition">New Arrivals</a></li>
+          <li><a href="#" class="text-gray-600 hover:text-pink-600 transition">Best Sellers</a></li>
+          <li><a href="#" class="text-gray-600 hover:text-pink-600 transition">Sale</a></li>
+          <li><a href="#" class="text-gray-600 hover:text-pink-600 transition">Gift Cards</a></li>
         </ul>
       </div>
       <div>
         <h5 class="font-semibold text-lg mb-4">Customer Service</h5>
         <ul class="space-y-2">
-          <li><a href="#" class="text-gray-600 hover:text-[#ec4899] transition">Contact Us</a></li>
-          <li><a href="#" class="text-gray-600 hover:text-[#ec4899] transition">Shipping & Returns</a></li>
-          <li><a href="#" class="text-gray-600 hover:text-[#ec4899] transition">FAQ</a></li>
-          <li><a href="#" class="text-gray-600 hover:text-[#ec4899] transition">Personal Styling</a></li>
+          <li><a href="#" class="text-gray-600 hover:text-pink-600 transition">Contact Us</a></li>
+          <li><a href="#" class="text-gray-600 hover:text-pink-600 transition">Shipping & Returns</a></li>
+          <li><a href="#" class="text-gray-600 hover:text-pink-600 transition">FAQ</a></li>
+          <li><a href="#" class="text-gray-600 hover:text-pink-600 transition">Personal Styling</a></li>
         </ul>
       </div>
       <div>
         <h5 class="font-semibold text-lg mb-4">Company</h5>
         <ul class="space-y-2">
-          <li><a href="#" class="text-gray-600 hover:text-[#ec4899] transition">About Us</a></li>
-          <li><a href="#" class="text-gray-600 hover:text-[#ec4899] transition">Careers</a></li>
-          <li><a href="#" class="text-gray-600 hover:text-[#ec4899] transition">Privacy Policy</a></li>
-          <li><a href="#" class="text-gray-600 hover:text-[#ec4899] transition">Terms of Service</a></li>
+          <li><a href="#" class="text-gray-600 hover:text-pink-600 transition">About Us</a></li>
+          <li><a href="#" class="text-gray-600 hover:text-pink-600 transition">Careers</a></li>
+          <li><a href="#" class="text-gray-600 hover:text-pink-600 transition">Privacy Policy</a></li>
+          <li><a href="#" class="text-gray-600 hover:text-pink-600 transition">Terms of Service</a></li>
         </ul>
       </div>
     </div>
@@ -60,16 +60,16 @@
         <h4 class="text-2xl font-semibold mb-4">{{ $headerFooter->site_name }}</h4>
         <p class="text-gray-600 mb-4">{{ $headerFooter->footer_text }}</p>
         <div class="flex space-x-4">
-          <a href="#" class="text-gray-600 hover:text-[#ec4899] transition">
+          <a href="#" class="text-gray-600 hover:text-pink-600 transition">
             <i class="fab fa-facebook-f"></i>
           </a>
-          <a href="#" class="text-gray-600 hover:text-[#ec4899] transition">
+          <a href="#" class="text-gray-600 hover:text-pink-600 transition">
             <i class="fab fa-instagram"></i>
           </a>
-          <a href="#" class="text-gray-600 hover:text-[#ec4899] transition">
+          <a href="#" class="text-gray-600 hover:text-pink-600 transition">
             <i class="fab fa-twitter"></i>
           </a>
-          <a href="#" class="text-gray-600 hover:text-[#ec4899] transition">
+          <a href="#" class="text-gray-600 hover:text-pink-600 transition">
             <i class="fab fa-pinterest"></i>
           </a>
         </div>
@@ -77,28 +77,28 @@
       <div>
         <h5 class="font-semibold text-lg mb-4">Shop</h5>
         <ul class="space-y-2">
-          <li><a href="#" class="text-gray-600 hover:text-[#ec4899] transition">New Arrivals</a></li>
-          <li><a href="#" class="text-gray-600 hover:text-[#ec4899] transition">Best Sellers</a></li>
-          <li><a href="#" class="text-gray-600 hover:text-[#ec4899] transition">Sale</a></li>
-          <li><a href="#" class="text-gray-600 hover:text-[#ec4899] transition">Gift Cards</a></li>
+          <li><a href="#" class="text-gray-600 hover:text-pink-600 transition">New Arrivals</a></li>
+          <li><a href="#" class="text-gray-600 hover:text-pink-600 transition">Best Sellers</a></li>
+          <li><a href="#" class="text-gray-600 hover:text-pink-600 transition">Sale</a></li>
+          <li><a href="#" class="text-gray-600 hover:text-pink-600 transition">Gift Cards</a></li>
         </ul>
       </div>
       <div>
         <h5 class="font-semibold text-lg mb-4">Customer Service</h5>
         <ul class="space-y-2">
-          <li><a href="#" class="text-gray-600 hover:text-[#ec4899] transition">Contact Us</a></li>
-          <li><a href="#" class="text-gray-600 hover:text-[#ec4899] transition">Shipping & Returns</a></li>
-          <li><a href="#" class="text-gray-600 hover:text-[#ec4899] transition">FAQ</a></li>
-          <li><a href="#" class="text-gray-600 hover:text-[#ec4899] transition">Personal Styling</a></li>
+          <li><a href="#" class="text-gray-600 hover:text-pink-600 transition">Contact Us</a></li>
+          <li><a href="#" class="text-gray-600 hover:text-pink-600 transition">Shipping & Returns</a></li>
+          <li><a href="#" class="text-gray-600 hover:text-pink-600 transition">FAQ</a></li>
+          <li><a href="#" class="text-gray-600 hover:text-pink-600 transition">Personal Styling</a></li>
         </ul>
       </div>
       <div>
         <h5 class="font-semibold text-lg mb-4">Company</h5>
         <ul class="space-y-2">
-          <li><a href="#" class="text-gray-600 hover:text-[#ec4899] transition">About Us</a></li>
-          <li><a href="#" class="text-gray-600 hover:text-[#ec4899] transition">Careers</a></li>
-          <li><a href="#" class="text-gray-600 hover:text-[#ec4899] transition">Privacy Policy</a></li>
-          <li><a href="#" class="text-gray-600 hover:text-[#ec4899] transition">Terms of Service</a></li>
+          <li><a href="#" class="text-gray-600 hover:text-pink-600 transition">About Us</a></li>
+          <li><a href="#" class="text-gray-600 hover:text-pink-600 transition">Careers</a></li>
+          <li><a href="#" class="text-gray-600 hover:text-pink-600 transition">Privacy Policy</a></li>
+          <li><a href="#" class="text-gray-600 hover:text-pink-600 transition">Terms of Service</a></li>
         </ul>
       </div>
     </div>
