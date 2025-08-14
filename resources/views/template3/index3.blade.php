@@ -141,36 +141,24 @@
           <h3 class="text-3xl font-medium mb-4">Fashion Categories</h3>
           <p class="text-gray-600 max-w-2xl mx-auto">Explore our curated collection of premium fashion categories</p>
         </div>
-        <div class="grid grid-cols-2 md:grid-cols-6 gap-8">
-          <div class="flex items-center justify-center p-6">
-            <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80" 
-                alt="Women's Fashion" 
-                class="brand-logo h-8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+          <div class="relative group h-80 overflow-hidden rounded-lg">
+            <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80" alt="Women's Fashion" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+            <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+              <h4 class="text-white text-2xl font-medium">Women's</h4>
+            </div>
           </div>
-          <div class="flex items-center justify-center p-6">
-            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" 
-                alt="Men's Fashion" 
-                class="brand-logo h-6">
+          <div class="relative group h-80 overflow-hidden rounded-lg">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Men's Fashion" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+            <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+              <h4 class="text-white text-2xl font-medium">Men's</h4>
+            </div>
           </div>
-          <div class="flex items-center justify-center p-6">
-            <img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" 
-                alt="Accessories" 
-                class="brand-logo h-8">
-          </div>
-          <div class="flex items-center justify-center p-6">
-            <img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1112&q=80" 
-                alt="Shoes" 
-                class="brand-logo h-6">
-          </div>
-          <div class="flex items-center justify-center p-6">
-            <img src="https://images.unsplash.com/photo-1594223274512-ad4803739b7c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" 
-                alt="Bags" 
-                class="brand-logo h-6">
-          </div>
-          <div class="flex items-center justify-center p-6">
-            <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" 
-                alt="Jewelry" 
-                class="brand-logo h-6">
+          <div class="relative group h-80 overflow-hidden rounded-lg">
+            <img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Accessories" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+            <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+              <h4 class="text-white text-2xl font-medium">Accessories</h4>
+            </div>
           </div>
         </div>
       </div>
@@ -182,13 +170,14 @@
           <h3 class="text-3xl font-medium mb-4">{{ $section2->main_text1 }}</h3>
           <p class="text-gray-600 max-w-2xl mx-auto">{{ $section2->sub_text1 }}</p>
         </div>
-        <div class="grid grid-cols-2 md:grid-cols-6 gap-8">
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
           @foreach (range(1,6) as $i)
-            <div class="flex items-center justify-center p-6">
-              <div class="w-24 h-24 rounded-full bg-white shadow-md flex items-center justify-center overflow-hidden transition-transform duration-300 hover:scale-110 hover:shadow-xl">
-                <img src="{{ $section2->{'image'.$i} }}" 
-                    alt="Brand {{ $i }}" 
-                    class="object-cover w-full h-full">
+            <div class="relative group h-80 overflow-hidden rounded-lg">
+              <img src="{{ $section2->{'image'.$i} }}"
+                  alt="Brand {{ $i }}"
+                  class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+              <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+                <h4 class="text-white text-2xl font-medium">Category {{ $i }}</h4>
               </div>
             </div>
           @endforeach
@@ -203,7 +192,7 @@
       <div class="max-w-7xl mx-auto">
         <div class="text-center mb-16">
           <h3 class="text-3xl font-medium mb-4">Curated Collection</h3>
-          <p class="text-gray-600 max-w-2xl mx-auto">Select timepieces for the discerning collector</p>
+          <p class="text-gray-600 max-w-2xl mx-auto">Handpicked pieces for the fashion-forward</p>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           <!-- Static Product Cards -->
@@ -227,7 +216,7 @@
           @foreach($products as $product)
             <div class="watch-card p-6 rounded-lg border border-gray-100 shadow-sm hover:shadow-md transition">
               <div class="relative h-64 mb-6 overflow-hidden rounded-lg">
-                <img src="{{ $product->image_url }}" alt="{{ $product->name }}" class="absolute inset-0 w-full h-full object-cover">
+                <img src="https://images.unsplash.com/photo-1571951103752-53c15cad21e6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="{{ $product->name }}" class="absolute inset-0 w-full h-full object-cover">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
                 @if($product->is_new)
                   <span class="absolute top-4 right-4 bg-white text-gray-900 text-xs font-medium px-2 py-1 rounded">NEW</span>
@@ -268,8 +257,8 @@
   <section class="py-20 px-6 bg-[#f9f9f7]">
     <div class="max-w-7xl mx-auto">
       <div class="text-center mb-16">
-        <h3 class="text-3xl font-medium mb-4">Collector Testimonials</h3>
-        <p class="text-gray-600 max-w-2xl mx-auto">Experiences from our community of horology enthusiasts</p>
+        <h3 class="text-3xl font-medium mb-4">What Our Clients Say</h3>
+        <p class="text-gray-600 max-w-2xl mx-auto">Experiences from our amazing community of fashion lovers</p>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         @include('template3.testimonials-default')
@@ -280,8 +269,8 @@
   <section class="py-20 px-6 bg-[#f9f9f7]">
     <div class="max-w-7xl mx-auto">
       <div class="text-center mb-16">
-        <h3 class="text-3xl font-medium mb-4">{{ $testimonials->testi_main ?? 'Collector Testimonials' }}</h3>
-        <p class="text-gray-600 max-w-2xl mx-auto">{{ $testimonials->testi_sub ?? 'Experiences from our community of horology enthusiasts' }}</p>
+        <h3 class="text-3xl font-medium mb-4">{{ $testimonials->testi_main ?? 'Client Testimonials' }}</h3>
+        <p class="text-gray-600 max-w-2xl mx-auto">{{ $testimonials->testi_sub ?? 'Experiences from our amazing community' }}</p>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         <!-- Testimonial 1 -->
@@ -341,11 +330,11 @@
   <section id="contact" class="py-20 px-6 bg-white">
     <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
       <div>
-        <h3 class="text-3xl font-medium mb-6">Contact Our Concierge</h3>
-        <p class="text-gray-600 mb-8">Our watch specialists are available to assist you with any inquiries about our collection or services.</p>
+        <h3 class="text-3xl font-medium mb-6">Get In Touch</h3>
+        <p class="text-gray-600 mb-8">Our fashion specialists are available to assist you with any inquiries about our collection or services.</p>
         <div class="space-y-6">
           <div class="flex items-start">
-            <div class="text-gray-900 text-xl w-10 mr-4 mt-1">
+            <div class="text-pink-600 text-xl w-10 mr-4 mt-1">
               <i class="fas fa-phone"></i>
             </div>
             <div>
@@ -355,21 +344,21 @@
             </div>
           </div>
           <div class="flex items-start">
-            <div class="text-gray-900 text-xl w-10 mr-4 mt-1">
+            <div class="text-pink-600 text-xl w-10 mr-4 mt-1">
               <i class="fas fa-envelope"></i>
             </div>
             <div>
               <h4 class="font-medium mb-1">Email</h4>
-              <p class="text-gray-600">concierge@horologe.com</p>
+              <p class="text-gray-600">contact@boutiquestyle.com</p>
               <p class="text-sm text-gray-500">Response within 24 hours</p>
             </div>
           </div>
           <div class="flex items-start">
-            <div class="text-gray-900 text-xl w-10 mr-4 mt-1">
+            <div class="text-pink-600 text-xl w-10 mr-4 mt-1">
               <i class="fas fa-map-marker-alt"></i>
             </div>
             <div>
-              <h4 class="font-medium mb-1">Showroom</h4>
+              <h4 class="font-medium mb-1">Boutique</h4>
               <p class="text-gray-600">450 Park Avenue, New York</p>
               <p class="text-sm text-gray-500">By appointment only</p>
             </div>
@@ -381,17 +370,17 @@
         <form class="space-y-4">
           <div>
             <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Name</label>
-            <input type="text" id="name" class="w-full px-4 py-2 bg-white border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-gray-900">
+            <input type="text" id="name" class="w-full px-4 py-2 bg-white border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-pink-600">
           </div>
           <div>
             <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-            <input type="email" id="email" class="w-full px-4 py-2 bg-white border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-gray-900">
+            <input type="email" id="email" class="w-full px-4 py-2 bg-white border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-pink-600">
           </div>
           <div>
             <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Message</label>
-            <textarea id="message" rows="4" class="w-full px-4 py-2 bg-white border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-gray-900"></textarea>
+            <textarea id="message" rows="4" class="w-full px-4 py-2 bg-white border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-pink-600"></textarea>
           </div>
-          <button type="submit" class="w-full bg-gray-900 hover:bg-gray-800 text-white py-3 rounded-lg font-medium transition duration-300">
+          <button type="submit" class="w-full bg-pink-600 hover:bg-pink-700 text-white py-3 rounded-lg font-medium transition duration-300">
             Send Message
           </button>
         </form>
@@ -402,11 +391,11 @@
   <!-- Newsletter -->
   <section class="py-16 px-6 bg-gray-900 text-white">
     <div class="max-w-4xl mx-auto text-center">
-      <h3 class="text-3xl font-medium mb-4">Join Our Collector's Circle</h3>
-      <p class="text-gray-300 mb-8 max-w-2xl mx-auto">Subscribe for exclusive access to limited editions and private events</p>
+      <h3 class="text-3xl font-medium mb-4">Join Our Style Circle</h3>
+      <p class="text-gray-300 mb-8 max-w-2xl mx-auto">Subscribe for exclusive access to new arrivals, special offers, and private styling events.</p>
       <form class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-        <input type="email" placeholder="Your email address" class="flex-grow px-4 py-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:outline-none focus:ring-1 focus:ring-gray-300">
-        <button type="submit" class="bg-white hover:bg-gray-100 text-gray-900 px-6 py-3 rounded-lg font-medium transition duration-300">
+        <input type="email" placeholder="Your email address" class="flex-grow px-4 py-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:outline-none focus:ring-1 focus:ring-pink-600">
+        <button type="submit" class="bg-pink-600 hover:bg-pink-700 text-white px-6 py-3 rounded-lg font-medium transition duration-300">
           Subscribe
         </button>
       </form>
