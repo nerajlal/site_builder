@@ -133,43 +133,43 @@
     </section>
   @endif
 
-  <!-- Brands Section -->
+  <!-- Categories Section -->
   @if($is_default)
     <section id="brands" class="py-20 px-6 bg-[#f9f9f7]">
       <div class="max-w-7xl mx-auto">
         <div class="text-center mb-16">
-          <h3 class="text-3xl font-medium mb-4">Our Partners</h3>
-          <p class="text-gray-600 max-w-2xl mx-auto">Representing the pinnacle of horological excellence</p>
+          <h3 class="text-3xl font-medium mb-4">Fashion Categories</h3>
+          <p class="text-gray-600 max-w-2xl mx-auto">Explore our curated collection of premium fashion categories</p>
         </div>
         <div class="grid grid-cols-2 md:grid-cols-6 gap-8">
           <div class="flex items-center justify-center p-6">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Rolex_logo.svg/2560px-Rolex_logo.svg.png" 
-                alt="Rolex" 
+            <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80" 
+                alt="Women's Fashion" 
                 class="brand-logo h-8">
           </div>
           <div class="flex items-center justify-center p-6">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Omega_Logo.svg/1200px-Omega_Logo.svg.png" 
-                alt="Omega" 
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" 
+                alt="Men's Fashion" 
                 class="brand-logo h-6">
           </div>
           <div class="flex items-center justify-center p-6">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Patek_Philippe_Logo.svg/2560px-Patek_Philippe_Logo.svg.png" 
-                alt="Patek Philippe" 
+            <img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" 
+                alt="Accessories" 
                 class="brand-logo h-8">
           </div>
           <div class="flex items-center justify-center p-6">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Cartier_logo.svg/2560px-Cartier_logo.svg.png" 
-                alt="Cartier" 
+            <img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1112&q=80" 
+                alt="Shoes" 
                 class="brand-logo h-6">
           </div>
           <div class="flex items-center justify-center p-6">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/IWC_logo.svg/2560px-IWC_logo.svg.png" 
-                alt="IWC" 
+            <img src="https://images.unsplash.com/photo-1594223274512-ad4803739b7c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" 
+                alt="Bags" 
                 class="brand-logo h-6">
           </div>
           <div class="flex items-center justify-center p-6">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Audemars_Piguet_Logo.svg/2560px-Audemars_Piguet_Logo.svg.png" 
-                alt="Audemars Piguet" 
+            <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" 
+                alt="Jewelry" 
                 class="brand-logo h-6">
           </div>
         </div>
@@ -207,7 +207,7 @@
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           <!-- Static Product Cards -->
-          @include('template2.collection-default')
+          @include('template3.collection-default')
         </div>
         <div class="text-center mt-12">
           <button class="border border-gray-900 hover:bg-gray-900 hover:text-white text-gray-900 px-8 py-3 rounded-lg font-medium transition duration-300">
@@ -272,7 +272,7 @@
         <p class="text-gray-600 max-w-2xl mx-auto">Experiences from our community of horology enthusiasts</p>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        @include('template2.testimonials-default')
+        @include('template3.testimonials-default')
       </div>
     </div>
   </section>

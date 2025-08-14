@@ -122,76 +122,76 @@
     </section>
   @endif
 
-  <!-- Brands -->
+  <!-- Categories -->
   @if($is_default)
     <section id="brands" class="py-20 px-6 bg-[#faf9f7]">
       <div class="max-w-7xl mx-auto">
         <div class="text-center mb-16">
           <h3 class="text-3xl font-semibold mb-4">
-            Our <span class="text-[#d4af37]">Prestige</span> Partners
+            Fashion <span class="text-[#ec4899]">Categories</span>
           </h3>
           <p class="text-gray-600 max-w-2xl mx-auto">
-            Representing the pinnacle of horological excellence
+            Explore our curated collection of premium fashion categories
           </p>
         </div>
         <div class="grid grid-cols-3 md:grid-cols-6 gap-8">
-          <!-- Brand 1 -->
+          <!-- Category 1 -->
           <div class="flex items-center justify-center p-6">
             <div class="w-24 h-24 bg-white rounded-full shadow-md flex items-center justify-center 
                         transition-all duration-300 hover:scale-110 hover:rotate-3 hover:shadow-xl">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Rolex_logo.svg/2560px-Rolex_logo.svg.png"
-                  alt="Rolex" 
-                  class="object-contain w-16 h-16 opacity-80 hover:opacity-100 transition-opacity duration-300">
+              <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80"
+                  alt="Women's Fashion" 
+                  class="object-cover w-16 h-16 opacity-80 hover:opacity-100 transition-opacity duration-300">
             </div>
           </div>
 
-          <!-- Brand 2 -->
+          <!-- Category 2 -->
           <div class="flex items-center justify-center p-6">
             <div class="w-24 h-24 bg-white rounded-full shadow-md flex items-center justify-center 
                         transition-all duration-300 hover:scale-110 hover:rotate-3 hover:shadow-xl">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Omega_Logo.svg/1200px-Omega_Logo.svg.png"
-                  alt="Omega" 
-                  class="object-contain w-16 h-16 opacity-80 hover:opacity-100 transition-opacity duration-300">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80"
+                  alt="Men's Fashion" 
+                  class="object-cover w-16 h-16 opacity-80 hover:opacity-100 transition-opacity duration-300">
             </div>
           </div>
 
-          <!-- Brand 3 -->
+          <!-- Category 3 -->
           <div class="flex items-center justify-center p-6">
             <div class="w-24 h-24 bg-white rounded-full shadow-md flex items-center justify-center 
                         transition-all duration-300 hover:scale-110 hover:rotate-3 hover:shadow-xl">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Patek_Philippe_Logo.svg/2560px-Patek_Philippe_Logo.svg.png"
-                  alt="Patek Philippe" 
-                  class="object-contain w-16 h-16 opacity-80 hover:opacity-100 transition-opacity duration-300">
+              <img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80"
+                  alt="Accessories" 
+                  class="object-cover w-16 h-16 opacity-80 hover:opacity-100 transition-opacity duration-300">
             </div>
           </div>
 
-          <!-- Brand 4 -->
+          <!-- Category 4 -->
           <div class="flex items-center justify-center p-6">
             <div class="w-24 h-24 bg-white rounded-full shadow-md flex items-center justify-center 
                         transition-all duration-300 hover:scale-110 hover:rotate-3 hover:shadow-xl">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Cartier_logo.svg/2560px-Cartier_logo.svg.png"
-                  alt="Cartier" 
-                  class="object-contain w-16 h-16 opacity-80 hover:opacity-100 transition-opacity duration-300">
+              <img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1112&q=80"
+                  alt="Shoes" 
+                  class="object-cover w-16 h-16 opacity-80 hover:opacity-100 transition-opacity duration-300">
             </div>
           </div>
 
-          <!-- Brand 5 -->
+          <!-- Category 5 -->
           <div class="flex items-center justify-center p-6">
             <div class="w-24 h-24 bg-white rounded-full shadow-md flex items-center justify-center 
                         transition-all duration-300 hover:scale-110 hover:rotate-3 hover:shadow-xl">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/IWC_logo.svg/2560px-IWC_logo.svg.png"
-                  alt="IWC" 
-                  class="object-contain w-16 h-16 opacity-80 hover:opacity-100 transition-opacity duration-300">
+              <img src="https://images.unsplash.com/photo-1594223274512-ad4803739b7c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80"
+                  alt="Bags" 
+                  class="object-cover w-16 h-16 opacity-80 hover:opacity-100 transition-opacity duration-300">
             </div>
           </div>
 
-          <!-- Brand 6 -->
+          <!-- Category 6 -->
           <div class="flex items-center justify-center p-6">
             <div class="w-24 h-24 bg-white rounded-full shadow-md flex items-center justify-center 
                         transition-all duration-300 hover:scale-110 hover:rotate-3 hover:shadow-xl">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Audemars_Piguet_Logo.svg/2560px-Audemars_Piguet_Logo.svg.png"
-                  alt="Audemars Piguet" 
-                  class="object-contain w-16 h-16 opacity-80 hover:opacity-100 transition-opacity duration-300">
+              <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80"
+                  alt="Jewelry" 
+                  class="object-cover w-16 h-16 opacity-80 hover:opacity-100 transition-opacity duration-300">
             </div>
           </div>
         </div>

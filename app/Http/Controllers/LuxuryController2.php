@@ -22,7 +22,7 @@ class LuxuryController2 extends Controller
         $headerFooter = HeaderFooter::where('user_id', $userId)->first();
 
         if (!$headerFooter) {
-            return view('template1.index1', [
+            return view('template2.index2', [
                 'homesetting' => [],
                 'section1' => [],
                 'section2' => [],
