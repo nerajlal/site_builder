@@ -1,10 +1,12 @@
 @include('template3.head3', ['is_default' => $is_default, 'headerFooter' => $headerFooter])
 
+<body class="bg-[#f9f9f7]">
+
 @if($is_default)
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8" style="font-family: 'Inter', sans-serif;">
         <!-- Page Title -->
         <div class="mb-8 text-center">
-            <h3 class="text-3xl font-medium mb-4">Curated Collection</h3>
+            <h3 class="text-3xl font-medium mb-4" style="font-family: 'Playfair Display', serif;">Curated Collection</h3>
             <p class="text-gray-600 max-w-2xl mx-auto">Select timepieces for the discerning collector</p>
         </div>
 
@@ -40,10 +42,10 @@
         </div>
     </main>
 @else
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8" style="font-family: 'Inter', sans-serif;">
         <!-- Page Title -->
         <div class="mb-8 text-center">
-            <h3 class="text-3xl font-medium mb-4">{{ $section2->main_text2 ?? 'Best Collections' }}</h3>
+            <h3 class="text-3xl font-medium mb-4" style="font-family: 'Playfair Display', serif;">{{ $section2->main_text2 ?? 'Best Collections' }}</h3>
             <p class="text-gray-600 mt-2">{{ count($products) }} products</p>
         </div>
 
@@ -75,7 +77,7 @@
         <!-- Product Grid -->
         <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6" id="productGrid">
             @foreach($products as $product)
-                <div class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+                <div class="bg-white rounded-lg overflow-hidden boutique-card">
                     <div class="relative">
                         @if($product->is_new)
                             <span class="absolute top-3 left-3 bg-pink-600 text-white px-3 py-1 rounded-full text-xs font-medium z-10">NEW</span>
@@ -87,7 +89,7 @@
                         </div>
                     </div>
                     <div class="p-4">
-                        <h3 class="font-medium text-gray-900 mb-2">{{ $product->name }}</h3>
+                        <h3 class="font-medium text-gray-900 mb-2" style="font-family: 'Playfair Display', serif;">{{ $product->name }}</h3>
                         <div class="flex items-center space-x-2 mb-2">
                             <span class="text-lg font-bold text-gray-900">${{ number_format($product->price, 2) }}</span>
                         </div>
@@ -99,7 +101,7 @@
                             <span class="ml-2 text-sm text-gray-500">76</span> <!-- Placeholder for reviews -->
                         </div>
                         <a href="{{ route('template3.single-product', ['headerFooterId' => $headerFooter->id, 'productId' => $product->id]) }}">
-                            <button class="w-full bg-pink-600 hover:bg-pink-700 text-white py-2 px-4 rounded-lg transition-colors">
+                            <button class="w-full border border-gray-900 hover:bg-gray-900 hover:text-white text-gray-900 py-2 px-4 rounded-lg font-medium transition duration-300">
                                 View Product
                             </button>
                         </a>
@@ -123,3 +125,4 @@
 </script>
 
 @include('template3.footer3')
+</body>

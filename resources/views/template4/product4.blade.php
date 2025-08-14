@@ -1,10 +1,12 @@
 @include('template4.head4', ['is_default' => $is_default, 'headerFooter' => $headerFooter])
 
+<body class="bg-[#faf9f7]">
+
 @if($is_default)
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8" style="font-family: 'Montserrat', sans-serif;">
         <!-- Page Title -->
         <div class="mb-8 text-center">
-            <h3 class="text-3xl font-semibold mb-4">Our <span class="text-[#ec4899]">Collection</span></h3>
+            <h3 class="text-3xl font-semibold mb-4" style="font-family: 'Cormorant Garamond', serif;">Our <span class="text-[#ec4899]">Collection</span></h3>
             <p class="text-gray-600 max-w-2xl mx-auto">Discover our handpicked selection of fashion pieces</p>
         </div>
 
@@ -36,7 +38,7 @@
         <!-- Product Grid -->
         <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6" id="productGrid">
             <!-- Static Product Cards -->
-            <div class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+            <div class="bg-white rounded-lg overflow-hidden boutique-card">
                 <div class="relative">
                     <span class="absolute top-3 left-3 bg-[#ec4899] text-white px-3 py-1 rounded-full text-xs font-medium z-10">NEW</span>
                     <div class="aspect-square bg-pink-50 flex items-center justify-center">
@@ -44,7 +46,7 @@
                     </div>
                 </div>
                 <div class="p-4">
-                    <h3 class="font-semibold text-lg mb-1">Chic Summer Dress</h3>
+                    <h3 class="font-semibold text-lg mb-4 gold-underline" style="font-family: 'Cormorant Garamond', serif;">Chic Summer Dress</h3>
                     <div class="flex items-center space-x-2 mb-2">
                         <span class="text-lg font-bold text-gray-900">$129.99</span>
                     </div>
@@ -63,10 +65,10 @@
         </div>
     </main>
 @else
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8" style="font-family: 'Montserrat', sans-serif;">
         <!-- Page Title -->
         <div class="mb-8 text-center">
-            <h3 class="text-3xl font-semibold mb-4">
+            <h3 class="text-3xl font-semibold mb-4" style="font-family: 'Cormorant Garamond', serif;">
                 <span class="text-[#ec4899]">{{ $section2->main_text2 ?? 'Best Collections' }}</span>
             </h3>
             <p class="text-gray-600 mt-2">{{ count($products) }} products</p>
@@ -100,7 +102,7 @@
         <!-- Product Grid -->
         <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6" id="productGrid">
             @foreach($products as $product)
-                <div class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+                <div class="bg-white rounded-lg overflow-hidden boutique-card">
                     <div class="relative">
                         @if($product->is_new)
                             <span class="absolute top-3 left-3 bg-[#ec4899] text-white px-3 py-1 rounded-full text-xs font-medium z-10">NEW</span>
@@ -112,7 +114,7 @@
                         </div>
                     </div>
                     <div class="p-4">
-                        <h3 class="font-semibold text-lg mb-1">{{ $product->name }}</h3>
+                        <h3 class="font-semibold text-lg mb-4 gold-underline" style="font-family: 'Cormorant Garamond', serif;">{{ $product->name }}</h3>
                         <div class="flex items-center space-x-2 mb-2">
                             <span class="text-lg font-bold text-gray-900">${{ number_format($product->price, 2) }}</span>
                         </div>
@@ -148,3 +150,4 @@
 </script>
 
 @include('template4.footer4')
+</body>
