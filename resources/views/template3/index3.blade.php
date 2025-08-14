@@ -46,10 +46,10 @@
           
           <div class="flex space-x-4">
             @if($headerFooterId)
-              <button class="bg-pink-600 hover:bg-pink-700 text-white px-8 py-3 font-medium transition duration-300" onclick="window.location.href='/product3/{{ $headerFooterId }}'">
+              <button class="bg-pink-600 hover:bg-pink-700 text-white px-8 py-3 font-medium transition duration-300" onclick="window.location.href='/product3/{{ $headerFooter->id }}'">
                 {{ $homesetting->button1_text }}
               </button>
-              <button class="border border-gray-300 hover:border-pink-600 text-gray-900 px-8 py-3 font-medium transition duration-300" onclick="window.location.href='/product3/{{ $headerFooterId }}'">
+              <button class="border border-gray-300 hover:border-pink-600 text-gray-900 px-8 py-3 font-medium transition duration-300" onclick="window.location.href='/product3/{{ $headerFooter->id }}'">
                 {{ $homesetting->button2_text }}
               </button>
             @else
@@ -220,8 +220,8 @@
     <section id="collection" class="py-20 px-6 bg-white">
       <div class="max-w-7xl mx-auto">
         <div class="text-center mb-16">
-          <h3 class="text-3xl font-medium mb-4">{{ $section3->main_text ?? 'Best Collections' }}</h3>
-          <p class="text-gray-600 max-w-2xl mx-auto">{{ $section3->sub_text ?? 'Perfect choices specially for you' }}</p>
+          <h3 class="text-3xl font-medium mb-4">{{ $section2->main_text2 ?? 'Best Collections' }}</h3>
+          <p class="text-gray-600 max-w-2xl mx-auto">{{ $section2->sub_text2 ?? 'Perfect choices specially for you' }}</p>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           @foreach($products as $product)

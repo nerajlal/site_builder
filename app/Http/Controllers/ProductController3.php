@@ -25,6 +25,7 @@ class ProductController3 extends Controller
 
         $products = Product::where('header_footer_id', $headerFooter->id) ->get();
 
+
         return view('template3.product3', compact('headerFooter','products'))
             ->with('is_default', false);
     }
@@ -47,8 +48,21 @@ class ProductController3 extends Controller
 
         $products = Product::where('header_footer_id', $headerFooter->id)->get();
 
+
         return view('template3.product3', compact('headerFooter', 'products'))
             ->with('is_default', false);
     }
 
+    public function showSingleProduct($headerFooterId, $productId)
+    {
+        $headerFooter = HeaderFooter::find($headerFooterId);
+        $product = Product::find($productId);
+
+        if (!$headerFooter || !$product) {
+            abort(404, 'Product not found');
+        }
+
+        return view('template3.single-product3', compact('headerFooter', 'product'))
+            ->with('is_default', false);
+    }
 }

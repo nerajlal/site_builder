@@ -85,12 +85,14 @@
                             <span class="absolute top-4 right-4 bg-red-600 text-white text-xs font-semibold px-2 py-1 rounded">LIMITED</span>
                         @endif
                     </div>
+                    <a href="{{ route('template1.single-product', ['headerFooterId' => $headerFooter->id, 'productId' => $product->id]) }}">
                     <h4 class="font-semibold text-lg mb-1">{{ $product->name }}</h4>
                     <p class="text-gray-600 text-sm mb-3">{{ $product->description }}</p>
                     <p class="text-green-700 font-bold text-xl mb-4">${{ number_format($product->price, 2) }}</p>
                     <button class="w-full bg-gray-900 hover:bg-gray-800 text-white py-2 rounded-lg font-medium transition flex items-center justify-center">
-                        <i class="fas fa-shopping-cart mr-2"></i> Add to Cart
+                        <i class="fas fa-shopping-cart mr-2"></i> View Product
                     </button>
+                    </a>
                 </div>
             @endforeach
         </div>
