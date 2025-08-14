@@ -1,7 +1,5 @@
 @include('template3.head3', ['is_default' => $is_default, 'headerFooter' => $headerFooter])
 
-<body class="bg-[#f9f9f7]">
-
 @if($is_default)
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8" style="font-family: 'Inter', sans-serif;">
         <!-- Page Title -->
@@ -11,25 +9,21 @@
         </div>
 
         <!-- Filters Bar -->
-        <div class="flex items-center justify-between mb-8 bg-white p-4 rounded-lg shadow-sm">
-            <div class="flex items-center space-x-4">
-                <div class="relative">
-                    <button id="filtersBtn" class="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
-                        <span>Filters</span>
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                        </svg>
-                    </button>
-                </div>
-                <div class="relative">
-                    <button id="sortBtn" class="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
-                        <span>Sort</span>
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                        </svg>
-                    </button>
-                </div>
-                <button class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200">
+        <div class="flex items-center justify-between mb-8 pb-4 border-b border-gray-200">
+            <div class="flex items-center space-x-6">
+                <button id="filtersBtn" class="flex items-center space-x-2 text-gray-600 hover:text-gray-900 nav-link">
+                    <span>Filters</span>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </button>
+                <button id="sortBtn" class="flex items-center space-x-2 text-gray-600 hover:text-gray-900 nav-link">
+                    <span>Sort</span>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </button>
+                <button class="text-gray-600 hover:text-gray-900 nav-link">
                     In stock
                 </button>
             </div>
@@ -50,25 +44,21 @@
         </div>
 
         <!-- Filters Bar -->
-        <div class="flex items-center justify-between mb-8 bg-white p-4 rounded-lg shadow-sm">
-            <div class="flex items-center space-x-4">
-                <div class="relative">
-                    <button id="filtersBtn" class="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
-                        <span>Filters</span>
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                        </svg>
-                    </button>
-                </div>
-                <div class="relative">
-                    <button id="sortBtn" class="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
-                        <span>Sort</span>
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                        </svg>
-                    </button>
-                </div>
-                <button class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200">
+        <div class="flex items-center justify-between mb-8 pb-4 border-b border-gray-200">
+            <div class="flex items-center space-x-6">
+                <button id="filtersBtn" class="flex items-center space-x-2 text-gray-600 hover:text-gray-900 nav-link">
+                    <span>Filters</span>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </button>
+                <button id="sortBtn" class="flex items-center space-x-2 text-gray-600 hover:text-gray-900 nav-link">
+                    <span>Sort</span>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </button>
+                <button class="text-gray-600 hover:text-gray-900 nav-link">
                     In stock
                 </button>
             </div>
@@ -125,4 +115,3 @@
 </script>
 
 @include('template3.footer3')
-</body>

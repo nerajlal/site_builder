@@ -9,10 +9,10 @@
         </div>
 
         <!-- Filters Bar -->
-        <div class="flex items-center justify-between mb-8 bg-black p-4 rounded-lg shadow-sm border border-gray-800">
+        <div class="flex items-center justify-between mb-8 bg-black p-4 rounded-lg border border-gray-800">
             <div class="flex items-center space-x-4">
                 <div class="relative">
-                    <button id="filtersBtn" class="flex items-center space-x-2 px-4 py-2 border border-gray-700 rounded-lg hover:bg-gray-800">
+                    <button id="filtersBtn" class="flex items-center space-x-2 px-4 py-2 border border-gray-700 rounded-lg hover:border-yellow-600 hover:text-yellow-600 transition-colors">
                         <span>Filters</span>
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
@@ -20,14 +20,14 @@
                     </button>
                 </div>
                 <div class="relative">
-                    <button id="sortBtn" class="flex items-center space-x-2 px-4 py-2 border border-gray-700 rounded-lg hover:bg-gray-800">
+                    <button id="sortBtn" class="flex items-center space-x-2 px-4 py-2 border border-gray-700 rounded-lg hover:border-yellow-600 hover:text-yellow-600 transition-colors">
                         <span>Sort</span>
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                         </svg>
                     </button>
                 </div>
-                <button class="px-4 py-2 bg-gray-800 text-gray-300 rounded-lg hover:bg-gray-700">
+                <button class="px-4 py-2 bg-yellow-600 text-black rounded-lg hover:bg-yellow-700">
                     In stock
                 </button>
             </div>
@@ -48,10 +48,10 @@
         </div>
 
         <!-- Filters Bar -->
-        <div class="flex items-center justify-between mb-8 bg-black p-4 rounded-lg shadow-sm border border-gray-800">
+        <div class="flex items-center justify-between mb-8 bg-black p-4 rounded-lg border border-gray-800">
             <div class="flex items-center space-x-4">
                 <div class="relative">
-                    <button id="filtersBtn" class="flex items-center space-x-2 px-4 py-2 border border-gray-700 rounded-lg hover:bg-gray-800">
+                    <button id="filtersBtn" class="flex items-center space-x-2 px-4 py-2 border border-gray-700 rounded-lg hover:border-yellow-600 hover:text-yellow-600 transition-colors">
                         <span>Filters</span>
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
@@ -59,14 +59,14 @@
                     </button>
                 </div>
                 <div class="relative">
-                    <button id="sortBtn" class="flex items-center space-x-2 px-4 py-2 border border-gray-700 rounded-lg hover:bg-gray-800">
+                    <button id="sortBtn" class="flex items-center space-x-2 px-4 py-2 border border-gray-700 rounded-lg hover:border-yellow-600 hover:text-yellow-600 transition-colors">
                         <span>Sort</span>
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                         </svg>
                     </button>
                 </div>
-                <button class="px-4 py-2 bg-gray-800 text-gray-300 rounded-lg hover:bg-gray-700">
+                <button class="px-4 py-2 bg-yellow-600 text-black rounded-lg hover:bg-yellow-700">
                     In stock
                 </button>
             </div>
@@ -89,7 +89,7 @@
                     <div class="p-4">
                         <h3 class="font-medium text-white mb-2">{{ $product->name }}</h3>
                         <div class="flex items-center space-x-2 mb-2">
-                            <span class="text-lg font-bold text-pink-600">${{ number_format($product->price, 2) }}</span>
+                            <span class="text-lg font-bold text-yellow-600">${{ number_format($product->price, 2) }}</span>
                         </div>
                         <div class="flex items-center mb-3">
                             <div class="flex items-center">

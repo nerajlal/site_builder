@@ -9,10 +9,10 @@
         </div>
 
         <!-- Filters Bar -->
-        <div class="flex items-center justify-between mb-8 bg-white p-4 rounded-lg shadow-sm">
+        <div class="flex items-center justify-between mb-8 bg-gray-50 p-4 rounded-lg">
             <div class="flex items-center space-x-4">
                 <div class="relative">
-                    <button id="filtersBtn" class="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
+                    <button id="filtersBtn" class="flex items-center space-x-2 px-4 py-2 bg-white border border-gray-200 rounded-lg hover:bg-gray-100">
                         <span>Filters</span>
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
@@ -20,14 +20,14 @@
                     </button>
                 </div>
                 <div class="relative">
-                    <button id="sortBtn" class="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
+                    <button id="sortBtn" class="flex items-center space-x-2 px-4 py-2 bg-white border border-gray-200 rounded-lg hover:bg-gray-100">
                         <span>Sort</span>
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                         </svg>
                     </button>
                 </div>
-                <button class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200">
+                <button class="px-4 py-2 bg-pink-600 text-white rounded-lg hover:bg-pink-700">
                     In stock
                 </button>
             </div>
