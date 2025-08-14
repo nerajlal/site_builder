@@ -222,7 +222,7 @@
         </div>
         <div class="bg-white p-6 rounded-lg product-card watch-shadow">
           <div class="relative h-64 mb-6 overflow-hidden rounded-lg">
-            <img src="https://images.unsplash.com/photo-1612817159949-195b6eb9e31a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Cartier Tank" class="absolute inset-0 w-full h-full object-cover">
+            <img src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=705&q=80Cartier Tank" class="absolute inset-0 w-full h-full object-cover">
             <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
           </div>
           <h4 class="font-semibold text-lg mb-1">Cartier Tank Solo</h4>
