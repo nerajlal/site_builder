@@ -290,13 +290,13 @@
   @if($is_default)
     <section class="py-20 px-6 bg-white">
       <div class="text-center mb-16">
-        <h3 class="text-3xl font-bold mb-4">Client Testimonialssss</h3>
-        <p class="max-w-2xl mx-auto text-gray-600">What our discerning clients say about their LuxuryTime experiencess</p>
+        <h3 class="text-3xl font-bold mb-4">What Our Clients Say</h3>
+        <p class="max-w-2xl mx-auto text-gray-600">Experiences from our amazing community of fashion lovers</p>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-        <div class="bg-gray-50 p-8 rounded-lg watch-shadow">
+        <div class="bg-gray-50 p-8 rounded-lg boutique-shadow">
           <div class="flex items-center mb-4">
-            <div class="text-yellow-500 text-xl mr-2">
+            <div class="text-pink-600 text-xl mr-2">
               <i class="fas fa-star"></i>
               <i class="fas fa-star"></i>
               <i class="fas fa-star"></i>
@@ -304,20 +304,20 @@
               <i class="fas fa-star"></i>
             </div>
           </div>
-          <p class="text-gray-700 mb-6">"The authentication process gave me complete confidence in my purchase. My Patek arrived in impeccable condition with all original papers."</p>
+          <p class="text-gray-700 mb-6">"The personal styling session was a game-changer! I discovered a new sense of confidence and a wardrobe that truly represents me."</p>
           <div class="flex items-center">
             <div class="w-12 h-12 rounded-full bg-gray-300 overflow-hidden mr-4">
-              <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Client" class="w-full h-full object-cover">
+              <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Client" class="w-full h-full object-cover">
             </div>
             <div>
-              <h5 class="font-semibold">James Wilson</h5>
-              <p class="text-gray-600 text-sm">Collector since 2015</p>
+              <h5 class="font-semibold">Jessica L.</h5>
+              <p class="text-gray-600 text-sm">Happy Customer</p>
             </div>
           </div>
         </div>
-        <div class="bg-gray-50 p-8 rounded-lg watch-shadow">
+        <div class="bg-gray-50 p-8 rounded-lg boutique-shadow">
           <div class="flex items-center mb-4">
-            <div class="text-yellow-500 text-xl mr-2">
+            <div class="text-pink-600 text-xl mr-2">
               <i class="fas fa-star"></i>
               <i class="fas fa-star"></i>
               <i class="fas fa-star"></i>
@@ -325,20 +325,20 @@
               <i class="fas fa-star"></i>
             </div>
           </div>
-          <p class="text-gray-700 mb-6">"Exceptional service from start to finish. My consultant helped me find the perfect Rolex Daytona that I'd been searching for years."</p>
+          <p class="text-gray-700 mb-6">"An absolutely stunning collection with unparalleled quality. I always find unique pieces that I can't get anywhere else."</p>
           <div class="flex items-center">
             <div class="w-12 h-12 rounded-full bg-gray-300 overflow-hidden mr-4">
               <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Client" class="w-full h-full object-cover">
             </div>
             <div>
-              <h5 class="font-semibold">Sarah Johnson</h5>
-              <p class="text-gray-600 text-sm">Collector since 2018</p>
+              <h5 class="font-semibold">Sophia M.</h5>
+              <p class="text-gray-600 text-sm">Fashion Blogger</p>
             </div>
           </div>
         </div>
-        <div class="bg-gray-50 p-8 rounded-lg watch-shadow">
+        <div class="bg-gray-50 p-8 rounded-lg boutique-shadow">
           <div class="flex items-center mb-4">
-            <div class="text-yellow-500 text-xl mr-2">
+            <div class="text-pink-600 text-xl mr-2">
               <i class="fas fa-star"></i>
               <i class="fas fa-star"></i>
               <i class="fas fa-star"></i>
@@ -346,14 +346,14 @@
               <i class="fas fa-star-half-alt"></i>
             </div>
           </div>
-          <p class="text-gray-700 mb-6">"The after-sales service is unparalleled. When my watch needed servicing, LuxuryTime handled everything seamlessly."</p>
+          <p class="text-gray-700 mb-6">"The customer service is exceptional. They went above and beyond to ensure my order was perfect. I'm a customer for life!"</p>
           <div class="flex items-center">
             <div class="w-12 h-12 rounded-full bg-gray-300 overflow-hidden mr-4">
               <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Client" class="w-full h-full object-cover">
             </div>
             <div>
-              <h5 class="font-semibold">Michael Chen</h5>
-              <p class="text-gray-600 text-sm">Collector since 2012</p>
+              <h5 class="font-semibold">David R.</h5>
+              <p class="text-gray-600 text-sm">Loyal Client</p>
             </div>
           </div>
         </div>
@@ -366,9 +366,9 @@
         <p class="max-w-2xl mx-auto text-gray-600">{{ $testimonials->testi_sub }}</p>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-        <div class="bg-gray-50 p-8 rounded-lg watch-shadow">
+        <div class="bg-gray-50 p-8 rounded-lg boutique-shadow">
           <div class="flex items-center mb-4">
-            <div class="text-yellow-500 text-xl mr-2">
+            <div class="text-pink-600 text-xl mr-2">
               <i class="fas fa-star"></i>
               <i class="fas fa-star"></i>
               <i class="fas fa-star"></i>
@@ -386,9 +386,9 @@
             </div>
           </div>
         </div>
-        <div class="bg-gray-50 p-8 rounded-lg watch-shadow">
+        <div class="bg-gray-50 p-8 rounded-lg boutique-shadow">
           <div class="flex items-center mb-4">
-            <div class="text-yellow-500 text-xl mr-2">
+            <div class="text-pink-600 text-xl mr-2">
               <i class="fas fa-star"></i>
               <i class="fas fa-star"></i>
               <i class="fas fa-star"></i>
@@ -406,9 +406,9 @@
             </div>
           </div>
         </div>
-        <div class="bg-gray-50 p-8 rounded-lg watch-shadow">
+        <div class="bg-gray-50 p-8 rounded-lg boutique-shadow">
           <div class="flex items-center mb-4">
-            <div class="text-yellow-500 text-xl mr-2">
+            <div class="text-pink-600 text-xl mr-2">
               <i class="fas fa-star"></i>
               <i class="fas fa-star"></i>
               <i class="fas fa-star"></i>
@@ -435,12 +435,12 @@
     <section id="contact" class="py-20 px-6 bg-white">
       <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
         <div>
-          <h3 class="text-3xl font-bold mb-6">Contact Our Concierge</h3>
-          <p class="text-gray-600 mb-8">Our watch specialists are available to assist you with any inquiries about our collection, authentication process, or purchasing experience.</p>
+          <h3 class="text-3xl font-bold mb-6">Get In Touch</h3>
+          <p class="text-gray-600 mb-8">Our fashion specialists are available to assist you with any inquiries about our collection, styling, or your order.</p>
           <div class="space-y-6">
             <div class="flex items-start">
-              <div class="bg-yellow-100 w-12 h-12 rounded-full flex items-center justify-center mr-4">
-                <i class="fas fa-phone text-yellow-600"></i>
+              <div class="bg-pink-100 w-12 h-12 rounded-full flex items-center justify-center mr-4">
+                <i class="fas fa-phone text-pink-600"></i>
               </div>
               <div>
                 <h4 class="font-semibold mb-1">Phone</h4>
@@ -449,18 +449,18 @@
               </div>
             </div>
             <div class="flex items-start">
-              <div class="bg-yellow-100 w-12 h-12 rounded-full flex items-center justify-center mr-4">
-                <i class="fas fa-envelope text-yellow-600"></i>
+              <div class="bg-pink-100 w-12 h-12 rounded-full flex items-center justify-center mr-4">
+                <i class="fas fa-envelope text-pink-600"></i>
               </div>
               <div>
                 <h4 class="font-semibold mb-1">Email</h4>
-                <p class="text-gray-600">concierge@luxurytime.com</p>
+                <p class="text-gray-600">stylist@boutique.com</p>
                 <p class="text-sm text-gray-500">Response within 24 hours</p>
               </div>
             </div>
             <div class="flex items-start">
-              <div class="bg-yellow-100 w-12 h-12 rounded-full flex items-center justify-center mr-4">
-                <i class="fas fa-map-marker-alt text-yellow-600"></i>
+              <div class="bg-pink-100 w-12 h-12 rounded-full flex items-center justify-center mr-4">
+                <i class="fas fa-map-marker-alt text-pink-600"></i>
               </div>
               <div>
                 <h4 class="font-semibold mb-1">Boutique</h4>
@@ -471,24 +471,24 @@
           </div>
         </div>
         <div>
-          <form class="bg-gray-50 p-8 rounded-lg watch-shadow">
+          <form class="bg-gray-50 p-8 rounded-lg boutique-shadow">
             <h4 class="text-xl font-semibold mb-6">Send Us a Message</h4>
             <div class="space-y-4">
               <div>
                 <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Name</label>
-                <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-600 focus:border-transparent">
+                <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-600 focus:border-transparent">
               </div>
               <div>
                 <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-600 focus:border-transparent">
+                <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-600 focus:border-transparent">
               </div>
               <div>
                 <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Phone (Optional)</label>
-                <input type="tel" id="phone" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-600 focus:border-transparent">
+                <input type="tel" id="phone" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-600 focus:border-transparent">
               </div>
               <div>
                 <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Message</label>
-                <textarea id="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-600 focus:border-transparent"></textarea>
+                <textarea id="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-600 focus:border-transparent"></textarea>
               </div>
               <button type="submit" class="w-full bg-gray-900 hover:bg-gray-800 text-white py-3 rounded-lg font-medium transition">
                 Send Message <i class="fas fa-paper-plane ml-2"></i>
@@ -570,11 +570,11 @@
   <!-- Newsletter -->
   <section class="py-16 px-6 bg-gray-900 text-white">
     <div class="max-w-4xl mx-auto text-center">
-      <h3 class="text-3xl font-bold mb-4">Join Our Circle</h3>
-      <p class="text-gray-300 mb-8 max-w-2xl mx-auto">Subscribe to receive exclusive access to limited editions, private viewings, and horological insights.</p>
+      <h3 class="text-3xl font-bold mb-4">Join Our Style Circle</h3>
+      <p class="text-gray-300 mb-8 max-w-2xl mx-auto">Subscribe to receive exclusive access to new arrivals, private styling sessions, and fashion insights.</p>
       <form class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-        <input type="email" placeholder="Your email address" class="flex-grow px-4 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-yellow-600">
-        <button type="submit" class="bg-yellow-600 hover:bg-yellow-700 text-white px-6 py-3 rounded-lg font-medium transition">
+        <input type="email" placeholder="Your email address" class="flex-grow px-4 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-pink-600">
+        <button type="submit" class="bg-pink-600 hover:bg-pink-700 text-white px-6 py-3 rounded-lg font-medium transition">
           Subscribe
         </button>
       </form>
