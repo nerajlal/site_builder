@@ -229,67 +229,67 @@
     <section id="collection" class="py-20 px-6 bg-white">
       <div class="max-w-7xl mx-auto">
         <div class="text-center mb-16">
-          <h3 class="text-3xl font-semibold mb-4"><span class="text-[#d4af37]">Golden</span></h3>
-          <p class="text-gray-600 max-w-2xl mx-auto">Select timepieces for the discerning collector</p>
+          <h3 class="text-3xl font-semibold mb-4">Our <span class="text-[#ec4899]">Collection</span></h3>
+          <p class="text-gray-600 max-w-2xl mx-auto">Discover our handpicked selection of fashion pieces</p>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           <!-- Static Product Cards -->
-          <div class="watch-card p-6 rounded-lg border border-gray-100">
+          <div class="boutique-card p-6 rounded-lg border border-gray-100">
             <div class="relative h-64 mb-6 overflow-hidden rounded-lg">
-              <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1099&q=80" 
-                  alt="Rolex Submariner" 
+              <img src="https://images.unsplash.com/photo-1571951103752-53c15cad21e6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80"
+                  alt="Elegant Dress"
                   class="absolute inset-0 w-full h-full object-cover">
               <div class="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
-              <span class="absolute top-4 right-4 bg-[#d4af37] text-white text-xs font-medium px-2 py-1 rounded">NEW</span>
+              <span class="absolute top-4 right-4 bg-white text-gray-900 text-xs font-medium px-2 py-1 rounded">NEW</span>
             </div>
-            <h4 class="font-semibold text-lg mb-1">Rolex Submariner</h4>
-            <p class="text-gray-500 text-sm mb-3">Oystersteel, Ceramic Bezel</p>
-            <p class="text-gray-900 font-semibold text-xl mb-4">$8,950.00</p>
-            <button class="w-full btn-gold py-2 rounded font-medium">
-              Add to Collection
+            <h4 class="font-semibold text-lg mb-1">Chic Summer Dress</h4>
+            <p class="text-gray-500 text-sm mb-3">Light and airy fabric</p>
+            <p class="text-gray-900 font-semibold text-xl mb-4">$129.99</p>
+            <button class="w-full btn-pink py-2 rounded font-medium">
+              Add to Bag
             </button>
           </div>
-          <div class="watch-card p-6 rounded-lg border border-gray-100">
+          <div class="boutique-card p-6 rounded-lg border border-gray-100">
             <div class="relative h-64 mb-6 overflow-hidden rounded-lg">
-              <img src="https://images.unsplash.com/photo-1542496658-e33a6d0d50f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" 
-                  alt="Omega Speedmaster" 
+              <img src="https://images.unsplash.com/photo-1598554747476-3842883a84a6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80"
+                  alt="Leather Handbag"
                   class="absolute inset-0 w-full h-full object-cover">
               <div class="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
             </div>
-            <h4 class="font-semibold text-lg mb-1">Omega Speedmaster</h4>
-            <p class="text-gray-500 text-sm mb-3">Moonwatch Professional</p>
-            <p class="text-gray-900 font-semibold text-xl mb-4">$6,300.00</p>
-            <button class="w-full btn-gold py-2 rounded font-medium">
-              Add to Collection
+            <h4 class="font-semibold text-lg mb-1">Classic Leather Handbag</h4>
+            <p class="text-gray-500 text-sm mb-3">Timeless design, premium leather</p>
+            <p class="text-gray-900 font-semibold text-xl mb-4">$249.99</p>
+            <button class="w-full btn-pink py-2 rounded font-medium">
+              Add to Bag
             </button>
           </div>
-          <div class="watch-card p-6 rounded-lg border border-gray-100">
+          <div class="boutique-card p-6 rounded-lg border border-gray-100">
             <div class="relative h-64 mb-6 overflow-hidden rounded-lg">
-              <img src="https://images.unsplash.com/photo-1611591437281-4608be122683?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" 
-                  alt="Patek Philippe Calatrava" 
+              <img src="https://images.unsplash.com/photo-1627292828062-a4744e3e1a93?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80"
+                  alt="Silk Scarf"
                   class="absolute inset-0 w-full h-full object-cover">
               <div class="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
-              <span class="absolute top-4 right-4 bg-[#d4af37] text-white text-xs font-medium px-2 py-1 rounded">LIMITED</span>
+              <span class="absolute top-4 right-4 bg-white text-gray-900 text-xs font-medium px-2 py-1 rounded">LIMITED</span>
             </div>
-            <h4 class="font-semibold text-lg mb-1">Patek Philippe Calatrava</h4>
-            <p class="text-gray-500 text-sm mb-3">White Gold, Hand-Guilloché</p>
-            <p class="text-gray-900 font-semibold text-xl mb-4">$29,900.00</p>
-            <button class="w-full btn-gold py-2 rounded font-medium">
-              Add to Collection
+            <h4 class="font-semibold text-lg mb-1">Printed Silk Scarf</h4>
+            <p class="text-gray-500 text-sm mb-3">Luxurious and versatile accessory</p>
+            <p class="text-gray-900 font-semibold text-xl mb-4">$79.99</p>
+            <button class="w-full btn-pink py-2 rounded font-medium">
+              Add to Bag
             </button>
           </div>
-          <div class="watch-card p-6 rounded-lg border border-gray-100">
+          <div class="boutique-card p-6 rounded-lg border border-gray-100">
             <div class="relative h-64 mb-6 overflow-hidden rounded-lg">
-              <img src="https://images.unsplash.com/photo-1612817159949-195b6eb9e31a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" 
-                  alt="Cartier Tank" 
+              <img src="https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=698&q=80"
+                  alt="Designer Heels"
                   class="absolute inset-0 w-full h-full object-cover">
               <div class="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
             </div>
-            <h4 class="font-semibold text-lg mb-1">Cartier Tank Solo</h4>
-            <p class="text-gray-500 text-sm mb-3">Stainless Steel, Black Leather</p>
-            <p class="text-gray-900 font-semibold text-xl mb-4">$2,850.00</p>
-            <button class="w-full btn-gold py-2 rounded font-medium">
-              Add to Collection
+            <h4 class="font-semibold text-lg mb-1">Elegant High Heels</h4>
+            <p class="text-gray-500 text-sm mb-3">Perfect for any special occasion</p>
+            <p class="text-gray-900 font-semibold text-xl mb-4">$199.99</p>
+            <button class="w-full btn-pink py-2 rounded font-medium">
+              Add to Bag
             </button>
           </div>
         </div>
@@ -360,52 +360,52 @@
     <section class="py-20 px-6 bg-[#faf9f7]">
       <div class="max-w-7xl mx-auto">
         <div class="text-center mb-16">
-          <h3 class="text-3xl font-semibold mb-4">Collector <span class="text-[#d4af37]">Testimonials</span></h3>
-          <p class="text-gray-600 max-w-2xl mx-auto">Experiences from our community of horology enthusiasts</p>
+          <h3 class="text-3xl font-semibold mb-4">Client <span class="text-[#ec4899]">Love</span></h3>
+          <p class="text-gray-600 max-w-2xl mx-auto">Experiences from our amazing community of fashion lovers</p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div class="bg-white p-8 rounded-lg shadow-sm">
-            <div class="flex mb-4 text-[#d4af37]">
+            <div class="flex mb-4 text-[#ec4899]">
               <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
             </div>
-            <p class="text-gray-700 mb-6 italic">"The authentication process gave me complete confidence in my purchase. My Patek arrived in impeccable condition with all original papers."</p>
+            <p class="text-gray-700 mb-6 italic">"The personal styling session was a game-changer! I discovered a new sense of confidence and a wardrobe that truly represents me."</p>
             <div class="flex items-center">
               <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
-                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Client" class="w-full h-full object-cover">
+                <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Client" class="w-full h-full object-cover">
               </div>
               <div>
-                <h5 class="font-medium">James Wilson</h5>
-                <p class="text-gray-500 text-sm">Collector since 2015</p>
+                <h5 class="font-medium">Jessica L.</h5>
+                <p class="text-gray-500 text-sm">Happy Customer</p>
               </div>
             </div>
           </div>
           <div class="bg-white p-8 rounded-lg shadow-sm">
-            <div class="flex mb-4 text-[#d4af37]">
+            <div class="flex mb-4 text-[#ec4899]">
               <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
             </div>
-            <p class="text-gray-700 mb-6 italic">"Exceptional service from start to finish. My consultant helped me find the perfect Rolex Daytona that I'd been searching for years."</p>
+            <p class="text-gray-700 mb-6 italic">"An absolutely stunning collection with unparalleled quality. I always find unique pieces that I can't get anywhere else."</p>
             <div class="flex items-center">
               <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
                 <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Client" class="w-full h-full object-cover">
               </div>
               <div>
-                <h5 class="font-medium">Sarah Johnson</h5>
-                <p class="text-gray-500 text-sm">Collector since 2018</p>
+                <h5 class="font-medium">Sophia M.</h5>
+                <p class="text-gray-500 text-sm">Fashion Blogger</p>
               </div>
             </div>
           </div>
           <div class="bg-white p-8 rounded-lg shadow-sm">
-            <div class="flex mb-4 text-[#d4af37]">
+            <div class="flex mb-4 text-[#ec4899]">
               <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
             </div>
-            <p class="text-gray-700 mb-6 italic">"The after-sales service is unparalleled. When my watch needed servicing, they handled everything seamlessly."</p>
+            <p class="text-gray-700 mb-6 italic">"The customer service is exceptional. They went above and beyond to ensure my order was perfect. I'm a customer for life!"</p>
             <div class="flex items-center">
               <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
                 <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Client" class="w-full h-full object-cover">
               </div>
               <div>
-                <h5 class="font-medium">Michael Chen</h5>
-                <p class="text-gray-500 text-sm">Collector since 2012</p>
+                <h5 class="font-medium">David R.</h5>
+                <p class="text-gray-500 text-sm">Loyal Client</p>
               </div>
             </div>
           </div>
@@ -473,11 +473,11 @@
   <section id="contact" class="py-20 px-6 bg-white">
     <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
       <div>
-        <h3 class="text-3xl font-semibold mb-6">Contact Our <span class="text-[#d4af37]">Concierge</span></h3>
-        <p class="text-gray-600 mb-8">Our watch specialists are available to assist you with any inquiries about our collection or services.</p>
+        <h3 class="text-3xl font-semibold mb-6">Contact Our <span class="text-[#ec4899]">Stylists</span></h3>
+        <p class="text-gray-600 mb-8">Our fashion specialists are available to assist you with any inquiries about our collection or services.</p>
         <div class="space-y-6">
           <div class="flex items-start">
-            <div class="text-[#d4af37] text-xl w-10 mr-4 mt-1">
+            <div class="text-[#ec4899] text-xl w-10 mr-4 mt-1">
               <i class="fas fa-phone"></i>
             </div>
             <div>
@@ -487,21 +487,21 @@
             </div>
           </div>
           <div class="flex items-start">
-            <div class="text-[#d4af37] text-xl w-10 mr-4 mt-1">
+            <div class="text-[#ec4899] text-xl w-10 mr-4 mt-1">
               <i class="fas fa-envelope"></i>
             </div>
             <div>
               <h4 class="font-medium mb-1">Email</h4>
-              <p class="text-gray-600">concierge@luxuria.com</p>
+              <p class="text-gray-600">stylist@boutique.com</p>
               <p class="text-sm text-gray-500">Response within 24 hours</p>
             </div>
           </div>
           <div class="flex items-start">
-            <div class="text-[#d4af37] text-xl w-10 mr-4 mt-1">
+            <div class="text-[#ec4899] text-xl w-10 mr-4 mt-1">
               <i class="fas fa-map-marker-alt"></i>
             </div>
             <div>
-              <h4 class="font-medium mb-1">Showroom</h4>
+              <h4 class="font-medium mb-1">Boutique</h4>
               <p class="text-gray-600">450 Park Avenue, New York</p>
               <p class="text-sm text-gray-500">By appointment only</p>
             </div>
@@ -513,17 +513,17 @@
         <form class="space-y-4">
           <div>
             <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Name</label>
-            <input type="text" id="name" class="w-full px-4 py-2 bg-white border border-gray-200 rounded focus:outline-none focus:ring-1 focus:ring-[#d4af37]">
+            <input type="text" id="name" class="w-full px-4 py-2 bg-white border border-gray-200 rounded focus:outline-none focus:ring-1 focus:ring-[#ec4899]">
           </div>
           <div>
             <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-            <input type="email" id="email" class="w-full px-4 py-2 bg-white border border-gray-200 rounded focus:outline-none focus:ring-1 focus:ring-[#d4af37]">
+            <input type="email" id="email" class="w-full px-4 py-2 bg-white border border-gray-200 rounded focus:outline-none focus:ring-1 focus:ring-[#ec4899]">
           </div>
           <div>
             <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Message</label>
-            <textarea id="message" rows="4" class="w-full px-4 py-2 bg-white border border-gray-200 rounded focus:outline-none focus:ring-1 focus:ring-[#d4af37]"></textarea>
+            <textarea id="message" rows="4" class="w-full px-4 py-2 bg-white border border-gray-200 rounded focus:outline-none focus:ring-1 focus:ring-[#ec4899]"></textarea>
           </div>
-          <button type="submit" class="w-full btn-gold py-3 rounded font-medium">
+          <button type="submit" class="w-full btn-pink py-3 rounded font-medium">
             Send Message
           </button>
         </form>
@@ -593,10 +593,10 @@
   </section>
 @endif
   <!-- Newsletter -->
-  <section class="py-16 px-6 bg-[#d4af37] text-white">
+  <section class="py-16 px-6 bg-[#ec4899] text-white">
     <div class="max-w-4xl mx-auto text-center">
-      <h3 class="text-3xl font-semibold mb-4">Join Our <span class="text-white">Collector's Circle</span></h3>
-      <p class="text-white/90 mb-8 max-w-2xl mx-auto">Subscribe for exclusive access to limited editions and private events</p>
+      <h3 class="text-3xl font-semibold mb-4">Join Our <span class="text-white">Style Circle</span></h3>
+      <p class="text-white/90 mb-8 max-w-2xl mx-auto">Subscribe for exclusive access to new arrivals, special offers, and private styling events.</p>
       <form class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
         <input type="email" placeholder="Your email address" class="flex-grow px-4 py-3 rounded bg-white/90 text-gray-900 border border-white/30 focus:outline-none focus:ring-1 focus:ring-white">
         <button type="submit" class="bg-black hover:bg-gray-900 text-white px-6 py-3 rounded font-medium transition duration-300">

@@ -5,58 +5,58 @@
   @if($is_default)
     <section id="products" class="py-20 px-6 bg-white">
       <div class="text-center mb-16">
-        <h3 class="text-3xl font-bold mb-4">Best Collections</h3>
-        <p class="max-w-2xl mx-auto text-gray-600">Perfect choices specially for you </p>
+        <h3 class="text-3xl font-bold mb-4">Our Collections</h3>
+        <p class="max-w-2xl mx-auto text-gray-600">Find your next favorite piece in our curated collection.</p>
       </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
-        <div class="bg-white p-6 rounded-lg product-card watch-shadow">
-          <div class="relative h-64 mb-6 overflow-hidden rounded-lg">
-            <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1099&q=80" alt="Rolex Submariner" class="absolute inset-0 w-full h-full object-cover">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div class="bg-white p-6 rounded-lg product-card boutique-shadow">
+          <div class="relative h-80 mb-6 overflow-hidden rounded-lg">
+            <img src="https://images.unsplash.com/photo-1571951103752-53c15cad21e6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Elegant Dress" class="absolute inset-0 w-full h-full object-cover">
             <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
-            <span class="absolute top-4 right-4 bg-yellow-600 text-white text-xs font-semibold px-2 py-1 rounded">NEW</span>
+            <span class="absolute top-4 right-4 bg-pink-600 text-white text-xs font-semibold px-2 py-1 rounded">NEW</span>
           </div>
-          <h4 class="font-semibold text-lg mb-1">Rolex Submariner</h4>
-          <p class="text-gray-600 text-sm mb-3">Oystersteel, Ceramic Bezel</p>
-          <p class="text-green-700 font-bold text-xl mb-4">$8,950.00</p>
-          <button class="w-full bg-gray-900 hover:bg-gray-800 text-white py-2 rounded-lg font-medium transition flex items-center justify-center">
-            <i class="fas fa-shopping-cart mr-2"></i> Add to Cart
+          <h4 class="font-semibold text-lg mb-1">Chic Summer Dress</h4>
+          <p class="text-gray-600 text-sm mb-3">Light and airy fabric</p>
+          <p class="text-pink-700 font-bold text-xl mb-4">$129.99</p>
+          <button class="w-full bg-gray-900 hover:bg-pink-800 text-white py-2 rounded-lg font-medium transition flex items-center justify-center">
+            <i class="fas fa-shopping-bag mr-2"></i> Add to Bag
           </button>
         </div>
-        <div class="bg-white p-6 rounded-lg product-card watch-shadow">
-          <div class="relative h-64 mb-6 overflow-hidden rounded-lg">
-            <img src="https://images.unsplash.com/photo-1542496658-e33a6d0d50f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Omega Speedmaster" class="absolute inset-0 w-full h-full object-cover">
+        <div class="bg-white p-6 rounded-lg product-card boutique-shadow">
+          <div class="relative h-80 mb-6 overflow-hidden rounded-lg">
+            <img src="https://images.unsplash.com/photo-1598554747476-3842883a84a6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Leather Handbag" class="absolute inset-0 w-full h-full object-cover">
             <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
           </div>
-          <h4 class="font-semibold text-lg mb-1">Omega Speedmaster</h4>
-          <p class="text-gray-600 text-sm mb-3">Moonwatch Professional</p>
-          <p class="text-green-700 font-bold text-xl mb-4">$6,300.00</p>
-          <button class="w-full bg-gray-900 hover:bg-gray-800 text-white py-2 rounded-lg font-medium transition flex items-center justify-center">
-            <i class="fas fa-shopping-cart mr-2"></i> Add to Cart
+          <h4 class="font-semibold text-lg mb-1">Classic Leather Handbag</h4>
+          <p class="text-gray-600 text-sm mb-3">Timeless design, premium leather</p>
+          <p class="text-pink-700 font-bold text-xl mb-4">$249.99</p>
+          <button class="w-full bg-gray-900 hover:bg-pink-800 text-white py-2 rounded-lg font-medium transition flex items-center justify-center">
+            <i class="fas fa-shopping-bag mr-2"></i> Add to Bag
           </button>
         </div>
-        <div class="bg-white p-6 rounded-lg product-card watch-shadow">
-          <div class="relative h-64 mb-6 overflow-hidden rounded-lg">
-            <img src="https://storage.googleapis.com/stateless-watchilove-com/2021/04/6e01f781-pp_6119r_001_press.jpg" alt="Patek Philippe Calatrava" class="absolute inset-0 w-full h-full object-cover">
+        <div class="bg-white p-6 rounded-lg product-card boutique-shadow">
+          <div class="relative h-80 mb-6 overflow-hidden rounded-lg">
+            <img src="https://images.unsplash.com/photo-1627292828062-a4744e3e1a93?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Silk Scarf" class="absolute inset-0 w-full h-full object-cover">
             <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
-            <span class="absolute top-4 right-4 bg-red-600 text-white text-xs font-semibold px-2 py-1 rounded">LIMITED</span>
+            <span class="absolute top-4 right-4 bg-pink-600 text-white text-xs font-semibold px-2 py-1 rounded">LIMITED</span>
           </div>
-          <h4 class="font-semibold text-lg mb-1">Patek Philippe </h4>
-          <p class="text-gray-600 text-sm mb-3">White Gold, Hand-Guilloché</p>
-          <p class="text-green-700 font-bold text-xl mb-4">$29,900.00</p>
-          <button class="w-full bg-gray-900 hover:bg-gray-800 text-white py-2 rounded-lg font-medium transition flex items-center justify-center">
-            <i class="fas fa-shopping-cart mr-2"></i> Add to Cart
+          <h4 class="font-semibold text-lg mb-1">Printed Silk Scarf</h4>
+          <p class="text-gray-600 text-sm mb-3">Luxurious and versatile accessory</p>
+          <p class="text-pink-700 font-bold text-xl mb-4">$79.99</p>
+          <button class="w-full bg-gray-900 hover:bg-pink-800 text-white py-2 rounded-lg font-medium transition flex items-center justify-center">
+            <i class="fas fa-shopping-bag mr-2"></i> Add to Bag
           </button>
         </div>
-        <div class="bg-white p-6 rounded-lg product-card watch-shadow">
-          <div class="relative h-64 mb-6 overflow-hidden rounded-lg">
-            <img src="https://images.unsplash.com/photo-1612817159949-195b6eb9e31a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Cartier Tank" class="absolute inset-0 w-full h-full object-cover">
+        <div class="bg-white p-6 rounded-lg product-card boutique-shadow">
+          <div class="relative h-80 mb-6 overflow-hidden rounded-lg">
+            <img src="https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=698&q=80" alt="Designer Heels" class="absolute inset-0 w-full h-full object-cover">
             <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
           </div>
-          <h4 class="font-semibold text-lg mb-1">Cartier Tank Solo</h4>
-          <p class="text-gray-600 text-sm mb-3">Stainless Steel, Black Leather</p>
-          <p class="text-green-700 font-bold text-xl mb-4">$2,850.00</p>
-          <button class="w-full bg-gray-900 hover:bg-gray-800 text-white py-2 rounded-lg font-medium transition flex items-center justify-center">
-            <i class="fas fa-shopping-cart mr-2"></i> Add to Cart
+          <h4 class="font-semibold text-lg mb-1">Elegant High Heels</h4>
+          <p class="text-gray-600 text-sm mb-3">Perfect for any special occasion</p>
+          <p class="text-pink-700 font-bold text-xl mb-4">$199.99</p>
+          <button class="w-full bg-gray-900 hover:bg-pink-800 text-white py-2 rounded-lg font-medium transition flex items-center justify-center">
+            <i class="fas fa-shopping-bag mr-2"></i> Add to Bag
           </button>
         </div>
       </div>
@@ -69,18 +69,18 @@
   @else
     <section id="products" class="py-20 px-6 bg-white">
         <div class="text-center mb-16">
-            <h3 class="text-3xl font-bold mb-4">Best Collections</h3>
-            <p class="max-w-2xl mx-auto text-gray-600">Perfect choices specially for you</p>
+            <h3 class="text-3xl font-bold mb-4">Our Collections</h3>
+            <p class="max-w-2xl mx-auto text-gray-600">Find your next favorite piece in our curated collection.</p>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-4xl mx-auto">
             @foreach($products as $product)
-                <div class="bg-white p-6 rounded-lg product-card watch-shadow">
-                    <div class="relative h-64 mb-6 overflow-hidden rounded-lg">
+                <div class="bg-white p-6 rounded-lg product-card boutique-shadow">
+                    <div class="relative h-80 mb-6 overflow-hidden rounded-lg">
                         <img src="{{$product->image_url}}" alt="{{ $product->name }}" class="absolute inset-0 w-full h-full object-cover">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
                         @if($product->is_new)
-                            <span class="absolute top-4 right-4 bg-yellow-600 text-white text-xs font-semibold px-2 py-1 rounded">NEW</span>
+                            <span class="absolute top-4 right-4 bg-pink-600 text-white text-xs font-semibold px-2 py-1 rounded">NEW</span>
                         @elseif($product->is_limited)
                             <span class="absolute top-4 right-4 bg-red-600 text-white text-xs font-semibold px-2 py-1 rounded">LIMITED</span>
                         @endif
@@ -88,9 +88,9 @@
                     <a href="{{ route('template1.single-product', ['headerFooterId' => $headerFooter->id, 'productId' => $product->id]) }}">
                     <h4 class="font-semibold text-lg mb-1">{{ $product->name }}</h4>
                     <p class="text-gray-600 text-sm mb-3">{{ $product->description }}</p>
-                    <p class="text-green-700 font-bold text-xl mb-4">${{ number_format($product->price, 2) }}</p>
-                    <button class="w-full bg-gray-900 hover:bg-gray-800 text-white py-2 rounded-lg font-medium transition flex items-center justify-center">
-                        <i class="fas fa-shopping-cart mr-2"></i> View Product
+                    <p class="text-pink-700 font-bold text-xl mb-4">${{ number_format($product->price, 2) }}</p>
+                    <button class="w-full bg-gray-900 hover:bg-pink-800 text-white py-2 rounded-lg font-medium transition flex items-center justify-center">
+                        <i class="fas fa-shopping-bag mr-2"></i> View Product
                     </button>
                     </a>
                 </div>
