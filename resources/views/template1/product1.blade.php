@@ -60,6 +60,77 @@
                     </button>
                 </div>
             </div>
+            <!-- Product Card 2 -->
+            <div class="bg-white rounded-lg overflow-hidden product-card boutique-shadow">
+                <div class="relative">
+                    <div class="aspect-square bg-pink-50 flex items-center justify-center">
+                        <img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Leather Handbag" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div class="p-4">
+                    <h3 class="font-medium text-gray-900 mb-2">Classic Leather Handbag</h3>
+                    <div class="flex items-center space-x-2 mb-2">
+                        <span class="text-lg font-bold text-gray-900">$249.99</span>
+                    </div>
+                    <div class="flex items-center mb-3">
+                        <div class="flex items-center">
+                            <span class="text-yellow-500 text-sm">★★★★★</span>
+                        </div>
+                        <span class="ml-2 text-sm text-gray-500">30</span>
+                    </div>
+                    <button class="w-full bg-gray-900 hover:bg-pink-800 text-white py-2 px-4 rounded-lg font-medium transition flex items-center justify-center">
+                        <i class="fas fa-shopping-bag mr-2"></i> View Product
+                    </button>
+                </div>
+            </div>
+            <!-- Product Card 3 -->
+            <div class="bg-white rounded-lg overflow-hidden product-card boutique-shadow">
+                <div class="relative">
+                    <span class="absolute top-3 left-3 bg-pink-600 text-white px-3 py-1 rounded-full text-xs font-medium z-10">LIMITED</span>
+                    <div class="aspect-square bg-pink-50 flex items-center justify-center">
+                        <img src="https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Silk Scarf" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div class="p-4">
+                    <h3 class="font-medium text-gray-900 mb-2">Printed Silk Scarf</h3>
+                    <div class="flex items-center space-x-2 mb-2">
+                        <span class="text-lg font-bold text-gray-900">$79.99</span>
+                    </div>
+                    <div class="flex items-center mb-3">
+                        <div class="flex items-center">
+                            <span class="text-yellow-500 text-sm">★★★★</span>
+                            <span class="text-gray-300 text-sm">★</span>
+                        </div>
+                        <span class="ml-2 text-sm text-gray-500">62</span>
+                    </div>
+                    <button class="w-full bg-gray-900 hover:bg-pink-800 text-white py-2 px-4 rounded-lg font-medium transition flex items-center justify-center">
+                        <i class="fas fa-shopping-bag mr-2"></i> View Product
+                    </button>
+                </div>
+            </div>
+            <!-- Product Card 4 -->
+            <div class="bg-white rounded-lg overflow-hidden product-card boutique-shadow">
+                <div class="relative">
+                    <div class="aspect-square bg-pink-50 flex items-center justify-center">
+                        <img src="https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=698&q=80" alt="Designer Heels" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div class="p-4">
+                    <h3 class="font-medium text-gray-900 mb-2">Elegant High Heels</h3>
+                    <div class="flex items-center space-x-2 mb-2">
+                        <span class="text-lg font-bold text-gray-900">$199.99</span>
+                    </div>
+                    <div class="flex items-center mb-3">
+                        <div class="flex items-center">
+                            <span class="text-yellow-500 text-sm">★★★★★</span>
+                        </div>
+                        <span class="ml-2 text-sm text-gray-500">98</span>
+                    </div>
+                    <button class="w-full bg-gray-900 hover:bg-pink-800 text-white py-2 px-4 rounded-lg font-medium transition flex items-center justify-center">
+                        <i class="fas fa-shopping-bag mr-2"></i> View Product
+                    </button>
+                </div>
+            </div>
         </div>
     </main>
 @else

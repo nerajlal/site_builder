@@ -62,6 +62,74 @@
                     </button>
                 </div>
             </div>
+            <div class="bg-white rounded-lg overflow-hidden boutique-card">
+                <div class="relative">
+                    <div class="aspect-square bg-pink-50 flex items-center justify-center">
+                        <img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Leather Handbag" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div class="p-4">
+                    <h3 class="font-semibold text-lg mb-4 gold-underline" style="font-family: 'Cormorant Garamond', serif;">Classic Leather Handbag</h3>
+                    <div class="flex items-center space-x-2 mb-2">
+                        <span class="text-lg font-bold text-gray-900">$249.99</span>
+                    </div>
+                    <div class="flex items-center mb-3">
+                        <div class="flex items-center">
+                            <span class="text-yellow-500 text-sm">★★★★★</span>
+                        </div>
+                        <span class="ml-2 text-sm text-gray-500">30</span>
+                    </div>
+                    <button class="w-full btn-pink py-2 rounded font-medium">
+                        View Product
+                    </button>
+                </div>
+            </div>
+            <div class="bg-white rounded-lg overflow-hidden boutique-card">
+                <div class="relative">
+                    <span class="absolute top-3 left-3 bg-[#ec4899] text-white px-3 py-1 rounded-full text-xs font-medium z-10">LIMITED</span>
+                    <div class="aspect-square bg-pink-50 flex items-center justify-center">
+                        <img src="https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Silk Scarf" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div class="p-4">
+                    <h3 class="font-semibold text-lg mb-4 gold-underline" style="font-family: 'Cormorant Garamond', serif;">Printed Silk Scarf</h3>
+                    <div class="flex items-center space-x-2 mb-2">
+                        <span class="text-lg font-bold text-gray-900">$79.99</span>
+                    </div>
+                    <div class="flex items-center mb-3">
+                        <div class="flex items-center">
+                            <span class="text-yellow-500 text-sm">★★★★</span>
+                            <span class="text-gray-300 text-sm">★</span>
+                        </div>
+                        <span class="ml-2 text-sm text-gray-500">62</span>
+                    </div>
+                    <button class="w-full btn-pink py-2 rounded font-medium">
+                        View Product
+                    </button>
+                </div>
+            </div>
+            <div class="bg-white rounded-lg overflow-hidden boutique-card">
+                <div class="relative">
+                    <div class="aspect-square bg-pink-50 flex items-center justify-center">
+                        <img src="https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=698&q=80" alt="Designer Heels" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div class="p-4">
+                    <h3 class="font-semibold text-lg mb-4 gold-underline" style="font-family: 'Cormorant Garamond', serif;">Elegant High Heels</h3>
+                    <div class="flex items-center space-x-2 mb-2">
+                        <span class="text-lg font-bold text-gray-900">$199.99</span>
+                    </div>
+                    <div class="flex items-center mb-3">
+                        <div class="flex items-center">
+                            <span class="text-yellow-500 text-sm">★★★★★</span>
+                        </div>
+                        <span class="ml-2 text-sm text-gray-500">98</span>
+                    </div>
+                    <button class="w-full btn-pink py-2 rounded font-medium">
+                        View Product
+                    </button>
+                </div>
+            </div>
         </div>
     </main>
 @else
