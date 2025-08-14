@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Horologe | Luxury Timepieces</title>
+  <title>Boutique Store</title>
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -28,17 +28,17 @@
       height: 1px;
       bottom: -2px;
       left: 0;
-      background-color: #333;
+      background-color: #ec4899;
       transition: width 0.3s ease;
     }
     .nav-link:hover:after {
       width: 100%;
     }
-    .watch-card {
+    .boutique-card {
       transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
       background-color: #fff;
     }
-    .watch-card:hover {
+    .boutique-card:hover {
       box-shadow: 0 10px 20px rgba(0,0,0,0.05);
       transform: translateY(-3px);
     }
@@ -62,7 +62,7 @@
     <div class="max-w-7xl mx-auto flex justify-between items-center">
       <h1 class="text-2xl font-medium">
         @if($is_default)
-            LuxuryTime
+            BoutiqueStyle
           @else
             {{ $headerFooter->site_name }}
           @endif</h1>
@@ -83,13 +83,13 @@
           @if($headerFooterId)
             <a href="/index3/{{ $headerFooterId }}" class="text-gray-700 nav-link">Home</a>
             <a href="#features" id="navFeatures" class="{{ !($headerFooter->features ?? false) ? 'hidden' : '' }}  nav-link">Features</a>
-            <a href="#brands" id="navBrands" class="{{ !($headerFooter->brands ?? false) ? 'hidden' : '' }}  nav-link">Brands</a>
+            <a href="#brands" id="navBrands" class="{{ !($headerFooter->brands ?? false) ? 'hidden' : '' }}  nav-link">Categories</a>
             <a href="#collection" id="navCollections" class="{{ !($headerFooter->collections ?? false) ? 'hidden' : '' }}  nav-link">Collection</a>
             <a href="#contact" id="navContact" class="{{ !($headerFooter->contact ?? false) ? 'hidden' : '' }}  nav-link">Contact</a>
           @else
             <a href="/index3" class="text-gray-700 nav-link">Home</a>
             <a href="#features" id="navFeatures" class="{{ !($headerFooter->features ?? false) ? 'hidden' : '' }}  nav-link">Features</a>
-            <a href="#brands" id="navBrands" class="{{ !($headerFooter->brands ?? false) ? 'hidden' : '' }}  nav-link">Brands</a>
+            <a href="#brands" id="navBrands" class="{{ !($headerFooter->brands ?? false) ? 'hidden' : '' }}  nav-link">Categories</a>
             <a href="#collection" id="navCollections" class="{{ !($headerFooter->collections ?? false) ? 'hidden' : '' }}  nav-link">Collection</a>
             <a href="#contact" id="navContact" class="{{ !($headerFooter->contact ?? false) ? 'hidden' : '' }}  nav-link">Contact</a>
           @endif
@@ -104,7 +104,7 @@
         </button>
         <button class="text-gray-500 hover:text-gray-900 relative">
           <i class="fas fa-shopping-bag"></i>
-          <span class="absolute -top-2 -right-2 bg-gray-900 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">0</span>
+          <span class="absolute -top-2 -right-2 bg-pink-600 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">0</span>
         </button>
       </div>
     </div>

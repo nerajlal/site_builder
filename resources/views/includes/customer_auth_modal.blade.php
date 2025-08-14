@@ -9,7 +9,7 @@
   <div class="absolute inset-0 bg-black/50" onclick="closeLoginModal()"></div>
   <div class="relative bg-white w-full max-w-md rounded-lg shadow-xl p-6">
     <div class="flex justify-between items-center mb-4">
-      <h3 class="text-xl font-semibold">Sign In</h3>
+      <h3 class="text-xl font-semibold">Boutique Sign In</h3>
       <button onclick="closeLoginModal()" class="text-gray-500 hover:text-gray-800"><i class="fas fa-times"></i></button>
     </div>
 
@@ -17,22 +17,22 @@
 
     <div id="step1" class="space-y-4">
       <label class="block text-sm font-medium">WhatsApp Number</label>
-      <input id="whatsappInput" type="text" class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-yellow-600" placeholder="e.g. +1234567890" />
-      <button onclick="sendOtp()" class="w-full bg-yellow-600 hover:bg-yellow-700 text-white py-2 rounded">Send OTP</button>
+      <input id="whatsappInput" type="text" class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-pink-600" placeholder="e.g. +1234567890" />
+      <button onclick="sendOtp()" class="w-full bg-pink-600 hover:bg-pink-700 text-white py-2 rounded">Send OTP</button>
     </div>
 
     <div id="step2" class="space-y-4 hidden">
       <label class="block text-sm font-medium">Enter OTP (hint: 1234)</label>
-      <input id="otpInput" type="text" class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-yellow-600" placeholder="1234" />
-      <button onclick="verifyOtp()" class="w-full bg-yellow-600 hover:bg-yellow-700 text-white py-2 rounded">Verify OTP</button>
+      <input id="otpInput" type="text" class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-pink-600" placeholder="1234" />
+      <button onclick="verifyOtp()" class="w-full bg-pink-600 hover:bg-pink-700 text-white py-2 rounded">Verify OTP</button>
     </div>
 
     <div id="step3" class="space-y-4 hidden">
       <label class="block text-sm font-medium">Name</label>
-      <input id="nameInput" type="text" class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-yellow-600" placeholder="Your name" />
+      <input id="nameInput" type="text" class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-pink-600" placeholder="Your name" />
       <label class="block text-sm font-medium">Password</label>
-      <input id="passwordInput" type="password" class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-yellow-600" placeholder="Choose a password" />
-      <button onclick="setCredentials()" class="w-full bg-yellow-600 hover:bg-yellow-700 text-white py-2 rounded">Continue</button>
+      <input id="passwordInput" type="password" class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-pink-600" placeholder="Choose a password" />
+      <button onclick="setCredentials()" class="w-full bg-pink-600 hover:bg-pink-700 text-white py-2 rounded">Continue</button>
     </div>
 
     <p id="authMsg" class="mt-3 text-sm"></p>

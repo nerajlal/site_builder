@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Luxuria | Golden Era Timepieces</title>
+  <title>Boutique Store</title>
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
@@ -30,26 +30,26 @@
       height: 1px;
       bottom: -5px;
       left: 0;
-      background-color: #d4af37;
+      background-color: #ec4899;
     }
-    .watch-card {
+    .boutique-card {
       transition: all 0.3s ease;
       background-color: white;
     }
-    .watch-card:hover {
+    .boutique-card:hover {
       transform: translateY(-5px);
       box-shadow: 0 15px 30px rgba(0,0,0,0.05);
     }
-    .gold-hover:hover {
-      color: #d4af37;
+    .pink-hover:hover {
+      color: #ec4899;
     }
-    .btn-gold {
-      background-color: #d4af37;
+    .btn-pink {
+      background-color: #ec4899;
       color: white;
       transition: all 0.3s ease;
     }
-    .btn-gold:hover {
-      background-color: #c19b2e;
+    .btn-pink:hover {
+      background-color: #db2777;
       transform: translateY(-2px);
     }
     .btn-outline {
@@ -57,8 +57,8 @@
       transition: all 0.3s ease;
     }
     .btn-outline:hover {
-      border-color: #d4af37;
-      color: #d4af37;
+      border-color: #ec4899;
+      color: #ec4899;
     }
     .nav-link {
       position: relative;
@@ -70,7 +70,7 @@
       height: 1px;
       bottom: -2px;
       left: 0;
-      background-color: #d4af37;
+      background-color: #ec4899;
       transition: width 0.3s ease;
     }
     .nav-link:hover:after {
@@ -85,7 +85,7 @@
     <div class="max-w-7xl mx-auto flex justify-between items-center">
       <h1 class="text-2xl font-semibold">
           @if($is_default)
-            LuxuryTime
+            BoutiqueStyle
           @else
             {{ $headerFooter->site_name }}
           @endif</h1>
@@ -106,28 +106,28 @@
           @if($headerFooterId)
             <a href="/index4/{{ $headerFooterId }}" class="text-gray-700 nav-link">Home</a>
             <a href="#features" id="navFeatures" class="{{ !($headerFooter->features ?? false) ? 'hidden' : '' }}  nav-link">Features</a>
-            <a href="#brands" id="navBrands" class="{{ !($headerFooter->brands ?? false) ? 'hidden' : '' }}  nav-link">Brands</a>
+            <a href="#brands" id="navBrands" class="{{ !($headerFooter->brands ?? false) ? 'hidden' : '' }}  nav-link">Categories</a>
             <a href="#collection" id="navCollections" class="{{ !($headerFooter->collections ?? false) ? 'hidden' : '' }}  nav-link">Collection</a>
             <a href="#contact" id="navContact" class="{{ !($headerFooter->contact ?? false) ? 'hidden' : '' }}  nav-link">Contact</a>
           @else
             <a href="/index4" class="text-gray-700 nav-link">Home</a>
             <a href="#features" id="navFeatures" class="{{ !($headerFooter->features ?? false) ? 'hidden' : '' }}  nav-link">Features</a>
-            <a href="#brands" id="navBrands" class="{{ !($headerFooter->features ?? false) ? 'hidden' : '' }}  nav-link">Brands</a>
+            <a href="#brands" id="navBrands" class="{{ !($headerFooter->features ?? false) ? 'hidden' : '' }}  nav-link">Categories</a>
             <a href="#collection" id="navCollections" class="{{ !($headerFooter->collections ?? false) ? 'hidden' : '' }}  nav-link">Collection</a>
             <a href="#contact" id="navContact" class="{{ !($headerFooter->contact ?? false) ? 'hidden' : '' }}  nav-link">Contact</a>
           @endif
         @endif
       </nav>
       <div class="flex items-center space-x-6">
-        <button class="text-gray-500 hover:text-[#d4af37]">
+        <button class="text-gray-500 hover:text-[#ec4899]">
           <i class="fas fa-search"></i>
         </button>
-        <button onclick="openLoginModal()" class="text-gray-500 hover:text-[#d4af37]">
+        <button onclick="openLoginModal()" class="text-gray-500 hover:text-[#ec4899]">
           <i class="fas fa-user"></i>
         </button>
-        <button class="text-gray-500 hover:text-[#d4af37] relative">
+        <button class="text-gray-500 hover:text-[#ec4899] relative">
           <i class="fas fa-shopping-bag"></i>
-          <span class="absolute -top-2 -right-2 bg-[#d4af37] text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">0</span>
+          <span class="absolute -top-2 -right-2 bg-[#ec4899] text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">0</span>
         </button>
       </div>
     </div>

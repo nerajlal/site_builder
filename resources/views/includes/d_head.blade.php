@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Dashboard</title>
+    <title>Boutique Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -13,51 +13,51 @@
     <div class="flex h-screen">
         <!-- Sidebar -->
         <div id="sidebar" class="hidden md:flex md:flex-shrink-0">
-            <div class="flex flex-col w-64 bg-indigo-800 text-white">
-                <div class="flex items-center justify-center h-16 px-4 bg-indigo-900">
-                    <span class="text-xl font-bold">UserPanel</span>
+            <div class="flex flex-col w-64 bg-pink-800 text-white">
+                <div class="flex items-center justify-center h-16 px-4 bg-pink-900">
+                    <span class="text-xl font-bold">BoutiquePanel</span>
                 </div>
                 <div class="flex flex-col flex-grow px-4 py-4 overflow-y-auto">
                     <div class="space-y-1">
-                        <a href="/" class="flex items-center px-2 py-3 text-base font-medium rounded-md bg-indigo-900 text-white">
-                            <i class="fas fa-home mr-3"></i>Build<span class="text-yellow-400">YourStore</span>
+                        <a href="/" class="flex items-center px-2 py-3 text-base font-medium rounded-md bg-pink-900 text-white">
+                            <i class="fas fa-store mr-3"></i>Build<span class="text-pink-300">YourBoutique</span>
                         </a>
 
-                        <a href="/dashboard" class="flex items-center px-2 py-3 text-sm font-medium rounded-md hover:bg-indigo-700">
+                        <a href="/dashboard" class="flex items-center px-2 py-3 text-sm font-medium rounded-md hover:bg-pink-700">
                             <i class="fas fa-tachometer-alt mr-3"></i>
                             Dashboard
                         </a>
-                        <a href="/profile" class="flex items-center px-2 py-3 text-sm font-medium rounded-md hover:bg-indigo-700">
+                        <a href="/profile" class="flex items-center px-2 py-3 text-sm font-medium rounded-md hover:bg-pink-700">
                             <i class="fas fa-user mr-3"></i>
                             My Profile
                         </a>
-                        <a href="/data" class="flex items-center px-2 py-3 text-sm font-medium rounded-md hover:bg-indigo-700">
+                        <a href="/data" class="flex items-center px-2 py-3 text-sm font-medium rounded-md hover:bg-pink-700">
                             <i class="fas fa-box mr-3"></i>
                             Store Data
                         </a>
-                        <a href="/add" class="flex items-center px-2 py-3 text-sm font-medium rounded-md hover:bg-indigo-700">
+                        <a href="/add" class="flex items-center px-2 py-3 text-sm font-medium rounded-md hover:bg-pink-700">
                             <i class="fas fa-plus mr-3"></i>
                             Add Products
                         </a>
-                        <a href="/template" class="flex items-center px-2 py-3 text-sm font-medium rounded-md hover:bg-indigo-700">
+                        <a href="/template" class="flex items-center px-2 py-3 text-sm font-medium rounded-md hover:bg-pink-700">
                             <i class="fas fa-book mr-3"></i>
                             Templates
                         </a>
-                        <!-- <a href="#" class="flex items-center px-2 py-3 text-sm font-medium rounded-md hover:bg-indigo-700">
+                        <!-- <a href="#" class="flex items-center px-2 py-3 text-sm font-medium rounded-md hover:bg-pink-700">
                             <i class="fas fa-shopping-cart mr-3"></i>
                             Products
                         </a>
-                        <a href="#" class="flex items-center px-2 py-3 text-sm font-medium rounded-md hover:bg-indigo-700">
+                        <a href="#" class="flex items-center px-2 py-3 text-sm font-medium rounded-md hover:bg-pink-700">
                             <i class="fas fa-chart-bar mr-3"></i>
                             Analytics
                         </a>
-                        <a href="#" class="flex items-center px-2 py-3 text-sm font-medium rounded-md hover:bg-indigo-700">
+                        <a href="#" class="flex items-center px-2 py-3 text-sm font-medium rounded-md hover:bg-pink-700">
                             <i class="fas fa-cog mr-3"></i>
                             Settings
                         </a> -->
                     </div>
                 </div>
-                <div class="p-2 border-t border-indigo-700">
+                <div class="p-2 border-t border-pink-700">
                     <div class="flex items-center">
                         <img class="w-10 h-9 rounded-full" src="https://static.vecteezy.com/system/resources/previews/019/879/186/non_2x/user-icon-on-transparent-background-free-png.png" alt="User profile">
                         <div class="ml-3">
@@ -68,7 +68,7 @@
                                 </button>
                             </form>
 
-                            <!-- <p class="text-xs text-indigo-200">User</p> -->
+                            <!-- <p class="text-xs text-pink-200">User</p> -->
                         </div>
                     </div>
                 </div>
@@ -88,13 +88,13 @@
                 <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                     <i class="fas fa-search text-gray-400"></i>
                 </div>
-                <input type="text" class="w-full py-2 pl-10 pr-4 text-sm bg-gray-100 rounded-lg focus:outline-none" placeholder="Search...">
+                <input type="text" class="w-full py-2 pl-10 pr-4 text-sm bg-gray-100 rounded-lg focus:outline-none" placeholder="Search boutique items...">
             </div>
         </div>
         <div class="flex items-center space-x-4">
             <button id="notification-btn" class="text-gray-500 focus:outline-none relative">
                 <i class="fas fa-bell"></i>
-                <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">3</span>
+                <span class="absolute -top-1 -right-1 bg-pink-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">3</span>
             </button>
             <div id="profile-dropdown" class="relative">
                 <button id="profile-btn" class="flex items-center space-x-2 focus:outline-none" onclick="window.location.href='/profile'">

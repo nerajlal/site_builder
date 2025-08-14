@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Luxury Watch Store</title>
+  <title>Boutique Store</title>
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -25,16 +25,16 @@
       height: 2px;
       bottom: -2px;
       left: 0;
-      background-color: #d4af37;
+      background-color: #ec4899;
       transition: width 0.3s ease;
     }
     .nav-link:hover:after {
       width: 100%;
     }
-    .watch-card {
+    .boutique-card {
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-    .watch-card:hover {
+    .boutique-card:hover {
       transform: translateY(-5px);
       box-shadow: 0 15px 30px rgba(0,0,0,0.3);
     }
@@ -55,13 +55,13 @@
   <header class="bg-black py-6 px-6 border-b border-gray-800 sticky top-0 z-50">
     <div class="max-w-7xl mx-auto flex justify-between items-center">
       <div class="flex items-center">
-        <div class="w-10 h-10 rounded-full bg-gradient-to-r from-yellow-600 to-yellow-800 flex items-center justify-center mr-3">
-          <i class="fas fa-crown text-white"></i>
+        <div class="w-10 h-10 rounded-full bg-gradient-to-r from-pink-600 to-pink-800 flex items-center justify-center mr-3">
+          <i class="fas fa-store text-white"></i>
         </div>
         <span>
           <h1 class="text-2xl font-light tracking-wider"> 
           @if($is_default)
-            LuxuryTime
+            BoutiqueStyle
           @else
             {{ $headerFooter->site_name }}
           @endif </h1>
@@ -69,7 +69,7 @@
       </div>
       <nav class="hidden md:flex space-x-8">
         @if($is_default)
-          <a href="#" class="text-gray-700 hover:text-yellow-600 transition">Home</a>
+          <a href="#" class="text-gray-700 hover:text-pink-600 transition">Home</a>
         @else
           @php
             $currentUrl = request()->url();
@@ -82,17 +82,17 @@
           @endphp
           
           @if($headerFooterId)
-            <a href="/index2/{{ $headerFooterId }}" class="text-gray-700 hover:text-yellow-600 transition">Home</a>
-            <a href="#features" id="navFeatures" class="{{ !($headerFooter->features ?? false) ? 'hidden' : '' }} hover:text-yellow-600">Features</a>
-            <a href="#brands" id="navBrands" class="{{ !($headerFooter->brands ?? false) ? 'hidden' : '' }} hover:text-yellow-600">Brands</a>
-            <a href="#collection" id="navCollections" class="{{ !($headerFooter->collections ?? false) ? 'hidden' : '' }} hover:text-yellow-600">Collection</a>
-            <a href="#contact" id="navContact" class="{{ !($headerFooter->contact ?? false) ? 'hidden' : '' }} hover:text-yellow-600">Contact</a>
+            <a href="/index2/{{ $headerFooterId }}" class="text-gray-700 hover:text-pink-600 transition">Home</a>
+            <a href="#features" id="navFeatures" class="{{ !($headerFooter->features ?? false) ? 'hidden' : '' }} hover:text-pink-600">Features</a>
+            <a href="#brands" id="navBrands" class="{{ !($headerFooter->brands ?? false) ? 'hidden' : '' }} hover:text-pink-600">Categories</a>
+            <a href="#collection" id="navCollections" class="{{ !($headerFooter->collections ?? false) ? 'hidden' : '' }} hover:text-pink-600">Collection</a>
+            <a href="#contact" id="navContact" class="{{ !($headerFooter->contact ?? false) ? 'hidden' : '' }} hover:text-pink-600">Contact</a>
           @else
-            <a href="/index2" class="text-gray-700 hover:text-yellow-600 transition">Home</a>
-            <a href="#features" id="navFeatures" class="{{ !($headerFooter->features ?? false) ? 'hidden' : '' }} hover:text-yellow-600">Features</a>
-            <a href="#brands" id="navBrands" class="{{ !($headerFooter->brands ?? false) ? 'hidden' : '' }} hover:text-yellow-600">Brands</a>
-            <a href="#collection" id="navCollections" class="{{ !($headerFooter->collections ?? false) ? 'hidden' : '' }} hover:text-yellow-600">Collection</a>
-            <a href="#contact" id="navContact" class="{{ !($headerFooter->contact ?? false) ? 'hidden' : '' }} hover:text-yellow-600">Contact</a>
+            <a href="/index2" class="text-gray-700 hover:text-pink-600 transition">Home</a>
+            <a href="#features" id="navFeatures" class="{{ !($headerFooter->features ?? false) ? 'hidden' : '' }} hover:text-pink-600">Features</a>
+            <a href="#brands" id="navBrands" class="{{ !($headerFooter->brands ?? false) ? 'hidden' : '' }} hover:text-pink-600">Categories</a>
+            <a href="#collection" id="navCollections" class="{{ !($headerFooter->collections ?? false) ? 'hidden' : '' }} hover:text-pink-600">Collection</a>
+            <a href="#contact" id="navContact" class="{{ !($headerFooter->contact ?? false) ? 'hidden' : '' }} hover:text-pink-600">Contact</a>
           @endif
         @endif
       </nav>
@@ -105,7 +105,7 @@
         </button>
         <button class="text-gray-400 hover:text-white relative">
           <i class="fas fa-shopping-bag"></i>
-          <span class="absolute -top-2 -right-2 bg-yellow-600 text-black text-xs w-5 h-5 flex items-center justify-center rounded-full">0</span>
+          <span class="absolute -top-2 -right-2 bg-pink-600 text-black text-xs w-5 h-5 flex items-center justify-center rounded-full">0</span>
         </button>
       </div>
     </div>

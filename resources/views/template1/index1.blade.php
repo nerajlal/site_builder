@@ -5,18 +5,18 @@
     <section class="relative bg-gray-900 text-white py-24 text-center overflow-hidden">
       <div class="absolute inset-0 bg-black opacity-50"></div>
       <div class="relative z-10 max-w-4xl mx-auto px-4">
-        <h2 class="text-5xl font-bold mb-6">Precisions Crafted Luxury Timepiecess</h2>
-        <p class="text-xl mb-8">Experiences the pinnacle of Swiss watchmaking excellences</p>
+        <h2 class="text-5xl font-bold mb-6">Elegant Fashion for Every Occasion</h2>
+        <p class="text-xl mb-8">Discover our curated collection of stylish boutique pieces</p>
         <div class="flex flex-col sm:flex-row justify-center gap-4">
-          <button class="bg-yellow-600 hover:bg-yellow-700 text-white px-8 py-3 rounded-lg font-medium transition">
-            Discover Collectionss <i class="fas fa-arrow-right ml-2"></i>
+          <button class="bg-pink-600 hover:bg-pink-700 text-white px-8 py-3 rounded-lg font-medium transition">
+            Shop Collection <i class="fas fa-arrow-right ml-2"></i>
           </button>
           <button class="bg-transparent hover:bg-white hover:text-gray-900 border-2 border-white text-white px-8 py-3 rounded-lg font-medium transition">
-            Book Consultationss
+            Book Appointment
           </button>
         </div>
       </div>
-      <img src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1480&q=80" alt="Luxury Watch" class="absolute inset-0 w-full h-full object-cover">
+      <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1480&q=80" alt="Boutique Fashion" class="absolute inset-0 w-full h-full object-cover">
     </section>
   @else
     <section class="relative bg-gray-900 text-white py-24 text-center overflow-hidden">
@@ -34,14 +34,14 @@
         
         <div class="flex flex-col sm:flex-row justify-center gap-4">
           @if($headerFooterId)
-            <button class="bg-yellow-600 hover:bg-yellow-700 text-white px-8 py-3 rounded-lg font-medium transition" onclick="window.location.href='/product1/{{ $headerFooterId }}'">
+            <button class="bg-pink-600 hover:bg-pink-700 text-white px-8 py-3 rounded-lg font-medium transition" onclick="window.location.href='/product1/{{ $headerFooterId }}'">
               {{ $homesetting->button1_text }} <i class="fas fa-arrow-right ml-2"></i>
             </button>
             <button class="bg-transparent hover:bg-white hover:text-gray-900 border-2 border-white text-white px-8 py-3 rounded-lg font-medium transition" onclick="window.location.href='/product1/{{ $headerFooterId }}'">
               {{ $homesetting->button2_text }}
             </button>
           @else
-            <button class="bg-yellow-600 hover:bg-yellow-700 text-white px-8 py-3 rounded-lg font-medium transition" onclick="window.location.href='/product1'">
+            <button class="bg-pink-600 hover:bg-pink-700 text-white px-8 py-3 rounded-lg font-medium transition" onclick="window.location.href='/product1'">
               {{ $homesetting->button1_text }} <i class="fas fa-arrow-right ml-2"></i>
             </button>
             <button class="bg-transparent hover:bg-white hover:text-gray-900 border-2 border-white text-white px-8 py-3 rounded-lg font-medium transition" onclick="window.location.href='/product1'">
@@ -50,7 +50,7 @@
           @endif
         </div>
       </div>
-      <img src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1480&q=80" alt="Luxury Watch" class="absolute inset-0 w-full h-full object-cover">
+      <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1480&q=80" alt="Boutique Fashion" class="absolute inset-0 w-full h-full object-cover">
     </section>
   @endif
 
@@ -58,30 +58,30 @@
   @if($is_default)
     <section id="features" class="py-20 px-6 bg-white">
       <div class="text-center mb-16">
-        <h3 class="text-3xl font-bold mb-4">The LuxuryTime Differencesss</h3>
-        <p class="max-w-2xl mx-auto text-gray-600">Why discerning collectors choose our curated selection of timepiecessss</p>
+        <h3 class="text-3xl font-bold mb-4">The BoutiqueStyle Difference</h3>
+        <p class="max-w-2xl mx-auto text-gray-600">Why fashion-forward customers choose our curated boutique collection</p>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-        <div class="text-center p-8 rounded-lg watch-shadow">
-          <div class="bg-yellow-100 w-20 h-20 mx-auto rounded-full flex items-center justify-center mb-6">
-            <i class="fas fa-gem text-yellow-600 text-2xl"></i>
+        <div class="text-center p-8 rounded-lg boutique-shadow">
+          <div class="bg-pink-100 w-20 h-20 mx-auto rounded-full flex items-center justify-center mb-6">
+            <i class="fas fa-star text-pink-600 text-2xl"></i>
           </div>
-          <h4 class="text-xl font-semibold mb-3">Authenticity Guaranteedss</h4>
-          <p class="text-gray-600">Every watch undergoes rigorous authentication by our Swiss-trained expertsss.</p>
+          <h4 class="text-xl font-semibold mb-3">Curated Selection</h4>
+          <p class="text-gray-600">Handpicked pieces from the latest fashion trends and timeless classics.</p>
         </div>
-        <div class="text-center p-8 rounded-lg watch-shadow">
-          <div class="bg-yellow-100 w-20 h-20 mx-auto rounded-full flex items-center justify-center mb-6">
-            <i class="fas fa-shield-alt text-yellow-600 text-2xl"></i>
+        <div class="text-center p-8 rounded-lg boutique-shadow">
+          <div class="bg-pink-100 w-20 h-20 mx-auto rounded-full flex items-center justify-center mb-6">
+            <i class="fas fa-heart text-pink-600 text-2xl"></i>
           </div>
-          <h4 class="text-xl font-semibold mb-3">Extended Warrantyss</h4>
-          <p class="text-gray-600">3-year comprehensive warranty on all purchases for complete peace of mindss.</p>
+          <h4 class="text-xl font-semibold mb-3">Personal Styling</h4>
+          <p class="text-gray-600">Expert fashion advice and personalized styling sessions for every customer.</p>
         </div>
-        <div class="text-center p-8 rounded-lg watch-shadow">
-          <div class="bg-yellow-100 w-20 h-20 mx-auto rounded-full flex items-center justify-center mb-6">
-            <i class="fas fa-headset text-yellow-600 text-2xl"></i>
+        <div class="text-center p-8 rounded-lg boutique-shadow">
+          <div class="bg-pink-100 w-20 h-20 mx-auto rounded-full flex items-center justify-center mb-6">
+            <i class="fas fa-shipping-fast text-pink-600 text-2xl"></i>
           </div>
-          <h4 class="text-xl font-semibold mb-3">Concierge Servicesss</h4>
-          <p class="text-gray-600">Dedicated personal consultants for bespoke shopping experiencessss.</p>
+          <h4 class="text-xl font-semibold mb-3">Fast Delivery</h4>
+          <p class="text-gray-600">Quick and secure shipping with easy returns for your convenience.</p>
         </div>
       </div>
     </section>
@@ -92,23 +92,23 @@
         <p class="max-w-2xl mx-auto text-gray-600">{{ $section1->sub_heading }}</p>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-        <div class="text-center p-8 rounded-lg watch-shadow">
-          <div class="bg-yellow-100 w-20 h-20 mx-auto rounded-full flex items-center justify-center mb-6">
-            <i class="fas fa-gem text-yellow-600 text-2xl"></i>
+        <div class="text-center p-8 rounded-lg boutique-shadow">
+          <div class="bg-pink-100 w-20 h-20 mx-auto rounded-full flex items-center justify-center mb-6">
+            <i class="fas fa-star text-pink-600 text-2xl"></i>
           </div>
           <h4 class="text-xl font-semibold mb-3">{{ $section1->feature1_heading }}</h4>
           <p class="text-gray-600">{{ $section1->feature1_detail }}</p>
         </div>
-        <div class="text-center p-8 rounded-lg watch-shadow">
-          <div class="bg-yellow-100 w-20 h-20 mx-auto rounded-full flex items-center justify-center mb-6">
-            <i class="fas fa-shield-alt text-yellow-600 text-2xl"></i>
+        <div class="text-center p-8 rounded-lg boutique-shadow">
+          <div class="bg-pink-100 w-20 h-20 mx-auto rounded-full flex items-center justify-center mb-6">
+            <i class="fas fa-heart text-pink-600 text-2xl"></i>
           </div>
           <h4 class="text-xl font-semibold mb-3">{{ $section1->feature2_heading }}</h4>
           <p class="text-gray-600">{{ $section1->feature2_detail }}</p>
         </div>
-        <div class="text-center p-8 rounded-lg watch-shadow">
-          <div class="bg-yellow-100 w-20 h-20 mx-auto rounded-full flex items-center justify-center mb-6">
-            <i class="fas fa-headset text-yellow-600 text-2xl"></i>
+        <div class="text-center p-8 rounded-lg boutique-shadow">
+          <div class="bg-pink-100 w-20 h-20 mx-auto rounded-full flex items-center justify-center mb-6">
+            <i class="fas fa-shipping-fast text-pink-600 text-2xl"></i>
           </div>
           <h4 class="text-xl font-semibold mb-3">{{ $section1->feature3_heading }}</h4>
           <p class="text-gray-600">{{ $section1->feature3_detail }}</p>
@@ -121,27 +121,27 @@
   @if($is_default)
     <section id="categories" class="py-20 px-6 bg-gray-50">
       <div class="text-center mb-16">
-        <h3 class="text-3xl font-bold mb-4">Our Prestigious Brands</h3>
-        <p class="max-w-2xl mx-auto text-gray-600">Partnering with the most revered names in horology</p>
+        <h3 class="text-3xl font-bold mb-4">Fashion Categories</h3>
+        <p class="max-w-2xl mx-auto text-gray-600">Explore our curated collection of stylish fashion categories</p>
       </div>
       <div class="flex flex-wrap justify-center gap-8 max-w-6xl mx-auto">
         <div class="bg-white p-2 rounded-full brand-logo w-32 h-32 flex items-center justify-center">
-          <img src="https://i.pinimg.com/originals/53/38/5b/53385b0c2197b1be4bacfd2b565df096.jpg" alt="Rolex" class="w-full h-full rounded-full object-cover">
+          <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80" alt="Women's Fashion" class="w-full h-full rounded-full object-cover">
         </div>
         <div class="bg-white p-2 rounded-full brand-logo w-32 h-32 flex items-center justify-center">
-          <img src="https://cdn.wallpapersafari.com/76/18/UOzmNv.jpg" alt="Omega" class="w-full h-full rounded-full object-cover">
+          <img src="https://images.unsplash.com/photo-1617137968427-85924c800a22?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Men's Fashion" class="w-full h-full rounded-full object-cover">
         </div>
         <div class="bg-white p-2 rounded-full brand-logo w-32 h-32 flex items-center justify-center">
-          <img src="http://upload.wikimedia.org/wikipedia/commons/9/94/Patek-Philippe_MG_2580.jpg" alt="Patek Philippe" class="w-full h-full rounded-full object-cover">
+          <img src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Accessories" class="w-full h-full rounded-full object-cover">
         </div>
         <div class="bg-white p-2 rounded-full brand-logo w-32 h-32 flex items-center justify-center">
-          <img src="https://i.pinimg.com/originals/99/ce/74/99ce74c90a44b31e77af5916666424a2.jpg" alt="Cartier" class="w-full h-full rounded-full object-cover">
+          <img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Shoes" class="w-full h-full rounded-full object-cover">
         </div>
         <div class="bg-white p-2 rounded-full brand-logo w-32 h-32 flex items-center justify-center">
-          <img src="http://prideandpinion.com/cdn/shop/collections/HT4A9169.jpg?v=1699013980" alt="IWC" class="w-full h-full rounded-full object-cover">
+          <img src="https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Bags" class="w-full h-full rounded-full object-cover">
         </div>
         <div class="bg-white p-2 rounded-full brand-logo w-32 h-32 flex items-center justify-center">
-          <img src="https://www.aviandco.com/media/magefan_blog/1_4.jpg" alt="Audemars Piguet" class="w-full h-full rounded-full object-cover">
+          <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1480&q=80" alt="Jewelry" class="w-full h-full rounded-full object-cover">
         </div>
       </div>
     </section>
@@ -178,38 +178,38 @@
   @if($is_default)
     <section id="products" class="py-20 px-6 bg-white">
       <div class="text-center mb-16">
-        <h3 class="text-3xl font-bold mb-4">Best Collections</h3>
-        <p class="max-w-2xl mx-auto text-gray-600">Perfect choices specially for you </p>
+        <h3 class="text-3xl font-bold mb-4">Featured Collection</h3>
+        <p class="max-w-2xl mx-auto text-gray-600">Handpicked pieces for the fashion-forward</p>
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
-        <div class="bg-white p-6 rounded-lg product-card watch-shadow">
+        <div class="bg-white p-6 rounded-lg product-card boutique-shadow">
           <div class="relative h-64 mb-6 overflow-hidden rounded-lg">
-            <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1099&q=80" alt="Rolex Submariner" class="absolute inset-0 w-full h-full object-cover">
+            <img src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=705&q=80" alt="Elegant Dress" class="absolute inset-0 w-full h-full object-cover">
             <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
-            <span class="absolute top-4 right-4 bg-yellow-600 text-white text-xs font-semibold px-2 py-1 rounded">NEW</span>
+            <span class="absolute top-4 right-4 bg-pink-600 text-white text-xs font-semibold px-2 py-1 rounded">NEW</span>
           </div>
-          <h4 class="font-semibold text-lg mb-1">Rolex Submariner</h4>
-          <p class="text-gray-600 text-sm mb-3">Oystersteel, Ceramic Bezel</p>
-          <p class="text-green-700 font-bold text-xl mb-4">$8,950.00</p>
+          <h4 class="font-semibold text-lg mb-1">Elegant Evening Dress</h4>
+          <p class="text-gray-600 text-sm mb-3">Silk, Designer Collection</p>
+          <p class="text-green-700 font-bold text-xl mb-4">$299.00</p>
           <button class="w-full bg-gray-900 hover:bg-gray-800 text-white py-2 rounded-lg font-medium transition flex items-center justify-center">
             <i class="fas fa-shopping-cart mr-2"></i> Add to Cart
           </button>
         </div>
-        <div class="bg-white p-6 rounded-lg product-card watch-shadow">
+        <div class="bg-white p-6 rounded-lg product-card boutique-shadow">
           <div class="relative h-64 mb-6 overflow-hidden rounded-lg">
-            <img src="https://images.unsplash.com/photo-1542496658-e33a6d0d50f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Omega Speedmaster" class="absolute inset-0 w-full h-full object-cover">
+            <img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Designer Heels" class="absolute inset-0 w-full h-full object-cover">
             <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
           </div>
-          <h4 class="font-semibold text-lg mb-1">Omega Speedmaster</h4>
-          <p class="text-gray-600 text-sm mb-3">Moonwatch Professional</p>
-          <p class="text-green-700 font-bold text-xl mb-4">$6,300.00</p>
+          <h4 class="font-semibold text-lg mb-1">Designer Heels</h4>
+          <p class="text-gray-600 text-sm mb-3">Leather, Premium Quality</p>
+          <p class="text-green-700 font-bold text-xl mb-4">$189.00</p>
           <button class="w-full bg-gray-900 hover:bg-gray-800 text-white py-2 rounded-lg font-medium transition flex items-center justify-center">
             <i class="fas fa-shopping-cart mr-2"></i> Add to Cart
           </button>
         </div>
-        <div class="bg-white p-6 rounded-lg product-card watch-shadow">
+        <div class="bg-white p-6 rounded-lg product-card boutique-shadow">
           <div class="relative h-64 mb-6 overflow-hidden rounded-lg">
-            <img src="https://storage.googleapis.com/stateless-watchilove-com/2021/04/6e01f781-pp_6119r_001_press.jpg" alt="Patek Philippe Calatrava" class="absolute inset-0 w-full h-full object-cover">
+            <img src="https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Luxury Handbag" class="absolute inset-0 w-full h-full object-cover">
             <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
             <span class="absolute top-4 right-4 bg-red-600 text-white text-xs font-semibold px-2 py-1 rounded">LIMITED</span>
           </div>
