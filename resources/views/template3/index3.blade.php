@@ -215,21 +215,23 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           @foreach($products as $product)
             <div class="watch-card p-6 rounded-lg border border-gray-100 shadow-sm hover:shadow-md transition">
-              <div class="relative h-64 mb-6 overflow-hidden rounded-lg">
-                <img src="https://images.unsplash.com/photo-1571951103752-53c15cad21e6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="{{ $product->name }}" class="absolute inset-0 w-full h-full object-cover">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
-                @if($product->is_new)
-                  <span class="absolute top-4 right-4 bg-white text-gray-900 text-xs font-medium px-2 py-1 rounded">NEW</span>
-                @elseif($product->is_limited)
-                  <span class="absolute top-4 right-4 bg-white text-gray-900 text-xs font-medium px-2 py-1 rounded">LIMITED</span>
-                @endif
-              </div>
-              <h4 class="font-medium text-lg mb-1">{{ $product->name }}</h4>
-              <p class="text-gray-500 text-sm mb-3">{{ $product->description }}</p>
-              <p class="text-gray-900 font-medium text-xl mb-4">${{ number_format($product->price, 2) }}</p>
-              <button class="w-full border border-gray-900 hover:bg-gray-900 hover:text-white text-gray-900 py-2 rounded-lg font-medium transition duration-300">
-                Add to Cart
-              </button>
+              <a href="{{ route('template3.single-product', ['headerFooterId' => $headerFooter->id, 'productId' => $product->id]) }}">
+                <div class="relative h-64 mb-6 overflow-hidden rounded-lg">
+                  <img src="https://images.unsplash.com/photo-1571951103752-53c15cad21e6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="{{ $product->name }}" class="absolute inset-0 w-full h-full object-cover">
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
+                  @if($product->is_new)
+                    <span class="absolute top-4 right-4 bg-white text-gray-900 text-xs font-medium px-2 py-1 rounded">NEW</span>
+                  @elseif($product->is_limited)
+                    <span class="absolute top-4 right-4 bg-white text-gray-900 text-xs font-medium px-2 py-1 rounded">LIMITED</span>
+                  @endif
+                </div>
+                <h4 class="font-medium text-lg mb-1">{{ $product->name }}</h4>
+                <p class="text-gray-500 text-sm mb-3">{{ $product->description }}</p>
+                <p class="text-gray-900 font-medium text-xl mb-4">${{ number_format($product->price, 2) }}</p>
+                <button class="w-full border border-gray-900 hover:bg-gray-900 hover:text-white text-gray-900 py-2 rounded-lg font-medium transition duration-300">
+                  View Product
+                </button>
+              </a>
             </div>
           @endforeach
         </div>
