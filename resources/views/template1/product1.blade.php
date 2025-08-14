@@ -11,7 +11,7 @@
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-4xl mx-auto">
         <div class="bg-white p-6 rounded-lg product-card boutique-shadow">
           <div class="relative h-80 mb-6 overflow-hidden rounded-lg">
-            <img src="https://images.unsplash.com/photo-1571951103752-53c15cad21e6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Elegant Dress" class="absolute inset-0 w-full h-full object-cover">
+            <img src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=705&q=80" alt="Elegant Dress" class="absolute inset-0 w-full h-full object-cover">
             <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
             <span class="absolute top-4 right-4 bg-pink-600 text-white text-xs font-semibold px-2 py-1 rounded">NEW</span>
           </div>
@@ -24,7 +24,7 @@
         </div>
         <div class="bg-white p-6 rounded-lg product-card boutique-shadow">
           <div class="relative h-80 mb-6 overflow-hidden rounded-lg">
-            <img src="https://images.unsplash.com/photo-1598554747476-3842883a84a6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Leather Handbag" class="absolute inset-0 w-full h-full object-cover">
+            <img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Leather Handbag" class="absolute inset-0 w-full h-full object-cover">
             <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
           </div>
           <h4 class="font-semibold text-lg mb-1">Classic Leather Handbag</h4>
@@ -36,7 +36,7 @@
         </div>
         <div class="bg-white p-6 rounded-lg product-card boutique-shadow">
           <div class="relative h-80 mb-6 overflow-hidden rounded-lg">
-            <img src="https://images.unsplash.com/photo-1627292828062-a4744e3e1a93?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Silk Scarf" class="absolute inset-0 w-full h-full object-cover">
+            <img src="https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Silk Scarf" class="absolute inset-0 w-full h-full object-cover">
             <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
             <span class="absolute top-4 right-4 bg-pink-600 text-white text-xs font-semibold px-2 py-1 rounded">LIMITED</span>
           </div>
@@ -60,11 +60,11 @@
           </button>
         </div>
       </div>
-      <div class="text-center mt-12">
+      <!-- <div class="text-center mt-12">
         <button class="bg-transparent hover:bg-gray-900 text-gray-900 hover:text-white border-2 border-gray-900 px-8 py-3 rounded-lg font-medium transition">
           View Full Collection <i class="fas fa-arrow-right ml-2"></i>
         </button>
-      </div>
+      </div> -->
     </section>
   @else
     <section id="products" class="py-20 px-6 bg-white">

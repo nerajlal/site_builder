@@ -13,11 +13,11 @@
         <!-- Static Product Cards (Rolex, Omega, Patek, Cartier) -->
         @include('template2.collection-default')
       </div>
-      <div class="text-center mt-12">
+      <!-- <div class="text-center mt-12">
         <button class="border border-gray-600 hover:border-white text-white px-8 py-3 rounded-lg font-medium transition duration-300">
           View Full Collection
         </button>
-      </div>
+      </div> -->
     </div>
   </section>
 @else

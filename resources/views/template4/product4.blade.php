@@ -12,7 +12,7 @@
           <!-- Static Product Cards -->
           <div class="boutique-card p-6 rounded-lg border border-gray-100">
             <div class="relative h-64 mb-6 overflow-hidden rounded-lg">
-              <img src="https://images.unsplash.com/photo-1571951103752-53c15cad21e6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80"
+              <img src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=705&q=80"
                   alt="Elegant Dress"
                   class="absolute inset-0 w-full h-full object-cover">
               <div class="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
@@ -27,7 +27,7 @@
           </div>
           <div class="boutique-card p-6 rounded-lg border border-gray-100">
             <div class="relative h-64 mb-6 overflow-hidden rounded-lg">
-              <img src="https://images.unsplash.com/photo-1598554747476-3842883a84a6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80"
+              <img src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
                   alt="Leather Handbag"
                   class="absolute inset-0 w-full h-full object-cover">
               <div class="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
@@ -41,7 +41,7 @@
           </div>
           <div class="boutique-card p-6 rounded-lg border border-gray-100">
             <div class="relative h-64 mb-6 overflow-hidden rounded-lg">
-              <img src="https://images.unsplash.com/photo-1627292828062-a4744e3e1a93?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80"
+              <img src="https://images.unsplash.com/photo-1594223274512-ad4803739b7c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80"
                   alt="Silk Scarf"
                   class="absolute inset-0 w-full h-full object-cover">
               <div class="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
@@ -69,11 +69,11 @@
             </button>
           </div>
         </div>
-        <div class="text-center mt-12">
+        <!-- <div class="text-center mt-12">
           <button class="btn-outline px-8 py-3 rounded font-medium">
             View Full Collection
           </button>
-        </div>
+        </div> -->
       </div>
     </section>
   @else

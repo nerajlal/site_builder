@@ -91,7 +91,8 @@
           @endif</h1>
       <nav class="hidden md:flex space-x-8">
         @if($is_default)
-          <a href="#" class="text-gray-700 nav-link transition">Home</a>
+          <a href="/index4" class="text-gray-700 nav-link transition">Home</a>
+          <a href="/product4" class="text-gray-700 nav-link transition">Products</a>
         @else
           @php
             $currentUrl = request()->url();

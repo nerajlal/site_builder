@@ -47,7 +47,8 @@
     </h1>
     <nav class="space-x-6 hidden md:flex">
       @if($is_default)
-        <a href="#" class="text-gray-700 hover:text-pink-600 transition">Home</a>
+        <a href="/index1" class="text-gray-700 hover:text-pink-600 transition">Home</a>
+        <a href="/product1" class="text-gray-700 hover:text-pink-600 transition">Products</a>
       @else
         @php
           $currentUrl = request()->url();
