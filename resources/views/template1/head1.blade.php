@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Luxury Watch Store</title>
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -81,27 +82,8 @@
       <button class="text-gray-700 hover:text-yellow-600 transition">
         <i class="fas fa-shopping-cart"></i>
       </button>
-      <button class="bg-yellow-600 hover:bg-yellow-700 text-white px-4 py-2 rounded transition">Sign In</button>
-      <!-- <button onclick="openLoginModal()" class="bg-yellow-600 hover:bg-yellow-700 text-white px-4 py-2 rounded transition">Sign In</button> -->
+      <button onclick="openLoginModal()" class="bg-yellow-600 hover:bg-yellow-700 text-white px-4 py-2 rounded transition">Sign In</button>
     </div>
   </header>
 
-
-
-  <!-- Login Modal -->
-
-
-
-
-
-
-<script>
-  function openLoginModal() {
-    document.getElementById('loginModal').classList.remove('hidden');
-    document.getElementById('loginModal').classList.add('flex');
-  }
-
-  function closeLoginModal() {
-    document.getElementById('loginModal').classList.add('hidden');
-  }
-</script>
+  @include('includes.customer_auth_modal')

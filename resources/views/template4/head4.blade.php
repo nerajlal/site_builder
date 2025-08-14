@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Luxuria | Golden Era Timepieces</title>
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -111,7 +112,7 @@
           @else
             <a href="/index4" class="text-gray-700 nav-link">Home</a>
             <a href="#features" id="navFeatures" class="{{ !($headerFooter->features ?? false) ? 'hidden' : '' }}  nav-link">Features</a>
-            <a href="#brands" id="navBrands" class="{{ !($headerFooter->brands ?? false) ? 'hidden' : '' }}  nav-link">Brands</a>
+            <a href="#brands" id="navBrands" class="{{ !($headerFooter->features ?? false) ? 'hidden' : '' }}  nav-link">Brands</a>
             <a href="#collection" id="navCollections" class="{{ !($headerFooter->collections ?? false) ? 'hidden' : '' }}  nav-link">Collection</a>
             <a href="#contact" id="navContact" class="{{ !($headerFooter->contact ?? false) ? 'hidden' : '' }}  nav-link">Contact</a>
           @endif
@@ -121,7 +122,7 @@
         <button class="text-gray-500 hover:text-[#d4af37]">
           <i class="fas fa-search"></i>
         </button>
-        <button class="text-gray-500 hover:text-[#d4af37]">
+        <button onclick="openLoginModal()" class="text-gray-500 hover:text-[#d4af37]">
           <i class="fas fa-user"></i>
         </button>
         <button class="text-gray-500 hover:text-[#d4af37] relative">
@@ -131,3 +132,5 @@
       </div>
     </div>
   </header>
+
+  @include('includes.customer_auth_modal')
