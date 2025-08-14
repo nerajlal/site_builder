@@ -82,12 +82,14 @@
           
           @if($headerFooterId)
             <a href="/index3/{{ $headerFooterId }}" class="text-gray-700 nav-link">Home</a>
+            <a href="/product3/{{ $headerFooterId }}" class="text-gray-700 nav-link">Products</a>
             <a href="#features" id="navFeatures" class="{{ !($headerFooter->features ?? false) ? 'hidden' : '' }}  nav-link">Features</a>
             <a href="#brands" id="navBrands" class="{{ !($headerFooter->brands ?? false) ? 'hidden' : '' }}  nav-link">Categories</a>
             <a href="#collection" id="navCollections" class="{{ !($headerFooter->collections ?? false) ? 'hidden' : '' }}  nav-link">Collection</a>
             <a href="#contact" id="navContact" class="{{ !($headerFooter->contact ?? false) ? 'hidden' : '' }}  nav-link">Contact</a>
           @else
             <a href="/index3" class="text-gray-700 nav-link">Home</a>
+            <a href="/product3" class="text-gray-700 nav-link">Products</a>
             <a href="#features" id="navFeatures" class="{{ !($headerFooter->features ?? false) ? 'hidden' : '' }}  nav-link">Features</a>
             <a href="#brands" id="navBrands" class="{{ !($headerFooter->brands ?? false) ? 'hidden' : '' }}  nav-link">Categories</a>
             <a href="#collection" id="navCollections" class="{{ !($headerFooter->collections ?? false) ? 'hidden' : '' }}  nav-link">Collection</a>

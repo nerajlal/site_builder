@@ -61,12 +61,14 @@
         
         @if($headerFooterId)
           <a href="/index1/{{ $headerFooterId }}" class="text-gray-700 hover:text-pink-600 transition">Home</a>
+          <a href="/product1/{{ $headerFooterId }}" class="text-gray-700 hover:text-pink-600 transition">Products</a>
           <a href="#features" id="navFeatures" class="{{ !($headerFooter->features ?? false) ? 'hidden' : '' }} hover:text-pink-600">Features</a>
           <a href="#categories" id="navBrands" class="{{ !($headerFooter->brands ?? false) ? 'hidden' : '' }} hover:text-pink-600">Categories</a>
           <a href="#products" id="navCollections" class="{{ !($headerFooter->collections ?? false) ? 'hidden' : '' }} hover:text-pink-600">Collection</a>
           <a href="#contact" id="navContact" class="{{ !($headerFooter->contact ?? false) ? 'hidden' : '' }} hover:text-pink-600">Contact</a>
         @else
           <a href="/index1" class="text-gray-700 hover:text-pink-600 transition">Home</a>
+          <a href="/product1" class="text-gray-700 hover:text-pink-600 transition">Products</a>
           <a href="#features" id="navFeatures" class="{{ !($headerFooter->features ?? false) ? 'hidden' : '' }} hover:text-pink-600">Features</a>
           <a href="#categories" id="navBrands" class="{{ !($headerFooter->brands ?? false) ? 'hidden' : '' }} hover:text-pink-600">Categories</a>
           <a href="#products" id="navCollections" class="{{ !($headerFooter->collections ?? false) ? 'hidden' : '' }} hover:text-pink-600">Collection</a>

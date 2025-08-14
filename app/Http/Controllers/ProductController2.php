@@ -51,4 +51,16 @@ class ProductController2 extends Controller
             ->with('is_default', false);
     }
 
+    public function showSingleProduct($headerFooterId, $productId)
+    {
+        $headerFooter = \App\Models\HeaderFooter::find($headerFooterId);
+        $product = \App\Models\Product::find($productId);
+
+        if (!$headerFooter || !$product) {
+            abort(404, 'Product not found');
+        }
+
+        return view('template2.single-product2', compact('headerFooter', 'product'))
+            ->with('is_default', false);
+    }
 }

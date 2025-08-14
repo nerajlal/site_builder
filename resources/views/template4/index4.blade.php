@@ -305,9 +305,9 @@
       <div class="max-w-7xl mx-auto">
         <div class="text-center mb-16">
           <h3 class="text-3xl font-semibold mb-4">
-            <span class="text-[#d4af37]">{{ $section3->main_text ?? 'Best Collections' }}</span>
+            <span class="text-[#d4af37]">{{ $section2->main_text2 ?? 'Best Collections' }}</span>
           </h3>
-          <p class="text-gray-600 max-w-2xl mx-auto">{{ $section3->sub_text ?? 'Perfect choices specially for you' }}</p>
+          <p class="text-gray-600 max-w-2xl mx-auto">{{ $section2->sub_text2 ?? 'Perfect choices specially for you' }}</p>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           @foreach($products as $product)
