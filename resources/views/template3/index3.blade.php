@@ -200,7 +200,7 @@
         </div>
         <div class="text-center mt-12">
           <button class="border border-gray-900 hover:bg-gray-900 hover:text-white text-gray-900 px-8 py-3 rounded-lg font-medium transition duration-300">
-            View Full Collection
+            Discover More
           </button>
         </div>
       </div>
@@ -239,13 +239,13 @@
           @if($headerFooterId)
             <a href="/product3/{{ $headerFooterId }}">
               <button class="border border-gray-900 hover:bg-gray-900 hover:text-white text-gray-900 px-8 py-3 rounded-lg font-medium transition duration-300">
-                View Full Collection
+                Discover More
               </button>
             </a>
           @else
             <a href="/product3">
               <button class="border border-gray-900 hover:bg-gray-900 hover:text-white text-gray-900 px-8 py-3 rounded-lg font-medium transition duration-300">
-                View Full Collection
+                Discover More
               </button>
             </a>
           @endif
