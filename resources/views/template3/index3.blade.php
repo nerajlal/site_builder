@@ -5,20 +5,20 @@
     <section class="relative h-[80vh] flex items-center">
       <div class="absolute inset-0 bg-gradient-to-r from-white/90 to-white/30 z-10"></div>
       <div class="absolute inset-0">
-        <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" 
-            alt="Luxury Watch" 
+        <img src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=705&q=80" 
+            alt="Elegant Fashion" 
             class="w-full h-full object-cover object-center">
       </div>
       <div class="relative max-w-7xl mx-auto px-6 z-20">
         <div class="max-w-xl">
-          <h2 class="text-5xl font-medium mb-6 leading-tight">Timeless Elegance,<br>Modern Precision</h2>
-          <p class="text-gray-600 mb-8">Discover horological masterpieces that transcend generations</p>
+          <h2 class="text-5xl font-medium mb-6 leading-tight">Sophisticated Style,<br>Timeless Beauty</h2>
+          <p class="text-gray-600 mb-8">Discover fashion pieces that embody elegance and sophistication</p>
           <div class="flex space-x-4">
-            <button class="bg-gray-900 hover:bg-gray-800 text-white px-8 py-3 font-medium transition duration-300">
-              View Collection
+            <button class="bg-pink-600 hover:bg-pink-700 text-white px-8 py-3 font-medium transition duration-300">
+              Explore Collection
             </button>
-            <button class="border border-gray-300 hover:border-gray-900 text-gray-900 px-8 py-3 font-medium transition duration-300">
-              Book Consultation
+            <button class="border border-gray-300 hover:border-pink-600 text-gray-900 px-8 py-3 font-medium transition duration-300">
+              Book Styling
             </button>
           </div>
         </div>
@@ -28,8 +28,8 @@
     <section class="relative h-[80vh] flex items-center">
       <div class="absolute inset-0 bg-gradient-to-r from-white/90 to-white/30 z-10"></div>
       <div class="absolute inset-0">
-        <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" 
-            alt="Hero Image" 
+        <img src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=705&q=80" 
+            alt="Elegant Fashion" 
             class="w-full h-full object-cover object-center">
       </div>
       <div class="relative max-w-7xl mx-auto px-6 z-20">
@@ -46,17 +46,17 @@
           
           <div class="flex space-x-4">
             @if($headerFooterId)
-              <button class="bg-gray-900 hover:bg-gray-800 text-white px-8 py-3 font-medium transition duration-300" onclick="window.location.href='/product3/{{ $headerFooterId }}'">
+              <button class="bg-pink-600 hover:bg-pink-700 text-white px-8 py-3 font-medium transition duration-300" onclick="window.location.href='/product3/{{ $headerFooterId }}'">
                 {{ $homesetting->button1_text }}
               </button>
-              <button class="border border-gray-300 hover:border-gray-900 text-gray-900 px-8 py-3 font-medium transition duration-300" onclick="window.location.href='/product3/{{ $headerFooterId }}'">
+              <button class="border border-gray-300 hover:border-pink-600 text-gray-900 px-8 py-3 font-medium transition duration-300" onclick="window.location.href='/product3/{{ $headerFooterId }}'">
                 {{ $homesetting->button2_text }}
               </button>
             @else
-              <button class="bg-gray-900 hover:bg-gray-800 text-white px-8 py-3 font-medium transition duration-300" onclick="window.location.href='/product3'">
+              <button class="bg-pink-600 hover:bg-pink-700 text-white px-8 py-3 font-medium transition duration-300" onclick="window.location.href='/product3'">
                 {{ $homesetting->button1_text }}
               </button>
-              <button class="border border-gray-300 hover:border-gray-900 text-gray-900 px-8 py-3 font-medium transition duration-300" onclick="window.location.href='/product3'">
+              <button class="border border-gray-300 hover:border-pink-600 text-gray-900 px-8 py-3 font-medium transition duration-300" onclick="window.location.href='/product3'">
                 {{ $homesetting->button2_text }}
               </button>
             @endif
@@ -71,30 +71,30 @@
     <section id="features" class="py-20 px-6 bg-white">
       <div class="max-w-7xl mx-auto">
         <div class="text-center mb-16">
-          <h3 class="text-3xl font-medium mb-4">The Art of Watchmaking</h3>
-          <p class="text-gray-600 max-w-2xl mx-auto">Each timepiece represents centuries of refined craftsmanship</p>
+          <h3 class="text-3xl font-medium mb-4">The Art of Fashion</h3>
+          <p class="text-gray-600 max-w-2xl mx-auto">Each piece represents the perfect blend of style and comfort</p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div class="p-8 text-center">
-            <div class="w-20 h-20 mx-auto rounded-full bg-gray-100 flex items-center justify-center mb-6">
-              <i class="fas fa-gem text-gray-700 text-2xl"></i>
+            <div class="w-20 h-20 mx-auto rounded-full bg-pink-100 flex items-center justify-center mb-6">
+              <i class="fas fa-heart text-pink-600 text-2xl"></i>
             </div>
-            <h4 class="text-xl font-medium mb-3">Authenticity</h4>
-            <p class="text-gray-600">Every watch undergoes rigorous authentication by our master watchmakers</p>
+            <h4 class="text-xl font-medium mb-3">Quality Craftsmanship</h4>
+            <p class="text-gray-600">Every garment is crafted with attention to detail and premium materials</p>
           </div>
           <div class="p-8 text-center">
-            <div class="w-20 h-20 mx-auto rounded-full bg-gray-100 flex items-center justify-center mb-6">
-              <i class="fas fa-cogs text-gray-700 text-2xl"></i>
+            <div class="w-20 h-20 mx-auto rounded-full bg-pink-100 flex items-center justify-center mb-6">
+              <i class="fas fa-palette text-pink-600 text-2xl"></i>
             </div>
-            <h4 class="text-xl font-medium mb-3">Precision</h4>
-            <p class="text-gray-600">Swiss-made movements with chronometer certification for unmatched accuracy</p>
+            <h4 class="text-xl font-medium mb-3">Timeless Design</h4>
+            <p class="text-gray-600">Classic silhouettes with modern touches for enduring style</p>
           </div>
           <div class="p-8 text-center">
-            <div class="w-20 h-20 mx-auto rounded-full bg-gray-100 flex items-center justify-center mb-6">
-              <i class="fas fa-history text-gray-700 text-2xl"></i>
+            <div class="w-20 h-20 mx-auto rounded-full bg-pink-100 flex items-center justify-center mb-6">
+              <i class="fas fa-leaf text-pink-600 text-2xl"></i>
             </div>
-            <h4 class="text-xl font-medium mb-3">Heritage</h4>
-            <p class="text-gray-600">Timepieces with storied histories from the world's most respected maisons</p>
+            <h4 class="text-xl font-medium mb-3">Sustainable Fashion</h4>
+            <p class="text-gray-600">Eco-friendly materials and ethical production practices</p>
           </div>
         </div>
       </div>

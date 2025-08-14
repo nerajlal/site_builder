@@ -6,21 +6,21 @@
     <div class="absolute inset-0">
       <img 
         src="{{ $is_default 
-          ? 'https://img.freepik.com/premium-photo/luxury-gold-watch-dark-background-close-up_961829-13799.jpg' 
-          : ($homesetting->hero_image ?? 'https://img.freepik.com/premium-photo/luxury-gold-watch-dark-background-close-up_961829-13799.jpg') }}" 
-        alt="Luxury Watch" 
+          ? 'https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80' 
+          : ($homesetting->hero_image ?? 'https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80') }}" 
+        alt="Vintage Fashion" 
         class="w-full h-full object-cover object-center">
     </div>
     <div class="relative max-w-7xl mx-auto px-6 z-20">
       <div class="max-w-xl">
         <h2 class="text-5xl font-semibold mb-6 leading-tight">
           <span class="gold-underline">
-            {{ $is_default ? 'Golden Era' : $homesetting->main_highlight }}
+            {{ $is_default ? 'Vintage' : $homesetting->main_highlight }}
           </span> 
-          {{ $is_default ? 'Timepieces' : $homesetting->main_text }}
+          {{ $is_default ? 'Elegance' : $homesetting->main_text }}
         </h2>
-        <p class="text-white mb-8">
-          {{ $is_default ? 'Where precision meets legacy in every golden detail' : $homesetting->sub_text }}
+        <p class="text-gray-700 mb-8">
+          {{ $is_default ? 'Where classic style meets modern sophistication' : $homesetting->sub_text }}
         </p>
         @php
           $currentUrl = request()->url();
@@ -32,18 +32,18 @@
         
         <div class="flex space-x-4">
           @if($headerFooterId)
-            <button class="btn-gold px-8 py-3 rounded font-medium" onclick="window.location.href='/product4/{{ $headerFooterId }}'">
-              {{ $is_default ? 'Discover Collection' : $homesetting->button1_text }}
+            <button class="btn-pink px-8 py-3 rounded font-medium" onclick="window.location.href='/product4/{{ $headerFooterId }}'">
+              {{ $is_default ? 'Shop Collection' : $homesetting->button1_text }}
             </button>
             <button class="btn-outline px-8 py-3 rounded font-medium" onclick="window.location.href='/product4/{{ $headerFooterId }}'">
-              {{ $is_default ? 'Book Appointment' : $homesetting->button2_text }}
+              {{ $is_default ? 'Book Styling' : $homesetting->button2_text }}
             </button>
           @else
-            <button class="btn-gold px-8 py-3 rounded font-medium" onclick="window.location.href='/product4'">
-              {{ $is_default ? 'Discover Collection' : $homesetting->button1_text }}
+            <button class="btn-pink px-8 py-3 rounded font-medium" onclick="window.location.href='/product4'">
+              {{ $is_default ? 'Shop Collection' : $homesetting->button1_text }}
             </button>
             <button class="btn-outline px-8 py-3 rounded font-medium" onclick="window.location.href='/product4'">
-              {{ $is_default ? 'Book Appointment' : $homesetting->button2_text }}
+              {{ $is_default ? 'Book Styling' : $homesetting->button2_text }}
             </button>
           @endif
         </div>
@@ -56,32 +56,32 @@
     <section id="features" class="py-20 px-6 bg-white">
       <div class="max-w-7xl mx-auto">
         <div class="text-center mb-16">
-          <h3 class="text-3xl font-semibold mb-4">The <span class="text-[#d4af37]">Art</span> of Excellence</h3>
+          <h3 class="text-3xl font-semibold mb-4">The <span class="text-[#ec4899]">Art</span> of Style</h3>
           <p class="text-gray-600 max-w-2xl mx-auto">
-            Each timepiece represents centuries of refined craftsmanship
+            Each piece represents timeless elegance and refined taste
           </p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div class="p-8 text-center border-b border-[#d4af37]/20 hover:border-[#d4af37] transition-all duration-300">
-            <div class="text-[#d4af37] text-3xl mb-6">
-              <i class="fas fa-gem"></i>
+          <div class="p-8 text-center border-b border-[#ec4899]/20 hover:border-[#ec4899] transition-all duration-300">
+            <div class="text-[#ec4899] text-3xl mb-6">
+              <i class="fas fa-star"></i>
             </div>
-            <h4 class="text-xl font-semibold mb-3">Authenticity</h4>
-            <p class="text-gray-600">Every watch undergoes our 12-point authentication by master watchmakers</p>
+            <h4 class="text-xl font-semibold mb-3">Premium Quality</h4>
+            <p class="text-gray-600">Every garment is crafted with the finest materials and attention to detail</p>
           </div>
-          <div class="p-8 text-center border-b border-[#d4af37]/20 hover:border-[#d4af37] transition-all duration-300">
-            <div class="text-[#d4af37] text-3xl mb-6">
-              <i class="fas fa-crown"></i>
+          <div class="p-8 text-center border-b border-[#ec4899]/20 hover:border-[#ec4899] transition-all duration-300">
+            <div class="text-[#ec4899] text-3xl mb-6">
+              <i class="fas fa-history"></i>
             </div>
-            <h4 class="text-xl font-semibold mb-3">Heritage</h4>
-            <p class="text-gray-600">Timepieces with storied histories from the world's most respected maisons</p>
+            <h4 class="text-xl font-semibold mb-3">Timeless Design</h4>
+            <p class="text-gray-600">Classic silhouettes that never go out of style and always look elegant</p>
           </div>
-          <div class="p-8 text-center border-b border-[#d4af37]/20 hover:border-[#d4af37] transition-all duration-300">
-            <div class="text-[#d4af37] text-3xl mb-6">
-              <i class="fas fa-clock"></i>
+          <div class="p-8 text-center border-b border-[#ec4899]/20 hover:border-[#ec4899] transition-all duration-300">
+            <div class="text-[#ec4899] text-3xl mb-6">
+              <i class="fas fa-magic"></i>
             </div>
-            <h4 class="text-xl font-semibold mb-3">Precision</h4>
-            <p class="text-gray-600">Swiss-made movements with chronometer certification for unmatched accuracy</p>
+            <h4 class="text-xl font-semibold mb-3">Personal Touch</h4>
+            <p class="text-gray-600">Expert styling advice to help you create your perfect look</p>
           </div>
         </div>
       </div>
@@ -96,26 +96,26 @@
           <p class="text-gray-600 max-w-2xl mx-auto">{{ $section1->sub_heading }}</p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div class="p-8 text-center border-b border-[#d4af37]/20 hover:border-[#d4af37] transition-all duration-300">
-            <div class="text-[#d4af37] text-3xl mb-6">
-              <i class="fas fa-gem"></i>
+          <div class="p-8 text-center border-b border-[#ec4899]/20 hover:border-[#ec4899] transition-all duration-300">
+            <div class="text-[#ec4899] text-3xl mb-6">
+              <i class="fas fa-star"></i>
             </div>
-            <h4 class="text-xl font-semibold mb-3">{{ $section1->feature1_title }}</h4>
-            <p class="text-gray-600">{{ $section1->feature1_detail }}</p>
+            <h4 class="text-xl font-semibold mb-3">Premium Quality</h4>
+            <p class="text-gray-600">Every garment is crafted with the finest materials and attention to detail</p>
           </div>
-          <div class="p-8 text-center border-b border-[#d4af37]/20 hover:border-[#d4af37] transition-all duration-300">
-            <div class="text-[#d4af37] text-3xl mb-6">
-              <i class="fas fa-crown"></i>
+          <div class="p-8 text-center border-b border-[#ec4899]/20 hover:border-[#ec4899] transition-all duration-300">
+            <div class="text-[#ec4899] text-3xl mb-6">
+              <i class="fas fa-history"></i>
             </div>
-            <h4 class="text-xl font-semibold mb-3">{{ $section1->feature2_title }}</h4>
-            <p class="text-gray-600">{{ $section1->feature2_detail }}</p>
+            <h4 class="text-xl font-semibold mb-3">Timeless Design</h4>
+            <p class="text-gray-600">Classic silhouettes that never go out of style and always look elegant</p>
           </div>
-          <div class="p-8 text-center border-b border-[#d4af37]/20 hover:border-[#d4af37] transition-all duration-300">
-            <div class="text-[#d4af37] text-3xl mb-6">
-              <i class="fas fa-clock"></i>
+          <div class="p-8 text-center border-b border-[#ec4899]/20 hover:border-[#ec4899] transition-all duration-300">
+            <div class="text-[#ec4899] text-3xl mb-6">
+              <i class="fas fa-magic"></i>
             </div>
-            <h4 class="text-xl font-semibold mb-3">{{ $section1->feature3_title }}</h4>
-            <p class="text-gray-600">{{ $section1->feature3_detail }}</p>
+            <h4 class="text-xl font-semibold mb-3">Personal Touch</h4>
+            <p class="text-gray-600">Expert styling advice to help you create your perfect look</p>
           </div>
         </div>
       </div>

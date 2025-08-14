@@ -82,8 +82,60 @@
       <button class="text-gray-700 hover:text-pink-600 transition">
         <i class="fas fa-shopping-cart"></i>
       </button>
-      <button onclick="openLoginModal()" class="bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded transition">Sign In</button>
+      <button id="authButton" onclick="openLoginModal()" class="bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded transition">
+        <span id="authButtonText">Sign In</span>
+      </button>
     </div>
   </header>
 
   @include('includes.customer_auth_modal')
+
+  <script>
+    // Check authentication status on page load
+    async function checkAuthOnLoad() {
+      try {
+        const response = await fetch('/customer/check-auth');
+        const data = await response.json();
+        
+        const authButton = document.getElementById('authButton');
+        const authButtonText = document.getElementById('authButtonText');
+        
+        if (data.signed_in) {
+          authButtonText.textContent = 'Account';
+          authButton.classList.remove('bg-pink-600', 'hover:bg-pink-700');
+          authButton.classList.add('bg-green-600', 'hover:bg-green-700');
+        } else {
+          authButtonText.textContent = 'Sign In';
+          authButton.classList.remove('bg-green-600', 'hover:bg-green-700');
+          authButton.classList.add('bg-pink-600', 'hover:bg-pink-700');
+        }
+      } catch (error) {
+        console.error('Error checking auth status:', error);
+      }
+    }
+
+    // Update auth button after sign in/out
+    function updateAuthButton(signedIn) {
+      const authButton = document.getElementById('authButton');
+      const authButtonText = document.getElementById('authButtonText');
+      
+      if (signedIn) {
+        authButtonText.textContent = 'Account';
+        authButton.classList.remove('bg-pink-600', 'hover:bg-pink-700');
+        authButton.classList.add('bg-green-600', 'hover:bg-green-700');
+      } else {
+        authButtonText.textContent = 'Sign In';
+        authButton.classList.remove('bg-green-600', 'hover:bg-green-700');
+        authButton.classList.add('bg-pink-600', 'hover:bg-pink-700');
+      }
+    }
+
+    // Override the modal functions to update button
+    const originalOpenLoginModal = window.openLoginModal;
+    window.openLoginModal = function() {
+      if (originalOpenLoginModal) originalOpenLoginModal();
+    };
+
+    // Check auth on page load
+    document.addEventListener('DOMContentLoaded', checkAuthOnLoad);
+  </script>

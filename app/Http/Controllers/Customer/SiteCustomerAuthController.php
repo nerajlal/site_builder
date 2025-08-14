@@ -12,6 +12,66 @@ use Illuminate\Support\Facades\Hash;
 
 class SiteCustomerAuthController extends Controller
 {
+    // GET /customer/check-auth
+    public function checkAuth(Request $request)
+    {
+        $siteCustomerId = Session::get('site_customer_id');
+        if ($siteCustomerId) {
+            $siteCustomer = SiteCustomer::find($siteCustomerId);
+            if ($siteCustomer) {
+                return response()->json([
+                    'signed_in' => true,
+                    'customer' => [
+                        'id' => $siteCustomer->id,
+                        'name' => $siteCustomer->name,
+                        'whatsapp' => $siteCustomer->whatsapp
+                    ]
+                ]);
+            }
+        }
+        return response()->json(['signed_in' => false]);
+    }
+
+    // POST /customer/sign-out
+    public function signOut(Request $request)
+    {
+        Session::forget('site_customer_id');
+        return response()->json(['message' => 'Signed out successfully']);
+    }
+
+    // POST /customer/login
+    public function login(Request $request)
+    {
+        $request->validate([
+            'whatsapp' => 'required|string',
+            'password' => 'required|string',
+            'header_footer_id' => 'required|integer',
+        ]);
+
+        $siteCustomer = SiteCustomer::where('whatsapp', $request->whatsapp)
+            ->where('header_footer_id', $request->header_footer_id)
+            ->first();
+
+        if (!$siteCustomer) {
+            return response()->json(['message' => 'Customer not found'], 404);
+        }
+
+        if (!Hash::check($request->password, $siteCustomer->password)) {
+            return response()->json(['message' => 'Invalid password'], 401);
+        }
+
+        Session::put('site_customer_id', $siteCustomer->id);
+
+        return response()->json([
+            'message' => 'Login successful',
+            'customer' => [
+                'id' => $siteCustomer->id,
+                'name' => $siteCustomer->name,
+                'whatsapp' => $siteCustomer->whatsapp
+            ]
+        ]);
+    }
+
     // POST /customer/send-otp
     public function sendOtp(Request $request)
     {

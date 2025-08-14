@@ -85,9 +85,12 @@ Route::get('/product3/{headerFooterId}', [ProductController3::class, 'showCustom
 Route::get('/product4/{headerFooterId}', [ProductController4::class, 'showCustomer'])->name('template4.product4.customer');
 
 // Site customer auth endpoints (AJAX)
+Route::get('/customer/check-auth', [SiteCustomerAuthController::class, 'checkAuth']);
+Route::post('/customer/login', [SiteCustomerAuthController::class, 'login']);
 Route::post('/customer/send-otp', [SiteCustomerAuthController::class, 'sendOtp']);
 Route::post('/customer/verify-otp', [SiteCustomerAuthController::class, 'verifyOtp']);
 Route::post('/customer/set-credentials', [SiteCustomerAuthController::class, 'setCredentials']);
+Route::post('/customer/sign-out', [SiteCustomerAuthController::class, 'signOut']);
 
 // Template save route
 Route::post('/template1/save', [TemplateController::class, 'store'])->name('template1.save');

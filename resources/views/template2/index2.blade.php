@@ -3,22 +3,22 @@
 <!-- Hero Section -->
 @if($is_default)
   <section class="relative h-screen flex items-center">
-    <div class="absolute inset-0 bg-black opacity-50"></div>
+    <div class="absolute inset-0 bg-black opacity-60"></div>
     <div class="absolute inset-0 flex items-center">
-      <img src="https://images.unsplash.com/photo-1542496658-e33a6d0d50f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" 
-           alt="Luxury Watch" 
+      <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1480&q=80" 
+           alt="Luxury Fashion" 
            class="w-full h-full object-cover object-center">
     </div>
     <div class="relative max-w-7xl mx-auto px-6 z-10">
       <div class="max-w-xl">
-        <h2 class="text-5xl font-light mb-6 leading-tight">Precision Crafted <span class="font-medium">Masterpieces</span></h2>
-        <p class="text-gray-300 mb-8">Experience the pinnacle of horological excellence with our curated selection of the world's finest timepieces.</p>
+        <h2 class="text-5xl font-light mb-6 leading-tight">Exclusive <span class="font-medium">Fashion</span> Collection</h2>
+        <p class="text-gray-300 mb-8">Discover our curated selection of premium fashion pieces that define luxury and elegance.</p>
         <div class="flex space-x-4">
-          <button class="bg-yellow-600 hover:bg-yellow-700 text-black px-8 py-3 font-medium transition duration-300">
-            Explore Collection
+          <button class="bg-pink-600 hover:bg-pink-700 text-white px-8 py-3 font-medium transition duration-300">
+            Shop Collection
           </button>
           <button class="border border-gray-400 hover:border-white text-white px-8 py-3 font-medium transition duration-300">
-            Book Appointment
+            Book Styling
           </button>
         </div>
       </div>
@@ -26,10 +26,10 @@
   </section>
 @else
   <section class="relative h-screen flex items-center">
-    <div class="absolute inset-0 bg-black opacity-50"></div>
+    <div class="absolute inset-0 bg-black opacity-60"></div>
     <div class="absolute inset-0 flex items-center">
-      <img src="https://images.unsplash.com/photo-1542496658-e33a6d0d50f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" 
-           alt="Luxury Watch" 
+      <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1480&q=80" 
+           alt="Luxury Fashion" 
            class="w-full h-full object-cover object-center">
     </div>
     <div class="relative max-w-7xl mx-auto px-6 z-10">
@@ -46,14 +46,14 @@
         
         <div class="flex space-x-4">
           @if($headerFooterId)
-            <button class="bg-yellow-600 hover:bg-yellow-700 text-black px-8 py-3 font-medium transition duration-300" onclick="window.location.href='/product2/{{ $headerFooterId }}'">
+            <button class="bg-pink-600 hover:bg-pink-700 text-white px-8 py-3 font-medium transition duration-300" onclick="window.location.href='/product2/{{ $headerFooterId }}'">
               {{ $homesetting->button1_text }}
             </button>
             <button class="border border-gray-400 hover:border-white text-white px-8 py-3 font-medium transition duration-300" onclick="window.location.href='/product2/{{ $headerFooterId }}'">
               {{ $homesetting->button2_text }}
             </button>
           @else
-            <button class="bg-yellow-600 hover:bg-yellow-700 text-black px-8 py-3 font-medium transition duration-300" onclick="window.location.href='/product2'">
+            <button class="bg-pink-600 hover:bg-pink-700 text-white px-8 py-3 font-medium transition duration-300" onclick="window.location.href='/product2'">
               {{ $homesetting->button1_text }}
             </button>
             <button class="border border-gray-400 hover:border-white text-white px-8 py-3 font-medium transition duration-300" onclick="window.location.href='/product2'">
@@ -71,30 +71,30 @@
   <section id="features" class="py-20 px-6 bg-gradient-to-b from-black to-gray-900">
     <div class="max-w-7xl mx-auto">
       <div class="text-center mb-16">
-        <h3 class="text-3xl font-light mb-4">The <span class="font-medium">ChronoElite</span> Difference</h3>
-        <p class="text-gray-400 max-w-2xl mx-auto">Why collectors worldwide trust us with their most prized timepieces</p>
+        <h3 class="text-3xl font-light mb-4">The <span class="font-medium">BoutiqueElite</span> Experience</h3>
+        <p class="text-gray-400 max-w-2xl mx-auto">Why fashion enthusiasts choose our exclusive boutique collection</p>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         <div class="bg-gray-900 p-8 border border-gray-800 rounded-lg">
-          <div class="text-yellow-600 text-3xl mb-4">
-            <i class="fas fa-certificate"></i>
+          <div class="text-pink-600 text-3xl mb-4">
+            <i class="fas fa-star"></i>
           </div>
-          <h4 class="text-xl font-medium mb-3">Authenticity Guaranteed</h4>
-          <p class="text-gray-400">Every watch undergoes our rigorous 12-point authentication process by master watchmakers.</p>
+          <h4 class="text-xl font-medium mb-3">Premium Quality</h4>
+          <p class="text-gray-400">Every piece is carefully selected for its exceptional quality and timeless design.</p>
         </div>
         <div class="bg-gray-900 p-8 border border-gray-800 rounded-lg">
-          <div class="text-yellow-600 text-3xl mb-4">
-            <i class="fas fa-shield-alt"></i>
+          <div class="text-pink-600 text-3xl mb-4">
+            <i class="fas fa-magic"></i>
           </div>
-          <h4 class="text-xl font-medium mb-3">Extended Warranty</h4>
-          <p class="text-gray-400">5-year comprehensive warranty covering all mechanical components and servicing.</p>
+          <h4 class="text-xl font-medium mb-3">Personal Styling</h4>
+          <p class="text-gray-400">Expert fashion consultants provide personalized styling advice for every occasion.</p>
         </div>
         <div class="bg-gray-900 p-8 border border-gray-800 rounded-lg">
-          <div class="text-yellow-600 text-3xl mb-4">
-            <i class="fas fa-headset"></i>
+          <div class="text-pink-600 text-3xl mb-4">
+            <i class="fas fa-shipping-fast"></i>
           </div>
-          <h4 class="text-xl font-medium mb-3">24/7 Concierge</h4>
-          <p class="text-gray-400">Dedicated personal consultants available around the clock for your needs.</p>
+          <h4 class="text-xl font-medium mb-3">Express Delivery</h4>
+          <p class="text-gray-400">Fast and secure shipping with complimentary returns for your convenience.</p>
         </div>
       </div>
     </div>

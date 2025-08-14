@@ -134,3 +134,43 @@
   </header>
 
   @include('includes.customer_auth_modal')
+
+  <script>
+    // Check authentication status on page load
+    async function checkAuthOnLoad() {
+      try {
+        const response = await fetch('/customer/check-auth');
+        const data = await response.json();
+        
+        const userButton = document.querySelector('button[onclick="openLoginModal()"]');
+        const userIcon = userButton.querySelector('i');
+        
+        if (data.signed_in) {
+          userIcon.className = 'fas fa-user-check text-green-500';
+          userButton.title = 'Account';
+        } else {
+          userIcon.className = 'fas fa-user text-gray-500';
+          userButton.title = 'Sign In';
+        }
+      } catch (error) {
+        console.error('Error checking auth status:', error);
+      }
+    }
+
+    // Update auth button after sign in/out
+    function updateAuthButton(signedIn) {
+      const userButton = document.querySelector('button[onclick="openLoginModal()"]');
+      const userIcon = userButton.querySelector('i');
+      
+      if (signedIn) {
+        userIcon.className = 'fas fa-user-check text-green-500';
+        userButton.title = 'Account';
+      } else {
+        userIcon.className = 'fas fa-user text-gray-500';
+        userButton.title = 'Sign In';
+      }
+    }
+
+    // Check auth on page load
+    document.addEventListener('DOMContentLoaded', checkAuthOnLoad);
+  </script>
