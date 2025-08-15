@@ -9,28 +9,23 @@
         </div>
 
         <!-- Filters Bar -->
-        <div class="flex items-center justify-between mb-8 bg-black p-4 rounded-lg border border-gray-800">
-            <div class="flex items-center space-x-4">
-                <div class="relative">
-                    <button id="filtersBtn" class="flex items-center space-x-2 px-4 py-2 border border-gray-700 rounded-lg hover:border-yellow-600 hover:text-yellow-600 transition-colors">
-                        <span>Filters</span>
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                        </svg>
-                    </button>
+        <div class="flex flex-col md:flex-row items-center justify-between mb-8 bg-black p-4 rounded-lg border border-gray-800">
+            <form action="{{ url()->current() }}" method="GET" class="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4 w-full">
+                <div class="relative w-full md:w-auto">
+                    <select name="sort" onchange="this.form.submit()" class="w-full px-4 py-2 border border-gray-700 rounded-lg hover:border-yellow-600 hover:text-yellow-600 transition-colors bg-black text-white">
+                        <option value="">Sort by</option>
+                        <option value="price_asc" {{ request('sort') == 'price_asc' ? 'selected' : '' }}>Price: Low to High</option>
+                        <option value="price_desc" {{ request('sort') == 'price_desc' ? 'selected' : '' }}>Price: High to Low</option>
+                    </select>
                 </div>
-                <div class="relative">
-                    <button id="sortBtn" class="flex items-center space-x-2 px-4 py-2 border border-gray-700 rounded-lg hover:border-yellow-600 hover:text-yellow-600 transition-colors">
-                        <span>Sort</span>
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                        </svg>
-                    </button>
+                <div class="relative w-full md:w-auto">
+                    <input type="number" name="min_price" value="{{ request('min_price') }}" placeholder="Min Price" class="w-full px-4 py-2 border border-gray-700 rounded-lg bg-black text-white">
                 </div>
-                <button class="px-4 py-2 bg-yellow-600 text-black rounded-lg hover:bg-yellow-700">
-                    In stock
-                </button>
-            </div>
+                <div class="relative w-full md:w-auto">
+                    <input type="number" name="max_price" value="{{ request('max_price') }}" placeholder="Max Price" class="w-full px-4 py-2 border border-gray-700 rounded-lg bg-black text-white">
+                </div>
+                <button type="submit" class="w-full md:w-auto px-4 py-2 bg-yellow-600 text-black rounded-lg hover:bg-yellow-700">Filter</button>
+            </form>
         </div>
 
         <!-- Product Grid -->
@@ -48,28 +43,23 @@
         </div>
 
         <!-- Filters Bar -->
-        <div class="flex items-center justify-between mb-8 bg-black p-4 rounded-lg border border-gray-800">
-            <div class="flex items-center space-x-4">
-                <div class="relative">
-                    <button id="filtersBtn" class="flex items-center space-x-2 px-4 py-2 border border-gray-700 rounded-lg hover:border-yellow-600 hover:text-yellow-600 transition-colors">
-                        <span>Filters</span>
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                        </svg>
-                    </button>
+        <div class="flex flex-col md:flex-row items-center justify-between mb-8 bg-black p-4 rounded-lg border border-gray-800">
+            <form action="{{ url()->current() }}" method="GET" class="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4 w-full">
+                <div class="relative w-full md:w-auto">
+                    <select name="sort" onchange="this.form.submit()" class="w-full px-4 py-2 border border-gray-700 rounded-lg hover:border-yellow-600 hover:text-yellow-600 transition-colors bg-black text-white">
+                        <option value="">Sort by</option>
+                        <option value="price_asc" {{ request('sort') == 'price_asc' ? 'selected' : '' }}>Price: Low to High</option>
+                        <option value="price_desc" {{ request('sort') == 'price_desc' ? 'selected' : '' }}>Price: High to Low</option>
+                    </select>
                 </div>
-                <div class="relative">
-                    <button id="sortBtn" class="flex items-center space-x-2 px-4 py-2 border border-gray-700 rounded-lg hover:border-yellow-600 hover:text-yellow-600 transition-colors">
-                        <span>Sort</span>
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                        </svg>
-                    </button>
+                <div class="relative w-full md:w-auto">
+                    <input type="number" name="min_price" value="{{ request('min_price') }}" placeholder="Min Price" class="w-full px-4 py-2 border border-gray-700 rounded-lg bg-black text-white">
                 </div>
-                <button class="px-4 py-2 bg-yellow-600 text-black rounded-lg hover:bg-yellow-700">
-                    In stock
-                </button>
-            </div>
+                <div class="relative w-full md:w-auto">
+                    <input type="number" name="max_price" value="{{ request('max_price') }}" placeholder="Max Price" class="w-full px-4 py-2 border border-gray-700 rounded-lg bg-black text-white">
+                </div>
+                <button type="submit" class="w-full md:w-auto px-4 py-2 bg-yellow-600 text-black rounded-lg hover:bg-yellow-700">Filter</button>
+            </form>
         </div>
 
         <!-- Product Grid -->
@@ -89,7 +79,7 @@
                     <div class="p-4">
                         <h3 class="font-medium text-white mb-2">{{ $product->name }}</h3>
                         <div class="flex items-center space-x-2 mb-2">
-                            <span class="text-lg font-bold text-yellow-600">${{ number_format($product->price, 2) }}</span>
+                            <span class="text-lg font-bold text-yellow-600">₹{{ number_format($product->price, 2) }}</span>
                         </div>
                         <div class="flex items-center mb-3">
                             <div class="flex items-center">

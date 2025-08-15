@@ -83,6 +83,11 @@
                 @endif
             @endif
         </nav>
+        <div class="md:hidden">
+            <button id="menu-toggle" class="text-gray-500 hover:text-purple-600">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
         <div class="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
           <a href="#" class="text-gray-500 group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
             <i class="fas fa-search"></i>
@@ -98,6 +103,30 @@
       </div>
     </div>
   </header>
+  <div id="mobile-menu" class="hidden md:hidden">
+    <nav class="flex flex-col space-y-4 px-6 py-4">
+      @if($is_default)
+        <a href="/index4" class="text-base font-medium text-gray-500 hover:text-gray-900">Home</a>
+        <a href="/product4" class="text-base font-medium text-gray-500 hover:text-gray-900">Products</a>
+      @else
+        @if($headerFooterId)
+          <a href="/index4/{{ $headerFooterId }}" class="text-base font-medium text-gray-500 hover:text-gray-900">Home</a>
+          <a href="/product4/{{ $headerFooterId }}" class="text-base font-medium text-gray-500 hover:text-gray-900">Products</a>
+          <a href="#features" id="navFeatures" class="{{ !($headerFooter->features ?? false) ? 'hidden' : '' }} text-base font-medium text-gray-500 hover:text-gray-900">Features</a>
+          <a href="#brands" id="navBrands" class="{{ !($headerFooter->brands ?? false) ? 'hidden' : '' }} text-base font-medium text-gray-500 hover:text-gray-900">Categories</a>
+          <a href="#collection" id="navCollections" class="{{ !($headerFooter->collections ?? false) ? 'hidden' : '' }} text-base font-medium text-gray-500 hover:text-gray-900">Collection</a>
+          <a href="#contact" id="navContact" class="{{ !($headerFooter->contact ?? false) ? 'hidden' : '' }} text-base font-medium text-gray-500 hover:text-gray-900">Contact</a>
+        @else
+          <a href="/index4" class="text-base font-medium text-gray-500 hover:text-gray-900">Home</a>
+          <a href="/product4" class="text-base font-medium text-gray-500 hover:text-gray-900">Products</a>
+          <a href="#features" id="navFeatures" class="{{ !($headerFooter->features ?? false) ? 'hidden' : '' }} text-base font-medium text-gray-500 hover:text-gray-900">Features</a>
+          <a href="#brands" id="navBrands" class="{{ !($headerFooter->brands ?? false) ? 'hidden' : '' }} text-base font-medium text-gray-500 hover:text-gray-900">Categories</a>
+          <a href="#collection" id="navCollections" class="{{ !($headerFooter->collections ?? false) ? 'hidden' : '' }} text-base font-medium text-gray-500 hover:text-gray-900">Collection</a>
+          <a href="#contact" id="navContact" class="{{ !($headerFooter->contact ?? false) ? 'hidden' : '' }} text-base font-medium text-gray-500 hover:text-gray-900">Contact</a>
+        @endif
+      @endif
+    </nav>
+  </div>
 
   @include('includes.customer_auth_modal')
 
@@ -149,4 +178,11 @@
 
     // Check auth on page load
     document.addEventListener('DOMContentLoaded', checkAuthOnLoad);
+
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    menuToggle.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
   </script>
