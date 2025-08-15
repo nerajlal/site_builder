@@ -202,8 +202,15 @@
                     <textarea name="colors" rows="4" class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md" placeholder='[{"name": "Pink Floral", "value": "#e91e63"}]'></textarea>
                 </div>
                 <div>
-                    <label class="block text-sm font-medium text-gray-700">Sizes (JSON)</label>
-                    <textarea name="sizes" rows="4" class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md" placeholder='[{"size": "S", "stock": 10}]'></textarea>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Sizes & Stock</label>
+                    <div class="grid grid-cols-3 gap-x-4 gap-y-2">
+                        @foreach(['S', 'M', 'L', 'XL', 'XXL', 'XXXL'] as $size)
+                            <div class="flex items-center">
+                                <label for="size_{{ $size }}" class="w-10 text-sm font-medium text-gray-700">{{ $size }}</label>
+                                <input type="number" name="sizes[{{ $size }}]" id="size_{{ $size }}" value="0" min="0" class="w-full px-2 py-1 border border-gray-300 rounded-md">
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
             </div>
 
@@ -286,9 +293,73 @@
     });
 
     document.addEventListener('DOMContentLoaded', function () {
-        let hasBrands = {{ $brands->count() > 0 ? 'true' : 'false' }};
-
+        const productModal = document.getElementById('product-modal');
+        const productForm = document.getElementById('product-form');
+        const modalTitle = productModal.querySelector('h3');
         const addProductBtn = document.getElementById('add-product-btn');
+        const editProductBtns = document.querySelectorAll('.edit-product-btn');
+
+        addProductBtn.addEventListener('click', function () {
+            modalTitle.textContent = 'Add Product';
+            productForm.action = "{{ route('storeProduct', $headerFooter->id) }}";
+            productForm.reset();
+            // Reset sizes to 0
+            document.querySelectorAll('input[name^="sizes"]').forEach(input => input.value = 0);
+            const methodInput = productForm.querySelector('input[name="_method"]');
+            if (methodInput) {
+                methodInput.remove();
+            }
+        });
+
+        editProductBtns.forEach(btn => {
+            btn.addEventListener('click', function () {
+                const data = this.dataset;
+                modalTitle.textContent = 'Edit Product';
+                productForm.action = `/products/update/${data.id}`;
+
+                // Add method spoofing for PUT request
+                if (!productForm.querySelector('input[name="_method"]')) {
+                    const methodInput = document.createElement('input');
+                    methodInput.type = 'hidden';
+                    methodInput.name = '_method';
+                    methodInput.value = 'PUT';
+                    productForm.prepend(methodInput);
+                }
+
+                // Populate fields
+                productForm.querySelector('[name="name"]').value = data.name;
+                productForm.querySelector('[name="sku"]').value = data.sku;
+                productForm.querySelector('[name="category_name"]').value = data.category_name;
+                productForm.querySelector('[name="brand_id"]').value = data.brand_id;
+                productForm.querySelector('[name="price"]').value = data.price;
+                productForm.querySelector('[name="original_price"]').value = data.original_price;
+                productForm.querySelector('[name="quantity"]').value = data.quantity;
+                productForm.querySelector('[name="image_url"]').value = data.image_url;
+                productForm.querySelector('[name="video_url"]').value = data.video_url;
+                productForm.querySelector('[name="description"]').value = data.description;
+
+                // Handle JSON fields
+                productForm.querySelector('[name="images"]').value = data.images ? JSON.stringify(JSON.parse(data.images), null, 2) : '';
+                productForm.querySelector('[name="colors"]').value = data.colors ? JSON.stringify(JSON.parse(data.colors), null, 2) : '';
+                productForm.querySelector('[name="details"]').value = data.details ? JSON.stringify(JSON.parse(data.details), null, 2) : '';
+
+                // Handle sizes
+                const sizes = data.sizes ? JSON.parse(data.sizes) : [];
+                document.querySelectorAll('input[name^="sizes"]').forEach(input => input.value = 0); // Reset all to 0 first
+                sizes.forEach(item => {
+                    const sizeInput = productForm.querySelector(`[name="sizes[${item.size}]"]`);
+                    if (sizeInput) {
+                        sizeInput.value = item.stock;
+                    }
+                });
+
+                // Open the modal
+                productModal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        let hasBrands = {{ $brands->count() > 0 ? 'true' : 'false' }};
         if (!hasBrands) {
             addProductBtn.disabled = true;
             addProductBtn.classList.add('opacity-50', 'cursor-not-allowed');

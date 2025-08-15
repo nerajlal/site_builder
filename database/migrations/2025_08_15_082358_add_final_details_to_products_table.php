@@ -12,12 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('products', function (Blueprint $table) {
-            // Drop old column if it exists
             if (Schema::hasColumn('products', 'category_id')) {
                 $table->dropColumn('category_id');
             }
 
-            // Add new columns
             $table->string('category_name')->after('brand_id');
             $table->string('sku')->nullable()->after('name');
             $table->text('description')->nullable()->after('image_url');
@@ -26,7 +24,16 @@ return new class extends Migration
             $table->string('video_url')->nullable()->after('images');
             $table->json('colors')->nullable()->after('video_url');
             $table->json('sizes')->nullable()->after('colors');
-            $table->json('details')->nullable()->after('sizes');
+
+            $table->json('key_features')->nullable();
+            $table->json('product_details_features')->nullable();
+            $table->json('styling_tips')->nullable();
+            $table->json('model_info')->nullable();
+            $table->json('garment_details')->nullable();
+            $table->json('size_chart')->nullable();
+            $table->json('fabric_details')->nullable();
+            $table->json('care_instructions')->nullable();
+            $table->json('care_tips')->nullable();
         });
     }
 
@@ -36,12 +43,10 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('products', function (Blueprint $table) {
-            // Add back the old column
             if (!Schema::hasColumn('products', 'category_id')) {
                 $table->unsignedBigInteger('category_id')->after('brand_id')->nullable();
             }
 
-            // Drop the new columns
             $table->dropColumn([
                 'category_name',
                 'sku',
@@ -51,7 +56,15 @@ return new class extends Migration
                 'video_url',
                 'colors',
                 'sizes',
-                'details'
+                'key_features',
+                'product_details_features',
+                'styling_tips',
+                'model_info',
+                'garment_details',
+                'size_chart',
+                'fabric_details',
+                'care_instructions',
+                'care_tips'
             ]);
         });
     }

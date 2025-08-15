@@ -194,27 +194,25 @@ class TemplateController extends Controller
             'video_url' => 'nullable|url',
             'description' => 'nullable|string',
             'colors' => 'nullable|json',
-            'sizes' => 'nullable|json',
+            'sizes' => 'nullable|array',
             'details' => 'nullable|json',
         ]);
 
-        Product::create([
-            'name' => $request->name,
-            'sku' => $request->sku,
-            'price' => $request->price,
-            'original_price' => $request->original_price,
-            'quantity' => $request->quantity,
-            'brand_id' => $request->brand_id,
-            'category_name' => $request->category_name,
-            'header_footer_id' => $siteId,
-            'image_url' => $request->image_url,
-            'images' => $request->images,
-            'video_url' => $request->video_url,
-            'description' => $request->description,
-            'colors' => $request->colors,
-            'sizes' => $request->sizes,
-            'details' => $request->details,
-        ]);
+        $productData = $request->except('sizes');
+
+        // Transform sizes data
+        $sizes = [];
+        if ($request->has('sizes')) {
+            foreach ($request->sizes as $size => $stock) {
+                if ($stock > 0) {
+                    $sizes[] = ['size' => $size, 'stock' => (int)$stock];
+                }
+            }
+        }
+        $productData['sizes'] = json_encode($sizes);
+        $productData['header_footer_id'] = $siteId;
+
+        Product::create($productData);
 
         return back()->with('success', 'Product added successfully!');
     }
@@ -235,25 +233,39 @@ class TemplateController extends Controller
     public function updateProduct(Request $request, $id)
     {
         $request->validate([
-            'product_name' => 'required|string|max:255',
-            'price'        => 'required|numeric',
-            'quantity'     => 'required|integer',
-            'category'     => 'required|exists:categories,id',
-            'brand'        => 'required|exists:brands,id',
-            'image_url'    => 'nullable|url',
+            'name' => 'required|string|max:255',
+            'sku' => 'nullable|string|max:255',
+            'price' => 'required|numeric',
+            'original_price' => 'nullable|numeric',
+            'quantity' => 'required|integer',
+            'brand_id' => 'required|exists:brands,id',
+            'category_name' => 'required|string',
+            'image_url' => 'nullable|url',
+            'images' => 'nullable|json',
+            'video_url' => 'nullable|url',
+            'description' => 'nullable|string',
+            'colors' => 'nullable|json',
+            'sizes' => 'nullable|array',
+            'details' => 'nullable|json',
         ]);
 
         $product = Product::findOrFail($id);
-        $product->update([
-            'name'        => $request->product_name,
-            'price'       => $request->price,
-            'quantity'    => $request->quantity,
-            'category_id' => $request->category,
-            'brand_id'    => $request->brand,
-            'image_url'   => $request->image_url,
-        ]);
+        $productData = $request->except('sizes');
 
-        return response()->json(['message' => 'Product updated successfully!']);
+        // Transform sizes data
+        $sizes = [];
+        if ($request->has('sizes')) {
+            foreach ($request->sizes as $size => $stock) {
+                if ($stock > 0) {
+                    $sizes[] = ['size' => $size, 'stock' => (int)$stock];
+                }
+            }
+        }
+        $productData['sizes'] = json_encode($sizes);
+
+        $product->update($productData);
+
+        return redirect()->back()->with('success', 'Product updated successfully!');
     }
 
     public function temp_save(Request $request)
