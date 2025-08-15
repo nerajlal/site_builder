@@ -7,7 +7,7 @@
   </div>
   <h4 class="font-medium text-lg mb-1">Chic Summer Dress</h4>
   <p class="text-gray-500 text-sm mb-3">Light and airy fabric</p>
-  <p class="text-gray-900 font-medium text-xl mb-4">$129.99</p>
+  <p class="text-gray-900 font-medium text-xl mb-4">₹129.99</p>
   <button class="w-full border border-gray-900 hover:bg-gray-900 hover:text-white text-gray-900 py-2 rounded-lg font-medium transition duration-300">
     Add to Cart
   </button>
@@ -20,7 +20,7 @@
   </div>
   <h4 class="font-medium text-lg mb-1">Classic Leather Handbag</h4>
   <p class="text-gray-500 text-sm mb-3">Timeless design, premium leather</p>
-  <p class="text-gray-900 font-medium text-xl mb-4">$249.99</p>
+  <p class="text-gray-900 font-medium text-xl mb-4">₹249.99</p>
   <button class="w-full border border-gray-900 hover:bg-gray-900 hover:text-white text-gray-900 py-2 rounded-lg font-medium transition duration-300">
     Add to Cart
   </button>
@@ -34,7 +34,7 @@
   </div>
   <h4 class="font-medium text-lg mb-1">Printed Silk Scarf</h4>
   <p class="text-gray-500 text-sm mb-3">Luxurious and versatile accessory</p>
-  <p class="text-gray-900 font-medium text-xl mb-4">$79.99</p>
+  <p class="text-gray-900 font-medium text-xl mb-4">₹79.99</p>
   <button class="w-full border border-gray-900 hover:bg-gray-900 hover:text-white text-gray-900 py-2 rounded-lg font-medium transition duration-300">
     Add to Cart
   </button>
@@ -47,7 +47,7 @@
   </div>
   <h4 class="font-medium text-lg mb-1">Elegant High Heels</h4>
   <p class="text-gray-500 text-sm mb-3">Perfect for any special occasion</p>
-  <p class="text-gray-900 font-medium text-xl mb-4">$199.99</p>
+  <p class="text-gray-900 font-medium text-xl mb-4">₹199.99</p>
   <button class="w-full border border-gray-900 hover:bg-gray-900 hover:text-white text-gray-900 py-2 rounded-lg font-medium transition duration-300">
     Add to Cart
   </button>

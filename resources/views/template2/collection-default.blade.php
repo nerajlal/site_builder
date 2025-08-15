@@ -7,7 +7,7 @@
   </div>
   <h4 class="font-medium text-lg mb-1">Elegant Evening Dress</h4>
   <p class="text-gray-400 text-sm mb-3">Sophisticated design for special occasions</p>
-  <p class="text-pink-600 font-medium text-xl mb-4">$299.99</p>
+  <p class="text-pink-600 font-medium text-xl mb-4">₹299.99</p>
   <button class="w-full bg-gray-800 hover:bg-gray-700 text-white py-2 rounded-lg font-medium transition duration-300">
     Add to Collection
   </button>
@@ -21,7 +21,7 @@
   </div>
   <h4 class="font-medium text-lg mb-1">Designer Heels</h4>
   <p class="text-gray-400 text-sm mb-3">Premium leather with elegant design</p>
-  <p class="text-pink-600 font-medium text-xl mb-4">$189.99</p>
+  <p class="text-pink-600 font-medium text-xl mb-4">₹189.99</p>
   <button class="w-full bg-gray-800 hover:bg-gray-700 text-white py-2 rounded-lg font-medium transition duration-300">
     Add to Collection
   </button>
@@ -34,7 +34,7 @@
   </div>
   <h4 class="font-medium text-lg mb-1">Luxury Handbag</h4>
   <p class="text-gray-400 text-sm mb-3">Timeless elegance meets modern functionality</p>
-  <p class="text-pink-600 font-medium text-xl mb-4">$459.99</p>
+  <p class="text-pink-600 font-medium text-xl mb-4">₹459.99</p>
   <button class="w-full bg-gray-800 hover:bg-gray-700 text-white py-2 rounded-lg font-medium transition duration-300">
     Add to Collection
   </button>
@@ -47,7 +47,7 @@
   </div>
   <h4 class="font-medium text-lg mb-1">Statement Jewelry</h4>
   <p class="text-gray-400 text-sm mb-3">Bold pieces that make a lasting impression</p>
-  <p class="text-pink-600 font-medium text-xl mb-4">$129.99</p>
+  <p class="text-pink-600 font-medium text-xl mb-4">₹129.99</p>
   <button class="w-full bg-gray-800 hover:bg-gray-700 text-white py-2 rounded-lg font-medium transition duration-300">
     Add to Collection
   </button>

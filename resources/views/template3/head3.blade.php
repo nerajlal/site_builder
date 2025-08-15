@@ -28,7 +28,7 @@
       height: 1px;
       bottom: -2px;
       left: 0;
-      background-color: #ec4899;
+      background-color: #10b981;
       transition: width 0.3s ease;
     }
     .nav-link:hover:after {
@@ -66,7 +66,7 @@
           @else
             {{ $headerFooter->site_name }}
           @endif</h1>
-      <nav class="hidden md:flex space-x-8">
+      <nav class="hidden md:flex space-x-8 flex-1 justify-center">
         @if($is_default)
           <a href="/index3" class="text-gray-700 nav-link transition">Home</a>
           <a href="/product3" class="text-gray-700 nav-link transition">Products</a>
@@ -107,7 +107,7 @@
         </button>
         <button class="text-gray-500 hover:text-gray-900 relative">
           <i class="fas fa-shopping-bag"></i>
-          <span class="absolute -top-2 -right-2 bg-pink-600 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">0</span>
+          <span class="absolute -top-2 -right-2 bg-green-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">0</span>
         </button>
       </div>
     </div>

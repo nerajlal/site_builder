@@ -10,7 +10,7 @@ use App\Models\SelectedTemplate;
 
 class ProductController1 extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $userId = session('userid');
         $headerFooter = HeaderFooter::where('user_id', $userId)->first();
@@ -23,13 +23,32 @@ class ProductController1 extends Controller
             ]);
         }
 
-        $products = Product::where('header_footer_id', $headerFooter->id) ->get();
+        $query = Product::where('header_footer_id', $headerFooter->id);
+
+        // Sorting
+        if ($request->has('sort')) {
+            if ($request->get('sort') == 'price_asc') {
+                $query->orderBy('price', 'asc');
+            } elseif ($request->get('sort') == 'price_desc') {
+                $query->orderBy('price', 'desc');
+            }
+        }
+
+        // Filtering by price range
+        if ($request->has('min_price')) {
+            $query->where('price', '>=', $request->get('min_price'));
+        }
+        if ($request->has('max_price')) {
+            $query->where('price', '<=', $request->get('max_price'));
+        }
+
+        $products = $query->get();
 
         return view('template1.product1', compact('headerFooter','products'))
             ->with('is_default', false);
     }
 
-    public function showCustomer($headerFooterId)
+    public function showCustomer(Request $request, $headerFooterId)
     {
         $headerFooter = HeaderFooter::find($headerFooterId);
 
@@ -45,7 +64,26 @@ class ProductController1 extends Controller
             abort(404, 'Template not found');
         }
 
-        $products = Product::where('header_footer_id', $headerFooter->id)->get();
+        $query = Product::where('header_footer_id', $headerFooterId);
+
+        // Sorting
+        if ($request->has('sort')) {
+            if ($request->get('sort') == 'price_asc') {
+                $query->orderBy('price', 'asc');
+            } elseif ($request->get('sort') == 'price_desc') {
+                $query->orderBy('price', 'desc');
+            }
+        }
+
+        // Filtering by price range
+        if ($request->has('min_price')) {
+            $query->where('price', '>=', $request->get('min_price'));
+        }
+        if ($request->has('max_price')) {
+            $query->where('price', '<=', $request->get('max_price'));
+        }
+
+        $products = $query->get();
 
         return view('template1.product1', compact('headerFooter', 'products'))
             ->with('is_default', false);
