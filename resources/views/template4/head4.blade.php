@@ -30,7 +30,7 @@
       height: 1px;
       bottom: -5px;
       left: 0;
-      background-color: #ec4899;
+      background-color: #8b5cf6;
     }
     .boutique-card {
       transition: all 0.3s ease;
@@ -40,16 +40,16 @@
       transform: translateY(-5px);
       box-shadow: 0 15px 30px rgba(0,0,0,0.05);
     }
-    .pink-hover:hover {
-      color: #ec4899;
+    .purple-hover:hover {
+      color: #8b5cf6;
     }
-    .btn-pink {
-      background-color: #ec4899;
+    .btn-purple {
+      background-color: #8b5cf6;
       color: white;
       transition: all 0.3s ease;
     }
-    .btn-pink:hover {
-      background-color: #db2777;
+    .btn-purple:hover {
+      background-color: #7c3aed;
       transform: translateY(-2px);
     }
     .btn-outline {
@@ -57,8 +57,8 @@
       transition: all 0.3s ease;
     }
     .btn-outline:hover {
-      border-color: #ec4899;
-      color: #ec4899;
+      border-color: #8b5cf6;
+      color: #8b5cf6;
     }
     .nav-link {
       position: relative;
@@ -70,7 +70,7 @@
       height: 1px;
       bottom: -2px;
       left: 0;
-      background-color: #ec4899;
+      background-color: #8b5cf6;
       transition: width 0.3s ease;
     }
     .nav-link:hover:after {
@@ -81,7 +81,7 @@
 
 <body class="bg-[#faf9f7]">
   <!-- Top Navigation -->
-  <header class="py-6 px-6 bg-white/90 backdrop-blur-sm sticky top-0 z-50 shadow-sm">
+  <header class="py-6 px-6 bg-white/90 backdrop-blur-sm sticky top-0 z-50 shadow-md">
     <div class="max-w-7xl mx-auto flex justify-between items-center">
       <h1 class="text-2xl font-semibold">
           @if($is_default)
@@ -122,15 +122,15 @@
         @endif
       </nav>
       <div class="flex items-center space-x-6">
-        <button class="text-gray-500 hover:text-[#ec4899]">
+        <button class="text-gray-500 hover:text-[#8b5cf6]">
           <i class="fas fa-search"></i>
         </button>
-        <button onclick="openLoginModal()" class="text-gray-500 hover:text-[#ec4899]">
+        <button onclick="openLoginModal()" class="text-gray-500 hover:text-[#8b5cf6]">
           <i class="fas fa-user"></i>
         </button>
-        <button class="text-gray-500 hover:text-[#ec4899] relative">
+        <button class="text-gray-500 hover:text-[#8b5cf6] relative">
           <i class="fas fa-shopping-bag"></i>
-          <span class="absolute -top-2 -right-2 bg-[#ec4899] text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">0</span>
+          <span class="absolute -top-2 -right-2 bg-[#8b5cf6] text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">0</span>
         </button>
       </div>
     </div>

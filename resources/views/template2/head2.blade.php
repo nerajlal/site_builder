@@ -25,7 +25,7 @@
       height: 2px;
       bottom: -2px;
       left: 0;
-      background-color: #ec4899;
+      background-color: #3b82f6;
       transition: width 0.3s ease;
     }
     .nav-link:hover:after {
@@ -52,10 +52,10 @@
 
 <body>
   <!-- Top Navigation -->
-  <header class="bg-black py-6 px-6 border-b border-gray-800 sticky top-0 z-50">
+  <header class="bg-black py-6 px-6 border-b border-blue-500 sticky top-0 z-50">
     <div class="max-w-7xl mx-auto flex justify-between items-center">
       <div class="flex items-center">
-        <div class="w-10 h-10 rounded-full bg-gradient-to-r from-pink-600 to-pink-800 flex items-center justify-center mr-3">
+        <div class="w-10 h-10 rounded-full bg-gradient-to-r from-blue-500 to-blue-700 flex items-center justify-center mr-3">
           <i class="fas fa-store text-white"></i>
         </div>
         <span>
@@ -69,8 +69,8 @@
       </div>
       <nav class="hidden md:flex space-x-8">
         @if($is_default)
-          <a href="/index2" class="text-gray-700 hover:text-pink-600 transition">Home</a>
-          <a href="/product2" class="text-gray-700 hover:text-pink-600 transition">Products</a>
+          <a href="/index2" class="text-gray-300 hover:text-blue-400 transition">Home</a>
+          <a href="/product2" class="text-gray-300 hover:text-blue-400 transition">Products</a>
         @else
           @php
             $currentUrl = request()->url();
@@ -83,19 +83,19 @@
           @endphp
           
           @if($headerFooterId)
-            <a href="/index2/{{ $headerFooterId }}" class="text-gray-700 hover:text-pink-600 transition">Home</a>
-            <a href="/product2/{{ $headerFooterId }}" class="text-gray-700 hover:text-pink-600 transition">Products</a>
-            <a href="#features" id="navFeatures" class="{{ !($headerFooter->features ?? false) ? 'hidden' : '' }} hover:text-pink-600">Features</a>
-            <a href="#brands" id="navBrands" class="{{ !($headerFooter->brands ?? false) ? 'hidden' : '' }} hover:text-pink-600">Categories</a>
-            <a href="#collection" id="navCollections" class="{{ !($headerFooter->collections ?? false) ? 'hidden' : '' }} hover:text-pink-600">Collection</a>
-            <a href="#contact" id="navContact" class="{{ !($headerFooter->contact ?? false) ? 'hidden' : '' }} hover:text-pink-600">Contact</a>
+            <a href="/index2/{{ $headerFooterId }}" class="text-gray-300 hover:text-blue-400 transition">Home</a>
+            <a href="/product2/{{ $headerFooterId }}" class="text-gray-300 hover:text-blue-400 transition">Products</a>
+            <a href="#features" id="navFeatures" class="{{ !($headerFooter->features ?? false) ? 'hidden' : '' }} hover:text-blue-400">Features</a>
+            <a href="#brands" id="navBrands" class="{{ !($headerFooter->brands ?? false) ? 'hidden' : '' }} hover:text-blue-400">Categories</a>
+            <a href="#collection" id="navCollections" class="{{ !($headerFooter->collections ?? false) ? 'hidden' : '' }} hover:text-blue-400">Collection</a>
+            <a href="#contact" id="navContact" class="{{ !($headerFooter->contact ?? false) ? 'hidden' : '' }} hover:text-blue-400">Contact</a>
           @else
-            <a href="/index2" class="text-gray-700 hover:text-pink-600 transition">Home</a>
-            <a href="/product2" class="text-gray-700 hover:text-pink-600 transition">Products</a>
-            <a href="#features" id="navFeatures" class="{{ !($headerFooter->features ?? false) ? 'hidden' : '' }} hover:text-pink-600">Features</a>
-            <a href="#brands" id="navBrands" class="{{ !($headerFooter->brands ?? false) ? 'hidden' : '' }} hover:text-pink-600">Categories</a>
-            <a href="#collection" id="navCollections" class="{{ !($headerFooter->collections ?? false) ? 'hidden' : '' }} hover:text-pink-600">Collection</a>
-            <a href="#contact" id="navContact" class="{{ !($headerFooter->contact ?? false) ? 'hidden' : '' }} hover:text-pink-600">Contact</a>
+            <a href="/index2" class="text-gray-300 hover:text-blue-400 transition">Home</a>
+            <a href="/product2" class="text-gray-300 hover:text-blue-400 transition">Products</a>
+            <a href="#features" id="navFeatures" class="{{ !($headerFooter->features ?? false) ? 'hidden' : '' }} hover:text-blue-400">Features</a>
+            <a href="#brands" id="navBrands" class="{{ !($headerFooter->brands ?? false) ? 'hidden' : '' }} hover:text-blue-400">Categories</a>
+            <a href="#collection" id="navCollections" class="{{ !($headerFooter->collections ?? false) ? 'hidden' : '' }} hover:text-blue-400">Collection</a>
+            <a href="#contact" id="navContact" class="{{ !($headerFooter->contact ?? false) ? 'hidden' : '' }} hover:text-blue-400">Contact</a>
           @endif
         @endif
       </nav>
@@ -108,7 +108,7 @@
         </button>
         <button class="text-gray-400 hover:text-white relative">
           <i class="fas fa-shopping-bag"></i>
-          <span class="absolute -top-2 -right-2 bg-pink-600 text-black text-xs w-5 h-5 flex items-center justify-center rounded-full">0</span>
+          <span class="absolute -top-2 -right-2 bg-blue-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">0</span>
         </button>
       </div>
     </div>
