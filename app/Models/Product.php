@@ -11,22 +11,32 @@ class Product extends Model
 
     protected $fillable = [
         'name',
+        'sku',
         'price',
+        'original_price',
         'quantity',
         'brand_id',
-        'category_id',
+        'category_name',
         'header_footer_id',
-        'image_url'
+        'image_url',
+        'images',
+        'video_url',
+        'description',
+        'colors',
+        'sizes',
+        'details',
+    ];
+
+    protected $casts = [
+        'images' => 'array',
+        'colors' => 'array',
+        'sizes' => 'array',
+        'details' => 'array',
     ];
 
     public function brand()
     {
         return $this->belongsTo(Brand::class);
-    }
-
-    public function category()
-    {
-        return $this->belongsTo(Category::class);
     }
 
     public function site()

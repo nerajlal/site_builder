@@ -162,12 +162,11 @@ class TemplateController extends Controller
     {
         $headerFooter = HeaderFooter::findOrFail($id);
         $brands = Brand::where('header_footer_id', $id)->get();
-        $categories = Category::where('header_footer_id', $id)->get();
-        $products = Product::with(['brand', 'category'])
+        $products = Product::with('brand')
                        ->where('header_footer_id', $id)
                        ->get();
         
-        return view('d_add_product', compact('headerFooter', 'brands', 'categories', 'products'));
+        return view('d_add_product', compact('headerFooter', 'brands', 'products'));
     }
 
     public function storeBrand(Request $request, $siteId)
@@ -182,26 +181,39 @@ class TemplateController extends Controller
 
     public function storeProduct(Request $request, $siteId)
     {
-        // Check if brand exists
-        if (!Brand::where('header_footer_id', $siteId)->exists()) {
-            return back()->with('error', 'You must add at least one brand first!');
-        }
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'sku' => 'nullable|string|max:255',
+            'price' => 'required|numeric',
+            'original_price' => 'nullable|numeric',
+            'quantity' => 'required|integer',
+            'brand_id' => 'required|exists:brands,id',
+            'category_name' => 'required|string',
+            'image_url' => 'nullable|url',
+            'images' => 'nullable|json',
+            'video_url' => 'nullable|url',
+            'description' => 'nullable|string',
+            'colors' => 'nullable|json',
+            'sizes' => 'nullable|json',
+            'details' => 'nullable|json',
+        ]);
 
         Product::create([
-            'name' => $request->product_name,
+            'name' => $request->name,
+            'sku' => $request->sku,
             'price' => $request->price,
             'original_price' => $request->original_price,
             'quantity' => $request->quantity,
-            'brand_id' => $request->brand,
-            'category_id' => $request->category,
+            'brand_id' => $request->brand_id,
+            'category_name' => $request->category_name,
             'header_footer_id' => $siteId,
             'image_url' => $request->image_url,
+            'images' => $request->images,
+            'video_url' => $request->video_url,
             'description' => $request->description,
             'colors' => $request->colors,
             'sizes' => $request->sizes,
-            'key_features' => $request->key_features,
-            'material' => $request->material,
-            'care_instructions' => $request->care_instructions,
+            'details' => $request->details,
         ]);
 
         return back()->with('success', 'Product added successfully!');
