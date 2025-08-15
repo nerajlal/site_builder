@@ -145,7 +145,7 @@
           Explore our curated collection of premium fashion categories
         </p>
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="grid grid-cols-3 md:grid-cols-3 gap-8">
         <!-- Category Item -->
         <div class="flex flex-col items-center justify-center p-6">
           <div class="w-40 h-40 rounded-full bg-white overflow-hidden">
