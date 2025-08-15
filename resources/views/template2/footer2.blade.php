@@ -2,8 +2,8 @@
   
   @if($is_default)
   <footer class="bg-black text-white py-12 px-6 border-t border-gray-800">
-    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
-      <div>
+    <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
+      <div class="col-span-2 md:col-span-1">
         <h4 class="text-2xl font-light tracking-wider mb-4 flex items-center">
           <span class="w-10 h-10 rounded-full bg-gradient-to-r from-pink-600 to-pink-800 flex items-center justify-center mr-3">
             <i class="fas fa-store text-white"></i>
@@ -60,8 +60,8 @@
   </footer>
 @else
   <footer class="bg-black text-white py-12 px-6 border-t border-gray-800">
-    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
-      <div>
+    <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
+      <div class="col-span-2 md:col-span-1">
         <h4 class="text-2xl font-light tracking-wider mb-4 flex items-center">
           <span class="w-10 h-10 rounded-full bg-gradient-to-r from-pink-600 to-pink-800 flex items-center justify-center mr-3">
             <i class="fas fa-store text-white"></i>
