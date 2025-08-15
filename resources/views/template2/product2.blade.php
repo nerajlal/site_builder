@@ -9,22 +9,22 @@
         </div>
 
         <!-- Filters Bar -->
-        <div class="flex flex-col md:flex-row items-center justify-between mb-8 bg-black p-4 rounded-lg border border-gray-800">
+        <div class="flex flex-col md:flex-row items-center justify-between mb-8 bg-gray-900 p-4 rounded-lg border border-gray-700">
             <form action="{{ url()->current() }}" method="GET" class="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4 w-full">
                 <div class="relative w-full md:w-auto">
-                    <select name="sort" onchange="this.form.submit()" class="w-full px-4 py-2 border border-gray-700 rounded-lg hover:border-yellow-600 hover:text-yellow-600 transition-colors bg-black text-white">
+                    <select name="sort" onchange="this.form.submit()" class="w-full px-4 py-2 border border-gray-600 rounded-lg hover:border-yellow-500 focus:border-yellow-500 focus:ring-yellow-500 transition-colors bg-gray-800 text-white">
                         <option value="">Sort by</option>
                         <option value="price_asc" {{ request('sort') == 'price_asc' ? 'selected' : '' }}>Price: Low to High</option>
                         <option value="price_desc" {{ request('sort') == 'price_desc' ? 'selected' : '' }}>Price: High to Low</option>
                     </select>
                 </div>
                 <div class="relative w-full md:w-auto">
-                    <input type="number" name="min_price" value="{{ request('min_price') }}" placeholder="Min Price" class="w-full px-4 py-2 border border-gray-700 rounded-lg bg-black text-white">
+                    <input type="number" name="min_price" value="{{ request('min_price') }}" placeholder="Min Price" class="w-full px-4 py-2 border border-gray-600 rounded-lg bg-gray-800 text-white focus:border-yellow-500 focus:ring-yellow-500">
                 </div>
                 <div class="relative w-full md:w-auto">
-                    <input type="number" name="max_price" value="{{ request('max_price') }}" placeholder="Max Price" class="w-full px-4 py-2 border border-gray-700 rounded-lg bg-black text-white">
+                    <input type="number" name="max_price" value="{{ request('max_price') }}" placeholder="Max Price" class="w-full px-4 py-2 border border-gray-600 rounded-lg bg-gray-800 text-white focus:border-yellow-500 focus:ring-yellow-500">
                 </div>
-                <button type="submit" class="w-full md:w-auto px-4 py-2 bg-yellow-600 text-black rounded-lg hover:bg-yellow-700">Filter</button>
+                <button type="submit" class="w-full md:w-auto px-4 py-2 bg-yellow-500 text-black rounded-lg hover:bg-yellow-600">Filter</button>
             </form>
         </div>
 
@@ -43,22 +43,22 @@
         </div>
 
         <!-- Filters Bar -->
-        <div class="flex flex-col md:flex-row items-center justify-between mb-8 bg-black p-4 rounded-lg border border-gray-800">
+        <div class="flex flex-col md:flex-row items-center justify-between mb-8 bg-gray-900 p-4 rounded-lg border border-gray-700">
             <form action="{{ url()->current() }}" method="GET" class="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4 w-full">
                 <div class="relative w-full md:w-auto">
-                    <select name="sort" onchange="this.form.submit()" class="w-full px-4 py-2 border border-gray-700 rounded-lg hover:border-yellow-600 hover:text-yellow-600 transition-colors bg-black text-white">
+                    <select name="sort" onchange="this.form.submit()" class="w-full px-4 py-2 border border-gray-600 rounded-lg hover:border-yellow-500 focus:border-yellow-500 focus:ring-yellow-500 transition-colors bg-gray-800 text-white">
                         <option value="">Sort by</option>
                         <option value="price_asc" {{ request('sort') == 'price_asc' ? 'selected' : '' }}>Price: Low to High</option>
                         <option value="price_desc" {{ request('sort') == 'price_desc' ? 'selected' : '' }}>Price: High to Low</option>
                     </select>
                 </div>
                 <div class="relative w-full md:w-auto">
-                    <input type="number" name="min_price" value="{{ request('min_price') }}" placeholder="Min Price" class="w-full px-4 py-2 border border-gray-700 rounded-lg bg-black text-white">
+                    <input type="number" name="min_price" value="{{ request('min_price') }}" placeholder="Min Price" class="w-full px-4 py-2 border border-gray-600 rounded-lg bg-gray-800 text-white focus:border-yellow-500 focus:ring-yellow-500">
                 </div>
                 <div class="relative w-full md:w-auto">
-                    <input type="number" name="max_price" value="{{ request('max_price') }}" placeholder="Max Price" class="w-full px-4 py-2 border border-gray-700 rounded-lg bg-black text-white">
+                    <input type="number" name="max_price" value="{{ request('max_price') }}" placeholder="Max Price" class="w-full px-4 py-2 border border-gray-600 rounded-lg bg-gray-800 text-white focus:border-yellow-500 focus:ring-yellow-500">
                 </div>
-                <button type="submit" class="w-full md:w-auto px-4 py-2 bg-yellow-600 text-black rounded-lg hover:bg-yellow-700">Filter</button>
+                <button type="submit" class="w-full md:w-auto px-4 py-2 bg-yellow-500 text-black rounded-lg hover:bg-yellow-600">Filter</button>
             </form>
         </div>
 
