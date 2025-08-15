@@ -88,12 +88,12 @@
             <i class="fas fa-search"></i>
           </a>
           <a href="#" class="ml-8 text-gray-500 group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
-            <i class="fas fa-user"></i>
-          </a>
-          <a href="#" class="ml-8 text-gray-500 group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
             <i class="fas fa-shopping-bag"></i>
             <span class="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">0</span>
           </a>
+          <button id="authButton" onclick="openLoginModal()" class="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-purple-600 hover:bg-purple-700">
+            <span id="authButtonText">Sign In</span>
+          </button>
         </div>
       </div>
     </div>
@@ -108,15 +108,17 @@
         const response = await fetch('/customer/check-auth');
         const data = await response.json();
         
-        const userButton = document.querySelector('button[onclick="openLoginModal()"]');
-        const userIcon = userButton.querySelector('i');
+        const authButton = document.getElementById('authButton');
+        const authButtonText = document.getElementById('authButtonText');
         
         if (data.signed_in) {
-          userIcon.className = 'fas fa-user-check text-green-500';
-          userButton.title = 'Account';
+          authButtonText.textContent = 'Account';
+          authButton.classList.remove('bg-purple-600', 'hover:bg-purple-700');
+          authButton.classList.add('bg-green-600', 'hover:bg-green-700');
         } else {
-          userIcon.className = 'fas fa-user text-gray-500';
-          userButton.title = 'Sign In';
+          authButtonText.textContent = 'Sign In';
+          authButton.classList.remove('bg-green-600', 'hover:bg-green-700');
+          authButton.classList.add('bg-purple-600', 'hover:bg-purple-700');
         }
       } catch (error) {
         console.error('Error checking auth status:', error);
@@ -125,17 +127,25 @@
 
     // Update auth button after sign in/out
     function updateAuthButton(signedIn) {
-      const userButton = document.querySelector('button[onclick="openLoginModal()"]');
-      const userIcon = userButton.querySelector('i');
+      const authButton = document.getElementById('authButton');
+      const authButtonText = document.getElementById('authButtonText');
       
       if (signedIn) {
-        userIcon.className = 'fas fa-user-check text-green-500';
-        userButton.title = 'Account';
+        authButtonText.textContent = 'Account';
+        authButton.classList.remove('bg-purple-600', 'hover:bg-purple-700');
+        authButton.classList.add('bg-green-600', 'hover:bg-green-700');
       } else {
-        userIcon.className = 'fas fa-user text-gray-500';
-        userButton.title = 'Sign In';
+        authButtonText.textContent = 'Sign In';
+        authButton.classList.remove('bg-green-600', 'hover:bg-green-700');
+        authButton.classList.add('bg-purple-600', 'hover:bg-purple-700');
       }
     }
+
+    // Override the modal functions to update button
+    const originalOpenLoginModal = window.openLoginModal;
+    window.openLoginModal = function() {
+      if (originalOpenLoginModal) originalOpenLoginModal();
+    };
 
     // Check auth on page load
     document.addEventListener('DOMContentLoaded', checkAuthOnLoad);
