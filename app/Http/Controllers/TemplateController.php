@@ -195,10 +195,10 @@ class TemplateController extends Controller
             'description' => 'nullable|string',
             'colors' => 'nullable|json',
             'sizes' => 'nullable|array',
-            'details' => 'nullable|json',
+            'details' => 'nullable|array',
         ]);
 
-        $productData = $request->except('sizes');
+        $productData = $request->except(['sizes', 'details']);
 
         // Transform sizes data
         $sizes = [];
@@ -210,6 +210,28 @@ class TemplateController extends Controller
             }
         }
         $productData['sizes'] = json_encode($sizes);
+
+        // Transform details data
+        $details = [];
+        if ($request->has('details')) {
+            $detailsData = $request->details;
+            // Handle line-separated fields
+            if (!empty($detailsData['key_features'])) {
+                $details['key_features'] = array_filter(preg_split('/\r\n|\r|\n/', $detailsData['key_features']));
+            }
+            if (!empty($detailsData['care_tips'])) {
+                $details['care_tips'] = array_filter(preg_split('/\r\n|\r|\n/', $detailsData['care_tips']));
+            }
+            // Handle JSON string fields
+            $jsonFields = ['styling_tips', 'model_info', 'garment_details', 'size_chart', 'fabric_details', 'care_instructions'];
+            foreach($jsonFields as $field) {
+                if (!empty($detailsData[$field])) {
+                    $details[$field] = json_decode($detailsData[$field], true);
+                }
+            }
+        }
+        $productData['details'] = json_encode($details);
+
         $productData['header_footer_id'] = $siteId;
 
         Product::create($productData);
@@ -246,11 +268,11 @@ class TemplateController extends Controller
             'description' => 'nullable|string',
             'colors' => 'nullable|json',
             'sizes' => 'nullable|array',
-            'details' => 'nullable|json',
+            'details' => 'nullable|array',
         ]);
 
         $product = Product::findOrFail($id);
-        $productData = $request->except('sizes');
+        $productData = $request->except(['sizes', 'details']);
 
         // Transform sizes data
         $sizes = [];
@@ -262,6 +284,27 @@ class TemplateController extends Controller
             }
         }
         $productData['sizes'] = json_encode($sizes);
+
+        // Transform details data
+        $details = [];
+        if ($request->has('details')) {
+            $detailsData = $request->details;
+            // Handle line-separated fields
+            if (!empty($detailsData['key_features'])) {
+                $details['key_features'] = array_filter(preg_split('/\r\n|\r|\n/', $detailsData['key_features']));
+            }
+            if (!empty($detailsData['care_tips'])) {
+                $details['care_tips'] = array_filter(preg_split('/\r\n|\r|\n/', $detailsData['care_tips']));
+            }
+            // Handle JSON string fields
+            $jsonFields = ['styling_tips', 'model_info', 'garment_details', 'size_chart', 'fabric_details', 'care_instructions'];
+            foreach($jsonFields as $field) {
+                if (!empty($detailsData[$field])) {
+                    $details[$field] = json_decode($detailsData[$field], true);
+                }
+            }
+        }
+        $productData['details'] = json_encode($details);
 
         $product->update($productData);
 

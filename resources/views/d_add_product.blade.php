@@ -215,19 +215,42 @@
             </div>
 
             <!-- Details -->
-            <div>
-                <label class="block text-sm font-medium text-gray-700">Product Details (JSON)</label>
-                <textarea name="details" rows="10" class="mt-1 w-full px-3 py-2 font-mono text-xs border border-gray-300 rounded-md" placeholder='{
-    "key_features": ["Feature 1", "Feature 2"],
-    "product_details_features": ["Detail 1", "Detail 2"],
-    "styling_tips": [{"title": "Tip 1", "description": "..."}],
-    "model_info": {"height": "5\'7\""},
-    "garment_details": {"fit_type": "Regular"},
-    "size_chart": {"S": {"bust": "34"}},
-    "fabric_details": {"material": "100% Cotton"},
-    "care_instructions": [{"instruction": "Wash Cold"}],
-    "care_tips": ["Tip 1"]
-}'></textarea>
+            <div class="space-y-4 border-t pt-4">
+                <h4 class="text-lg font-semibold text-gray-800">Product Details</h4>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Key Features (one per line)</label>
+                        <textarea name="details[key_features]" rows="3" class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md"></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Care Tips (one per line)</label>
+                        <textarea name="details[care_tips]" rows="3" class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md"></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Styling Tips (JSON)</label>
+                        <textarea name="details[styling_tips]" rows="4" class="mt-1 w-full px-3 py-2 font-mono text-xs border border-gray-300 rounded-md" placeholder='[{"title": "Casual", "description": "..."}]'></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Model Info (JSON)</label>
+                        <textarea name="details[model_info]" rows="4" class="mt-1 w-full px-3 py-2 font-mono text-xs border border-gray-300 rounded-md" placeholder='{"height": "5\'7\""}'></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Garment Details (JSON)</label>
+                        <textarea name="details[garment_details]" rows="4" class="mt-1 w-full px-3 py-2 font-mono text-xs border border-gray-300 rounded-md" placeholder='{"fit_type": "Regular"}'></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Size Chart (JSON)</label>
+                        <textarea name="details[size_chart]" rows="4" class="mt-1 w-full px-3 py-2 font-mono text-xs border border-gray-300 rounded-md" placeholder='{"S": {"bust": "34"}}'></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Fabric Details (JSON)</label>
+                        <textarea name="details[fabric_details]" rows="4" class="mt-1 w-full px-3 py-2 font-mono text-xs border border-gray-300 rounded-md" placeholder='{"material": "Cotton"}'></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Care Instructions (JSON)</label>
+                        <textarea name="details[care_instructions]" rows="4" class="mt-1 w-full px-3 py-2 font-mono text-xs border border-gray-300 rounded-md" placeholder='[{"instruction": "Wash Cold"}]'></textarea>
+                    </div>
+                </div>
             </div>
 
             <div class="flex justify-end space-x-3 pt-4 border-t">
@@ -341,7 +364,24 @@
                 // Handle JSON fields
                 productForm.querySelector('[name="images"]').value = data.images ? JSON.stringify(JSON.parse(data.images), null, 2) : '';
                 productForm.querySelector('[name="colors"]').value = data.colors ? JSON.stringify(JSON.parse(data.colors), null, 2) : '';
-                productForm.querySelector('[name="details"]').value = data.details ? JSON.stringify(JSON.parse(data.details), null, 2) : '';
+
+                // Handle details
+                const details = data.details ? JSON.parse(data.details) : {};
+                // Reset all detail fields
+                document.querySelectorAll('[name^="details["]').forEach(input => input.value = '');
+
+                if (details.key_features) {
+                    productForm.querySelector('[name="details[key_features]"]').value = details.key_features.join('\\n');
+                }
+                if (details.care_tips) {
+                    productForm.querySelector('[name="details[care_tips]"]').value = details.care_tips.join('\\n');
+                }
+                const jsonDetailFields = ['styling_tips', 'model_info', 'garment_details', 'size_chart', 'fabric_details', 'care_instructions'];
+                jsonDetailFields.forEach(field => {
+                    if (details[field]) {
+                        productForm.querySelector(`[name="details[${field}]"]`).value = JSON.stringify(details[field], null, 2);
+                    }
+                });
 
                 // Handle sizes
                 const sizes = data.sizes ? JSON.parse(data.sizes) : [];
