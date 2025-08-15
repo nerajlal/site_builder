@@ -145,33 +145,33 @@
           Explore our curated collection of premium fashion categories
         </p>
       </div>
-      <div class="grid grid-cols-3 md:grid-cols-3 gap-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         <!-- Category Item -->
-        <div class="flex flex-col items-center justify-center p-6">
-          <div class="w-40 h-40 rounded-full bg-white overflow-hidden">
+        <div class="group relative flex flex-col items-center justify-center p-6 transition-all duration-300 ease-in-out transform hover:-translate-y-2">
+          <div class="w-40 h-40 rounded-full bg-white overflow-hidden border-4 border-gray-800 group-hover:border-pink-500 transition-all duration-300">
             <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80"
                 alt="Women's Fashion"
-                class="w-full h-full object-cover">
+                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-300">
           </div>
-          <p class="text-center mt-4 text-lg font-medium">Women</p>
+          <p class="text-center mt-4 text-lg font-medium text-white">Women</p>
         </div>
 
-        <div class="flex flex-col items-center justify-center p-6">
-          <div class="w-40 h-40 rounded-full bg-white overflow-hidden">
+        <div class="group relative flex flex-col items-center justify-center p-6 transition-all duration-300 ease-in-out transform hover:-translate-y-2">
+          <div class="w-40 h-40 rounded-full bg-white overflow-hidden border-4 border-gray-800 group-hover:border-pink-500 transition-all duration-300">
             <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80"
                 alt="Men's Fashion"
-                class="w-full h-full object-cover">
+                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-300">
           </div>
-          <p class="text-center mt-4 text-lg font-medium">Men</p>
+          <p class="text-center mt-4 text-lg font-medium text-white">Men</p>
         </div>
 
-        <div class="flex flex-col items-center justify-center p-6">
-          <div class="w-40 h-40 rounded-full bg-white overflow-hidden">
+        <div class="group relative flex flex-col items-center justify-center p-6 transition-all duration-300 ease-in-out transform hover:-translate-y-2">
+          <div class="w-40 h-40 rounded-full bg-white overflow-hidden border-4 border-gray-800 group-hover:border-pink-500 transition-all duration-300">
             <img src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
                 alt="Kids' Fashion"
-                class="w-full h-full object-cover">
+                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-300">
           </div>
-          <p class="text-center mt-4 text-lg font-medium">Kids</p>
+          <p class="text-center mt-4 text-lg font-medium text-white">Kids</p>
         </div>
       </div>
     </div>
@@ -187,31 +187,31 @@
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         <!-- Category Item -->
-        <div class="flex flex-col items-center justify-center p-6">
-          <div class="w-40 h-40 rounded-full bg-white overflow-hidden">
+        <div class="group relative flex flex-col items-center justify-center p-6 transition-all duration-300 ease-in-out transform hover:-translate-y-2">
+          <div class="w-40 h-40 rounded-full bg-white overflow-hidden border-4 border-gray-800 group-hover:border-pink-500 transition-all duration-300">
             <img src="{{ $section2->image1 }}"
                 alt="Women's Fashion"
-                class="w-full h-full object-cover">
+                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-300">
           </div>
-          <p class="text-center mt-4 text-lg font-medium">Women</p>
+          <p class="text-center mt-4 text-lg font-medium text-white">Women</p>
         </div>
 
-        <div class="flex flex-col items-center justify-center p-6">
-          <div class="w-40 h-40 rounded-full bg-white overflow-hidden">
+        <div class="group relative flex flex-col items-center justify-center p-6 transition-all duration-300 ease-in-out transform hover:-translate-y-2">
+          <div class="w-40 h-40 rounded-full bg-white overflow-hidden border-4 border-gray-800 group-hover:border-pink-500 transition-all duration-300">
             <img src="{{ $section2->image2 }}"
                 alt="Men's Fashion"
-                class="w-full h-full object-cover">
+                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-300">
           </div>
-          <p class="text-center mt-4 text-lg font-medium">Men</p>
+          <p class="text-center mt-4 text-lg font-medium text-white">Men</p>
         </div>
 
-        <div class="flex flex-col items-center justify-center p-6">
-          <div class="w-40 h-40 rounded-full bg-white overflow-hidden">
+        <div class="group relative flex flex-col items-center justify-center p-6 transition-all duration-300 ease-in-out transform hover:-translate-y-2">
+          <div class="w-40 h-40 rounded-full bg-white overflow-hidden border-4 border-gray-800 group-hover:border-pink-500 transition-all duration-300">
             <img src="{{ $section2->image3 }}"
                 alt="Kids' Fashion"
-                class="w-full h-full object-cover">
+                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-300">
           </div>
-          <p class="text-center mt-4 text-lg font-medium">Kids</p>
+          <p class="text-center mt-4 text-lg font-medium text-white">Kids</p>
         </div>
       </div>
     </div>
