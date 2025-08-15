@@ -96,7 +96,7 @@
             <i class="fas fa-shopping-bag"></i>
             <span class="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">0</span>
           </a>
-          <button id="authButton" onclick="openLoginModal()" class="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-purple-600 hover:bg-purple-700">
+          <button id="authButton" onclick="openLoginModal()" class="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-purple-600 hover:bg-purple-700 hidden md:inline-flex">
             <span id="authButtonText">Sign In</span>
           </button>
         </div>
@@ -125,6 +125,9 @@
           <a href="#contact" id="navContact" class="{{ !($headerFooter->contact ?? false) ? 'hidden' : '' }} text-base font-medium text-gray-500 hover:text-gray-900">Contact</a>
         @endif
       @endif
+      <button id="authButtonMobile" onclick="openLoginModal()" class="w-full whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-purple-600 hover:bg-purple-700">
+        <span id="authButtonTextMobile">Sign In</span>
+      </button>
     </nav>
   </div>
 
@@ -139,15 +142,23 @@
         
         const authButton = document.getElementById('authButton');
         const authButtonText = document.getElementById('authButtonText');
+        const authButtonMobile = document.getElementById('authButtonMobile');
+        const authButtonTextMobile = document.getElementById('authButtonTextMobile');
         
         if (data.signed_in) {
           authButtonText.textContent = 'Account';
           authButton.classList.remove('bg-purple-600', 'hover:bg-purple-700');
           authButton.classList.add('bg-green-600', 'hover:bg-green-700');
+          authButtonTextMobile.textContent = 'Account';
+          authButtonMobile.classList.remove('bg-purple-600', 'hover:bg-purple-700');
+          authButtonMobile.classList.add('bg-green-600', 'hover:bg-green-700');
         } else {
           authButtonText.textContent = 'Sign In';
           authButton.classList.remove('bg-green-600', 'hover:bg-green-700');
           authButton.classList.add('bg-purple-600', 'hover:bg-purple-700');
+          authButtonTextMobile.textContent = 'Sign In';
+          authButtonMobile.classList.remove('bg-green-600', 'hover:bg-green-700');
+          authButtonMobile.classList.add('bg-purple-600', 'hover:bg-purple-700');
         }
       } catch (error) {
         console.error('Error checking auth status:', error);
@@ -158,15 +169,23 @@
     function updateAuthButton(signedIn) {
       const authButton = document.getElementById('authButton');
       const authButtonText = document.getElementById('authButtonText');
+      const authButtonMobile = document.getElementById('authButtonMobile');
+      const authButtonTextMobile = document.getElementById('authButtonTextMobile');
       
       if (signedIn) {
         authButtonText.textContent = 'Account';
         authButton.classList.remove('bg-purple-600', 'hover:bg-purple-700');
         authButton.classList.add('bg-green-600', 'hover:bg-green-700');
+        authButtonTextMobile.textContent = 'Account';
+        authButtonMobile.classList.remove('bg-purple-600', 'hover:bg-purple-700');
+        authButtonMobile.classList.add('bg-green-600', 'hover:bg-green-700');
       } else {
         authButtonText.textContent = 'Sign In';
         authButton.classList.remove('bg-green-600', 'hover:bg-green-700');
         authButton.classList.add('bg-purple-600', 'hover:bg-purple-700');
+        authButtonTextMobile.textContent = 'Sign In';
+        authButtonMobile.classList.remove('bg-green-600', 'hover:bg-green-700');
+        authButtonMobile.classList.add('bg-purple-600', 'hover:bg-purple-700');
       }
     }
 
