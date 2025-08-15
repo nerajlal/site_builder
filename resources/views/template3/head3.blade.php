@@ -20,7 +20,7 @@
 
 <body class="bg-gray-100">
   <!-- Top Navigation -->
-  <header class="bg-white shadow-md">
+  <header class="bg-white shadow-md sticky top-0 z-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center py-3 border-b border-gray-200">
         <div class="flex items-center">
@@ -71,6 +71,11 @@
               @endif
             @endif
         </nav>
+        <div class="md:hidden">
+            <button id="menu-toggle" class="text-gray-500 hover:text-blue-600">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
         <div class="flex items-center space-x-4">
             <button class="text-gray-500 hover:text-blue-600"><i class="fas fa-search"></i></button>
             <button onclick="openLoginModal()" class="text-gray-500 hover:text-blue-600"><i class="fas fa-user"></i></button>
@@ -82,6 +87,30 @@
       </div>
     </div>
   </header>
+  <div id="mobile-menu" class="hidden md:hidden">
+    <nav class="flex flex-col space-y-4 px-6 py-4">
+      @if($is_default)
+        <a href="/index3" class="text-gray-500 hover:text-blue-600">Home</a>
+        <a href="/product3" class="text-gray-500 hover:text-blue-600">Products</a>
+      @else
+        @if($headerFooterId)
+          <a href="/index3/{{ $headerFooterId }}" class="text-gray-500 hover:text-blue-600">Home</a>
+          <a href="/product3/{{ $headerFooterId }}" class="text-gray-500 hover:text-blue-600">Products</a>
+          <a href="#features" id="navFeatures" class="{{ !($headerFooter->features ?? false) ? 'hidden' : '' }} text-gray-500 hover:text-blue-600">Features</a>
+          <a href="#brands" id="navBrands" class="{{ !($headerFooter->brands ?? false) ? 'hidden' : '' }} text-gray-500 hover:text-blue-600">Categories</a>
+          <a href="#collection" id="navCollections" class="{{ !($headerFooter->collections ?? false) ? 'hidden' : '' }} text-gray-500 hover:text-blue-600">Collection</a>
+          <a href="#contact" id="navContact" class="{{ !($headerFooter->contact ?? false) ? 'hidden' : '' }} text-gray-500 hover:text-blue-600">Contact</a>
+        @else
+          <a href="/index3" class="text-gray-500 hover:text-blue-600">Home</a>
+          <a href="/product3" class="text-gray-500 hover:text-blue-600">Products</a>
+          <a href="#features" id="navFeatures" class="{{ !($headerFooter->features ?? false) ? 'hidden' : '' }} text-gray-500 hover:text-blue-600">Features</a>
+          <a href="#brands" id="navBrands" class="{{ !($headerFooter->brands ?? false) ? 'hidden' : '' }} text-gray-500 hover:text-blue-600">Categories</a>
+          <a href="#collection" id="navCollections" class="{{ !($headerFooter->collections ?? false) ? 'hidden' : '' }} text-gray-500 hover:text-blue-600">Collection</a>
+          <a href="#contact" id="navContact" class="{{ !($headerFooter->contact ?? false) ? 'hidden' : '' }} text-gray-500 hover:text-blue-600">Contact</a>
+        @endif
+      @endif
+    </nav>
+  </div>
 
   @include('includes.customer_auth_modal')
 
@@ -123,4 +152,11 @@
 
     // Check auth on page load
     document.addEventListener('DOMContentLoaded', checkAuthOnLoad);
+
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    menuToggle.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
   </script>

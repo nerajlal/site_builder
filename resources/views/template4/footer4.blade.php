@@ -2,8 +2,8 @@
   
   @if($is_default)
   <footer class="bg-[#faf9f7] text-gray-800 py-12 px-6 border-t border-gray-200">
-    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
-      <div>
+    <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
+      <div class="col-span-2 md:col-span-1">
         <h4 class="text-2xl font-semibold mb-4">BoutiqueStyle</h4>
         <p class="text-gray-600 mb-4">Vintage elegance for the modern woman.</p>
         <div class="flex space-x-4">
@@ -55,8 +55,8 @@
   </footer>
 @else
   <footer class="bg-[#faf9f7] text-gray-800 py-12 px-6 border-t border-gray-200">
-    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
-      <div>
+    <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
+      <div class="col-span-2 md:col-span-1">
         <h4 class="text-2xl font-semibold mb-4">{{ $headerFooter->site_name }}</h4>
         <p class="text-gray-600 mb-4">{{ $headerFooter->footer_text }}</p>
         <div class="flex space-x-4">

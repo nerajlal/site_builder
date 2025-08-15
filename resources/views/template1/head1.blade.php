@@ -77,6 +77,11 @@
         @endif
       @endif
     </nav>
+    <div class="md:hidden">
+        <button id="menu-toggle" class="text-gray-700 hover:text-pink-600 transition">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
 
     <div class="flex items-center space-x-4">
       <button class="text-gray-700 hover:text-pink-600 transition">
@@ -85,11 +90,38 @@
       <button class="text-gray-700 hover:text-pink-600 transition">
         <i class="fas fa-shopping-cart"></i>
       </button>
-      <button id="authButton" onclick="openLoginModal()" class="bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded transition">
+      <button id="authButton" onclick="openLoginModal()" class="bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded transition hidden md:block">
         <span id="authButtonText">Sign In</span>
       </button>
     </div>
   </header>
+  <div id="mobile-menu" class="hidden md:hidden">
+    <nav class="flex flex-col space-y-4 px-6 py-4">
+      @if($is_default)
+        <a href="/index1" class="text-gray-700 hover:text-pink-600 transition">Home</a>
+        <a href="/product1" class="text-gray-700 hover:text-pink-600 transition">Products</a>
+      @else
+        @if($headerFooterId)
+          <a href="/index1/{{ $headerFooterId }}" class="text-gray-700 hover:text-pink-600 transition">Home</a>
+          <a href="/product1/{{ $headerFooterId }}" class="text-gray-700 hover:text-pink-600 transition">Products</a>
+          <a href="#features" id="navFeatures" class="{{ !($headerFooter->features ?? false) ? 'hidden' : '' }} hover:text-pink-600">Features</a>
+          <a href="#categories" id="navBrands" class="{{ !($headerFooter->brands ?? false) ? 'hidden' : '' }} hover:text-pink-600">Categories</a>
+          <a href="#products" id="navCollections" class="{{ !($headerFooter->collections ?? false) ? 'hidden' : '' }} hover:text-pink-600">Collection</a>
+          <a href="#contact" id="navContact" class="{{ !($headerFooter->contact ?? false) ? 'hidden' : '' }} hover:text-pink-600">Contact</a>
+        @else
+          <a href="/index1" class="text-gray-700 hover:text-pink-600 transition">Home</a>
+          <a href="/product1" class="text-gray-700 hover:text-pink-600 transition">Products</a>
+          <a href="#features" id="navFeatures" class="{{ !($headerFooter->features ?? false) ? 'hidden' : '' }} hover:text-pink-600">Features</a>
+          <a href="#categories" id="navBrands" class="{{ !($headerFooter->brands ?? false) ? 'hidden' : '' }} hover:text-pink-600">Categories</a>
+          <a href="#products" id="navCollections" class="{{ !($headerFooter->collections ?? false) ? 'hidden' : '' }} hover:text-pink-600">Collection</a>
+          <a href="#contact" id="navContact" class="{{ !($headerFooter->contact ?? false) ? 'hidden' : '' }} hover:text-pink-600">Contact</a>
+        @endif
+      @endif
+      <button id="authButtonMobile" onclick="openLoginModal()" class="bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded transition">
+        <span id="authButtonTextMobile">Sign In</span>
+      </button>
+    </nav>
+  </div>
 
   @include('includes.customer_auth_modal')
 
@@ -102,15 +134,23 @@
         
         const authButton = document.getElementById('authButton');
         const authButtonText = document.getElementById('authButtonText');
+        const authButtonMobile = document.getElementById('authButtonMobile');
+        const authButtonTextMobile = document.getElementById('authButtonTextMobile');
         
         if (data.signed_in) {
           authButtonText.textContent = 'Account';
           authButton.classList.remove('bg-pink-600', 'hover:bg-pink-700');
           authButton.classList.add('bg-green-600', 'hover:bg-green-700');
+          authButtonTextMobile.textContent = 'Account';
+          authButtonMobile.classList.remove('bg-pink-600', 'hover:bg-pink-700');
+          authButtonMobile.classList.add('bg-green-600', 'hover:bg-green-700');
         } else {
           authButtonText.textContent = 'Sign In';
           authButton.classList.remove('bg-green-600', 'hover:bg-green-700');
           authButton.classList.add('bg-pink-600', 'hover:bg-pink-700');
+          authButtonTextMobile.textContent = 'Sign In';
+          authButtonMobile.classList.remove('bg-green-600', 'hover:bg-green-700');
+          authButtonMobile.classList.add('bg-pink-600', 'hover:bg-pink-700');
         }
       } catch (error) {
         console.error('Error checking auth status:', error);
@@ -121,15 +161,23 @@
     function updateAuthButton(signedIn) {
       const authButton = document.getElementById('authButton');
       const authButtonText = document.getElementById('authButtonText');
+      const authButtonMobile = document.getElementById('authButtonMobile');
+      const authButtonTextMobile = document.getElementById('authButtonTextMobile');
       
       if (signedIn) {
         authButtonText.textContent = 'Account';
         authButton.classList.remove('bg-pink-600', 'hover:bg-pink-700');
         authButton.classList.add('bg-green-600', 'hover:bg-green-700');
+        authButtonTextMobile.textContent = 'Account';
+        authButtonMobile.classList.remove('bg-pink-600', 'hover:bg-pink-700');
+        authButtonMobile.classList.add('bg-green-600', 'hover:bg-green-700');
       } else {
         authButtonText.textContent = 'Sign In';
         authButton.classList.remove('bg-green-600', 'hover:bg-green-700');
         authButton.classList.add('bg-pink-600', 'hover:bg-pink-700');
+        authButtonTextMobile.textContent = 'Sign In';
+        authButtonMobile.classList.remove('bg-green-600', 'hover:bg-green-700');
+        authButtonMobile.classList.add('bg-pink-600', 'hover:bg-pink-700');
       }
     }
 
@@ -141,4 +189,11 @@
 
     // Check auth on page load
     document.addEventListener('DOMContentLoaded', checkAuthOnLoad);
+
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    menuToggle.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
   </script>

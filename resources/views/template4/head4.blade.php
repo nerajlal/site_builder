@@ -22,7 +22,7 @@
 </head>
 
 <body>
-  <header class="relative bg-white">
+  <header class="relative bg-white sticky top-0 z-50">
     <div class="bg-purple-700 text-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center py-2">
@@ -83,7 +83,12 @@
                 @endif
             @endif
         </nav>
-        <div class="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
+        <div class="md:hidden">
+            <button id="menu-toggle" class="text-gray-500 hover:text-purple-600">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        <div class="flex items-center justify-end md:flex-1 lg:w-0">
           <a href="#" class="text-gray-500 group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
             <i class="fas fa-search"></i>
           </a>
@@ -91,13 +96,40 @@
             <i class="fas fa-shopping-bag"></i>
             <span class="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">0</span>
           </a>
-          <button id="authButton" onclick="openLoginModal()" class="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-purple-600 hover:bg-purple-700">
+          <button id="authButton" onclick="openLoginModal()" class="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-purple-600 hover:bg-purple-700 hidden md:inline-flex">
             <span id="authButtonText">Sign In</span>
           </button>
         </div>
       </div>
     </div>
   </header>
+  <div id="mobile-menu" class="hidden md:hidden">
+    <nav class="flex flex-col space-y-4 px-6 py-4">
+      @if($is_default)
+        <a href="/index4" class="text-base font-medium text-gray-500 hover:text-gray-900">Home</a>
+        <a href="/product4" class="text-base font-medium text-gray-500 hover:text-gray-900">Products</a>
+      @else
+        @if($headerFooterId)
+          <a href="/index4/{{ $headerFooterId }}" class="text-base font-medium text-gray-500 hover:text-gray-900">Home</a>
+          <a href="/product4/{{ $headerFooterId }}" class="text-base font-medium text-gray-500 hover:text-gray-900">Products</a>
+          <a href="#features" id="navFeatures" class="{{ !($headerFooter->features ?? false) ? 'hidden' : '' }} text-base font-medium text-gray-500 hover:text-gray-900">Features</a>
+          <a href="#brands" id="navBrands" class="{{ !($headerFooter->brands ?? false) ? 'hidden' : '' }} text-base font-medium text-gray-500 hover:text-gray-900">Categories</a>
+          <a href="#collection" id="navCollections" class="{{ !($headerFooter->collections ?? false) ? 'hidden' : '' }} text-base font-medium text-gray-500 hover:text-gray-900">Collection</a>
+          <a href="#contact" id="navContact" class="{{ !($headerFooter->contact ?? false) ? 'hidden' : '' }} text-base font-medium text-gray-500 hover:text-gray-900">Contact</a>
+        @else
+          <a href="/index4" class="text-base font-medium text-gray-500 hover:text-gray-900">Home</a>
+          <a href="/product4" class="text-base font-medium text-gray-500 hover:text-gray-900">Products</a>
+          <a href="#features" id="navFeatures" class="{{ !($headerFooter->features ?? false) ? 'hidden' : '' }} text-base font-medium text-gray-500 hover:text-gray-900">Features</a>
+          <a href="#brands" id="navBrands" class="{{ !($headerFooter->brands ?? false) ? 'hidden' : '' }} text-base font-medium text-gray-500 hover:text-gray-900">Categories</a>
+          <a href="#collection" id="navCollections" class="{{ !($headerFooter->collections ?? false) ? 'hidden' : '' }} text-base font-medium text-gray-500 hover:text-gray-900">Collection</a>
+          <a href="#contact" id="navContact" class="{{ !($headerFooter->contact ?? false) ? 'hidden' : '' }} text-base font-medium text-gray-500 hover:text-gray-900">Contact</a>
+        @endif
+      @endif
+      <button id="authButtonMobile" onclick="openLoginModal()" class="w-full whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-purple-600 hover:bg-purple-700">
+        <span id="authButtonTextMobile">Sign In</span>
+      </button>
+    </nav>
+  </div>
 
   @include('includes.customer_auth_modal')
 
@@ -110,15 +142,23 @@
         
         const authButton = document.getElementById('authButton');
         const authButtonText = document.getElementById('authButtonText');
+        const authButtonMobile = document.getElementById('authButtonMobile');
+        const authButtonTextMobile = document.getElementById('authButtonTextMobile');
         
         if (data.signed_in) {
           authButtonText.textContent = 'Account';
           authButton.classList.remove('bg-purple-600', 'hover:bg-purple-700');
           authButton.classList.add('bg-green-600', 'hover:bg-green-700');
+          authButtonTextMobile.textContent = 'Account';
+          authButtonMobile.classList.remove('bg-purple-600', 'hover:bg-purple-700');
+          authButtonMobile.classList.add('bg-green-600', 'hover:bg-green-700');
         } else {
           authButtonText.textContent = 'Sign In';
           authButton.classList.remove('bg-green-600', 'hover:bg-green-700');
           authButton.classList.add('bg-purple-600', 'hover:bg-purple-700');
+          authButtonTextMobile.textContent = 'Sign In';
+          authButtonMobile.classList.remove('bg-green-600', 'hover:bg-green-700');
+          authButtonMobile.classList.add('bg-purple-600', 'hover:bg-purple-700');
         }
       } catch (error) {
         console.error('Error checking auth status:', error);
@@ -129,15 +169,23 @@
     function updateAuthButton(signedIn) {
       const authButton = document.getElementById('authButton');
       const authButtonText = document.getElementById('authButtonText');
+      const authButtonMobile = document.getElementById('authButtonMobile');
+      const authButtonTextMobile = document.getElementById('authButtonTextMobile');
       
       if (signedIn) {
         authButtonText.textContent = 'Account';
         authButton.classList.remove('bg-purple-600', 'hover:bg-purple-700');
         authButton.classList.add('bg-green-600', 'hover:bg-green-700');
+        authButtonTextMobile.textContent = 'Account';
+        authButtonMobile.classList.remove('bg-purple-600', 'hover:bg-purple-700');
+        authButtonMobile.classList.add('bg-green-600', 'hover:bg-green-700');
       } else {
         authButtonText.textContent = 'Sign In';
         authButton.classList.remove('bg-green-600', 'hover:bg-green-700');
         authButton.classList.add('bg-purple-600', 'hover:bg-purple-700');
+        authButtonTextMobile.textContent = 'Sign In';
+        authButtonMobile.classList.remove('bg-green-600', 'hover:bg-green-700');
+        authButtonMobile.classList.add('bg-purple-600', 'hover:bg-purple-700');
       }
     }
 
@@ -149,4 +197,11 @@
 
     // Check auth on page load
     document.addEventListener('DOMContentLoaded', checkAuthOnLoad);
+
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    menuToggle.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
   </script>

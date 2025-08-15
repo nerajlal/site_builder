@@ -3,8 +3,8 @@
 
 @if($is_default)
   <footer class="bg-gray-100 text-gray-800 py-12 px-6">
-    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
-      <div>
+    <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
+      <div class="col-span-2 md:col-span-1">
         <h4 class="text-xl font-bold mb-4 flex items-center text-pink-600">
           <i class="fas fa-store mr-2"></i> BoutiqueStyle
         </h4>
@@ -58,8 +58,8 @@
   </footer>
 @else
   <footer class="bg-gray-100 text-gray-800 py-12 px-6">
-    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
-      <div>
+    <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
+      <div class="col-span-2 md:col-span-1">
         <h4 class="text-xl font-bold mb-4 flex items-center text-pink-600">
           <i class="fas fa-store mr-2"></i> {{ $headerFooter->site_name }}
         </h4>

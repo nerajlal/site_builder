@@ -69,8 +69,8 @@
       </div>
       <nav class="hidden md:flex space-x-8">
         @if($is_default)
-          <a href="/index2" class="text-gray-700 hover:text-pink-600 transition">Home</a>
-          <a href="/product2" class="text-gray-700 hover:text-pink-600 transition">Products</a>
+          <a href="/index2" class="text-gray-300 hover:text-pink-500 transition">Home</a>
+          <a href="/product2" class="text-gray-300 hover:text-pink-500 transition">Products</a>
         @else
           @php
             $currentUrl = request()->url();
@@ -83,22 +83,27 @@
           @endphp
 
           @if($headerFooterId)
-            <a href="/index2/{{ $headerFooterId }}" class="text-gray-700 hover:text-pink-600 transition">Home</a>
-            <a href="/product2/{{ $headerFooterId }}" class="text-gray-700 hover:text-pink-600 transition">Products</a>
-            <a href="#features" id="navFeatures" class="{{ !($headerFooter->features ?? false) ? 'hidden' : '' }} hover:text-pink-600">Features</a>
-            <a href="#brands" id="navBrands" class="{{ !($headerFooter->brands ?? false) ? 'hidden' : '' }} hover:text-pink-600">Categories</a>
-            <a href="#collection" id="navCollections" class="{{ !($headerFooter->collections ?? false) ? 'hidden' : '' }} hover:text-pink-600">Collection</a>
-            <a href="#contact" id="navContact" class="{{ !($headerFooter->contact ?? false) ? 'hidden' : '' }} hover:text-pink-600">Contact</a>
+            <a href="/index2/{{ $headerFooterId }}" class="text-gray-300 hover:text-pink-500 transition">Home</a>
+            <a href="/product2/{{ $headerFooterId }}" class="text-gray-300 hover:text-pink-500 transition">Products</a>
+            <a href="#features" id="navFeatures" class="{{ !($headerFooter->features ?? false) ? 'hidden' : '' }} hover:text-pink-500">Features</a>
+            <a href="#brands" id="navBrands" class="{{ !($headerFooter->brands ?? false) ? 'hidden' : '' }} hover:text-pink-500">Categories</a>
+            <a href="#collection" id="navCollections" class="{{ !($headerFooter->collections ?? false) ? 'hidden' : '' }} hover:text-pink-500">Collection</a>
+            <a href="#contact" id="navContact" class="{{ !($headerFooter->contact ?? false) ? 'hidden' : '' }} hover:text-pink-500">Contact</a>
           @else
-            <a href="/index2" class="text-gray-700 hover:text-pink-600 transition">Home</a>
-            <a href="/product2" class="text-gray-700 hover:text-pink-600 transition">Products</a>
-            <a href="#features" id="navFeatures" class="{{ !($headerFooter->features ?? false) ? 'hidden' : '' }} hover:text-pink-600">Features</a>
-            <a href="#brands" id="navBrands" class="{{ !($headerFooter->brands ?? false) ? 'hidden' : '' }} hover:text-pink-600">Categories</a>
-            <a href="#collection" id="navCollections" class="{{ !($headerFooter->collections ?? false) ? 'hidden' : '' }} hover:text-pink-600">Collection</a>
-            <a href="#contact" id="navContact" class="{{ !($headerFooter->contact ?? false) ? 'hidden' : '' }} hover:text-pink-600">Contact</a>
+            <a href="/index2" class="text-gray-300 hover:text-pink-500 transition">Home</a>
+            <a href="/product2" class="text-gray-300 hover:text-pink-500 transition">Products</a>
+            <a href="#features" id="navFeatures" class="{{ !($headerFooter->features ?? false) ? 'hidden' : '' }} hover:text-pink-500">Features</a>
+            <a href="#brands" id="navBrands" class="{{ !($headerFooter->brands ?? false) ? 'hidden' : '' }} hover:text-pink-500">Categories</a>
+            <a href="#collection" id="navCollections" class="{{ !($headerFooter->collections ?? false) ? 'hidden' : '' }} hover:text-pink-500">Collection</a>
+            <a href="#contact" id="navContact" class="{{ !($headerFooter->contact ?? false) ? 'hidden' : '' }} hover:text-pink-500">Contact</a>
           @endif
         @endif
       </nav>
+      <div class="md:hidden">
+        <button id="menu-toggle" class="text-gray-400 hover:text-white transition">
+            <i class="fas fa-bars"></i>
+        </button>
+      </div>
       <div class="flex items-center space-x-4">
         <button class="text-gray-400 hover:text-white">
           <i class="fas fa-search"></i>
@@ -113,6 +118,30 @@
       </div>
     </div>
   </header>
+  <div id="mobile-menu" class="hidden md:hidden">
+    <nav class="flex flex-col space-y-4 px-6 py-4">
+      @if($is_default)
+        <a href="/index2" class="text-gray-300 hover:text-pink-500 transition">Home</a>
+        <a href="/product2" class="text-gray-300 hover:text-pink-500 transition">Products</a>
+      @else
+        @if($headerFooterId)
+          <a href="/index2/{{ $headerFooterId }}" class="text-gray-300 hover:text-pink-500 transition">Home</a>
+          <a href="/product2/{{ $headerFooterId }}" class="text-gray-300 hover:text-pink-500 transition">Products</a>
+          <a href="#features" id="navFeatures" class="{{ !($headerFooter->features ?? false) ? 'hidden' : '' }} hover:text-pink-500">Features</a>
+          <a href="#brands" id="navBrands" class="{{ !($headerFooter->brands ?? false) ? 'hidden' : '' }} hover:text-pink-500">Categories</a>
+          <a href="#collection" id="navCollections" class="{{ !($headerFooter->collections ?? false) ? 'hidden' : '' }} hover:text-pink-500">Collection</a>
+          <a href="#contact" id="navContact" class="{{ !($headerFooter->contact ?? false) ? 'hidden' : '' }} hover:text-pink-500">Contact</a>
+        @else
+          <a href="/index2" class="text-gray-300 hover:text-pink-500 transition">Home</a>
+          <a href="/product2" class="text-gray-300 hover:text-pink-500 transition">Products</a>
+          <a href="#features" id="navFeatures" class="{{ !($headerFooter->features ?? false) ? 'hidden' : '' }} hover:text-pink-500">Features</a>
+          <a href="#brands" id="navBrands" class="{{ !($headerFooter->brands ?? false) ? 'hidden' : '' }} hover:text-pink-500">Categories</a>
+          <a href="#collection" id="navCollections" class="{{ !($headerFooter->collections ?? false) ? 'hidden' : '' }} hover:text-pink-500">Collection</a>
+          <a href="#contact" id="navContact" class="{{ !($headerFooter->contact ?? false) ? 'hidden' : '' }} hover:text-pink-500">Contact</a>
+        @endif
+      @endif
+    </nav>
+  </div>
 
   @include('includes.customer_auth_modal')
 
@@ -154,4 +183,11 @@
 
     // Check auth on page load
     document.addEventListener('DOMContentLoaded', checkAuthOnLoad);
+
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    menuToggle.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
   </script>
