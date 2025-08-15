@@ -90,7 +90,7 @@
       <button class="text-gray-700 hover:text-pink-600 transition">
         <i class="fas fa-shopping-cart"></i>
       </button>
-      <button id="authButton" onclick="openLoginModal()" class="bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded transition">
+      <button id="authButton" onclick="openLoginModal()" class="bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded transition hidden md:block">
         <span id="authButtonText">Sign In</span>
       </button>
     </div>
@@ -117,6 +117,9 @@
           <a href="#contact" id="navContact" class="{{ !($headerFooter->contact ?? false) ? 'hidden' : '' }} hover:text-pink-600">Contact</a>
         @endif
       @endif
+      <button id="authButtonMobile" onclick="openLoginModal()" class="bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded transition">
+        <span id="authButtonTextMobile">Sign In</span>
+      </button>
     </nav>
   </div>
 
@@ -131,15 +134,23 @@
         
         const authButton = document.getElementById('authButton');
         const authButtonText = document.getElementById('authButtonText');
+        const authButtonMobile = document.getElementById('authButtonMobile');
+        const authButtonTextMobile = document.getElementById('authButtonTextMobile');
         
         if (data.signed_in) {
           authButtonText.textContent = 'Account';
           authButton.classList.remove('bg-pink-600', 'hover:bg-pink-700');
           authButton.classList.add('bg-green-600', 'hover:bg-green-700');
+          authButtonTextMobile.textContent = 'Account';
+          authButtonMobile.classList.remove('bg-pink-600', 'hover:bg-pink-700');
+          authButtonMobile.classList.add('bg-green-600', 'hover:bg-green-700');
         } else {
           authButtonText.textContent = 'Sign In';
           authButton.classList.remove('bg-green-600', 'hover:bg-green-700');
           authButton.classList.add('bg-pink-600', 'hover:bg-pink-700');
+          authButtonTextMobile.textContent = 'Sign In';
+          authButtonMobile.classList.remove('bg-green-600', 'hover:bg-green-700');
+          authButtonMobile.classList.add('bg-pink-600', 'hover:bg-pink-700');
         }
       } catch (error) {
         console.error('Error checking auth status:', error);
@@ -150,15 +161,23 @@
     function updateAuthButton(signedIn) {
       const authButton = document.getElementById('authButton');
       const authButtonText = document.getElementById('authButtonText');
+      const authButtonMobile = document.getElementById('authButtonMobile');
+      const authButtonTextMobile = document.getElementById('authButtonTextMobile');
       
       if (signedIn) {
         authButtonText.textContent = 'Account';
         authButton.classList.remove('bg-pink-600', 'hover:bg-pink-700');
         authButton.classList.add('bg-green-600', 'hover:bg-green-700');
+        authButtonTextMobile.textContent = 'Account';
+        authButtonMobile.classList.remove('bg-pink-600', 'hover:bg-pink-700');
+        authButtonMobile.classList.add('bg-green-600', 'hover:bg-green-700');
       } else {
         authButtonText.textContent = 'Sign In';
         authButton.classList.remove('bg-green-600', 'hover:bg-green-700');
         authButton.classList.add('bg-pink-600', 'hover:bg-pink-700');
+        authButtonTextMobile.textContent = 'Sign In';
+        authButtonMobile.classList.remove('bg-green-600', 'hover:bg-green-700');
+        authButtonMobile.classList.add('bg-pink-600', 'hover:bg-pink-700');
       }
     }
 
