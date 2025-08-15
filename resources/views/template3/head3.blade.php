@@ -20,7 +20,7 @@
 
 <body class="bg-gray-100">
   <!-- Top Navigation -->
-  <header class="bg-white shadow-md">
+  <header class="bg-white shadow-md sticky top-0 z-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center py-3 border-b border-gray-200">
         <div class="flex items-center">

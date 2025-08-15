@@ -22,7 +22,7 @@
 </head>
 
 <body>
-  <header class="relative bg-white">
+  <header class="relative bg-white sticky top-0 z-50">
     <div class="bg-purple-700 text-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center py-2">
@@ -88,7 +88,7 @@
                 <i class="fas fa-bars"></i>
             </button>
         </div>
-        <div class="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
+        <div class="flex items-center justify-end md:flex-1 lg:w-0">
           <a href="#" class="text-gray-500 group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
             <i class="fas fa-search"></i>
           </a>
