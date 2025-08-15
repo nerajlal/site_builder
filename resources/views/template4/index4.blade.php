@@ -136,7 +136,7 @@
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
           <!-- Category 1 -->
-          <div class="flex items-center justify-center p-6">
+        <div class="flex flex-col items-center justify-center p-6">
             <div class="w-40 h-40 bg-white rounded-full shadow-md flex items-center justify-center
                         transition-all duration-300 hover:scale-110 hover:rotate-3 hover:shadow-xl">
               <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80"
@@ -147,7 +147,7 @@
           </div>
 
           <!-- Category 2 -->
-          <div class="flex items-center justify-center p-6">
+        <div class="flex flex-col items-center justify-center p-6">
             <div class="w-40 h-40 bg-white rounded-full shadow-md flex items-center justify-center
                         transition-all duration-300 hover:scale-110 hover:rotate-3 hover:shadow-xl">
               <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80"
@@ -158,7 +158,7 @@
           </div>
 
           <!-- Category 3 -->
-          <div class="flex items-center justify-center p-6">
+        <div class="flex flex-col items-center justify-center p-6">
             <div class="w-40 h-40 bg-white rounded-full shadow-md flex items-center justify-center
                         transition-all duration-300 hover:scale-110 hover:rotate-3 hover:shadow-xl">
               <img src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
@@ -182,7 +182,7 @@
           </p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div class="flex items-center justify-center p-6">
+          <div class="flex flex-col items-center justify-center p-6">
             <div class="w-40 h-40 bg-white rounded-full shadow-md overflow-hidden
                         transition-all duration-300 hover:scale-110 hover:rotate-3 hover:shadow-xl">
               <img src="{{ $section2->image1 }}"
@@ -191,7 +191,7 @@
             </div>
             <p class="text-center mt-4 text-lg font-medium">Women</p>
           </div>
-          <div class="flex items-center justify-center p-6">
+          <div class="flex flex-col items-center justify-center p-6">
             <div class="w-40 h-40 bg-white rounded-full shadow-md overflow-hidden
                         transition-all duration-300 hover:scale-110 hover:rotate-3 hover:shadow-xl">
               <img src="{{ $section2->image2 }}"
@@ -200,7 +200,7 @@
             </div>
             <p class="text-center mt-4 text-lg font-medium">Men</p>
           </div>
-          <div class="flex items-center justify-center p-6">
+          <div class="flex flex-col items-center justify-center p-6">
             <div class="w-40 h-40 bg-white rounded-full shadow-md overflow-hidden
                         transition-all duration-300 hover:scale-110 hover:rotate-3 hover:shadow-xl">
               <img src="{{ $section2->image3 }}"

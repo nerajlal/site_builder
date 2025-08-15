@@ -147,7 +147,7 @@
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         <!-- Category Item -->
-        <div class="flex items-center justify-center p-6">
+        <div class="flex flex-col items-center justify-center p-6">
           <div class="w-40 h-40 rounded-full bg-white overflow-hidden">
             <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80"
                 alt="Women's Fashion"
@@ -156,7 +156,7 @@
           <p class="text-center mt-4 text-lg font-medium">Women</p>
         </div>
 
-        <div class="flex items-center justify-center p-6">
+        <div class="flex flex-col items-center justify-center p-6">
           <div class="w-40 h-40 rounded-full bg-white overflow-hidden">
             <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80"
                 alt="Men's Fashion"
@@ -165,7 +165,7 @@
           <p class="text-center mt-4 text-lg font-medium">Men</p>
         </div>
 
-        <div class="flex items-center justify-center p-6">
+        <div class="flex flex-col items-center justify-center p-6">
           <div class="w-40 h-40 rounded-full bg-white overflow-hidden">
             <img src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
                 alt="Kids' Fashion"
@@ -187,7 +187,7 @@
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         <!-- Category Item -->
-        <div class="flex items-center justify-center p-6">
+        <div class="flex flex-col items-center justify-center p-6">
           <div class="w-40 h-40 rounded-full bg-white overflow-hidden">
             <img src="{{ $section2->image1 }}"
                 alt="Women's Fashion"
@@ -196,7 +196,7 @@
           <p class="text-center mt-4 text-lg font-medium">Women</p>
         </div>
 
-        <div class="flex items-center justify-center p-6">
+        <div class="flex flex-col items-center justify-center p-6">
           <div class="w-40 h-40 rounded-full bg-white overflow-hidden">
             <img src="{{ $section2->image2 }}"
                 alt="Men's Fashion"
@@ -205,7 +205,7 @@
           <p class="text-center mt-4 text-lg font-medium">Men</p>
         </div>
 
-        <div class="flex items-center justify-center p-6">
+        <div class="flex flex-col items-center justify-center p-6">
           <div class="w-40 h-40 rounded-full bg-white overflow-hidden">
             <img src="{{ $section2->image3 }}"
                 alt="Kids' Fashion"
