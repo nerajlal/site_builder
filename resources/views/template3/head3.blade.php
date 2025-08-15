@@ -53,29 +53,29 @@
         </div>
         <nav class="hidden md:flex space-x-10">
             @if($is_default)
-                <a href="/index4" class="text-base font-medium text-gray-500 hover:text-gray-900">Home</a>
-                <a href="/product4" class="text-base font-medium text-gray-500 hover:text-gray-900">Products</a>
+                <a href="/index3" class="text-base font-medium text-gray-500 hover:text-gray-900">Home</a>
+                <a href="/product3" class="text-base font-medium text-gray-500 hover:text-gray-900">Products</a>
             @else
                 @php
                 $currentUrl = request()->url();
                 $headerFooterId = null;
-                if (preg_match('/\/index4\/(\d+)/', $currentUrl, $matches)) {
+                if (preg_match('/\/index3\/(\d+)/', $currentUrl, $matches)) {
                     $headerFooterId = $matches[1];
-                } elseif (preg_match('/\/product4\/(\d+)/', $currentUrl, $matches)) {
+                } elseif (preg_match('/\/product3\/(\d+)/', $currentUrl, $matches)) {
                     $headerFooterId = $matches[1];
                 }
                 @endphp
 
                 @if($headerFooterId)
-                <a href="/index4/{{ $headerFooterId }}" class="text-base font-medium text-gray-500 hover:text-gray-900">Home</a>
-                <a href="/product4/{{ $headerFooterId }}" class="text-base font-medium text-gray-500 hover:text-gray-900">Products</a>
+                <a href="/index3/{{ $headerFooterId }}" class="text-base font-medium text-gray-500 hover:text-gray-900">Home</a>
+                <a href="/product3/{{ $headerFooterId }}" class="text-base font-medium text-gray-500 hover:text-gray-900">Products</a>
                 <a href="#features" id="navFeatures" class="{{ !($headerFooter->features ?? false) ? 'hidden' : '' }} text-base font-medium text-gray-500 hover:text-gray-900">Features</a>
                 <a href="#brands" id="navBrands" class="{{ !($headerFooter->brands ?? false) ? 'hidden' : '' }} text-base font-medium text-gray-500 hover:text-gray-900">Categories</a>
                 <a href="#collection" id="navCollections" class="{{ !($headerFooter->collections ?? false) ? 'hidden' : '' }} text-base font-medium text-gray-500 hover:text-gray-900">Collection</a>
                 <a href="#contact" id="navContact" class="{{ !($headerFooter->contact ?? false) ? 'hidden' : '' }} text-base font-medium text-gray-500 hover:text-gray-900">Contact</a>
                 @else
-                <a href="/index4" class="text-base font-medium text-gray-500 hover:text-gray-900">Home</a>
-                <a href="/product4" class="text-base font-medium text-gray-500 hover:text-gray-900">Products</a>
+                <a href="/index3" class="text-base font-medium text-gray-500 hover:text-gray-900">Home</a>
+                <a href="/product3" class="text-base font-medium text-gray-500 hover:text-gray-900">Products</a>
                 <a href="#features" id="navFeatures" class="{{ !($headerFooter->features ?? false) ? 'hidden' : '' }} text-base font-medium text-gray-500 hover:text-gray-900">Features</a>
                 <a href="#brands" id="navBrands" class="{{ !($headerFooter->brands ?? false) ? 'hidden' : '' }} text-base font-medium text-gray-500 hover:text-gray-900">Categories</a>
                 <a href="#collection" id="navCollections" class="{{ !($headerFooter->collections ?? false) ? 'hidden' : '' }} text-base font-medium text-gray-500 hover:text-gray-900">Collection</a>
