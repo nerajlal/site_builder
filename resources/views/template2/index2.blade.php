@@ -145,54 +145,33 @@
           Explore our curated collection of premium fashion categories
         </p>
       </div>
-      <div class="grid grid-cols-2 md:grid-cols-6 gap-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         <!-- Category Item -->
         <div class="flex items-center justify-center p-6">
-          <div class="w-20 h-20 rounded-full bg-white overflow-hidden">
+          <div class="w-40 h-40 rounded-full bg-white overflow-hidden">
             <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80"
                 alt="Women's Fashion"
                 class="w-full h-full object-cover">
           </div>
+          <p class="text-center mt-4 text-lg font-medium">Women</p>
         </div>
 
         <div class="flex items-center justify-center p-6">
-          <div class="w-20 h-20 rounded-full bg-white overflow-hidden">
+          <div class="w-40 h-40 rounded-full bg-white overflow-hidden">
             <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80"
                 alt="Men's Fashion"
                 class="w-full h-full object-cover">
           </div>
+          <p class="text-center mt-4 text-lg font-medium">Men</p>
         </div>
 
         <div class="flex items-center justify-center p-6">
-          <div class="w-20 h-20 rounded-full bg-white overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80"
-                alt="Accessories"
+          <div class="w-40 h-40 rounded-full bg-white overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                alt="Kids' Fashion"
                 class="w-full h-full object-cover">
           </div>
-        </div>
-
-        <div class="flex items-center justify-center p-6">
-          <div class="w-20 h-20 rounded-full bg-white overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1112&q=80"
-                alt="Shoes"
-                class="w-full h-full object-cover">
-          </div>
-        </div>
-
-        <div class="flex items-center justify-center p-6">
-          <div class="w-20 h-20 rounded-full bg-white overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1594223274512-ad4803739b7c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80"
-                alt="Bags"
-                class="w-full h-full object-cover">
-          </div>
-        </div>
-
-        <div class="flex items-center justify-center p-6">
-          <div class="w-20 h-20 rounded-full bg-white overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80"
-                alt="Jewelry"
-                class="w-full h-full object-cover">
-          </div>
+          <p class="text-center mt-4 text-lg font-medium">Kids</p>
         </div>
       </div>
     </div>
@@ -206,55 +185,33 @@
         </h3>
         <p class="text-gray-400 max-w-2xl mx-auto">{{ $section2->sub_text1 }}</p>
       </div>
-      <div class="grid grid-cols-2 md:grid-cols-6 gap-8">
-        <!-- Brand Item -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Category Item -->
         <div class="flex items-center justify-center p-6">
-          <div class="w-20 h-20 rounded-full bg-white overflow-hidden">
+          <div class="w-40 h-40 rounded-full bg-white overflow-hidden">
             <img src="{{ $section2->image1 }}"
-                alt="Image1"
+                alt="Women's Fashion"
                 class="w-full h-full object-cover">
           </div>
+          <p class="text-center mt-4 text-lg font-medium">Women</p>
         </div>
 
-        <!-- Repeat for others -->
         <div class="flex items-center justify-center p-6">
-          <div class="w-20 h-20 rounded-full bg-white overflow-hidden">
+          <div class="w-40 h-40 rounded-full bg-white overflow-hidden">
             <img src="{{ $section2->image2 }}"
-                alt="Image2"
+                alt="Men's Fashion"
                 class="w-full h-full object-cover">
           </div>
+          <p class="text-center mt-4 text-lg font-medium">Men</p>
         </div>
 
         <div class="flex items-center justify-center p-6">
-          <div class="w-20 h-20 rounded-full bg-white overflow-hidden">
+          <div class="w-40 h-40 rounded-full bg-white overflow-hidden">
             <img src="{{ $section2->image3 }}"
-                alt="Image3"
+                alt="Kids' Fashion"
                 class="w-full h-full object-cover">
           </div>
-        </div>
-
-        <div class="flex items-center justify-center p-6">
-          <div class="w-20 h-20 rounded-full bg-white overflow-hidden">
-            <img src="{{ $section2->image4 }}"
-                alt="Image4"
-                class="w-full h-full object-cover">
-          </div>
-        </div>
-
-        <div class="flex items-center justify-center p-6">
-          <div class="w-20 h-20 rounded-full bg-white overflow-hidden">
-            <img src="{{ $section2->image5 }}"
-                alt="Image5"
-                class="w-full h-full object-cover">
-          </div>
-        </div>
-
-        <div class="flex items-center justify-center p-6">
-          <div class="w-20 h-20 rounded-full bg-white overflow-hidden">
-            <img src="{{ $section2->image6 }}"
-                alt="Image6"
-                class="w-full h-full object-cover">
-          </div>
+          <p class="text-center mt-4 text-lg font-medium">Kids</p>
         </div>
       </div>
     </div>

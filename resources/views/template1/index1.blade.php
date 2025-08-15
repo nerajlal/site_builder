@@ -2,55 +2,49 @@
 
   <!-- Hero Banner -->
   @if($is_default)
-    <section class="relative bg-gray-900 text-white py-24 text-center overflow-hidden">
-      <div class="absolute inset-0 bg-black opacity-50"></div>
-      <div class="relative z-10 max-w-4xl mx-auto px-4">
-        <h2 class="text-5xl font-bold mb-6">Elegant Fashion for Every Occasion</h2>
-        <p class="text-xl mb-8">Discover our curated collection of stylish boutique pieces</p>
-        <div class="flex flex-col sm:flex-row justify-center gap-4">
-          <button class="bg-pink-600 hover:bg-pink-700 text-white px-8 py-3 rounded-lg font-medium transition">
-            Shop Collection <i class="fas fa-arrow-right ml-2"></i>
-          </button>
-          <button class="bg-transparent hover:bg-white hover:text-gray-900 border-2 border-white text-white px-8 py-3 rounded-lg font-medium transition">
-            Book Appointment
-          </button>
+    <section class="bg-white">
+        <div class="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
+            <div class="mr-auto place-self-center lg:col-span-7">
+                <h1 class="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl">Elegant Fashion for Every Occasion</h1>
+                <p class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl">Discover our curated collection of stylish boutique pieces</p>
+                <a href="#" class="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300">
+                    Shop Collection
+                    <svg class="w-5 h-5 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                </a>
+                <a href="#" class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100">
+                    Book Appointment
+                </a>
+            </div>
+            <div class="hidden lg:mt-0 lg:col-span-5 lg:flex">
+                <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1480&q=80" alt="Boutique Fashion">
+            </div>
         </div>
-      </div>
-      <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1480&q=80" alt="Boutique Fashion" class="absolute inset-0 w-full h-full object-cover">
     </section>
   @else
-    <section class="relative bg-gray-900 text-white py-24 text-center overflow-hidden">
-      <div class="absolute inset-0 bg-black opacity-50"></div>
-      <div class="relative z-10 max-w-4xl mx-auto px-4">
-        <h2 class="text-5xl font-bold mb-6">{{ $homesetting->main_text }}</h2>
-        <p class="text-xl mb-8">{{ $homesetting->sub_text }}</p>
-        @php
-          $currentUrl = request()->url();
-          $headerFooterId = null;
-          if (preg_match('/\/index1\/(\d+)/', $currentUrl, $matches)) {
-            $headerFooterId = $matches[1];
-          }
-        @endphp
-        
-        <div class="flex flex-col sm:flex-row justify-center gap-4">
-          @if($headerFooterId)
-            <button class="bg-pink-600 hover:bg-pink-700 text-white px-8 py-3 rounded-lg font-medium transition" onclick="window.location.href='/product1/{{ $headerFooterId }}'">
-              {{ $homesetting->button1_text }} <i class="fas fa-arrow-right ml-2"></i>
-            </button>
-            <button class="bg-transparent hover:bg-white hover:text-gray-900 border-2 border-white text-white px-8 py-3 rounded-lg font-medium transition" onclick="window.location.href='/product1/{{ $headerFooterId }}'">
-              {{ $homesetting->button2_text }}
-            </button>
-          @else
-            <button class="bg-pink-600 hover:bg-pink-700 text-white px-8 py-3 rounded-lg font-medium transition" onclick="window.location.href='/product1'">
-              {{ $homesetting->button1_text }} <i class="fas fa-arrow-right ml-2"></i>
-            </button>
-            <button class="bg-transparent hover:bg-white hover:text-gray-900 border-2 border-white text-white px-8 py-3 rounded-lg font-medium transition" onclick="window.location.href='/product1'">
-              {{ $homesetting->button2_text }}
-            </button>
-          @endif
+    <section class="bg-white">
+        <div class="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
+            <div class="mr-auto place-self-center lg:col-span-7">
+                <h1 class="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl">{{ $homesetting->main_text }}</h1>
+                <p class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl">{{ $homesetting->sub_text }}</p>
+                @php
+                  $currentUrl = request()->url();
+                  $headerFooterId = null;
+                  if (preg_match('/\/index1\/(\d+)/', $currentUrl, $matches)) {
+                    $headerFooterId = $matches[1];
+                  }
+                @endphp
+                <a href="/product1/{{ $headerFooterId }}" class="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300">
+                    {{ $homesetting->button1_text }}
+                    <svg class="w-5 h-5 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                </a>
+                <a href="/product1/{{ $headerFooterId }}" class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100">
+                    {{ $homesetting->button2_text }}
+                </a>
+            </div>
+            <div class="hidden lg:mt-0 lg:col-span-5 lg:flex">
+                <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1480&q=80" alt="Boutique Fashion">
+            </div>
         </div>
-      </div>
-      <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1480&q=80" alt="Boutique Fashion" class="absolute inset-0 w-full h-full object-cover">
     </section>
   @endif
 
@@ -132,16 +126,7 @@
           <img src="https://images.unsplash.com/photo-1617137968427-85924c800a22?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Men's Fashion" class="w-full h-full rounded-full object-cover">
         </div>
         <div class="bg-white p-2 rounded-full brand-logo w-32 h-32 flex items-center justify-center">
-          <img src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Accessories" class="w-full h-full rounded-full object-cover">
-        </div>
-        <div class="bg-white p-2 rounded-full brand-logo w-32 h-32 flex items-center justify-center">
-          <img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Shoes" class="w-full h-full rounded-full object-cover">
-        </div>
-        <div class="bg-white p-2 rounded-full brand-logo w-32 h-32 flex items-center justify-center">
-          <img src="https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Bags" class="w-full h-full rounded-full object-cover">
-        </div>
-        <div class="bg-white p-2 rounded-full brand-logo w-32 h-32 flex items-center justify-center">
-          <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1480&q=80" alt="Jewelry" class="w-full h-full rounded-full object-cover">
+          <img src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Kids' Fashion" class="w-full h-full rounded-full object-cover">
         </div>
       </div>
     </section>
@@ -153,22 +138,13 @@
       </div>
       <div class="flex flex-wrap justify-center gap-8 max-w-6xl mx-auto">
         <div class="bg-white p-2 rounded-full brand-logo w-32 h-32 flex items-center justify-center">
-          <img src="{{ $section2->image1 }}" alt="image1" class="w-full h-full rounded-full object-cover">
+          <img src="{{ $section2->image1 }}" alt="Women's Fashion" class="w-full h-full rounded-full object-cover">
         </div>
         <div class="bg-white p-2 rounded-full brand-logo w-32 h-32 flex items-center justify-center">
-          <img src="{{ $section2->image2 }}" alt="image2" class="w-full h-full rounded-full object-cover">
+          <img src="{{ $section2->image2 }}" alt="Men's Fashion" class="w-full h-full rounded-full object-cover">
         </div>
         <div class="bg-white p-2 rounded-full brand-logo w-32 h-32 flex items-center justify-center">
-          <img src="{{ $section2->image3 }}" alt="image3" class="w-full h-full rounded-full object-cover">
-        </div>
-        <div class="bg-white p-2 rounded-full brand-logo w-32 h-32 flex items-center justify-center">
-          <img src="{{ $section2->image4 }}" alt="image4" class="w-full h-full rounded-full object-cover">
-        </div>
-        <div class="bg-white p-2 rounded-full brand-logo w-32 h-32 flex items-center justify-center">
-          <img src="{{ $section2->image5 }}" alt="image5" class="w-full h-full rounded-full object-cover">
-        </div>
-        <div class="bg-white p-2 rounded-full brand-logo w-32 h-32 flex items-center justify-center">
-          <img src="{{ $section2->image6 }}" alt="image6" class="w-full h-full rounded-full object-cover">
+          <img src="{{ $section2->image3 }}" alt="Kids' Fashion" class="w-full h-full rounded-full object-cover">
         </div>
       </div>
     </section>
