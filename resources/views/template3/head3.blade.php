@@ -7,16 +7,51 @@
   <title>Boutique Store</title>
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Work+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     body {
-        font-family: 'Work Sans', sans-serif;
-        background-color: #fdfcfa;
-        color: #4a4a4a;
+      font-family: 'Inter', sans-serif;
+      color: #333;
+      background-color: #f9f9f7;
     }
-    h1, h2, h3, h4, h5, h6 {
-        font-family: 'Playfair Display', serif;
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', serif;
+    }
+    .nav-link {
+      position: relative;
+    }
+    .nav-link:after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 1px;
+      bottom: -2px;
+      left: 0;
+      background-color: #ec4899;
+      transition: width 0.3s ease;
+    }
+    .nav-link:hover:after {
+      width: 100%;
+    }
+    .boutique-card {
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      background-color: #fff;
+    }
+    .boutique-card:hover {
+      box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+      transform: translateY(-3px);
+    }
+    .brand-logo {
+      opacity: 0.7;
+      transition: all 0.3s ease;
+    }
+    .brand-logo:hover {
+      opacity: 1;
+    }
+    .testimonial-card {
+      background-color: #fff;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.03);
     }
   </style>
 </head>
@@ -53,29 +88,29 @@
         </div>
         <nav class="hidden md:flex space-x-10">
             @if($is_default)
-                <a href="/index3" class="text-base font-medium text-gray-500 hover:text-gray-900">Home</a>
-                <a href="/product3" class="text-base font-medium text-gray-500 hover:text-gray-900">Products</a>
+                <a href="/index4" class="text-base font-medium text-gray-500 hover:text-gray-900">Home</a>
+                <a href="/product4" class="text-base font-medium text-gray-500 hover:text-gray-900">Products</a>
             @else
                 @php
                 $currentUrl = request()->url();
                 $headerFooterId = null;
-                if (preg_match('/\/index3\/(\d+)/', $currentUrl, $matches)) {
+                if (preg_match('/\/index4\/(\d+)/', $currentUrl, $matches)) {
                     $headerFooterId = $matches[1];
-                } elseif (preg_match('/\/product3\/(\d+)/', $currentUrl, $matches)) {
+                } elseif (preg_match('/\/product4\/(\d+)/', $currentUrl, $matches)) {
                     $headerFooterId = $matches[1];
                 }
                 @endphp
 
                 @if($headerFooterId)
-                <a href="/index3/{{ $headerFooterId }}" class="text-base font-medium text-gray-500 hover:text-gray-900">Home</a>
-                <a href="/product3/{{ $headerFooterId }}" class="text-base font-medium text-gray-500 hover:text-gray-900">Products</a>
+                <a href="/index4/{{ $headerFooterId }}" class="text-base font-medium text-gray-500 hover:text-gray-900">Home</a>
+                <a href="/product4/{{ $headerFooterId }}" class="text-base font-medium text-gray-500 hover:text-gray-900">Products</a>
                 <a href="#features" id="navFeatures" class="{{ !($headerFooter->features ?? false) ? 'hidden' : '' }} text-base font-medium text-gray-500 hover:text-gray-900">Features</a>
                 <a href="#brands" id="navBrands" class="{{ !($headerFooter->brands ?? false) ? 'hidden' : '' }} text-base font-medium text-gray-500 hover:text-gray-900">Categories</a>
                 <a href="#collection" id="navCollections" class="{{ !($headerFooter->collections ?? false) ? 'hidden' : '' }} text-base font-medium text-gray-500 hover:text-gray-900">Collection</a>
                 <a href="#contact" id="navContact" class="{{ !($headerFooter->contact ?? false) ? 'hidden' : '' }} text-base font-medium text-gray-500 hover:text-gray-900">Contact</a>
                 @else
-                <a href="/index3" class="text-base font-medium text-gray-500 hover:text-gray-900">Home</a>
-                <a href="/product3" class="text-base font-medium text-gray-500 hover:text-gray-900">Products</a>
+                <a href="/index4" class="text-base font-medium text-gray-500 hover:text-gray-900">Home</a>
+                <a href="/product4" class="text-base font-medium text-gray-500 hover:text-gray-900">Products</a>
                 <a href="#features" id="navFeatures" class="{{ !($headerFooter->features ?? false) ? 'hidden' : '' }} text-base font-medium text-gray-500 hover:text-gray-900">Features</a>
                 <a href="#brands" id="navBrands" class="{{ !($headerFooter->brands ?? false) ? 'hidden' : '' }} text-base font-medium text-gray-500 hover:text-gray-900">Categories</a>
                 <a href="#collection" id="navCollections" class="{{ !($headerFooter->collections ?? false) ? 'hidden' : '' }} text-base font-medium text-gray-500 hover:text-gray-900">Collection</a>
@@ -108,17 +143,15 @@
         const response = await fetch('/customer/check-auth');
         const data = await response.json();
         
-        const authButton = document.getElementById('authButton');
-        const authButtonText = document.getElementById('authButtonText');
+        const userButton = document.querySelector('button[onclick="openLoginModal()"]');
+        const userIcon = userButton.querySelector('i');
         
         if (data.signed_in) {
-          authButtonText.textContent = 'Account';
-          authButton.classList.remove('bg-purple-600', 'hover:bg-purple-700');
-          authButton.classList.add('bg-green-600', 'hover:bg-green-700');
+          userIcon.className = 'fas fa-user-check text-green-500';
+          userButton.title = 'Account';
         } else {
-          authButtonText.textContent = 'Sign In';
-          authButton.classList.remove('bg-green-600', 'hover:bg-green-700');
-          authButton.classList.add('bg-purple-600', 'hover:bg-purple-700');
+          userIcon.className = 'fas fa-user text-gray-500';
+          userButton.title = 'Sign In';
         }
       } catch (error) {
         console.error('Error checking auth status:', error);
@@ -127,25 +160,17 @@
 
     // Update auth button after sign in/out
     function updateAuthButton(signedIn) {
-      const authButton = document.getElementById('authButton');
-      const authButtonText = document.getElementById('authButtonText');
+      const userButton = document.querySelector('button[onclick="openLoginModal()"]');
+      const userIcon = userButton.querySelector('i');
       
       if (signedIn) {
-        authButtonText.textContent = 'Account';
-        authButton.classList.remove('bg-purple-600', 'hover:bg-purple-700');
-        authButton.classList.add('bg-green-600', 'hover:bg-green-700');
+        userIcon.className = 'fas fa-user-check text-green-500';
+        userButton.title = 'Account';
       } else {
-        authButtonText.textContent = 'Sign In';
-        authButton.classList.remove('bg-green-600', 'hover:bg-green-700');
-        authButton.classList.add('bg-purple-600', 'hover:bg-purple-700');
+        userIcon.className = 'fas fa-user text-gray-500';
+        userButton.title = 'Sign In';
       }
     }
-
-    // Override the modal functions to update button
-    const originalOpenLoginModal = window.openLoginModal;
-    window.openLoginModal = function() {
-      if (originalOpenLoginModal) originalOpenLoginModal();
-    };
 
     // Check auth on page load
     document.addEventListener('DOMContentLoaded', checkAuthOnLoad);
