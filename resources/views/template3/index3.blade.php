@@ -145,19 +145,19 @@
           <div class="relative group h-80 overflow-hidden rounded-lg">
             <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80" alt="Women's Fashion" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
             <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
-              <h4 class="text-white text-2xl font-medium">Women's</h4>
+              <h4 class="text-white text-2xl font-medium">Women</h4>
             </div>
           </div>
           <div class="relative group h-80 overflow-hidden rounded-lg">
             <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Men's Fashion" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
             <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
-              <h4 class="text-white text-2xl font-medium">Men's</h4>
+              <h4 class="text-white text-2xl font-medium">Men</h4>
             </div>
           </div>
           <div class="relative group h-80 overflow-hidden rounded-lg">
-            <img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Accessories" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+            <img src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Kids' Fashion" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
             <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
-              <h4 class="text-white text-2xl font-medium">Accessories</h4>
+              <h4 class="text-white text-2xl font-medium">Kids</h4>
             </div>
           </div>
         </div>
@@ -170,17 +170,25 @@
           <h3 class="text-3xl font-medium mb-4">{{ $section2->main_text1 }}</h3>
           <p class="text-gray-600 max-w-2xl mx-auto">{{ $section2->sub_text1 }}</p>
         </div>
-        <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
-          @foreach (range(1,6) as $i)
-            <div class="relative group h-80 overflow-hidden rounded-lg">
-              <img src="{{ $section2->{'image'.$i} }}"
-                  alt="Brand {{ $i }}"
-                  class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-              <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
-                <h4 class="text-white text-2xl font-medium">Category {{ $i }}</h4>
-              </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+          <div class="relative group h-80 overflow-hidden rounded-lg">
+            <img src="{{ $section2->image1 }}" alt="Women's Fashion" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+            <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+              <h4 class="text-white text-2xl font-medium">Women</h4>
             </div>
-          @endforeach
+          </div>
+          <div class="relative group h-80 overflow-hidden rounded-lg">
+            <img src="{{ $section2->image2 }}" alt="Men's Fashion" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+            <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+              <h4 class="text-white text-2xl font-medium">Men</h4>
+            </div>
+          </div>
+          <div class="relative group h-80 overflow-hidden rounded-lg">
+            <img src="{{ $section2->image3 }}" alt="Kids' Fashion" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+            <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+              <h4 class="text-white text-2xl font-medium">Kids</h4>
+            </div>
+          </div>
         </div>
       </div>
     </section>

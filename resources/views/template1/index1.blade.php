@@ -2,55 +2,52 @@
 
   <!-- Hero Banner -->
   @if($is_default)
-    <section class="relative bg-gray-900 text-white py-24 text-center overflow-hidden">
-      <div class="absolute inset-0 bg-black opacity-50"></div>
-      <div class="relative z-10 max-w-4xl mx-auto px-4">
-        <h2 class="text-5xl font-bold mb-6">Elegant Fashion for Every Occasion</h2>
-        <p class="text-xl mb-8">Discover our curated collection of stylish boutique pieces</p>
-        <div class="flex flex-col sm:flex-row justify-center gap-4">
-          <button class="bg-pink-600 hover:bg-pink-700 text-white px-8 py-3 rounded-lg font-medium transition">
-            Shop Collection <i class="fas fa-arrow-right ml-2"></i>
-          </button>
-          <button class="bg-transparent hover:bg-white hover:text-gray-900 border-2 border-white text-white px-8 py-3 rounded-lg font-medium transition">
-            Book Appointment
-          </button>
+    <section class="relative h-screen flex items-center justify-center text-center bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1480&q=80');">
+        <div class="absolute inset-0 bg-black opacity-60"></div>
+        <div class="relative z-10 text-white px-4">
+            <h2 class="text-5xl md:text-6xl font-bold mb-6">Elegant Fashion for Every Occasion</h2>
+            <p class="text-xl md:text-2xl mb-8">Discover our curated collection of stylish boutique pieces</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#" class="bg-pink-600 hover:bg-pink-700 text-white px-8 py-3 rounded-lg font-medium transition">
+                    Shop Collection <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+                <a href="#" class="bg-transparent hover:bg-white hover:text-gray-900 border-2 border-white text-white px-8 py-3 rounded-lg font-medium transition">
+                    Book Appointment
+                </a>
+            </div>
         </div>
-      </div>
-      <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1480&q=80" alt="Boutique Fashion" class="absolute inset-0 w-full h-full object-cover">
     </section>
   @else
-    <section class="relative bg-gray-900 text-white py-24 text-center overflow-hidden">
-      <div class="absolute inset-0 bg-black opacity-50"></div>
-      <div class="relative z-10 max-w-4xl mx-auto px-4">
-        <h2 class="text-5xl font-bold mb-6">{{ $homesetting->main_text }}</h2>
-        <p class="text-xl mb-8">{{ $homesetting->sub_text }}</p>
-        @php
-          $currentUrl = request()->url();
-          $headerFooterId = null;
-          if (preg_match('/\/index1\/(\d+)/', $currentUrl, $matches)) {
-            $headerFooterId = $matches[1];
-          }
-        @endphp
-        
-        <div class="flex flex-col sm:flex-row justify-center gap-4">
-          @if($headerFooterId)
-            <button class="bg-pink-600 hover:bg-pink-700 text-white px-8 py-3 rounded-lg font-medium transition" onclick="window.location.href='/product1/{{ $headerFooterId }}'">
-              {{ $homesetting->button1_text }} <i class="fas fa-arrow-right ml-2"></i>
-            </button>
-            <button class="bg-transparent hover:bg-white hover:text-gray-900 border-2 border-white text-white px-8 py-3 rounded-lg font-medium transition" onclick="window.location.href='/product1/{{ $headerFooterId }}'">
-              {{ $homesetting->button2_text }}
-            </button>
-          @else
-            <button class="bg-pink-600 hover:bg-pink-700 text-white px-8 py-3 rounded-lg font-medium transition" onclick="window.location.href='/product1'">
-              {{ $homesetting->button1_text }} <i class="fas fa-arrow-right ml-2"></i>
-            </button>
-            <button class="bg-transparent hover:bg-white hover:text-gray-900 border-2 border-white text-white px-8 py-3 rounded-lg font-medium transition" onclick="window.location.href='/product1'">
-              {{ $homesetting->button2_text }}
-            </button>
-          @endif
+    <section class="relative h-screen flex items-center justify-center text-center bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1480&q=80');">
+        <div class="absolute inset-0 bg-black opacity-60"></div>
+        <div class="relative z-10 text-white px-4">
+            <h2 class="text-5xl md:text-6xl font-bold mb-6">{{ $homesetting->main_text }}</h2>
+            <p class="text-xl md:text-2xl mb-8">{{ $homesetting->sub_text }}</p>
+            @php
+              $currentUrl = request()->url();
+              $headerFooterId = null;
+              if (preg_match('/\/index1\/(\d+)/', $currentUrl, $matches)) {
+                $headerFooterId = $matches[1];
+              }
+            @endphp
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+              @if($headerFooterId)
+                <a href="/product1/{{ $headerFooterId }}" class="bg-pink-600 hover:bg-pink-700 text-white px-8 py-3 rounded-lg font-medium transition">
+                  {{ $homesetting->button1_text }} <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+                <a href="/product1/{{ $headerFooterId }}" class="bg-transparent hover:bg-white hover:text-gray-900 border-2 border-white text-white px-8 py-3 rounded-lg font-medium transition">
+                  {{ $homesetting->button2_text }}
+                </a>
+              @else
+                <a href="/product1" class="bg-pink-600 hover:bg-pink-700 text-white px-8 py-3 rounded-lg font-medium transition">
+                  {{ $homesetting->button1_text }} <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+                <a href="/product1" class="bg-transparent hover:bg-white hover:text-gray-900 border-2 border-white text-white px-8 py-3 rounded-lg font-medium transition">
+                  {{ $homesetting->button2_text }}
+                </a>
+              @endif
+            </div>
         </div>
-      </div>
-      <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1480&q=80" alt="Boutique Fashion" class="absolute inset-0 w-full h-full object-cover">
     </section>
   @endif
 
@@ -118,61 +115,59 @@
   @endif
 
   <!-- Categories -->
-  @if($is_default)
-    <section id="categories" class="py-20 px-6 bg-gray-50">
-      <div class="text-center mb-16">
-        <h3 class="text-3xl font-bold mb-4">Fashion Categories</h3>
-        <p class="max-w-2xl mx-auto text-gray-600">Explore our curated collection of stylish fashion categories</p>
-      </div>
-      <div class="flex flex-wrap justify-center gap-8 max-w-6xl mx-auto">
-        <div class="bg-white p-2 rounded-full brand-logo w-32 h-32 flex items-center justify-center">
-          <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80" alt="Women's Fashion" class="w-full h-full rounded-full object-cover">
+  <section id="categories" class="py-20 px-6 bg-gray-50">
+    <div class="text-center mb-16">
+      <h3 class="text-3xl font-bold mb-4">Shop by Category</h3>
+      <p class="max-w-2xl mx-auto text-gray-600">Find the perfect outfit for any occasion from our curated collections.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+      @php
+        $defaultCategories = [
+            [
+                'name' => 'Men',
+                'image' => 'https://images.unsplash.com/photo-1504593811423-6dd665756598?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80',
+                'description' => 'Sophisticated styles for the modern man.'
+            ],
+            [
+                'name' => 'Women',
+                'image' => 'https://images.unsplash.com/photo-1502323777036-f29e3972d822?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80',
+                'description' => 'Chic and elegant fashion for every woman.'
+            ],
+            [
+                'name' => 'Kids',
+                'image' => 'https://images.unsplash.com/photo-1519340241574-289a8d381619?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80',
+                'description' => 'Fun, stylish, and comfortable clothing for kids.'
+            ]
+        ];
+
+        if ($is_default) {
+            $categoriesToDisplay = $defaultCategories;
+        } else {
+            $categoriesToDisplay = collect([$category1, $category2, $category3])->map(function ($category) {
+                return [
+                    'name' => $category->name,
+                    'image' => $category->image,
+                    'description' => $category->description,
+                ];
+            })->all();
+        }
+      @endphp
+
+      @foreach ($categoriesToDisplay as $category)
+        <div class="relative group overflow-hidden rounded-lg boutique-shadow">
+          <img src="{{ $category['image'] }}" alt="{{ $category['name'] }}" class="w-full h-96 object-cover transition-transform duration-300 group-hover:scale-110">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 p-6 text-white">
+            <h4 class="text-2xl font-bold mb-2">{{ $category['name'] }}</h4>
+            <p class="text-gray-200 mb-4">{{ $category['description'] }}</p>
+            <a href="#" class="font-semibold text-pink-400 hover:text-pink-300 transition">
+              Shop Now <i class="fas fa-arrow-right ml-1"></i>
+            </a>
+          </div>
         </div>
-        <div class="bg-white p-2 rounded-full brand-logo w-32 h-32 flex items-center justify-center">
-          <img src="https://images.unsplash.com/photo-1617137968427-85924c800a22?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Men's Fashion" class="w-full h-full rounded-full object-cover">
-        </div>
-        <div class="bg-white p-2 rounded-full brand-logo w-32 h-32 flex items-center justify-center">
-          <img src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Accessories" class="w-full h-full rounded-full object-cover">
-        </div>
-        <div class="bg-white p-2 rounded-full brand-logo w-32 h-32 flex items-center justify-center">
-          <img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Shoes" class="w-full h-full rounded-full object-cover">
-        </div>
-        <div class="bg-white p-2 rounded-full brand-logo w-32 h-32 flex items-center justify-center">
-          <img src="https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Bags" class="w-full h-full rounded-full object-cover">
-        </div>
-        <div class="bg-white p-2 rounded-full brand-logo w-32 h-32 flex items-center justify-center">
-          <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1480&q=80" alt="Jewelry" class="w-full h-full rounded-full object-cover">
-        </div>
-      </div>
-    </section>
-  @else
-    <section id="categories" class="py-20 px-6 bg-gray-50">
-      <div class="text-center mb-16">
-        <h3 class="text-3xl font-bold mb-4">{{ $section2->main_text1 }}</h3>
-        <p class="max-w-2xl mx-auto text-gray-600">{{ $section2->sub_text1 }}</p>
-      </div>
-      <div class="flex flex-wrap justify-center gap-8 max-w-6xl mx-auto">
-        <div class="bg-white p-2 rounded-full brand-logo w-32 h-32 flex items-center justify-center">
-          <img src="{{ $section2->image1 }}" alt="image1" class="w-full h-full rounded-full object-cover">
-        </div>
-        <div class="bg-white p-2 rounded-full brand-logo w-32 h-32 flex items-center justify-center">
-          <img src="{{ $section2->image2 }}" alt="image2" class="w-full h-full rounded-full object-cover">
-        </div>
-        <div class="bg-white p-2 rounded-full brand-logo w-32 h-32 flex items-center justify-center">
-          <img src="{{ $section2->image3 }}" alt="image3" class="w-full h-full rounded-full object-cover">
-        </div>
-        <div class="bg-white p-2 rounded-full brand-logo w-32 h-32 flex items-center justify-center">
-          <img src="{{ $section2->image4 }}" alt="image4" class="w-full h-full rounded-full object-cover">
-        </div>
-        <div class="bg-white p-2 rounded-full brand-logo w-32 h-32 flex items-center justify-center">
-          <img src="{{ $section2->image5 }}" alt="image5" class="w-full h-full rounded-full object-cover">
-        </div>
-        <div class="bg-white p-2 rounded-full brand-logo w-32 h-32 flex items-center justify-center">
-          <img src="{{ $section2->image6 }}" alt="image6" class="w-full h-full rounded-full object-cover">
-        </div>
-      </div>
-    </section>
-  @endif
+      @endforeach
+    </div>
+  </section>
 
   <!-- Products -->
   @if($is_default)
