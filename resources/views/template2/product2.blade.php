@@ -1,78 +1,125 @@
 @include('template2.head2', ['is_default' => $is_default, 'headerFooter' => $headerFooter])
 
-<main class="bg-gray-100">
-    <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
-        <div class="lg:grid lg:grid-cols-4 lg:gap-8">
-            <div class="hidden lg:block lg:col-span-1">
-                <div class="bg-white rounded-lg shadow-md p-6">
-                    <h3 class="text-lg font-medium text-gray-900 mb-4">Filters</h3>
-                    <form action="{{ url()->current() }}" method="GET">
-                        <div class="space-y-6">
-                            <div>
-                                <label for="sort" class="block text-sm font-medium text-gray-700">Sort by</label>
-                                <select id="sort" name="sort" onchange="this.form.submit()" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm rounded-md">
-                                    <option value="">Default</option>
-                                    <option value="price_asc" {{ request('sort') == 'price_asc' ? 'selected' : '' }}>Price: Low to High</option>
-                                    <option value="price_desc" {{ request('sort') == 'price_desc' ? 'selected' : '' }}>Price: High to Low</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label for="min_price" class="block text-sm font-medium text-gray-700">Price Range</label>
-                                <div class="mt-1 flex space-x-2">
-                                    <input type="number" name="min_price" value="{{ request('min_price') }}" placeholder="Min" class="w-full border-gray-300 rounded-md shadow-sm focus:ring-teal-500 focus:border-teal-500 sm:text-sm">
-                                    <input type="number" name="max_price" value="{{ request('max_price') }}" placeholder="Max" class="w-full border-gray-300 rounded-md shadow-sm focus:ring-teal-500 focus:border-teal-500 sm:text-sm">
-                                </div>
-                            </div>
-                            <div class="pt-4">
-                                <button type="submit" class="w-full bg-teal-600 border border-transparent rounded-md py-2 px-4 flex items-center justify-center text-base font-medium text-white hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500">Apply Filters</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+@if($is_default)
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-white">
+        <!-- Page Title -->
+        <div class="mb-8 text-center">
+            <h2 class="text-3xl font-light mb-4">Curated <span class="font-medium">Collection</span></h2>
+            <p class="text-gray-400 max-w-2xl mx-auto">Exceptional timepieces for the discerning collector</p>
+        </div>
 
-            <div class="lg:col-span-3">
-                <div class="mb-8 text-center">
-                    <h1 class="text-4xl font-extrabold text-gray-900 tracking-tight sm:text-5xl">
-                        @if($is_default)
-                            Our Exclusive Collection
-                        @else
-                            {{ $headerFooter->site_name }}'s Collection
-                        @endif
-                    </h1>
-                    <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-500">
-                        Discover curated pieces for the modern connoisseur.
-                    </p>
+        <!-- Filters Bar -->
+        <div class="flex items-center justify-between mb-8 bg-black p-4 rounded-lg border border-gray-800">
+            <div class="flex items-center space-x-4">
+                <div class="relative">
+                    <button id="filtersBtn" class="flex items-center space-x-2 px-4 py-2 border border-gray-700 rounded-lg hover:border-yellow-600 hover:text-yellow-600 transition-colors">
+                        <span>Filters</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
                 </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-                    @if($is_default)
-                        @include('template2.collection-default')
-                    @else
-                        @foreach($products as $product)
-                            <div class="group relative">
-                                <div class="w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
-                                    <img src="{{$product->image_url}}" alt="{{ $product->name }}" class="w-full h-full object-center object-cover lg:w-full lg:h-full">
-                                </div>
-                                <div class="mt-4 flex justify-between">
-                                    <div>
-                                        <h3 class="text-sm text-gray-700">
-                                            <a href="{{ route('template2.single-product', ['headerFooterId' => $headerFooter->id, 'productId' => $product->id]) }}">
-                                                <span aria-hidden="true" class="absolute inset-0"></span>
-                                                {{ $product->name }}
-                                            </a>
-                                        </h3>
-                                        <p class="mt-1 text-sm text-gray-500">{{ $product->category->name ?? '' }}</p>
-                                    </div>
-                                    <p class="text-sm font-medium text-gray-900">₹{{ number_format($product->price, 2) }}</p>
-                                </div>
-                            </div>
-                        @endforeach
-                    @endif
+                <div class="relative">
+                    <button id="sortBtn" class="flex items-center space-x-2 px-4 py-2 border border-gray-700 rounded-lg hover:border-yellow-600 hover:text-yellow-600 transition-colors">
+                        <span>Sort</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
                 </div>
+                <button class="px-4 py-2 bg-yellow-600 text-black rounded-lg hover:bg-yellow-700">
+                    In stock
+                </button>
             </div>
         </div>
-    </div>
-</main>
+
+        <!-- Product Grid -->
+        <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6" id="productGrid">
+            <!-- Static Product Cards -->
+            @include('template2.collection-default')
+        </div>
+    </main>
+@else
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-white">
+        <!-- Page Title -->
+        <div class="mb-8 text-center">
+            <h2 class="text-3xl font-light mb-4">Best <span class="font-medium">Collections</span></h2>
+            <p class="text-gray-400 mt-2">{{ count($products) }} products</p>
+        </div>
+
+        <!-- Filters Bar -->
+        <div class="flex items-center justify-between mb-8 bg-black p-4 rounded-lg border border-gray-800">
+            <div class="flex items-center space-x-4">
+                <div class="relative">
+                    <button id="filtersBtn" class="flex items-center space-x-2 px-4 py-2 border border-gray-700 rounded-lg hover:border-yellow-600 hover:text-yellow-600 transition-colors">
+                        <span>Filters</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                </div>
+                <div class="relative">
+                    <button id="sortBtn" class="flex items-center space-x-2 px-4 py-2 border border-gray-700 rounded-lg hover:border-yellow-600 hover:text-yellow-600 transition-colors">
+                        <span>Sort</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                </div>
+                <button class="px-4 py-2 bg-yellow-600 text-black rounded-lg hover:bg-yellow-700">
+                    In stock
+                </button>
+            </div>
+        </div>
+
+        <!-- Product Grid -->
+        <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6" id="productGrid">
+            @foreach($products as $product)
+                <div class="bg-black rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow border border-gray-800">
+                    <div class="relative">
+                        @if($product->is_new)
+                            <span class="absolute top-3 left-3 bg-pink-600 text-white px-3 py-1 rounded-full text-xs font-medium z-10">NEW</span>
+                        @elseif($product->is_limited)
+                             <span class="absolute top-3 left-3 bg-red-600 text-white px-3 py-1 rounded-full text-xs font-medium z-10">LIMITED</span>
+                        @endif
+                        <div class="aspect-square bg-gray-900 flex items-center justify-center">
+                             <img src="{{$product->image_url}}" alt="{{ $product->name }}" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-medium text-white mb-2">{{ $product->name }}</h3>
+                        <div class="flex items-center space-x-2 mb-2">
+                            <span class="text-lg font-bold text-yellow-600">${{ number_format($product->price, 2) }}</span>
+                        </div>
+                        <div class="flex items-center mb-3">
+                            <div class="flex items-center">
+                                <span class="text-yellow-500 text-sm">★★★★</span>
+                                <span class="text-gray-600 text-sm">★</span>
+                            </div>
+                            <span class="ml-2 text-sm text-gray-500">76</span> <!-- Placeholder for reviews -->
+                        </div>
+                        <a href="{{ route('template2.single-product', ['headerFooterId' => $headerFooter->id, 'productId' => $product->id]) }}">
+                            <button class="w-full bg-gray-800 hover:bg-gray-700 text-white py-2 px-4 rounded-lg transition-colors">
+                                View Product
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </main>
+@endif
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('filtersBtn')?.addEventListener('click', function() {
+            alert('Filter options would open here');
+        });
+
+        document.getElementById('sortBtn')?.addEventListener('click', function() {
+            alert('Sort options would open here');
+        });
+    });
+</script>
 
 @include('template2.footer2')
