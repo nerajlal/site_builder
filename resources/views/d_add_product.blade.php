@@ -15,9 +15,6 @@
                 <button id="add-brand-btn" class="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors">
                     Add Brands
                 </button>
-                <button id="add-category-btn" class="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors">
-                    Add Categories
-                </button>
                 <button id="add-product-btn" class="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors">
                     Add Products
                 </button>
@@ -47,26 +44,6 @@
                 @endif
             </div>
 
-            <!-- Categories List -->
-            <div class="bg-white rounded-lg shadow p-6">
-                <h2 class="text-lg font-semibold text-gray-800 mb-4">Categories</h2>
-                @if ($categories->count())
-                    <ul class="divide-y divide-gray-200">
-                        @foreach ($categories as $category)
-                            <li class="flex items-center justify-between py-2">
-                                <span>{{ $category->name }}</span>
-                                <form action="{{ route('deleteCategory', $category->id) }}" method="POST" onsubmit="return confirm('Delete this category?');">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="text-red-600 hover:underline">Delete</button>
-                                </form>
-                            </li>
-                        @endforeach
-                    </ul>
-                @else
-                    <p class="text-gray-500">No categories added yet.</p>
-                @endif
-            </div>
         </div>
 
 
@@ -189,9 +166,37 @@
                     <input type="number" name="price" required step="0.01" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500">
                 </div>
                 <div class="w-1/2">
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Quantity</label>
-                    <input type="number" name="quantity" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Original Price</label>
+                    <input type="number" name="original_price" step="0.01" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500">
                 </div>
+            </div>
+            <div class="mb-4">
+                <label class="block text-sm font-medium text-gray-700 mb-1">Quantity</label>
+                <input type="number" name="quantity" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500">
+            </div>
+            <div class="mb-4">
+                <label class="block text-sm font-medium text-gray-700 mb-1">Description</label>
+                <textarea name="description" rows="3" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500"></textarea>
+            </div>
+            <div class="mb-4">
+                <label class="block text-sm font-medium text-gray-700 mb-1">Colors (JSON)</label>
+                <textarea name="colors" rows="2" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500" placeholder='[{"name": "Red", "value": "#ff0000"}, {"name": "Blue", "value": "#0000ff"}]'></textarea>
+            </div>
+            <div class="mb-4">
+                <label class="block text-sm font-medium text-gray-700 mb-1">Sizes (JSON)</label>
+                <textarea name="sizes" rows="2" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500" placeholder='[{"size": "S", "stock": 10}, {"size": "M", "stock": 5}]'></textarea>
+            </div>
+            <div class="mb-4">
+                <label class="block text-sm font-medium text-gray-700 mb-1">Key Features (JSON)</label>
+                <textarea name="key_features" rows="2" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500" placeholder='["100% Cotton", "Summer Perfect"]'></textarea>
+            </div>
+            <div class="mb-4">
+                <label class="block text-sm font-medium text-gray-700 mb-1">Material</label>
+                <input type="text" name="material" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500">
+            </div>
+            <div class="mb-4">
+                <label class="block text-sm font-medium text-gray-700 mb-1">Care Instructions</label>
+                <textarea name="care_instructions" rows="3" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500"></textarea>
             </div>
 
             <div class="flex justify-end space-x-3 pt-4 border-t border-gray-200">
@@ -226,41 +231,18 @@
     </div>
 </div>
 
-<!-- Add Category Modal -->
-<div id="category-modal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
-    <div class="relative top-20 mx-auto p-5 border w-11/12 md:w-1/3 shadow-lg rounded-md bg-white">
-        <div class="flex justify-between items-center pb-3">
-            <h3 class="text-xl font-semibold text-gray-800">Add Category</h3>
-            <button class="close-modal text-gray-500 hover:text-gray-700 text-lg">&times;</button>
-        </div>
-
-        <form id="category-form" method="POST" action="{{ route('storeCategory', $headerFooter->id) }}">
-            @csrf
-            <div class="mb-4">
-                <label class="block text-sm font-medium text-gray-700 mb-1">Category Name</label>
-                <input type="text" name="category_name" required class="w-full px-3 py-2 border border-gray-300 rounded-md">
-            </div>
-            <div class="flex justify-end space-x-3 pt-4 border-t border-gray-200">
-                <button type="button" class="close-modal px-4 py-2 text-gray-700 bg-gray-100 rounded-md hover:bg-gray-200">Cancel</button>
-                <button type="submit" class="px-4 py-2 text-white bg-indigo-600 rounded-md hover:bg-indigo-700">Add Category</button>
-            </div>
-        </form>
-    </div>
-</div>
 
 <!-- ========== JS ========== -->
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const modals = {
             product: document.getElementById('product-modal'),
-            brand: document.getElementById('brand-modal'),
-            category: document.getElementById('category-modal')
+            brand: document.getElementById('brand-modal')
         };
 
         // Buttons
         document.getElementById('add-product-btn').addEventListener('click', () => openModal(modals.product));
         document.getElementById('add-brand-btn').addEventListener('click', () => openModal(modals.brand));
-        document.getElementById('add-category-btn').addEventListener('click', () => openModal(modals.category));
 
         // Modal open/close functions
         function openModal(modal) {
@@ -282,13 +264,12 @@
 
     document.addEventListener('DOMContentLoaded', function () {
         let hasBrands = {{ $brands->count() > 0 ? 'true' : 'false' }};
-        let hasCategories = {{ $categories->count() > 0 ? 'true' : 'false' }};
 
         const addProductBtn = document.getElementById('add-product-btn');
-        if (!hasBrands || !hasCategories) {
+        if (!hasBrands) {
             addProductBtn.disabled = true;
             addProductBtn.classList.add('opacity-50', 'cursor-not-allowed');
-            addProductBtn.title = "Add a brand and category first!";
+            addProductBtn.title = "Add a brand first!";
         }
     });
 

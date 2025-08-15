@@ -54,10 +54,8 @@ Route::get('/data', [TemplateController::class, 'show'])->name('d.storedata');
 Route::get('/add', [TemplateController::class, 'showSites']);
 Route::get('/addproducts/{id}', [TemplateController::class, 'showAddProducts']);
 Route::post('/add-brand/{siteId}', [TemplateController::class, 'storeBrand'])->name('storeBrand');
-Route::post('/add-category/{siteId}', [TemplateController::class, 'storeCategory'])->name('storeCategory');
 Route::post('/add-product/{siteId}', [TemplateController::class, 'storeProduct'])->name('storeProduct');
 Route::delete('/delete-brand/{id}', [TemplateController::class, 'deleteBrand'])->name('deleteBrand');
-Route::delete('/delete-category/{id}', [TemplateController::class, 'deleteCategory'])->name('deleteCategory');
 Route::delete('/delete-product/{id}', [TemplateController::class, 'deleteProduct'])->name('deleteProduct');
 Route::put('/products/update/{id}', [TemplateController::class, 'updateProduct'])->name('updateProduct');
 

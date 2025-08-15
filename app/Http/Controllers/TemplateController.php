@@ -179,30 +179,29 @@ class TemplateController extends Controller
         return back()->with('success', 'Brand added successfully!');
     }
 
-    public function storeCategory(Request $request, $siteId)
-    {
-        Category::create([
-            'name' => $request->category_name,
-            'header_footer_id' => $siteId,
-        ]);
-        return back()->with('success', 'Category added successfully!');
-    }
 
     public function storeProduct(Request $request, $siteId)
     {
-        // Check if brand & category exist
-        if (!Brand::where('header_footer_id', $siteId)->exists() || !Category::where('header_footer_id', $siteId)->exists()) {
-            return back()->with('error', 'You must add at least one brand and category first!');
+        // Check if brand exists
+        if (!Brand::where('header_footer_id', $siteId)->exists()) {
+            return back()->with('error', 'You must add at least one brand first!');
         }
 
         Product::create([
             'name' => $request->product_name,
             'price' => $request->price,
+            'original_price' => $request->original_price,
             'quantity' => $request->quantity,
             'brand_id' => $request->brand,
             'category_id' => $request->category,
             'header_footer_id' => $siteId,
             'image_url' => $request->image_url,
+            'description' => $request->description,
+            'colors' => $request->colors,
+            'sizes' => $request->sizes,
+            'key_features' => $request->key_features,
+            'material' => $request->material,
+            'care_instructions' => $request->care_instructions,
         ]);
 
         return back()->with('success', 'Product added successfully!');
@@ -214,11 +213,6 @@ class TemplateController extends Controller
         return back()->with('success', 'Brand deleted successfully!');
     }
 
-    public function deleteCategory($id)
-    {
-        Category::findOrFail($id)->delete();
-        return back()->with('success', 'Category deleted successfully!');
-    }
 
     public function deleteProduct($id)
     {
