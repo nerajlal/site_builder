@@ -125,9 +125,9 @@
         $categoriesToDisplay = [];
         if ($is_default) {
             $categoriesToDisplay = [
-                ['name' => 'Men', 'image' => 'https://images.unsplash.com/photo-1504593811423-6dd665756598?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80'],
-                ['name' => 'Women', 'image' => 'https://images.unsplash.com/photo-1502323777036-f29e3972d822?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80'],
-                ['name' => 'Kids', 'image' => 'https://images.unsplash.com/photo-1519340241574-289a8d381619?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80'],
+                ['name' => 'Men', 'image' => 'https://images.unsplash.com/photo-1593030103050-5421d74de948?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80'],
+                ['name' => 'Women', 'image' => 'https://images.unsplash.com/photo-1525480122447-64809d765ec4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80'],
+                ['name' => 'Kids', 'image' => 'https://images.unsplash.com/photo-1594225983823-9806a1a593e6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80'],
             ];
         } else {
             $categoryNames = $categories->pluck('name')->all();
