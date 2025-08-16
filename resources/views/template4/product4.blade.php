@@ -181,11 +181,9 @@
                             </div>
                             <span class="ml-2 text-sm text-gray-500">76</span> <!-- Placeholder for reviews -->
                         </div>
-                        <a href="{{ route('template4.single-product', ['headerFooterId' => $headerFooter->id, 'productId' => $product->id]) }}">
                             <button class="w-full btn-pink py-2 rounded font-medium">
                                 View Product
                             </button>
-                        </a>
                     </div>
                 </div>
             @endforeach
