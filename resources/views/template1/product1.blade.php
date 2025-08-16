@@ -182,7 +182,6 @@
                             </div>
                             <span class="ml-2 text-sm text-gray-500">76</span> <!-- Placeholder for reviews -->
                         </div>
-                        <a href="{{ route('template1.single-product', ['headerFooterId' => $headerFooter->id, 'productId' => $product->id]) }}">
                             <button class="w-full bg-gray-900 hover:bg-pink-800 text-white py-2 px-4 rounded-lg font-medium transition flex items-center justify-center">
                                 <i class="fas fa-shopping-bag mr-2"></i> View Product
                             </button>
