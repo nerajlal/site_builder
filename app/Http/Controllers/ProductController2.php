@@ -92,13 +92,19 @@ class ProductController2 extends Controller
     public function showSingleProduct($headerFooterId, $productId)
     {
         $headerFooter = \App\Models\HeaderFooter::find($headerFooterId);
-        $product = \App\Models\Product::find($productId);
+        $product = \App\Models\Product::with('brand')->find($productId);
 
         if (!$headerFooter || !$product) {
             abort(404, 'Product not found');
         }
 
-        return view('template2.single-product2', compact('headerFooter', 'product'))
+        $selectedTemplate = SelectedTemplate::where('header_footer_id', $headerFooterId)->first();
+        if (!$selectedTemplate) {
+            abort(404, 'Template not found for this header/footer.');
+        }
+
+        // Pass all the data
+        return view('template2.single-product2', compact('headerFooter', 'product', 'selectedTemplate'))
             ->with('is_default', false);
     }
 }

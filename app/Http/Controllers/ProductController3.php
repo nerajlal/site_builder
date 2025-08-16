@@ -7,6 +7,8 @@ use App\Models\HeaderFooter;
 use App\Models\Product;
 use App\Models\Feature;
 use App\Models\SelectedTemplate;
+use App\Models\HeaderFooter;
+use App\Models\Product;
 
 class ProductController3 extends Controller
 {
@@ -94,13 +96,19 @@ class ProductController3 extends Controller
     public function showSingleProduct($headerFooterId, $productId)
     {
         $headerFooter = HeaderFooter::find($headerFooterId);
-        $product = Product::find($productId);
+        $product = Product::with('brand')->find($productId);
 
         if (!$headerFooter || !$product) {
             abort(404, 'Product not found');
         }
 
-        return view('template3.single-product3', compact('headerFooter', 'product'))
+        $selectedTemplate = SelectedTemplate::where('header_footer_id', $headerFooterId)->first();
+        if (!$selectedTemplate) {
+            abort(404, 'Template not found for this header/footer.');
+        }
+
+        // Pass all the data
+        return view('template3.single-product3', compact('headerFooter', 'product', 'selectedTemplate'))
             ->with('is_default', false);
     }
 }
