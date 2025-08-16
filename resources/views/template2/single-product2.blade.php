@@ -1,35 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Summer Floral Midi Dress - Boutique</title>
-    <meta name="description" content="Premium cotton floral midi dress perfect for summer occasions. Available in multiple colors and sizes. Free shipping and easy returns.">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#e91e63',
-                        secondary: '#10b981'
-                    }
-                }
-            }
-        }
-
-        // JavaScript state management
-        let currentState = {
-            selectedColor: 'pink',
-            selectedSize: 'M',
-            pinCode: '',
-            quantity: 1,
-            currentImageIndex: 0
-        };
-    </script>
-</head>
-<body class="bg-gray-50">
+@include('template2.head2', ['is_default' => $is_default, 'headerFooter' => $headerFooter])
     
 
     <!-- Product Container -->
@@ -40,8 +9,8 @@
                 <!-- Main Image with Video Support -->
                 <div class="relative group">
                     <div class="aspect-[4/5] bg-pink-100 rounded-lg overflow-hidden">
-                        <div id="mainImage" class="w-full h-full flex items-center justify-center text-gray-300 text-8xl">
-                            <i class="fas fa-image"></i>
+                        <div id="mainImage" class="w-full h-full">
+                            <img src="{{ $product->image_url }}" alt="{{ $product->name }}" class="w-full h-full object-cover">
                         </div>
                         <!-- Try-on Video Button -->
                         <button class="absolute bottom-4 left-4 bg-black/70 text-white px-3 py-2 rounded-lg text-sm opacity-0 group-hover:opacity-100 transition-opacity">
@@ -96,7 +65,7 @@
             <div class="space-y-6">
                 <!-- Product Title & Rating -->
                 <div>
-                    <h1 class="text-3xl font-bold mb-3">Summer Floral Midi Dress</h1>
+                    <h1 class="text-3xl font-bold mb-3">{{ $product->name }}</h1>
                     <div class="flex items-center space-x-4 mb-4">
                         <button class="flex items-center space-x-2 hover:bg-gray-50 p-1 rounded" onclick="scrollToReviews()">
                             <div class="flex text-yellow-400">
@@ -114,9 +83,10 @@
                 <!-- Price Stack -->
                 <div class="space-y-2">
                     <div class="flex items-center space-x-4">
-                        <span class="text-3xl font-bold text-gray-900">₹2,199</span>
-                        <span class="text-xl text-gray-500 line-through">₹3,299</span>
-                        <span class="text-lg text-green-600 font-semibold bg-green-100 px-2 py-1 rounded">-33% OFF</span>
+                        <span class="text-3xl font-bold text-gray-900">₹{{ number_format($product->price, 2) }}</span>
+                        @if($product->old_price)
+                            <span class="text-xl text-gray-500 line-through">₹{{ number_format($product->old_price, 2) }}</span>
+                        @endif
                     </div>
                     <p class="text-sm text-gray-600">Inclusive of all taxes • GST invoice available</p>
                 </div>
@@ -310,7 +280,7 @@
                     <div class="grid md:grid-cols-2 gap-8">
                         <div>
                             <h3 class="text-xl font-semibold mb-4">Product Details</h3>
-                            <p class="text-gray-700 mb-6">Elevate your summer wardrobe with this stunning floral midi dress. Crafted from premium cotton blend fabric, this dress combines comfort with style for the modern woman.</p>
+                            <p class="text-gray-700 mb-6">{{ $product->description }}</p>
                             
                             <div class="space-y-4">
                                 <div>
@@ -1601,5 +1571,4 @@
             console.log('Product page fully initialized');
         });
     </script>
-</body>
-</html>
+@include('template2.footer2')
