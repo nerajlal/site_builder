@@ -139,7 +139,7 @@
         <div class="w-40 h-40 bg-white rounded-full shadow-md flex items-center justify-center
                     transition-all duration-300 hover:scale-110 hover:rotate-3 hover:shadow-xl">
           <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80"
-              alt="Women's Fashion" 
+              alt="Women's Fashion"
               class="object-cover w-32 h-32 opacity-80 hover:opacity-100 transition-opacity duration-300 rounded-full">
         </div>
         <p class="text-center mt-4 text-lg font-medium">Women</p>
@@ -150,7 +150,7 @@
         <div class="w-40 h-40 bg-white rounded-full shadow-md flex items-center justify-center
                     transition-all duration-300 hover:scale-110 hover:rotate-3 hover:shadow-xl">
           <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80"
-              alt="Men's Fashion" 
+              alt="Men's Fashion"
               class="object-cover w-32 h-32 opacity-80 hover:opacity-100 transition-opacity duration-300 rounded-full">
         </div>
         <p class="text-center mt-4 text-lg font-medium">Men</p>
@@ -261,7 +261,7 @@
             <div class="watch-card p-6 rounded-lg border border-gray-100">
               <a href="{{ route('template4.single-product', ['headerFooterId' => $headerFooter->id, 'productId' => $product->id]) }}">
                 <div class="relative h-64 mb-6 overflow-hidden rounded-lg">
-                  <img src="https://images.unsplash.com/photo-1571951103752-53c15cad21e6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="{{ $product->name }}" class="absolute inset-0 w-full h-full object-cover">
+                  <img src="{{ $product->image_url }}" alt="{{ $product->name }}" class="absolute inset-0 w-full h-full object-cover">
                   <div class="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
                   @if($product->is_new)
                     <span class="absolute top-4 right-4 bg-white text-gray-900 text-xs font-medium px-2 py-1 rounded">NEW</span>
