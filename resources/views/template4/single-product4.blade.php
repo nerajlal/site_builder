@@ -12,10 +12,12 @@
                         <div id="mainImage" class="w-full h-full">
                             <img src="{{ $product->image_url }}" alt="{{ $product->name }}" class="w-full h-full object-cover">
                         </div>
+                        @if($product->video_url)
                         <!-- Try-on Video Button -->
-                        <button class="absolute bottom-4 left-4 bg-black/70 text-white px-3 py-2 rounded-lg text-sm opacity-0 group-hover:opacity-100 transition-opacity">
+                        <a href="{{ $product->video_url }}" target="_blank" class="absolute bottom-4 left-4 bg-black/70 text-white px-3 py-2 rounded-lg text-sm opacity-0 group-hover:opacity-100 transition-opacity">
                             <i class="fas fa-play mr-2"></i>Try-on Video
-                        </button>
+                        </a>
+                        @endif
                     </div>
                     <!-- Zoom Button -->
                     <button class="absolute top-4 right-4 p-2 bg-white rounded-full shadow-md opacity-0 group-hover:opacity-100 transition-opacity">
@@ -25,26 +27,21 @@
                 
                 <!-- Image Gallery Thumbnails -->
                 <div class="flex space-x-2 overflow-x-auto pb-2">
-                    <button class="w-20 h-20 bg-pink-200 rounded-lg flex-shrink-0 border-2 border-primary" onclick="changeImage(0)">
-                        <div class="w-full h-full flex items-center justify-center text-gray-400">
-                            <i class="fas fa-image"></i>
-                        </div>
+                    <button class="w-20 h-20 bg-pink-200 rounded-lg flex-shrink-0 border-2 border-primary" onclick="changeImage('{{ $product->image_url }}')">
+                        <img src="{{ $product->image_url }}" alt="{{ $product->name }}" class="w-full h-full object-cover rounded-lg">
                     </button>
-                    <button class="w-20 h-20 bg-pink-100 rounded-lg flex-shrink-0 border border-gray-200 hover:border-primary" onclick="changeImage(1)">
-                        <div class="w-full h-full flex items-center justify-center text-gray-400">
-                            <i class="fas fa-image"></i>
-                        </div>
-                    </button>
-                    <button class="w-20 h-20 bg-pink-100 rounded-lg flex-shrink-0 border border-gray-200 hover:border-primary" onclick="changeImage(2)">
-                        <div class="w-full h-full flex items-center justify-center text-gray-400">
-                            <i class="fas fa-image"></i>
-                        </div>
-                    </button>
-                    <button class="w-20 h-20 bg-pink-100 rounded-lg flex-shrink-0 border border-gray-200 hover:border-primary" onclick="changeImage(3)">
-                        <div class="w-full h-full flex items-center justify-center text-gray-400">
-                            <i class="fas fa-video text-primary"></i>
-                        </div>
-                    </button>
+                    @if($product->images)
+                        @foreach($product->images as $image)
+                        <button class="w-20 h-20 bg-pink-100 rounded-lg flex-shrink-0 border border-gray-200 hover:border-primary" onclick="changeImage('{{ $image }}')">
+                            <img src="{{ $image }}" alt="{{ $product->name }}" class="w-full h-full object-cover rounded-lg">
+                        </button>
+                        @endforeach
+                    @endif
+                    @if($product->video_url)
+                    <a href="{{ $product->video_url }}" target="_blank" class="w-20 h-20 bg-pink-100 rounded-lg flex-shrink-0 border border-gray-200 hover:border-primary flex items-center justify-center text-gray-400">
+                        <i class="fas fa-video text-primary"></i>
+                    </a>
+                    @endif
                 </div>
 
                 <!-- Social Proof Gallery -->
@@ -84,73 +81,63 @@
                 <div class="space-y-2">
                     <div class="flex items-center space-x-4">
                         <span class="text-3xl font-bold text-gray-900">₹{{ number_format($product->price, 2) }}</span>
-                        @if($product->old_price)
-                            <span class="text-xl text-gray-500 line-through">₹{{ number_format($product->old_price, 2) }}</span>
+                        @if($product->original_price)
+                            <span class="text-xl text-gray-500 line-through">₹{{ number_format($product->original_price, 2) }}</span>
                         @endif
                     </div>
                     <p class="text-sm text-gray-600">Inclusive of all taxes • GST invoice available</p>
                 </div>
 
                 <!-- Key Features -->
+                @if($product->key_features)
                 <div class="bg-blue-50 p-4 rounded-lg">
                     <div class="grid grid-cols-3 gap-4 text-sm">
+                        @foreach($product->key_features as $feature)
                         <div class="flex items-center space-x-2">
-                            <i class="fas fa-leaf text-green-600"></i>
-                            <span>100% Cotton</span>
+                            <i class="fas fa-check text-green-600"></i>
+                            <span>{{ $feature }}</span>
                         </div>
-                        <div class="flex items-center space-x-2">
-                            <i class="fas fa-sun text-yellow-600"></i>
-                            <span>Summer Perfect</span>
-                        </div>
-                        <div class="flex items-center space-x-2">
-                            <i class="fas fa-sparkles text-purple-600"></i>
-                            <span>Premium Quality</span>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
+                @endif
 
                 <!-- Color Selection -->
+                @if($product->colors)
                 <div>
-                    <h3 class="text-sm font-semibold mb-3">Color: <span id="selectedColorName">Pink Floral</span></h3>
+                    <h3 class="text-sm font-semibold mb-3">Color: <span id="selectedColorName"></span></h3>
                     <div class="flex space-x-3">
-                        <button class="color-btn w-10 h-10 rounded-full bg-pink-400 border-2 border-primary shadow-md relative" onclick="selectColor('pink', 'Pink Floral')" data-color="pink">
-                            <i class="fas fa-check text-white text-sm absolute inset-0 flex items-center justify-center"></i>
+                        @foreach($product->colors as $color)
+                        <button class="color-btn w-10 h-10 rounded-full border-2 border-gray-200 hover:border-gray-400 shadow-md"
+                                onclick="selectColor('{{ $color }}', '{{ $color }}')"
+                                data-color="{{ $color }}"
+                                style="background-color: {{ $color }};">
                         </button>
-                        <button class="color-btn w-10 h-10 rounded-full bg-blue-400 border-2 border-gray-200 hover:border-gray-400 shadow-md" onclick="selectColor('blue', 'Blue Floral')" data-color="blue"></button>
-                        <button class="color-btn w-10 h-10 rounded-full bg-green-400 border-2 border-gray-200 hover:border-gray-400 shadow-md" onclick="selectColor('green', 'Green Floral')" data-color="green"></button>
-                        <button class="color-btn w-10 h-10 rounded-full bg-yellow-400 border-2 border-gray-200 hover:border-gray-400 shadow-md" onclick="selectColor('yellow', 'Yellow Floral')" data-color="yellow"></button>
+                        @endforeach
                     </div>
                 </div>
+                @endif
 
                 <!-- Size Selection with Stock Info -->
+                @if($product->sizes)
                 <div>
                     <div class="flex items-center justify-between mb-3">
-                        <h3 class="text-sm font-semibold">Size: <span id="selectedSizeName">M</span></h3>
+                        <h3 class="text-sm font-semibold">Size: <span id="selectedSizeName"></span></h3>
                         <button class="text-sm text-primary hover:underline" onclick="openSizeGuide()">Size Guide</button>
                     </div>
                     <div class="grid grid-cols-5 gap-2 mb-2">
-                        <button class="size-btn py-3 text-center border rounded hover:border-gray-400 text-gray-400 relative" disabled data-size="XS">
-                            <span>XS</span>
-                            <div class="absolute -top-1 -right-1 w-2 h-2 bg-red-500 rounded-full"></div>
+                        @foreach($product->sizes as $size)
+                        <button class="size-btn py-3 text-center border rounded hover:border-primary"
+                                onclick="selectSize('{{ $size }}')"
+                                data-size="{{ $size }}"
+                                data-stock="{{ $product->quantity }}">
+                            <span>{{ $size }}</span>
                         </button>
-                        <button class="size-btn py-3 text-center border rounded hover:border-primary" onclick="selectSize('S')" data-size="S" data-stock="5">
-                            <span>S</span>
-                        </button>
-                        <button class="size-btn py-3 text-center border-2 border-primary bg-primary text-white" onclick="selectSize('M')" data-size="M" data-stock="3">
-                            <span>M</span>
-                        </button>
-                        <button class="size-btn py-3 text-center border rounded hover:border-primary" onclick="selectSize('L')" data-size="L" data-stock="8">
-                            <span>L</span>
-                        </button>
-                        <button class="size-btn py-3 text-center border rounded hover:border-primary" onclick="selectSize('XL')" data-size="XL" data-stock="2">
-                            <span>XL</span>
-                        </button>
+                        @endforeach
                     </div>
-                    <p class="text-sm text-orange-600" id="stockInfo">Only 3 left in M size!</p>
-                    <button class="text-sm text-primary hover:underline mt-1" onclick="notifyWhenAvailable()">
-                        <i class="fas fa-bell mr-1"></i>Notify when XS is back in stock
-                    </button>
+                    <p class="text-sm text-orange-600" id="stockInfo"></p>
                 </div>
+                @endif
 
                 <!-- PIN Code Check -->
                 <div class="bg-gray-50 p-4 rounded-lg">
@@ -283,48 +270,34 @@
                             <p class="text-gray-700 mb-6">{{ $product->description }}</p>
                             
                             <div class="space-y-4">
+                                @if($product->product_details_features)
                                 <div>
                                     <h4 class="font-semibold mb-2">Key Features:</h4>
                                     <ul class="space-y-2 text-gray-700">
+                                        @foreach($product->product_details_features as $feature)
                                         <li class="flex items-start space-x-2">
                                             <i class="fas fa-check text-green-600 mt-1"></i>
-                                            <span>Premium 100% cotton blend for breathability</span>
+                                            <span>{{ $feature }}</span>
                                         </li>
-                                        <li class="flex items-start space-x-2">
-                                            <i class="fas fa-check text-green-600 mt-1"></i>
-                                            <span>Midi length perfect for versatile styling</span>
-                                        </li>
-                                        <li class="flex items-start space-x-2">
-                                            <i class="fas fa-check text-green-600 mt-1"></i>
-                                            <span>Vibrant floral print that won't fade</span>
-                                        </li>
-                                        <li class="flex items-start space-x-2">
-                                            <i class="fas fa-check text-green-600 mt-1"></i>
-                                            <span>Comfortable fit with slight stretch</span>
-                                        </li>
+                                        @endforeach
                                     </ul>
                                 </div>
+                                @endif
                             </div>
                         </div>
                         
+                        @if($product->styling_tips)
                         <div>
                             <h4 class="font-semibold mb-4">Styling Tips:</h4>
                             <div class="space-y-4">
+                                @foreach($product->styling_tips as $tip)
                                 <div class="bg-gray-50 p-4 rounded-lg">
-                                    <h5 class="font-medium mb-2">Casual Day Look</h5>
-                                    <p class="text-sm text-gray-700">Pair with white sneakers and a denim jacket for a relaxed, everyday style.</p>
+                                    <p class="text-sm text-gray-700">{{ $tip }}</p>
                                 </div>
-                                <div class="bg-gray-50 p-4 rounded-lg">
-                                    <h5 class="font-medium mb-2">Evening Elegance</h5>
-                                    <p class="text-sm text-gray-700">Style with heeled sandals and statement jewelry for dinner dates or events.</p>
-                                </div>
-                                <div class="bg-gray-50 p-4 rounded-lg">
-                                    <h5 class="font-medium mb-2">Office Ready</h5>
-                                    <p class="text-sm text-gray-700">Layer with a blazer and pumps for a professional yet feminine look.</p>
-                                </div>
+                                @endforeach
                             </div>
-
                         </div>
+                        @endif
                     </div>
                 </div>
 
@@ -334,30 +307,29 @@
                         <div>
                             <h3 class="text-xl font-semibold mb-4">Fit & Measurements</h3>
                             <div class="space-y-4">
+                                @if($product->model_info)
                                 <div class="bg-blue-50 p-4 rounded-lg">
                                     <h4 class="font-semibold mb-3">Model Information</h4>
                                     <div class="space-y-2 text-sm">
-                                        <p><strong>Height:</strong> 5'7" (170 cm)</p>
-                                        <p><strong>Bust:</strong> 34"</p>
-                                        <p><strong>Waist:</strong> 26"</p>
-                                        <p><strong>Hips:</strong> 36"</p>
-                                        <p><strong>Wearing Size:</strong> M</p>
+                                        @foreach($product->model_info as $info)
+                                        <p>{{ $info }}</p>
+                                        @endforeach
                                     </div>
                                 </div>
+                                @endif
                                 
+                                @if($product->garment_details)
                                 <div>
                                     <h4 class="font-semibold mb-3">Garment Details</h4>
                                     <div class="space-y-2 text-sm">
-                                        <p><strong>Fit Type:</strong> Regular fit</p>
-                                        <p><strong>Length:</strong> Midi (44" for size M)</p>
-                                        <p><strong>Sleeve:</strong> Short sleeve</p>
-                                        <p><strong>Neckline:</strong> Round neck</p>
-                                        <p><strong>Closure:</strong> Pullover style</p>
-                                        <p><strong>Transparency:</strong> Not transparent</p>
-                                        <p><strong>Stretch:</strong> Slight stretch</p>
+                                        @foreach($product->garment_details as $detail)
+                                        <p>{{ $detail }}</p>
+                                        @endforeach
                                     </div>
                                 </div>
+                                @endif
 
+                                @if($product->size_chart)
                                 <!-- Size Chart -->
                                 <div>
                                     <h4 class="font-semibold mb-3">Size Chart</h4>
@@ -365,77 +337,67 @@
                                         <table class="w-full text-sm border border-gray-300">
                                             <thead class="bg-gray-100">
                                                 <tr>
-                                                    <td class="border border-gray-300 p-2 font-medium">XL</td>
-                                                    <td class="border border-gray-300 p-2">40" / 102 cm</td>
-                                                    <td class="border border-gray-300 p-2">34" / 86 cm</td>
-                                                    <td class="border border-gray-300 p-2">48" / 122 cm</td>
+                                                    @foreach($product->size_chart[0] as $header)
+                                                    <th class="border border-gray-300 p-2 font-medium">{{ $header }}</th>
+                                                    @endforeach
                                                 </tr>
+                                            </thead>
+                                            <tbody>
+                                                @for($i = 1; $i < count($product->size_chart); $i++)
+                                                <tr>
+                                                    @foreach($product->size_chart[$i] as $cell)
+                                                    <td class="border border-gray-300 p-2">{{ $cell }}</td>
+                                                    @endforeach
+                                                </tr>
+                                                @endfor
                                             </tbody>
                                         </table>
                                     </div>
-                                    <p class="text-xs text-gray-600 mt-2">*All measurements are approximate and may vary by 1-2 cm</p>
                                 </div>
+                                @endif
                             </div>
                         </div>
                         
                         <div>
                             <h3 class="text-xl font-semibold mb-4">Materials & Care</h3>
                             <div class="space-y-6">
+                                @if($product->fabric_details)
                                 <div>
                                     <h4 class="font-semibold mb-3">Fabric Details</h4>
                                     <div class="space-y-2 text-sm">
-                                        <p><strong>Material:</strong> 100% Cotton</p>
-                                        <p><strong>Weight:</strong> Medium weight (180 GSM)</p>
-                                        <p><strong>Weave:</strong> Plain weave</p>
-                                        <p><strong>Feel:</strong> Soft and breathable</p>
-                                        <p><strong>Origin:</strong> Made in India</p>
-                                        <p><strong>Lining:</strong> Not lined</p>
+                                        @foreach($product->fabric_details as $detail)
+                                        <p>{{ $detail }}</p>
+                                        @endforeach
                                     </div>
                                 </div>
+                                @endif
 
+                                @if($product->care_instructions)
                                 <div>
                                     <h4 class="font-semibold mb-3">Care Instructions</h4>
                                     <div class="grid grid-cols-2 gap-4">
+                                        @foreach($product->care_instructions as $instruction)
                                         <div class="flex items-center space-x-3 p-3 bg-blue-50 rounded-lg">
-                                            <i class="fas fa-tint text-blue-500 text-xl"></i>
+                                            <i class="fas fa-info-circle text-blue-500 text-xl"></i>
                                             <div>
-                                                <p class="font-medium">Machine Wash</p>
-                                                <p class="text-xs text-gray-600">Cold water (30°C)</p>
+                                                <p class="font-medium">{{ $instruction }}</p>
                                             </div>
                                         </div>
-                                        <div class="flex items-center space-x-3 p-3 bg-yellow-50 rounded-lg">
-                                            <i class="fas fa-sun text-yellow-500 text-xl"></i>
-                                            <div>
-                                                <p class="font-medium">Tumble Dry</p>
-                                                <p class="text-xs text-gray-600">Low heat setting</p>
-                                            </div>
-                                        </div>
-                                        <div class="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
-                                            <i class="fas fa-iron text-gray-600 text-xl"></i>
-                                            <div>
-                                                <p class="font-medium">Iron</p>
-                                                <p class="text-xs text-gray-600">Medium heat</p>
-                                            </div>
-                                        </div>
-                                        <div class="flex items-center space-x-3 p-3 bg-red-50 rounded-lg">
-                                            <i class="fas fa-ban text-red-500 text-xl"></i>
-                                            <div>
-                                                <p class="font-medium">Do Not Bleach</p>
-                                                <p class="text-xs text-gray-600">Any type of bleach</p>
-                                            </div>
-                                        </div>
+                                        @endforeach
                                     </div>
                                 </div>
+                                @endif
 
+                                @if($product->care_tips)
                                 <div class="bg-green-50 p-4 rounded-lg">
                                     <h4 class="font-semibold mb-2 text-green-800">Care Tips</h4>
                                     <ul class="text-sm text-green-700 space-y-1">
-                                        <li>• Wash with similar colors</li>
-                                        <li>• Turn inside out before washing</li>
-                                        <li>• Remove immediately after wash cycle</li>
-                                        <li>• Store on hangers to prevent wrinkles</li>
+                                        @foreach($product->care_tips as $tip)
+                                        <li>• {{ $tip }}</li>
+                                        @endforeach
                                     </ul>
                                 </div>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -1177,100 +1139,37 @@
         });
     </script>
 
-    <!-- JSON-LD Structured Data -->
-    <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org/",
         "@type": "Product",
-        "name": "Summer Floral Midi Dress",
+        "name": "{{ $product->name }}",
         "image": [
-            "/images/summer-floral-midi-1.jpg",
-            "/images/summer-floral-midi-2.jpg",
-            "/images/summer-floral-midi-3.jpg"
+            "{{ $product->image_url }}",
+            @if($product->images)
+                @foreach($product->images as $image)
+                    "{{ $image }}",
+                @endforeach
+            @endif
         ],
-        "description": "Elevate your summer wardrobe with this stunning floral midi dress. Crafted from premium cotton blend fabric, this dress combines comfort with style for the modern woman.",
-        "sku": "SFD-001",
-        "mpn": "SFD-001-PINK-M",
+        "description": "{{ $product->description }}",
+        "sku": "{{ $product->sku }}",
         "brand": {
             "@type": "Brand",
-            "name": "Boutique"
-        },
-        "review": {
-            "@type": "Review",
-            "reviewRating": {
-                "@type": "Rating",
-                "ratingValue": 4.2,
-                "bestRating": 5
-            },
-            "author": {
-                "@type": "Person",
-                "name": "Priya S."
-            }
-        },
-        "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": 4.2,
-            "reviewCount": 128
+            "name": "{{ $product->brand->name ?? 'Boutique' }}"
         },
         "offers": {
             "@type": "Offer",
-            "url": "https://boutique.com/summer-floral-midi-dress",
+            "url": "{{ url()->current() }}",
             "priceCurrency": "INR",
-            "price": 2199,
-            "priceValidUntil": "2025-12-31",
+            "price": "{{ $product->price }}",
             "itemCondition": "https://schema.org/NewCondition",
             "availability": "https://schema.org/InStock",
             "seller": {
                 "@type": "Organization",
                 "name": "Boutique"
-            },
-            "shippingDetails": {
-                "@type": "OfferShippingDetails",
-                "shippingRate": {
-                    "@type": "MonetaryAmount",
-                    "value": 0,
-                    "currency": "INR"
-                },
-                "deliveryTime": {
-                    "@type": "ShippingDeliveryTime",
-                    "handlingTime": {
-                        "@type": "QuantitativeValue",
-                        "minValue": 1,
-                        "maxValue": 2,
-                        "unitCode": "DAY"
-                    },
-                    "transitTime": {
-                        "@type": "QuantitativeValue",
-                        "minValue": 2,
-                        "maxValue": 7,
-                        "unitCode": "DAY"
-                    }
-                }
             }
-        },
-        "additionalProperty": [
-            {
-                "@type": "PropertyValue",
-                "name": "Material",
-                "value": "100% Cotton"
-            },
-            {
-                "@type": "PropertyValue",
-                "name": "Fit",
-                "value": "Regular Fit"
-            },
-            {
-                "@type": "PropertyValue",
-                "name": "Length",
-                "value": "Midi"
-            },
-            {
-                "@type": "PropertyValue",
-                "name": "Season",
-                "value": "Summer"
-            }
-        ]
+        }
     }
     </script>
 
