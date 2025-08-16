@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Models\HeaderFooter;
 use App\Models\HomeSetting;
 use App\Models\Section1;
-use App\Models\Section2;
 use App\Models\Testimonial;
 use App\Models\ContactUs;
 use App\Models\Brand;
@@ -22,11 +21,10 @@ class TemplateController extends Controller
         $headerFooter = HeaderFooter::where('user_id', $userId)->first();
         $homeSetting  = HomeSetting::where('user_id', $userId)->first();
         $section1     = Section1::where('header_footer_id', $headerFooter->id ?? 0)->first();
-        $section2     = Section2::where('header_footer_id', $headerFooter->id ?? 0)->first();
         $testimonial = Testimonial::where('header_footer_id', $headerFooter->id ?? 0)->first();
         $contactUs = ContactUs::where('header_footer_id', $headerFooter->id ?? 0)->first();
 
-        return view('d_storedata', compact('headerFooter', 'homeSetting', 'section1', 'section2', 'testimonial', 'contactUs'));
+        return view('d_storedata', compact('headerFooter', 'homeSetting', 'section1', 'testimonial', 'contactUs'));
     }
 
     public function store(Request $request)
@@ -91,25 +89,6 @@ class TemplateController extends Controller
         Section1::updateOrCreate(
             ['header_footer_id' => $headerFooter->id],
             $validatedSection1
-        );
-
-        // SECTION 2
-        $validatedSection2 = $request->validate([
-            'main_text1'  => 'nullable|string|max:255',
-            'sub_text1'   => 'nullable|string|max:255',
-            'image1'     => 'nullable|string|max:255',
-            'image2'     => 'nullable|string|max:255',
-            'image3'     => 'nullable|string|max:255',
-            'image4'     => 'nullable|string|max:255',
-            'image5'     => 'nullable|string|max:255',
-            'image6'     => 'nullable|string|max:255',
-        ]);
-
-        $validatedSection2['header_footer_id'] = $headerFooter->id;
-
-        Section2::updateOrCreate(
-            ['header_footer_id' => $headerFooter->id],
-            $validatedSection2
         );
 
         // TESTIMONIAL SECTION

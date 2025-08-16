@@ -133,33 +133,21 @@
         Explore our curated collection of premium fashion categories
       </p>
     </div>
-    <div class="grid grid-cols-3 md:grid-cols-3 gap-8">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
       @php
-        $categoriesToDisplay = [];
-        if ($is_default) {
-            $categoriesToDisplay = [
-                ['name' => 'Women', 'image' => 'https://images.unsplash.com/photo-1509631199589-918a2b57a444?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80'],
-                ['name' => 'Men', 'image' => 'https://images.unsplash.com/photo-1503189154233-3d7c0042a201?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80'],
-                ['name' => 'Kids', 'image' => 'https://images.unsplash.com/photo-1520881363902-a0ff9e72011e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80'],
-            ];
-        } else {
-            $categoryNames = $categories->pluck('name')->all();
-            $categoryImages = [$section2->image1, $section2->image2, $section2->image3];
-            for ($i = 0; $i < 3; $i++) {
-                $categoriesToDisplay[] = [
-                    'name' => $categoryNames[$i] ?? 'Category ' . ($i + 1),
-                    'image' => $categoryImages[$i] ?? 'https://via.placeholder.com/400x400',
-                ];
-            }
-        }
+        $categories = [
+            ['name' => 'Women', 'image' => 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=720&q=80'],
+            ['name' => 'Men', 'image' => 'https://images.unsplash.com/photo-1521119989659-a83eee488004?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=723&q=80'],
+            ['name' => 'Kids', 'image' => 'https://images.unsplash.com/photo-1562572523-383c8932630a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80'],
+        ];
       @endphp
-      @foreach ($categoriesToDisplay as $category)
-      <div class="relative group overflow-hidden rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
-        <img src="{{ $category['image'] }}" alt="{{ $category['name'] }}" class="w-full h-96 object-cover">
+      @foreach ($categories as $category)
+      <div class="relative group overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+        <img src="{{ $category['image'] }}" alt="{{ $category['name'] }}" class="w-full h-96 object-cover transition-transform duration-300 group-hover:scale-105">
         <div class="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition-colors duration-300"></div>
         <div class="absolute bottom-0 left-0 right-0 p-6">
           <h4 class="text-white text-2xl font-serif font-semibold drop-shadow-md">{{ $category['name'] }}</h4>
-          <div class="h-0.5 bg-pink-500 w-16 mt-2"></div>
+          <div class="h-0.5 bg-pink-500 w-16 mt-2 transition-all duration-300 group-hover:w-24"></div>
         </div>
         <a href="#" class="absolute inset-0" aria-label="Shop {{ $category['name'] }}"></a>
       </div>

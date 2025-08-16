@@ -122,26 +122,13 @@
     </div>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
       @php
-        $categoriesToDisplay = [];
-        if ($is_default) {
-            $categoriesToDisplay = [
-                ['name' => 'Men', 'image' => 'https://images.unsplash.com/photo-1593030103050-5421d74de948?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80'],
-                ['name' => 'Women', 'image' => 'https://images.unsplash.com/photo-1525480122447-64809d765ec4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80'],
-                ['name' => 'Kids', 'image' => 'https://images.unsplash.com/photo-1594225983823-9806a1a593e6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80'],
-            ];
-        } else {
-            $categoryNames = $categories->pluck('name')->all();
-            $categoryImages = [$section2->image1, $section2->image2, $section2->image3];
-            for ($i = 0; $i < 3; $i++) {
-                $categoriesToDisplay[] = [
-                    'name' => $categoryNames[$i] ?? 'Category ' . ($i + 1),
-                    'image' => $categoryImages[$i] ?? 'https://via.placeholder.com/400x500',
-                ];
-            }
-        }
+        $categories = [
+            ['name' => 'Women', 'image' => 'https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80'],
+            ['name' => 'Men', 'image' => 'https://images.unsplash.com/photo-1490114538077-0a7f8cb49891?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80'],
+            ['name' => 'Kids', 'image' => 'https://images.unsplash.com/photo-1605595438176-a0b1c0a7c936?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80'],
+        ];
       @endphp
-
-      @foreach ($categoriesToDisplay as $category)
+      @foreach ($categories as $category)
         <div class="relative group overflow-hidden rounded-xl border border-gray-200/50 shadow-sm hover:shadow-xl transition-all duration-300 ease-in-out">
           <div class="aspect-w-1 aspect-h-1">
             <img src="{{ $category['image'] }}" alt="{{ $category['name'] }}" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
