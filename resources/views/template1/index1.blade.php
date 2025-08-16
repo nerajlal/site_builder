@@ -140,17 +140,17 @@
             ]
         ];
 
-        if ($is_default) {
+        // if ($is_default) {
             $categoriesToDisplay = $defaultCategories;
-        } else {
-            $categoriesToDisplay = collect([$category1, $category2, $category3])->map(function ($category) {
-                return [
-                    'name' => $category->name,
-                    'image' => $category->image,
-                    'description' => $category->description,
-                ];
-            })->all();
-        }
+        // } else {
+        //     $categoriesToDisplay = collect([$category1, $category2, $category3])->map(function ($category) {
+        //         return [
+        //             'name' => $category->name,
+        //             'image' => $category->image,
+        //             'description' => $category->description,
+        //         ];
+        //     })->all();
+        // }
       @endphp
 
       @foreach ($categoriesToDisplay as $category)
@@ -166,7 +166,8 @@
           </div>
         </div>
       @endforeach
-    </div>
+</div>
+
   </section>
 
   <!-- Products -->

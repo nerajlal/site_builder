@@ -134,89 +134,48 @@
 @endif
 
 <!-- Categories -->
-@if($is_default)
-  <section id="brands" class="py-20 px-6 bg-black">
-    <div class="max-w-7xl mx-auto">
-      <div class="text-center mb-16">
-        <h3 class="text-3xl font-light mb-4">
-          <span class="font-medium">Fashion Categories</span>
-        </h3>
-        <p class="text-gray-400 max-w-2xl mx-auto">
-          Explore our curated collection of premium fashion categories
-        </p>
+<section id="brands" class="py-20 px-6 bg-black">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-16">
+      <h3 class="text-3xl font-light mb-4">
+        <span class="font-medium">Fashion Categories</span>
+      </h3>
+      <p class="text-gray-400 max-w-2xl mx-auto">
+        Explore our curated collection of premium fashion categories
+      </p>
+    </div>
+    <div class="grid grid-cols-3 gap-8">
+      <!-- Category Item -->
+      <div class="flex flex-col items-center justify-center p-6">
+        <div class="w-40 h-40 rounded-lg bg-white overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80"
+              alt="Women's Fashion"
+              class="w-full h-full object-cover">
+        </div>
+        <p class="text-center mt-4 text-lg font-medium">Women</p>
       </div>
-      <div class="grid grid-cols-3 gap-8">
-        <!-- Category Item -->
-        <div class="flex flex-col items-center justify-center p-6">
-          <div class="w-40 h-40 rounded-lg bg-white overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80"
-                alt="Women's Fashion"
-                class="w-full h-full object-cover">
-          </div>
-          <p class="text-center mt-4 text-lg font-medium">Women</p>
-        </div>
 
-        <div class="flex flex-col items-center justify-center p-6">
-          <div class="w-40 h-40 rounded-lg bg-white overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80"
-                alt="Men's Fashion"
-                class="w-full h-full object-cover">
-          </div>
-          <p class="text-center mt-4 text-lg font-medium">Men</p>
+      <div class="flex flex-col items-center justify-center p-6">
+        <div class="w-40 h-40 rounded-lg bg-white overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80"
+              alt="Men's Fashion"
+              class="w-full h-full object-cover">
         </div>
+        <p class="text-center mt-4 text-lg font-medium">Men</p>
+      </div>
 
-        <div class="flex flex-col items-center justify-center p-6">
-          <div class="w-40 h-40 rounded-lg bg-white overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
-                alt="Kids' Fashion"
-                class="w-full h-full object-cover">
-          </div>
-          <p class="text-center mt-4 text-lg font-medium">Kids</p>
+      <div class="flex flex-col items-center justify-center p-6">
+        <div class="w-40 h-40 rounded-lg bg-white overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+              alt="Kids' Fashion"
+              class="w-full h-full object-cover">
         </div>
+        <p class="text-center mt-4 text-lg font-medium">Kids</p>
       </div>
     </div>
-  </section>
-@else
-  <section id="brands" class="py-20 px-6 bg-black">
-    <div class="max-w-7xl mx-auto">
-      <div class="text-center mb-16">
-        <h3 class="text-3xl font-light mb-4">
-          <span class="font-medium">{{ $section2->main_text1 }}</span>
-        </h3>
-        <p class="text-gray-400 max-w-2xl mx-auto">{{ $section2->sub_text1 }}</p>
-      </div>
-      <div class="grid grid-cols-3 gap-8">
-        <!-- Category Item -->
-        <div class="flex flex-col items-center justify-center p-6">
-          <div class="w-40 h-40 rounded-lg bg-white overflow-hidden">
-            <img src="{{ $section2->image1 }}"
-                alt="Women's Fashion"
-                class="w-full h-full object-cover">
-          </div>
-          <p class="text-center mt-4 text-lg font-medium">Women</p>
-        </div>
+  </div>
+</section>
 
-        <div class="flex flex-col items-center justify-center p-6">
-          <div class="w-40 h-40 rounded-lg bg-white overflow-hidden">
-            <img src="{{ $section2->image2 }}"
-                alt="Men's Fashion"
-                class="w-full h-full object-cover">
-          </div>
-          <p class="text-center mt-4 text-lg font-medium">Men</p>
-        </div>
-
-        <div class="flex flex-col items-center justify-center p-6">
-          <div class="w-40 h-40 rounded-lg bg-white overflow-hidden">
-            <img src="{{ $section2->image3 }}"
-                alt="Kids' Fashion"
-                class="w-full h-full object-cover">
-          </div>
-          <p class="text-center mt-4 text-lg font-medium">Kids</p>
-        </div>
-      </div>
-    </div>
-  </section>
-@endif
 
 <!-- Collection -->
 @if($is_default)
