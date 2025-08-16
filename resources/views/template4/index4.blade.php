@@ -154,12 +154,14 @@
         }
       @endphp
       @foreach ($categoriesToDisplay as $category)
-      <div class="group">
-        <div class="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8">
-          <img src="{{ $category['image'] }}" alt="{{ $category['name'] }}" class="h-full w-full object-cover object-center group-hover:opacity-75">
+      <div class="relative group overflow-hidden rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+        <img src="{{ $category['image'] }}" alt="{{ $category['name'] }}" class="w-full h-96 object-cover">
+        <div class="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition-colors duration-300"></div>
+        <div class="absolute bottom-0 left-0 right-0 p-6">
+          <h4 class="text-white text-2xl font-serif font-semibold drop-shadow-md">{{ $category['name'] }}</h4>
+          <div class="h-0.5 bg-pink-500 w-16 mt-2"></div>
         </div>
-        <h3 class="mt-4 text-sm text-gray-700">{{ $category['name'] }}</h3>
-        <p class="mt-1 text-lg font-medium text-gray-900">Shop Now</p>
+        <a href="#" class="absolute inset-0" aria-label="Shop {{ $category['name'] }}"></a>
       </div>
       @endforeach
     </div>

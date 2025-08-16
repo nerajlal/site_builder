@@ -142,17 +142,18 @@
       @endphp
 
       @foreach ($categoriesToDisplay as $category)
-        <div class="relative group overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300">
-          <img src="{{ $category['image'] }}" alt="{{ $category['name'] }}" class="w-full h-96 object-cover transition-transform duration-500 ease-in-out group-hover:scale-110">
-          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent"></div>
-          <div class="absolute inset-0 flex flex-col items-center justify-center text-center text-white p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/30">
-            <h4 class="text-3xl font-bold mb-4">{{ $category['name'] }}</h4>
-            <a href="#" class="bg-pink-600 hover:bg-pink-700 text-white px-6 py-3 rounded-lg font-medium transition-transform duration-300 group-hover:translate-y-0 translate-y-4">
-              Shop Now
-            </a>
+        <div class="relative group overflow-hidden rounded-xl border border-gray-200/50 shadow-sm hover:shadow-xl transition-all duration-300 ease-in-out">
+          <div class="aspect-w-1 aspect-h-1">
+            <img src="{{ $category['image'] }}" alt="{{ $category['name'] }}" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
           </div>
-          <div class="absolute bottom-0 left-0 p-6 text-white w-full transition-transform duration-500 ease-in-out group-hover:-translate-y-full">
-            <h4 class="text-2xl font-bold">{{ $category['name'] }}</h4>
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 p-6">
+            <h4 class="text-2xl font-semibold text-white tracking-wider">{{ $category['name'] }}</h4>
+          </div>
+          <div class="absolute inset-0 bg-white/80 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <a href="#" class="bg-gray-900 text-white px-8 py-3 rounded-lg font-medium">
+              Explore
+            </a>
           </div>
         </div>
       @endforeach
