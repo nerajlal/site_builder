@@ -195,6 +195,82 @@
                     </button>
                 </div>
 
+                <!-- Second Right Panel - Settings -->
+                <div class="bg-white rounded-xl shadow-lg p-6 border border-gray-100 lg:col-span-1">
+                    <h2 class="text-lg font-semibold text-gray-800 mb-6">Main Brands Logo Section Content</h2>
+                    <div class="space-y-5">
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Main Text</label>
+                            <input type="text" name="main_text1" id="mainTextInput"
+                                class="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+                                placeholder="Our Prestigious Brands"
+                                value="{{ old('main_text1', $section2->main_text1 ?? '') }}">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Sub Text</label>
+                            <input type="text" name="sub_text1" id="subTextInput"
+                                class="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+                                placeholder="Partnering with the most revered names in horology"
+                                value="{{ old('sub_text1', $section2->sub_text1 ?? '') }}">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Image Link1</label>
+                            <input type="text" name="image1" id="button1TextInput"
+                                class="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+                                placeholder="Paste the link of the image"
+                                value="{{ old('image1', $section2->image1 ?? '') }}">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Image Link2</label>
+                            <input type="text" name="image2" id="button1TextInput"
+                                class="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+                                placeholder="Paste the link of the image"
+                                value="{{ old('image2', $section2->image2 ?? '') }}">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Image Link3</label>
+                            <input type="text" name="image3" id="button1TextInput"
+                                class="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+                                placeholder="Paste the link of the image"
+                                value="{{ old('image3', $section2->image3 ?? '') }}">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Image Link4</label>
+                            <input type="text" name="image4" id="button1TextInput"
+                                class="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+                                placeholder="Paste the link of the image"
+                                value="{{ old('image4', $section2->image4 ?? '') }}">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Image Link5</label>
+                            <input type="text" name="image5" id="button1TextInput"
+                                class="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+                                placeholder="Paste the link of the image"
+                                value="{{ old('image5', $section2->image5 ?? '') }}">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Image Link6</label>
+                            <input type="text" name="image6" id="button1TextInput"
+                                class="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+                                placeholder="Paste the link of the image"
+                                value="{{ old('image6', $section2->image6 ?? '') }}">
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit"
+                        class="mt-6 w-full bg-indigo-600 text-white font-medium py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        Save Changes
+                    </button>
+                </div>
 
 
                 <!-- Third Left Panel - Settings -->

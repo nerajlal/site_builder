@@ -134,38 +134,89 @@
 @endif
 
 <!-- Categories -->
-<section id="brands" class="py-20 px-6 bg-black">
-  <div class="max-w-7xl mx-auto">
-    <div class="text-center mb-16">
-      <h3 class="text-3xl font-light mb-4">
-        <span class="font-medium">Fashion Categories</span>
-      </h3>
-      <p class="text-gray-400 max-w-2xl mx-auto">
-        Explore our curated collection of premium fashion categories
-      </p>
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      @php
-        $categories = [
-            ['name' => 'Women', 'image' => 'https://images.unsplash.com/photo-1572804013427-4d7ca7268217?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=765&q=80'],
-            ['name' => 'Men', 'image' => 'https://images.unsplash.com/photo-1559624989-7b9303bd9292?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80'],
-            ['name' => 'Kids', 'image' => 'https://images.unsplash.com/photo-1590422348388-3cf4c6930a59?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80'],
-        ];
-      @endphp
-      @foreach($categories as $category)
-      <a href="#" class="group text-center p-4 transition-all duration-300 ease-in-out hover:bg-gray-900 rounded-lg">
-        <div class="w-48 h-48 mx-auto rounded-lg overflow-hidden border-2 border-gray-800 group-hover:border-pink-600 transition-all duration-300 ease-in-out">
-          <img src="{{ $category['image'] }}"
-               alt="{{ $category['name'] }}'s Fashion"
-               class="w-full h-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-110">
+@if($is_default)
+  <section id="brands" class="py-20 px-6 bg-black">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16">
+        <h3 class="text-3xl font-light mb-4">
+          <span class="font-medium">Fashion Categories</span>
+        </h3>
+        <p class="text-gray-400 max-w-2xl mx-auto">
+          Explore our curated collection of premium fashion categories
+        </p>
+      </div>
+      <div class="grid grid-cols-3 md:grid-cols-3 gap-8">
+        <!-- Category Item -->
+        <div class="flex flex-col items-center justify-center p-6">
+          <div class="w-40 h-40 rounded-full bg-white overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80"
+                alt="Women's Fashion"
+                class="w-full h-full object-cover">
+          </div>
+          <p class="text-center mt-4 text-lg font-medium">Women</p>
         </div>
-        <p class="text-center mt-6 text-xl font-light text-gray-400 group-hover:text-white transition-colors duration-300">{{ $category['name'] }}</p>
-      </a>
-      @endforeach
-    </div>
-  </div>
-</section>
 
+        <div class="flex flex-col items-center justify-center p-6">
+          <div class="w-40 h-40 rounded-full bg-white overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80"
+                alt="Men's Fashion"
+                class="w-full h-full object-cover">
+          </div>
+          <p class="text-center mt-4 text-lg font-medium">Men</p>
+        </div>
+
+        <div class="flex flex-col items-center justify-center p-6">
+          <div class="w-40 h-40 rounded-full bg-white overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                alt="Kids' Fashion"
+                class="w-full h-full object-cover">
+          </div>
+          <p class="text-center mt-4 text-lg font-medium">Kids</p>
+        </div>
+      </div>
+    </div>
+  </section>
+@else
+  <section id="brands" class="py-20 px-6 bg-black">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16">
+        <h3 class="text-3xl font-light mb-4">
+          <span class="font-medium">{{ $section2->main_text1 }}</span>
+        </h3>
+        <p class="text-gray-400 max-w-2xl mx-auto">{{ $section2->sub_text1 }}</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Category Item -->
+        <div class="flex flex-col items-center justify-center p-6">
+          <div class="w-40 h-40 rounded-full bg-white overflow-hidden">
+            <img src="{{ $section2->image1 }}"
+                alt="Women's Fashion"
+                class="w-full h-full object-cover">
+          </div>
+          <p class="text-center mt-4 text-lg font-medium">Women</p>
+        </div>
+
+        <div class="flex flex-col items-center justify-center p-6">
+          <div class="w-40 h-40 rounded-full bg-white overflow-hidden">
+            <img src="{{ $section2->image2 }}"
+                alt="Men's Fashion"
+                class="w-full h-full object-cover">
+          </div>
+          <p class="text-center mt-4 text-lg font-medium">Men</p>
+        </div>
+
+        <div class="flex flex-col items-center justify-center p-6">
+          <div class="w-40 h-40 rounded-full bg-white overflow-hidden">
+            <img src="{{ $section2->image3 }}"
+                alt="Kids' Fashion"
+                class="w-full h-full object-cover">
+          </div>
+          <p class="text-center mt-4 text-lg font-medium">Kids</p>
+        </div>
+      </div>
+    </div>
+  </section>
+@endif
 
 <!-- Collection -->
 @if($is_default)
@@ -177,7 +228,7 @@
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
         <!-- Fashion Product Cards -->
-        <div class="product-card bg-black p-6 border border-gray-800 rounded-lg">
+        <div class="watch-card bg-black p-6 border border-gray-800 rounded-lg">
           <div class="relative h-64 mb-6 overflow-hidden rounded-lg">
             <img src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=705&q=80" alt="Elegant Dress" class="absolute inset-0 w-full h-full object-cover">
             <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
@@ -191,7 +242,7 @@
           </button>
         </div>
 
-        <div class="product-card bg-black p-6 border border-gray-800 rounded-lg">
+        <div class="watch-card bg-black p-6 border border-gray-800 rounded-lg">
           <div class="relative h-64 mb-6 overflow-hidden rounded-lg">
             <img src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Designer Heels" class="absolute inset-0 w-full h-full object-cover">
             <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
@@ -205,7 +256,7 @@
           </button>
         </div>
 
-        <div class="product-card bg-black p-6 border border-gray-800 rounded-lg">
+        <div class="watch-card bg-black p-6 border border-gray-800 rounded-lg">
           <div class="relative h-64 mb-6 overflow-hidden rounded-lg">
             <img src="https://images.unsplash.com/photo-1594223274512-ad4803739b7c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Luxury Handbag" class="absolute inset-0 w-full h-full object-cover">
             <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
@@ -218,7 +269,7 @@
           </button>
         </div>
 
-        <div class="product-card bg-black p-6 border border-gray-800 rounded-lg">
+        <div class="watch-card bg-black p-6 border border-gray-800 rounded-lg">
           <div class="relative h-64 mb-6 overflow-hidden rounded-lg">
             <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Statement Jewelry" class="absolute inset-0 w-full h-full object-cover">
             <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
@@ -247,7 +298,7 @@
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
         @foreach($products as $product)
-          <div class="product-card bg-black p-6 border border-gray-800 rounded-lg">
+          <div class="watch-card bg-black p-6 border border-gray-800 rounded-lg">
             <div class="relative h-64 mb-6 overflow-hidden rounded-lg">
               <img src="{{ $product->image_url }}" alt="{{ $product->name }}" class="absolute inset-0 w-full h-full object-cover">
               <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\HeaderFooter;
 use App\Models\HomeSetting;
 use App\Models\Section1;
+use App\Models\Section2;
 use App\Models\Testimonial;
 use App\Models\ContactUs;
 use App\Models\Brand;
@@ -21,10 +22,11 @@ class TemplateController extends Controller
         $headerFooter = HeaderFooter::where('user_id', $userId)->first();
         $homeSetting  = HomeSetting::where('user_id', $userId)->first();
         $section1     = Section1::where('header_footer_id', $headerFooter->id ?? 0)->first();
+        $section2     = Section2::where('header_footer_id', $headerFooter->id ?? 0)->first();
         $testimonial = Testimonial::where('header_footer_id', $headerFooter->id ?? 0)->first();
         $contactUs = ContactUs::where('header_footer_id', $headerFooter->id ?? 0)->first();
 
-        return view('d_storedata', compact('headerFooter', 'homeSetting', 'section1', 'testimonial', 'contactUs'));
+        return view('d_storedata', compact('headerFooter', 'homeSetting', 'section1', 'section2', 'testimonial', 'contactUs'));
     }
 
     public function store(Request $request)
@@ -91,6 +93,25 @@ class TemplateController extends Controller
             $validatedSection1
         );
 
+        // SECTION 2
+        $validatedSection2 = $request->validate([
+            'main_text1'  => 'nullable|string|max:255',
+            'sub_text1'   => 'nullable|string|max:255',
+            'image1'     => 'nullable|string|max:255',
+            'image2'     => 'nullable|string|max:255',
+            'image3'     => 'nullable|string|max:255',
+            'image4'     => 'nullable|string|max:255',
+            'image5'     => 'nullable|string|max:255',
+            'image6'     => 'nullable|string|max:255',
+        ]);
+
+        $validatedSection2['header_footer_id'] = $headerFooter->id;
+
+        Section2::updateOrCreate(
+            ['header_footer_id' => $headerFooter->id],
+            $validatedSection2
+        );
+
         // TESTIMONIAL SECTION
         $validatedTestimonial = $request->validate([
             'testi_main'   => 'nullable|string|max:255',
@@ -141,11 +162,12 @@ class TemplateController extends Controller
     {
         $headerFooter = HeaderFooter::findOrFail($id);
         $brands = Brand::where('header_footer_id', $id)->get();
-        $products = Product::with('brand')
+        $categories = Category::where('header_footer_id', $id)->get();
+        $products = Product::with(['brand', 'category'])
                        ->where('header_footer_id', $id)
                        ->get();
         
-        return view('d_add_product', compact('headerFooter', 'brands', 'products'));
+        return view('d_add_product', compact('headerFooter', 'brands', 'categories', 'products'));
     }
 
     public function storeBrand(Request $request, $siteId)
@@ -157,63 +179,31 @@ class TemplateController extends Controller
         return back()->with('success', 'Brand added successfully!');
     }
 
+    public function storeCategory(Request $request, $siteId)
+    {
+        Category::create([
+            'name' => $request->category_name,
+            'header_footer_id' => $siteId,
+        ]);
+        return back()->with('success', 'Category added successfully!');
+    }
 
     public function storeProduct(Request $request, $siteId)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'sku' => 'nullable|string|max:255',
-            'price' => 'required|numeric',
-            'original_price' => 'nullable|numeric',
-            'quantity' => 'required|integer',
-            'brand_id' => 'required|exists:brands,id',
-            'category_name' => 'required|string',
-            'image_url' => 'nullable|url',
-            'images' => 'nullable|json',
-            'video_url' => 'nullable|url',
-            'description' => 'nullable|string',
-            'colors' => 'nullable|json',
-            'sizes' => 'nullable|array',
-            'details' => 'nullable|array',
+        // Check if brand & category exist
+        if (!Brand::where('header_footer_id', $siteId)->exists() || !Category::where('header_footer_id', $siteId)->exists()) {
+            return back()->with('error', 'You must add at least one brand and category first!');
+        }
+
+        Product::create([
+            'name' => $request->product_name,
+            'price' => $request->price,
+            'quantity' => $request->quantity,
+            'brand_id' => $request->brand,
+            'category_id' => $request->category,
+            'header_footer_id' => $siteId,
+            'image_url' => $request->image_url,
         ]);
-
-        $productData = $request->except(['sizes', 'details']);
-
-        // Transform sizes data
-        $sizes = [];
-        if ($request->has('sizes')) {
-            foreach ($request->sizes as $size => $stock) {
-                if ($stock > 0) {
-                    $sizes[] = ['size' => $size, 'stock' => (int)$stock];
-                }
-            }
-        }
-        $productData['sizes'] = json_encode($sizes);
-
-        // Transform details data
-        $details = [];
-        if ($request->has('details')) {
-            $detailsData = $request->details;
-            // Handle line-separated fields
-            if (!empty($detailsData['key_features'])) {
-                $details['key_features'] = array_filter(preg_split('/\r\n|\r|\n/', $detailsData['key_features']));
-            }
-            if (!empty($detailsData['care_tips'])) {
-                $details['care_tips'] = array_filter(preg_split('/\r\n|\r|\n/', $detailsData['care_tips']));
-            }
-            // Handle JSON string fields
-            $jsonFields = ['styling_tips', 'model_info', 'garment_details', 'size_chart', 'fabric_details', 'care_instructions'];
-            foreach($jsonFields as $field) {
-                if (!empty($detailsData[$field])) {
-                    $details[$field] = json_decode($detailsData[$field], true);
-                }
-            }
-        }
-        $productData['details'] = json_encode($details);
-
-        $productData['header_footer_id'] = $siteId;
-
-        Product::create($productData);
 
         return back()->with('success', 'Product added successfully!');
     }
@@ -224,6 +214,11 @@ class TemplateController extends Controller
         return back()->with('success', 'Brand deleted successfully!');
     }
 
+    public function deleteCategory($id)
+    {
+        Category::findOrFail($id)->delete();
+        return back()->with('success', 'Category deleted successfully!');
+    }
 
     public function deleteProduct($id)
     {
@@ -234,60 +229,25 @@ class TemplateController extends Controller
     public function updateProduct(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
-            'sku' => 'nullable|string|max:255',
-            'price' => 'required|numeric',
-            'original_price' => 'nullable|numeric',
-            'quantity' => 'required|integer',
-            'brand_id' => 'required|exists:brands,id',
-            'category_name' => 'required|string',
-            'image_url' => 'nullable|url',
-            'images' => 'nullable|json',
-            'video_url' => 'nullable|url',
-            'description' => 'nullable|string',
-            'colors' => 'nullable|json',
-            'sizes' => 'nullable|array',
-            'details' => 'nullable|array',
+            'product_name' => 'required|string|max:255',
+            'price'        => 'required|numeric',
+            'quantity'     => 'required|integer',
+            'category'     => 'required|exists:categories,id',
+            'brand'        => 'required|exists:brands,id',
+            'image_url'    => 'nullable|url',
         ]);
 
         $product = Product::findOrFail($id);
-        $productData = $request->except(['sizes', 'details']);
+        $product->update([
+            'name'        => $request->product_name,
+            'price'       => $request->price,
+            'quantity'    => $request->quantity,
+            'category_id' => $request->category,
+            'brand_id'    => $request->brand,
+            'image_url'   => $request->image_url,
+        ]);
 
-        // Transform sizes data
-        $sizes = [];
-        if ($request->has('sizes')) {
-            foreach ($request->sizes as $size => $stock) {
-                if ($stock > 0) {
-                    $sizes[] = ['size' => $size, 'stock' => (int)$stock];
-                }
-            }
-        }
-        $productData['sizes'] = json_encode($sizes);
-
-        // Transform details data
-        $details = [];
-        if ($request->has('details')) {
-            $detailsData = $request->details;
-            // Handle line-separated fields
-            if (!empty($detailsData['key_features'])) {
-                $details['key_features'] = array_filter(preg_split('/\r\n|\r|\n/', $detailsData['key_features']));
-            }
-            if (!empty($detailsData['care_tips'])) {
-                $details['care_tips'] = array_filter(preg_split('/\r\n|\r|\n/', $detailsData['care_tips']));
-            }
-            // Handle JSON string fields
-            $jsonFields = ['styling_tips', 'model_info', 'garment_details', 'size_chart', 'fabric_details', 'care_instructions'];
-            foreach($jsonFields as $field) {
-                if (!empty($detailsData[$field])) {
-                    $details[$field] = json_decode($detailsData[$field], true);
-                }
-            }
-        }
-        $productData['details'] = json_encode($details);
-
-        $product->update($productData);
-
-        return redirect()->back()->with('success', 'Product updated successfully!');
+        return response()->json(['message' => 'Product updated successfully!']);
     }
 
     public function temp_save(Request $request)

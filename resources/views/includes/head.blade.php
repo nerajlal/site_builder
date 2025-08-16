@@ -31,7 +31,7 @@
   <nav class="bg-white shadow-lg fixed w-full z-50">
     <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
       <!-- Logo -->
-      <a href="/" class="text-2xl font-bold text-primary tracking-tight">Build<span class="text-accent">YourBoutique</span></a>
+      <a href="/" class="text-2xl font-bold text-primary tracking-tight">Build<span class="text-accent">YourStore</span></a>
 
       <!-- Desktop Links -->
       <div class="hidden md:flex space-x-8 items-center">

@@ -122,30 +122,51 @@
     </div>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
       @php
-        $categories = [
-            ['name' => 'Women', 'image' => 'https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80'],
-            ['name' => 'Men', 'image' => 'https://images.unsplash.com/photo-1490114538077-0a7f8cb49891?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80'],
-            ['name' => 'Kids', 'image' => 'https://images.unsplash.com/photo-1529428135324-19341b37517c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80'],
+        $defaultCategories = [
+            [
+                'name' => 'Men',
+                'image' => 'https://images.unsplash.com/photo-1504593811423-6dd665756598?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80',
+                'description' => 'Sophisticated styles for the modern man.'
+            ],
+            [
+                'name' => 'Women',
+                'image' => 'https://images.unsplash.com/photo-1502323777036-f29e3972d822?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80',
+                'description' => 'Chic and elegant fashion for every woman.'
+            ],
+            [
+                'name' => 'Kids',
+                'image' => 'https://images.unsplash.com/photo-1519340241574-289a8d381619?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80',
+                'description' => 'Fun, stylish, and comfortable clothing for kids.'
+            ]
         ];
+
+        if ($is_default) {
+            $categoriesToDisplay = $defaultCategories;
+        } else {
+            $categoriesToDisplay = collect([$category1, $category2, $category3])->map(function ($category) {
+                return [
+                    'name' => $category->name,
+                    'image' => $category->image,
+                    'description' => $category->description,
+                ];
+            })->all();
+        }
       @endphp
-      @foreach ($categories as $category)
-        <div class="relative group overflow-hidden rounded-xl border border-gray-200/50 shadow-sm hover:shadow-xl transition-all duration-300 ease-in-out">
-          <div class="aspect-w-1 aspect-h-1">
-            <img src="{{ $category['image'] }}" alt="{{ $category['name'] }}" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
-          </div>
-          <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-          <div class="absolute bottom-0 left-0 p-6">
-            <h4 class="text-2xl font-semibold text-white tracking-wider">{{ $category['name'] }}</h4>
-          </div>
-          <div class="absolute inset-0 bg-white/80 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <a href="#" class="bg-gray-900 text-white px-8 py-3 rounded-lg font-medium">
-              Explore
+
+      @foreach ($categoriesToDisplay as $category)
+        <div class="relative group overflow-hidden rounded-lg boutique-shadow">
+          <img src="{{ $category['image'] }}" alt="{{ $category['name'] }}" class="w-full h-96 object-cover transition-transform duration-300 group-hover:scale-110">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 p-6 text-white">
+            <h4 class="text-2xl font-bold mb-2">{{ $category['name'] }}</h4>
+            <p class="text-gray-200 mb-4">{{ $category['description'] }}</p>
+            <a href="#" class="font-semibold text-pink-400 hover:text-pink-300 transition">
+              Shop Now <i class="fas fa-arrow-right ml-1"></i>
             </a>
           </div>
         </div>
       @endforeach
-</div>
-
+    </div>
   </section>
 
   <!-- Products -->
@@ -187,9 +208,9 @@
             <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
             <span class="absolute top-4 right-4 bg-red-600 text-white text-xs font-semibold px-2 py-1 rounded">LIMITED</span>
           </div>
-          <h4 class="font-semibold text-lg mb-1">Luxury Handbag</h4>
-          <p class="text-gray-600 text-sm mb-3">Genuine Leather, Italian-made</p>
-          <p class="text-green-700 font-bold text-xl mb-4">$450.00</p>
+          <h4 class="font-semibold text-lg mb-1">Patek Philippe </h4>
+          <p class="text-gray-600 text-sm mb-3">White Gold, Hand-Guilloché</p>
+          <p class="text-green-700 font-bold text-xl mb-4">$29,900.00</p>
           <button class="w-full bg-gray-900 hover:bg-gray-800 text-white py-2 rounded-lg font-medium transition flex items-center justify-center">
             <i class="fas fa-shopping-cart mr-2"></i> Add to Cart
           </button>
@@ -199,9 +220,9 @@
             <img src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=705&q=80Cartier Tank" class="absolute inset-0 w-full h-full object-cover">
             <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
           </div>
-          <h4 class="font-semibold text-lg mb-1">Statement Necklace</h4>
-          <p class="text-gray-600 text-sm mb-3">Gold-plated, Crystal Embellished</p>
-          <p class="text-green-700 font-bold text-xl mb-4">$150.00</p>
+          <h4 class="font-semibold text-lg mb-1">Cartier Tank Solo</h4>
+          <p class="text-gray-600 text-sm mb-3">Stainless Steel, Black Leather</p>
+          <p class="text-green-700 font-bold text-xl mb-4">$2,850.00</p>
           <button class="w-full bg-gray-900 hover:bg-gray-800 text-white py-2 rounded-lg font-medium transition flex items-center justify-center">
             <i class="fas fa-shopping-cart mr-2"></i> Add to Cart
           </button>
