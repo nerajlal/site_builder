@@ -143,36 +143,26 @@
       </p>
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-      <div class="relative group h-80 overflow-hidden rounded-lg">
+      @php
+        $categories = [
+            ['name' => 'Women', 'image' => 'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80'],
+            ['name' => 'Men', 'image' => 'https://images.unsplash.com/photo-1504593811423-6dd665756598?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80'],
+            ['name' => 'Kids', 'image' => 'https://images.unsplash.com/photo-1622422034001-3a8a3f287118?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80'],
+        ];
+      @endphp
+      @foreach($categories as $category)
+      <div class="relative group h-96 overflow-hidden rounded-lg shadow-sm hover:shadow-xl transition-shadow duration-300">
         <img
-          src="https://images.unsplash.com/photo-1445205170230-053b83016050?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80"
-          alt="Women's Fashion"
-          class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+          src="{{ $category['image'] }}"
+          alt="{{ $category['name'] }}'s Fashion"
+          class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out"
         >
-        <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
-          <h4 class="text-white text-2xl font-medium">Women</h4>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent flex items-end justify-start p-6">
+          <h4 class="text-white text-2xl font-semibold drop-shadow-md">{{ $category['name'] }}</h4>
         </div>
+        <a href="#" class="absolute inset-0" aria-label="Shop {{ $category['name'] }}"></a>
       </div>
-      <div class="relative group h-80 overflow-hidden rounded-lg">
-        <img
-          src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80"
-          alt="Men's Fashion"
-          class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-        >
-        <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
-          <h4 class="text-white text-2xl font-medium">Men</h4>
-        </div>
-      </div>
-      <div class="relative group h-80 overflow-hidden rounded-lg">
-        <img
-          src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
-          alt="Kids' Fashion"
-          class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-        >
-        <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
-          <h4 class="text-white text-2xl font-medium">Kids</h4>
-        </div>
-      </div>
+      @endforeach
     </div>
   </div>
 </section>

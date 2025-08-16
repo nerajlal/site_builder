@@ -144,34 +144,24 @@
         Explore our curated collection of premium fashion categories
       </p>
     </div>
-    <div class="grid grid-cols-3 gap-8">
-      <!-- Category Item -->
-      <div class="flex flex-col items-center justify-center p-6">
-        <div class="w-40 h-40 rounded-lg bg-white overflow-hidden">
-          <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80"
-              alt="Women's Fashion"
-              class="w-full h-full object-cover">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      @php
+        $categories = [
+            ['name' => 'Women', 'image' => 'https://images.unsplash.com/photo-1572804013427-4d7ca7268217?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=765&q=80'],
+            ['name' => 'Men', 'image' => 'https://images.unsplash.com/photo-1559624989-7b9303bd9292?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80'],
+            ['name' => 'Kids', 'image' => 'https://images.unsplash.com/photo-1590422348388-3cf4c6930a59?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80'],
+        ];
+      @endphp
+      @foreach($categories as $category)
+      <a href="#" class="group text-center p-4 transition-all duration-300 ease-in-out hover:bg-gray-900 rounded-lg">
+        <div class="w-48 h-48 mx-auto rounded-lg overflow-hidden border-2 border-gray-800 group-hover:border-pink-600 transition-all duration-300 ease-in-out">
+          <img src="{{ $category['image'] }}"
+               alt="{{ $category['name'] }}'s Fashion"
+               class="w-full h-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-110">
         </div>
-        <p class="text-center mt-4 text-lg font-medium">Women</p>
-      </div>
-
-      <div class="flex flex-col items-center justify-center p-6">
-        <div class="w-40 h-40 rounded-lg bg-white overflow-hidden">
-          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80"
-              alt="Men's Fashion"
-              class="w-full h-full object-cover">
-        </div>
-        <p class="text-center mt-4 text-lg font-medium">Men</p>
-      </div>
-
-      <div class="flex flex-col items-center justify-center p-6">
-        <div class="w-40 h-40 rounded-lg bg-white overflow-hidden">
-          <img src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
-              alt="Kids' Fashion"
-              class="w-full h-full object-cover">
-        </div>
-        <p class="text-center mt-4 text-lg font-medium">Kids</p>
-      </div>
+        <p class="text-center mt-6 text-xl font-light text-gray-400 group-hover:text-white transition-colors duration-300">{{ $category['name'] }}</p>
+      </a>
+      @endforeach
     </div>
   </div>
 </section>
