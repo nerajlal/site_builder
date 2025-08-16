@@ -145,9 +145,9 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
       @php
         $categories = [
-            ['name' => 'Women', 'image' => 'https://images.unsplash.com/photo-1581044777550-4cfa6ce670c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80'],
-            ['name' => 'Men', 'image' => 'https://images.unsplash.com/photo-1479064555552-3ca98969f91a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80'],
-            ['name' => 'Kids', 'image' => 'https://images.unsplash.com/photo-1616241228022-54316d2fe246?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80'],
+            ['name' => 'Women', 'image' => 'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80'],
+            ['name' => 'Men', 'image' => 'https://images.unsplash.com/photo-1504593811423-6dd665756598?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80'],
+            ['name' => 'Kids', 'image' => 'https://images.unsplash.com/photo-1622422034001-3a8a3f287118?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80'],
         ];
       @endphp
       @foreach($categories as $category)

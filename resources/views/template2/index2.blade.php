@@ -148,8 +148,8 @@
       @php
         $categories = [
             ['name' => 'Women', 'image' => 'https://images.unsplash.com/photo-1572804013427-4d7ca7268217?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=765&q=80'],
-            ['name' => 'Men', 'image' => 'https://images.unsplash.com/photo-1617127365659-3c87232de0f3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80'],
-            ['name' => 'Kids', 'image' => 'https://images.unsplash.com/photo-1566304547699-a9b4a3a6a43e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80'],
+            ['name' => 'Men', 'image' => 'https://images.unsplash.com/photo-1559624989-7b9303bd9292?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80'],
+            ['name' => 'Kids', 'image' => 'https://images.unsplash.com/photo-1590422348388-3cf4c6930a59?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80'],
         ];
       @endphp
       @foreach($categories as $category)
