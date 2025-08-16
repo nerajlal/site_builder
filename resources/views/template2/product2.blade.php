@@ -88,7 +88,7 @@
                             </div>
                             <span class="ml-2 text-sm text-gray-500">76</span> <!-- Placeholder for reviews -->
                         </div>
-                        <a href="{{ route('template2.single-product', ['headerFooterId' => $headerFooter->id, 'productId' => $product->id]) }}">
+                        <a href="{{ route('template2.single-product2.customer', ['headerFooterId' => $headerFooter->id, 'productId' => $product->id]) }}">
                             <button class="w-full bg-gray-800 hover:bg-gray-700 text-white py-2 px-4 rounded-lg transition-colors">
                                 View Product
                             </button>
