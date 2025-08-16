@@ -199,9 +199,9 @@
             <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
             <span class="absolute top-4 right-4 bg-red-600 text-white text-xs font-semibold px-2 py-1 rounded">LIMITED</span>
           </div>
-          <h4 class="font-semibold text-lg mb-1">Patek Philippe </h4>
-          <p class="text-gray-600 text-sm mb-3">White Gold, Hand-Guilloché</p>
-          <p class="text-green-700 font-bold text-xl mb-4">$29,900.00</p>
+          <h4 class="font-semibold text-lg mb-1">Luxury Handbag</h4>
+          <p class="text-gray-600 text-sm mb-3">Genuine Leather, Italian-made</p>
+          <p class="text-green-700 font-bold text-xl mb-4">$450.00</p>
           <button class="w-full bg-gray-900 hover:bg-gray-800 text-white py-2 rounded-lg font-medium transition flex items-center justify-center">
             <i class="fas fa-shopping-cart mr-2"></i> Add to Cart
           </button>
@@ -211,9 +211,9 @@
             <img src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=705&q=80Cartier Tank" class="absolute inset-0 w-full h-full object-cover">
             <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
           </div>
-          <h4 class="font-semibold text-lg mb-1">Cartier Tank Solo</h4>
-          <p class="text-gray-600 text-sm mb-3">Stainless Steel, Black Leather</p>
-          <p class="text-green-700 font-bold text-xl mb-4">$2,850.00</p>
+          <h4 class="font-semibold text-lg mb-1">Statement Necklace</h4>
+          <p class="text-gray-600 text-sm mb-3">Gold-plated, Crystal Embellished</p>
+          <p class="text-green-700 font-bold text-xl mb-4">$150.00</p>
           <button class="w-full bg-gray-900 hover:bg-gray-800 text-white py-2 rounded-lg font-medium transition flex items-center justify-center">
             <i class="fas fa-shopping-cart mr-2"></i> Add to Cart
           </button>

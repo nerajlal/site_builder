@@ -254,7 +254,7 @@
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           @foreach($products as $product)
-            <div class="watch-card p-6 rounded-lg border border-gray-100">
+            <div class="product-card p-6 rounded-lg border border-gray-100">
               <a href="{{ route('template4.single-product', ['headerFooterId' => $headerFooter->id, 'productId' => $product->id]) }}">
                 <div class="relative h-64 mb-6 overflow-hidden rounded-lg">
                   <img src="{{ $product->image_url }}" alt="{{ $product->name }}" class="absolute inset-0 w-full h-full object-cover">
@@ -355,8 +355,8 @@
     <section class="py-20 px-6 bg-[#faf9f7]">
       <div class="max-w-7xl mx-auto">
         <div class="text-center mb-16">
-          <h3 class="text-3xl font-semibold mb-4">{{ $testimonials->testi_main ?? 'Collector Testimonials' }}</h3>
-          <p class="text-gray-600 max-w-2xl mx-auto">{{ $testimonials->testi_sub ?? 'Experiences from our community of horology enthusiasts' }}</p>
+          <h3 class="text-3xl font-semibold mb-4">{{ $testimonials->testi_main ?? 'Client Love' }}</h3>
+          <p class="text-gray-600 max-w-2xl mx-auto">{{ $testimonials->testi_sub ?? 'Experiences from our amazing community of fashion lovers' }}</p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div class="bg-white p-8 rounded-lg shadow-sm">
@@ -473,8 +473,8 @@
   <section id="contact" class="py-20 px-6 bg-white">
     <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
       <div>
-        <h3 class="text-3xl font-semibold mb-6">{{ $contactus->contact_name ?? 'Contact Our Concierge' }}</h3>
-        <p class="text-gray-600 mb-8">{{ $contactus->contact_sub ?? 'Our watch specialists are available to assist you.' }}</p>
+        <h3 class="text-3xl font-semibold mb-6">{{ $contactus->contact_name ?? 'Contact Our Stylists' }}</h3>
+        <p class="text-gray-600 mb-8">{{ $contactus->contact_sub ?? 'Our fashion specialists are available to assist you.' }}</p>
         <div class="space-y-6">
           <div class="flex items-start">
             <div class="text-[#d4af37] text-xl w-10 mr-4 mt-1">
@@ -513,17 +513,17 @@
         <form class="space-y-4">
           <div>
             <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Name</label>
-            <input type="text" id="name" class="w-full px-4 py-2 bg-white border border-gray-200 rounded focus:outline-none focus:ring-1 focus:ring-[#d4af37]">
+            <input type="text" id="name" class="w-full px-4 py-2 bg-white border border-gray-200 rounded focus:outline-none focus:ring-1 focus:ring-[#ec4899]">
           </div>
           <div>
             <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-            <input type="email" id="email" class="w-full px-4 py-2 bg-white border border-gray-200 rounded focus:outline-none focus:ring-1 focus:ring-[#d4af37]">
+            <input type="email" id="email" class="w-full px-4 py-2 bg-white border border-gray-200 rounded focus:outline-none focus:ring-1 focus:ring-[#ec4899]">
           </div>
           <div>
             <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Message</label>
-            <textarea id="message" rows="4" class="w-full px-4 py-2 bg-white border border-gray-200 rounded focus:outline-none focus:ring-1 focus:ring-[#d4af37]"></textarea>
+            <textarea id="message" rows="4" class="w-full px-4 py-2 bg-white border border-gray-200 rounded focus:outline-none focus:ring-1 focus:ring-[#ec4899]"></textarea>
           </div>
-          <button type="submit" class="w-full btn-gold py-3 rounded font-medium">
+          <button type="submit" class="w-full btn-pink py-3 rounded font-medium">
             Send Message
           </button>
         </form>

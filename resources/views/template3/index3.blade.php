@@ -206,7 +206,7 @@
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           @foreach($products as $product)
-            <div class="watch-card p-6 rounded-lg border border-gray-100 shadow-sm hover:shadow-md transition">
+            <div class="product-card p-6 rounded-lg border border-gray-100 shadow-sm hover:shadow-md transition">
               <a href="{{ route('template3.single-product', ['headerFooterId' => $headerFooter->id, 'productId' => $product->id]) }}">
                 <div class="relative h-64 mb-6 overflow-hidden rounded-lg">
                   <img src="{{ $product->image_url }}" alt="{{ $product->name }}" class="absolute inset-0 w-full h-full object-cover">

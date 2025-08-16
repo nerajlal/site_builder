@@ -187,7 +187,7 @@
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
         <!-- Fashion Product Cards -->
-        <div class="watch-card bg-black p-6 border border-gray-800 rounded-lg">
+        <div class="product-card bg-black p-6 border border-gray-800 rounded-lg">
           <div class="relative h-64 mb-6 overflow-hidden rounded-lg">
             <img src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=705&q=80" alt="Elegant Dress" class="absolute inset-0 w-full h-full object-cover">
             <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
@@ -201,7 +201,7 @@
           </button>
         </div>
 
-        <div class="watch-card bg-black p-6 border border-gray-800 rounded-lg">
+        <div class="product-card bg-black p-6 border border-gray-800 rounded-lg">
           <div class="relative h-64 mb-6 overflow-hidden rounded-lg">
             <img src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Designer Heels" class="absolute inset-0 w-full h-full object-cover">
             <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
@@ -215,7 +215,7 @@
           </button>
         </div>
 
-        <div class="watch-card bg-black p-6 border border-gray-800 rounded-lg">
+        <div class="product-card bg-black p-6 border border-gray-800 rounded-lg">
           <div class="relative h-64 mb-6 overflow-hidden rounded-lg">
             <img src="https://images.unsplash.com/photo-1594223274512-ad4803739b7c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Luxury Handbag" class="absolute inset-0 w-full h-full object-cover">
             <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
@@ -228,7 +228,7 @@
           </button>
         </div>
 
-        <div class="watch-card bg-black p-6 border border-gray-800 rounded-lg">
+        <div class="product-card bg-black p-6 border border-gray-800 rounded-lg">
           <div class="relative h-64 mb-6 overflow-hidden rounded-lg">
             <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Statement Jewelry" class="absolute inset-0 w-full h-full object-cover">
             <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
@@ -257,7 +257,7 @@
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
         @foreach($products as $product)
-          <div class="watch-card bg-black p-6 border border-gray-800 rounded-lg">
+          <div class="product-card bg-black p-6 border border-gray-800 rounded-lg">
             <div class="relative h-64 mb-6 overflow-hidden rounded-lg">
               <img src="{{ $product->image_url }}" alt="{{ $product->name }}" class="absolute inset-0 w-full h-full object-cover">
               <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
