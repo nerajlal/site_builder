@@ -61,12 +61,17 @@
                 @if($product->key_features)
                 <div class="bg-blue-50 p-4 rounded-lg">
                     <div class="grid grid-cols-3 gap-4 text-sm">
-                        @foreach($product->key_features as $feature)
-                        <div class="flex items-center space-x-2">
-                            <i class="fas fa-check text-green-600"></i>
-                            <span>{{ $feature }}</span>
-                        </div>
-                        @endforeach
+                        @php
+                            $key_features = is_array($product->key_features) ? $product->key_features : json_decode($product->key_features, true);
+                        @endphp
+                        @if(is_array($key_features))
+                            @foreach($key_features as $feature)
+                            <div class="flex items-center space-x-2">
+                                <i class="fas fa-check text-green-600"></i>
+                                <span>{{ $feature }}</span>
+                            </div>
+                            @endforeach
+                        @endif
                     </div>
                 </div>
                 @endif
@@ -75,8 +80,11 @@
                 <div>
                     <h3 class="text-sm font-semibold mb-3">Color: <span id="selectedColorName"></span></h3>
                     <div class="flex space-x-3">
-                        @if($product->colors)
-                            @foreach($product->colors as $index => $color)
+                        @php
+                            $colors = is_array($product->colors) ? $product->colors : json_decode($product->colors, true);
+                        @endphp
+                        @if(is_array($colors))
+                            @foreach($colors as $index => $color)
                                 <button class="color-btn w-10 h-10 rounded-full border-2 hover:border-gray-400 shadow-md"
                                         style="background-color: {{ $color['hex'] }};"
                                         onclick="selectColor('{{ $color['name'] }}', '{{ $color['name'] }}')"
@@ -97,8 +105,11 @@
                         <button class="text-sm text-primary hover:underline" onclick="openSizeGuide()">Size Guide</button>
                     </div>
                     <div class="grid grid-cols-5 gap-2 mb-2">
-                        @if($product->sizes)
-                            @foreach($product->sizes as $size)
+                        @php
+                            $sizes = is_array($product->sizes) ? $product->sizes : json_decode($product->sizes, true);
+                        @endphp
+                        @if(is_array($sizes))
+                            @foreach($sizes as $size)
                                 <button class="size-btn py-3 text-center border rounded hover:border-primary"
                                         onclick="selectSize('{{ $size['size'] }}')"
                                         data-size="{{ $size['size'] }}"
@@ -151,9 +162,12 @@
                             <div class="space-y-4">
                                 <div>
                                     <h4 class="font-semibold mb-2">Key Features:</h4>
-                                    @if($product->key_features)
+                                    @php
+                                        $key_features = is_array($product->key_features) ? $product->key_features : json_decode($product->key_features, true);
+                                    @endphp
+                                    @if(is_array($key_features))
                                     <ul class="space-y-2 text-gray-700">
-                                        @foreach($product->key_features as $feature)
+                                        @foreach($key_features as $feature)
                                         <li class="flex items-start space-x-2">
                                             <i class="fas fa-check text-green-600 mt-1"></i>
                                             <span>{{ $feature }}</span>
@@ -167,9 +181,12 @@
 
                         <div>
                             <h4 class="font-semibold mb-4">Styling Tips:</h4>
-                            @if($product->styling_tips)
+                            @php
+                                $styling_tips = is_array($product->styling_tips) ? $product->styling_tips : json_decode($product->styling_tips, true);
+                            @endphp
+                            @if(is_array($styling_tips))
                             <div class="space-y-4">
-                                @foreach($product->styling_tips as $tip)
+                                @foreach($styling_tips as $tip)
                                 <div class="bg-gray-50 p-4 rounded-lg">
                                     <h5 class="font-medium mb-2">{{ $tip['title'] }}</h5>
                                     <p class="text-sm text-gray-700">{{ $tip['description'] }}</p>
@@ -187,22 +204,28 @@
                         <div>
                             <h3 class="text-xl font-semibold mb-4">Fit & Measurements</h3>
                             <div class="space-y-4">
-                                @if($product->model_info)
+                                @php
+                                    $model_info = is_array($product->model_info) ? $product->model_info : json_decode($product->model_info, true);
+                                @endphp
+                                @if(is_array($model_info))
                                 <div class="bg-blue-50 p-4 rounded-lg">
                                     <h4 class="font-semibold mb-3">Model Information</h4>
                                     <div class="space-y-2 text-sm">
-                                        @foreach($product->model_info as $info)
+                                        @foreach($model_info as $info)
                                             <p><strong>{{ $info['label'] }}:</strong> {{ $info['value'] }}</p>
                                         @endforeach
                                     </div>
                                 </div>
                                 @endif
 
-                                @if($product->garment_details)
+                                @php
+                                    $garment_details = is_array($product->garment_details) ? $product->garment_details : json_decode($product->garment_details, true);
+                                @endphp
+                                @if(is_array($garment_details))
                                 <div>
                                     <h4 class="font-semibold mb-3">Garment Details</h4>
                                     <div class="space-y-2 text-sm">
-                                        @foreach($product->garment_details as $detail)
+                                        @foreach($garment_details as $detail)
                                             <p><strong>{{ $detail['label'] }}:</strong> {{ $detail['value'] }}</p>
                                         @endforeach
                                     </div>
@@ -212,18 +235,21 @@
                                 <!-- Size Chart -->
                                 <div>
                                     <h4 class="font-semibold mb-3">Size Chart</h4>
-                                    @if($product->size_chart)
+                                    @php
+                                        $size_chart = is_array($product->size_chart) ? $product->size_chart : json_decode($product->size_chart, true);
+                                    @endphp
+                                    @if(is_array($size_chart))
                                     <div class="overflow-x-auto">
                                         <table class="w-full text-sm border border-gray-300">
                                             <thead class="bg-gray-100">
                                                 <tr>
-                                                    @foreach($product->size_chart['headers'] as $header)
+                                                    @foreach($size_chart['headers'] as $header)
                                                         <td class="border border-gray-300 p-2 font-medium">{{ $header }}</td>
                                                     @endforeach
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach($product->size_chart['rows'] as $row)
+                                                @foreach($size_chart['rows'] as $row)
                                                 <tr>
                                                     @foreach($row as $cell)
                                                         <td class="border border-gray-300 p-2">{{ $cell }}</td>
@@ -242,22 +268,28 @@
                         <div>
                             <h3 class="text-xl font-semibold mb-4">Materials & Care</h3>
                             <div class="space-y-6">
-                                @if($product->fabric_details)
+                                @php
+                                    $fabric_details = is_array($product->fabric_details) ? $product->fabric_details : json_decode($product->fabric_details, true);
+                                @endphp
+                                @if(is_array($fabric_details))
                                 <div>
                                     <h4 class="font-semibold mb-3">Fabric Details</h4>
                                     <div class="space-y-2 text-sm">
-                                        @foreach($product->fabric_details as $detail)
+                                        @foreach($fabric_details as $detail)
                                             <p><strong>{{ $detail['label'] }}:</strong> {{ $detail['value'] }}</p>
                                         @endforeach
                                     </div>
                                 </div>
                                 @endif
 
-                                @if($product->care_instructions)
+                                @php
+                                    $care_instructions = is_array($product->care_instructions) ? $product->care_instructions : json_decode($product->care_instructions, true);
+                                @endphp
+                                @if(is_array($care_instructions))
                                 <div>
                                     <h4 class="font-semibold mb-3">Care Instructions</h4>
                                     <div class="grid grid-cols-2 gap-4">
-                                        @foreach($product->care_instructions as $instruction)
+                                        @foreach($care_instructions as $instruction)
                                         <div class="flex items-center space-x-3 p-3 bg-blue-50 rounded-lg">
                                             <i class="{{ $instruction['icon'] }} text-blue-500 text-xl"></i>
                                             <div>
@@ -270,11 +302,14 @@
                                 </div>
                                 @endif
 
-                                @if($product->care_tips)
+                                @php
+                                    $care_tips = is_array($product->care_tips) ? $product->care_tips : json_decode($product->care_tips, true);
+                                @endphp
+                                @if(is_array($care_tips))
                                 <div class="bg-green-50 p-4 rounded-lg">
                                     <h4 class="font-semibold mb-2 text-green-800">Care Tips</h4>
                                     <ul class="text-sm text-green-700 space-y-1">
-                                        @foreach($product->care_tips as $tip)
+                                        @foreach($care_tips as $tip)
                                             <li>• {{ $tip }}</li>
                                         @endforeach
                                     </ul>
