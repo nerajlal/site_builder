@@ -21,8 +21,8 @@
     </script>
 </head>
 <body class="bg-gray-50">
-    @if(isset($headerFooter))
-        @include('template' . $headerFooter->template_id . '.head' . $headerFooter->template_id, ['is_default' => false, 'headerFooter' => $headerFooter])
+    @if(isset($headerFooter) && isset($template_id))
+        @include('template' . $template_id . '.head' . $template_id, ['is_default' => false, 'headerFooter' => $headerFooter])
     @else
         @include('template1.head1', ['is_default' => true, 'headerFooter' => null])
     @endif
@@ -325,8 +325,8 @@
         </div>
     </div>
 
-    @if(isset($headerFooter))
-        @include('template' . $headerFooter->template_id . '.footer' . $headerFooter->template_id)
+    @if(isset($headerFooter) && isset($template_id))
+        @include('template' . $template_id . '.footer' . $template_id)
     @else
         @include('template1.footer1')
     @endif
