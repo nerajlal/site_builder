@@ -185,7 +185,6 @@
                             <button class="w-full bg-gray-900 hover:bg-pink-800 text-white py-2 px-4 rounded-lg font-medium transition flex items-center justify-center">
                                 <i class="fas fa-shopping-bag mr-2"></i> View Product
                             </button>
-                        </a>
                     </div>
                 </div>
             @endforeach

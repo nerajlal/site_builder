@@ -184,7 +184,6 @@
                             <button class="w-full btn-pink py-2 rounded font-medium">
                                 View Product
                             </button>
-                        </a>
                     </div>
                 </div>
             @endforeach
