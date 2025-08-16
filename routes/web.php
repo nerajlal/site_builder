@@ -75,16 +75,20 @@ Route::get('/product1', [ProductController1::class, 'index'])->name('template1.p
 Route::get('/product2', [ProductController2::class, 'index'])->name('template2.product2');
 Route::get('/product3', [ProductController3::class, 'index'])->name('template3.product3');
 Route::get('/product4', [ProductController4::class, 'index'])->name('template4.product4');
+Route::get('/single-product1', [ProductController1::class, 'index'])->name('template1.single-product1');
+Route::get('/single-product2', [ProductController2::class, 'index'])->name('template2.single-product2');
+Route::get('/single-product3', [ProductController3::class, 'index'])->name('template3.single-product3');
+Route::get('/single-product4', [ProductController4::class, 'index'])->name('template4.single-product4');
 
 // Customer-facing product routes with header_footer_id
 Route::get('/product1/{headerFooterId}', [ProductController1::class, 'showCustomer'])->name('template1.product1.customer');
 Route::get('/product2/{headerFooterId}', [ProductController2::class, 'showCustomer'])->name('template2.product2.customer');
 Route::get('/product3/{headerFooterId}', [ProductController3::class, 'showCustomer'])->name('template3.product3.customer');
 Route::get('/product4/{headerFooterId}', [ProductController4::class, 'showCustomer'])->name('template4.product4.customer');
-Route::get('/single-product1/{headerFooterId}/{productId}', [ProductController1::class, 'showSingleProduct'])->name('template1.single-product');
-Route::get('/single-product2/{headerFooterId}/{productId}', [ProductController2::class, 'showSingleProduct'])->name('template2.single-product');
-Route::get('/single-product3/{headerFooterId}/{productId}', [ProductController3::class, 'showSingleProduct'])->name('template3.single-product');
-Route::get('/single-product4/{headerFooterId}/{productId}', [ProductController4::class, 'showSingleProduct'])->name('template4.single-product');
+Route::get('/single-product1/{headerFooterId}/{productId}', [ProductController1::class, 'showSingleProduct'])->name('template1.single-product1.customer');
+Route::get('/single-product2/{headerFooterId}/{productId}', [ProductController2::class, 'showSingleProduct'])->name('template2.single-product2.customer');
+Route::get('/single-product3/{headerFooterId}/{productId}', [ProductController3::class, 'showSingleProduct'])->name('template3.single-product3.customer');
+Route::get('/single-product4/{headerFooterId}/{productId}', [ProductController4::class, 'showSingleProduct'])->name('template4.single-product4.customer');
 
 
 // Site customer auth endpoints (AJAX)
