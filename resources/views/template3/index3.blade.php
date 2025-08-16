@@ -134,39 +134,65 @@
   @endif
 
   <!-- Categories Section -->
-  <section id="brands" class="py-20 px-6 bg-[#f9f9f7]">
-  <div class="max-w-7xl mx-auto">
-    <div class="text-center mb-16">
-      <h3 class="text-3xl font-medium mb-4">Fashion Categories</h3>
-      <p class="text-gray-600 max-w-2xl mx-auto">
-        Explore our curated collection of premium fashion categories
-      </p>
-    </div>
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-      @php
-        $categories = [
-            ['name' => 'Women', 'image' => 'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80'],
-            ['name' => 'Men', 'image' => 'https://images.unsplash.com/photo-1504593811423-6dd665756598?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80'],
-            ['name' => 'Kids', 'image' => 'https://images.unsplash.com/photo-1622422034001-3a8a3f287118?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80'],
-        ];
-      @endphp
-      @foreach($categories as $category)
-      <div class="relative group h-96 overflow-hidden rounded-lg shadow-sm hover:shadow-xl transition-shadow duration-300">
-        <img
-          src="{{ $category['image'] }}"
-          alt="{{ $category['name'] }}'s Fashion"
-          class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out"
-        >
-        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent flex items-end justify-start p-6">
-          <h4 class="text-white text-2xl font-semibold drop-shadow-md">{{ $category['name'] }}</h4>
+  @if($is_default)
+    <section id="brands" class="py-20 px-6 bg-[#f9f9f7]">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+          <h3 class="text-3xl font-medium mb-4">Fashion Categories</h3>
+          <p class="text-gray-600 max-w-2xl mx-auto">Explore our curated collection of premium fashion categories</p>
         </div>
-        <a href="#" class="absolute inset-0" aria-label="Shop {{ $category['name'] }}"></a>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+          <div class="relative group h-80 overflow-hidden rounded-lg">
+            <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80" alt="Women's Fashion" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+            <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+              <h4 class="text-white text-2xl font-medium">Women</h4>
+            </div>
+          </div>
+          <div class="relative group h-80 overflow-hidden rounded-lg">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Men's Fashion" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+            <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+              <h4 class="text-white text-2xl font-medium">Men</h4>
+            </div>
+          </div>
+          <div class="relative group h-80 overflow-hidden rounded-lg">
+            <img src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Kids' Fashion" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+            <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+              <h4 class="text-white text-2xl font-medium">Kids</h4>
+            </div>
+          </div>
+        </div>
       </div>
-      @endforeach
-    </div>
-  </div>
-</section>
-
+    </section>
+  @else
+    <section id="brands" class="py-20 px-6 bg-[#f9f9f7]">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+          <h3 class="text-3xl font-medium mb-4">{{ $section2->main_text1 }}</h3>
+          <p class="text-gray-600 max-w-2xl mx-auto">{{ $section2->sub_text1 }}</p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+          <div class="relative group h-80 overflow-hidden rounded-lg">
+            <img src="{{ $section2->image1 }}" alt="Women's Fashion" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+            <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+              <h4 class="text-white text-2xl font-medium">Women</h4>
+            </div>
+          </div>
+          <div class="relative group h-80 overflow-hidden rounded-lg">
+            <img src="{{ $section2->image2 }}" alt="Men's Fashion" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+            <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+              <h4 class="text-white text-2xl font-medium">Men</h4>
+            </div>
+          </div>
+          <div class="relative group h-80 overflow-hidden rounded-lg">
+            <img src="{{ $section2->image3 }}" alt="Kids' Fashion" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+            <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+              <h4 class="text-white text-2xl font-medium">Kids</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  @endif
 
   <!-- Collection -->
   @if($is_default)
@@ -196,10 +222,10 @@
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           @foreach($products as $product)
-            <div class="product-card p-6 rounded-lg border border-gray-100 shadow-sm hover:shadow-md transition">
+            <div class="watch-card p-6 rounded-lg border border-gray-100 shadow-sm hover:shadow-md transition">
               <a href="{{ route('template3.single-product', ['headerFooterId' => $headerFooter->id, 'productId' => $product->id]) }}">
                 <div class="relative h-64 mb-6 overflow-hidden rounded-lg">
-                  <img src="{{ $product->image_url }}" alt="{{ $product->name }}" class="absolute inset-0 w-full h-full object-cover">
+                  <img src="https://images.unsplash.com/photo-1571951103752-53c15cad21e6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="{{ $product->name }}" class="absolute inset-0 w-full h-full object-cover">
                   <div class="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
                   @if($product->is_new)
                     <span class="absolute top-4 right-4 bg-white text-gray-900 text-xs font-medium px-2 py-1 rounded">NEW</span>

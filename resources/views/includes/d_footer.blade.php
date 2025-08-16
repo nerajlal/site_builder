@@ -2,7 +2,7 @@
             <footer class="flex items-center justify-between px-6 py-3 bg-white border-t border-gray-200">
                 <div class="flex items-center">
                     <div class="text-sm text-gray-500">
-                        © 2023 BuildYourBoutique. All rights reserved.
+                        © 2023 AdminPanel. All rights reserved.
                     </div>
                 </div>
                 <div class="flex items-center space-x-4">
