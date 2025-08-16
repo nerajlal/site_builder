@@ -155,191 +155,135 @@
                 </nav>
             </div>
 
-            <!-- Tab Content -->
-            <div class="mt-8">
+            <div class="py-6">
                 <!-- Description Tab -->
-                <div id="description" class="tab-content">
-                    <div class="grid md:grid-cols-2 gap-8">
-                        <div>
-                            <h3 class="text-xl font-semibold mb-4">Product Details</h3>
-                            <p class="text-gray-700 mb-6 prose">{!! nl2br(e($product->description)) !!}</p>
-                            
-                            @if(isset($product->details['key_features']) && is_array($product->details['key_features']))
-                            <div class="space-y-4">
-                                <div>
-                                    <h4 class="font-semibold mb-2">Key Features:</h4>
-                                    <ul class="space-y-2 text-gray-700">
-                                        @foreach($product->details['key_features'] as $feature)
-                                        <li class="flex items-start space-x-2">
-                                            <i class="fas fa-check text-green-600 mt-1"></i>
-                                            <span>{{ $feature }}</span>
-                                        </li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            </div>
-                            @endif
-                        </div>
-                        
-                        @if(isset($product->details['styling_tips']) && is_array($product->details['styling_tips']))
-                        <div>
-                            <h4 class="font-semibold mb-4">Styling Tips:</h4>
-                            <div class="space-y-4">
-                                @foreach($product->details['styling_tips'] as $tip)
-                                <div class="bg-gray-50 p-4 rounded-lg">
-                                    <h5 class="font-medium mb-2">{{ $tip['title'] }}</h5>
-                                    <p class="text-sm text-gray-700">{{ $tip['description'] }}</p>
-                                </div>
-                                @endforeach
-                            </div>
-                        </div>
-                        @endif
+                <div class="tab-content" id="descriptionContent">
+                    <div class="prose max-w-none text-gray-600">
+                        <p>{{ $product->description }}</p>
                     </div>
                 </div>
 
                 <!-- Fit & Materials Tab -->
-                @if(isset($product->details) && !empty(array_filter((array)$product->details)))
-                <div id="fit" class="tab-content hidden">
-                    <!-- ... content for fit & materials ... -->
+                <div class="tab-content hidden" id="fitContent">
+                    <div class="prose max-w-none text-gray-600">
+                        @if(isset($product->details) && is_array($product->details))
+                            @foreach($product->details as $key => $value)
+                                @if(!empty($value))
+                                    <h4 class="font-semibold">{{ ucfirst(str_replace('_', ' ', $key)) }}</h4>
+                                    @if(is_array($value))
+                                        <ul class="list-disc list-inside">
+                                            @foreach($value as $item)
+                                                <li>{{ $item }}</li>
+                                            @endforeach
+                                        </ul>
+                                    @else
+                                        <p>{{ $value }}</p>
+                                    @endif
+                                @endif
+                            @endforeach
+                        @endif
+                    </div>
                 </div>
-                @endif
             </div>
         </div>
     </div>
 
-    <script>
-        function changeImage(imageUrl, thumb) {
-            document.getElementById('mainImage').querySelector('img').src = imageUrl;
-            // Update active thumbnail
-            document.querySelectorAll('.thumbnail-btn').forEach(btn => btn.classList.remove('border-primary'));
-            thumb.classList.add('border-primary');
-        }
-    </script>
+<script>
+    let selectedColor = '{{ $product->colors[0]['name'] ?? '' }}';
+    let selectedSize = '';
 
-    <!-- JSON-LD Structured Data -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org/",
-        "@type": "Product",
-        "name": "{{ $product->name }}",
-        "image": [
-            "{{ $product->image_url }}"
-            @if(is_array($product->images))
-                @foreach($product->images as $image)
-                , "{{ $image }}"
-                @endforeach
-            @endif
-        ],
-        "description": "{{ $product->description }}",
-        "sku": "{{ $product->sku }}",
-        "brand": {
-            "@type": "Brand",
-            "name": "{{ $product->brand->name ?? '' }}"
-        },
-        "offers": {
-            "@type": "Offer",
-            "url": "{{ url()->current() }}",
-            "priceCurrency": "INR",
-            "price": "{{ $product->price }}",
-            "itemCondition": "https://schema.org/NewCondition",
-            "availability": "https://schema.org/InStock"
-        }
-    }
-    </script>
+    function changeImage(imageUrl, thumbElement) {
+        document.getElementById('mainImage').querySelector('img').src = imageUrl;
 
-    <script>
-        function changeImage(imageUrl, thumb) {
-            document.getElementById('mainImage').querySelector('img').src = imageUrl;
-            const thumbnails = document.querySelectorAll('.thumbnail-btn');
-            thumbnails.forEach(btn => {
-                btn.classList.remove('border-primary');
-                btn.classList.add('border-gray-200');
-            });
-            thumb.classList.add('border-primary');
-            thumb.classList.remove('border-gray-200');
-        }
-
-        function showTab(tabName) {
-            document.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden'));
-            document.querySelectorAll('.tab-btn').forEach(b => {
-                b.classList.remove('active', 'border-primary', 'text-primary');
-                b.classList.add('border-transparent', 'text-gray-500');
-            });
-            document.getElementById(tabName).classList.remove('hidden');
-            const clickedButton = document.querySelector(`button[onclick="showTab('${tabName}')"]`);
-            clickedButton.classList.add('active', 'border-primary', 'text-primary');
-            clickedButton.classList.remove('border-transparent', 'text-gray-500');
-        }
-
-        function selectColor(colorValue, colorName, thumb) {
-            document.getElementById('selectedColorName').textContent = colorName;
-            document.querySelectorAll('.color-btn').forEach(btn => {
-                btn.classList.remove('border-primary');
-                btn.classList.add('border-gray-200');
-                btn.querySelector('i').classList.add('hidden');
-            });
-            thumb.classList.add('border-primary');
-            thumb.classList.remove('border-gray-200');
-            thumb.querySelector('i').classList.remove('hidden');
-        }
-
-        function selectSize(size, thumb) {
-            document.getElementById('selectedSizeName').textContent = size;
-            document.querySelectorAll('.size-btn').forEach(btn => {
-                btn.classList.remove('border-primary', 'bg-primary', 'text-white');
-                btn.classList.add('border-gray-200');
-            });
-            thumb.classList.add('border-primary', 'bg-primary', 'text-white');
-            thumb.classList.remove('border-gray-200');
-            
-            const stock = thumb.dataset.stock;
-            const stockInfo = document.getElementById('stockInfo');
-            if (stock && parseInt(stock, 10) < 5) {
-                stockInfo.textContent = `Only ${stock} left!`;
-                stockInfo.classList.remove('hidden');
-            } else {
-                stockInfo.classList.add('hidden');
-            }
-        }
-
-        // Initialize default selections
-        document.addEventListener('DOMContentLoaded', () => {
-            const firstSize = document.querySelector('.size-btn');
-            if (firstSize) {
-                selectSize(firstSize.dataset.size, firstSize);
-            }
+        document.querySelectorAll('.flex.space-x-2.overflow-x-auto button').forEach(btn => {
+            btn.classList.remove('border-primary');
+            btn.classList.add('border-gray-200');
         });
-    </script>
+        thumbElement.classList.remove('border-gray-200');
+        thumbElement.classList.add('border-primary');
+    }
 
-    <!-- JSON-LD Structured Data -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org/",
-        "@type": "Product",
-        "name": "{{ $product->name }}",
-        "image": [
-            "{{ $product->image_url }}"
-            @if(is_array($product->images))
-                @foreach($product->images as $image)
-                , "{{ $image }}"
-                @endforeach
-            @endif
-        ],
-        "description": "{{ $product->description }}",
-        "sku": "{{ $product->sku }}",
-        "brand": {
-            "@type": "Brand",
-            "name": "{{ $product->brand->name ?? '' }}"
-        },
-        "offers": {
-            "@type": "Offer",
-            "url": "{{ url()->current() }}",
-            "priceCurrency": "INR",
-            "price": "{{ $product->price }}",
-            "itemCondition": "https://schema.org/NewCondition",
-            "availability": "https://schema.org/InStock"
+    function selectColor(colorValue, colorName, btnElement) {
+        selectedColor = colorName;
+        document.getElementById('selectedColorName').textContent = colorName;
+
+        document.querySelectorAll('.color-btn').forEach(btn => {
+            btn.classList.remove('border-primary');
+            btn.classList.add('border-gray-200');
+            btn.querySelector('.fa-check').classList.add('hidden');
+        });
+        btnElement.classList.add('border-primary');
+        btnElement.classList.remove('border-gray-200');
+        btnElement.querySelector('.fa-check').classList.remove('hidden');
+    }
+
+    function selectSize(size, btnElement) {
+        const stock = btnElement.dataset.stock;
+        selectedSize = size;
+        document.getElementById('selectedSizeName').textContent = size;
+
+        document.querySelectorAll('.size-btn').forEach(btn => {
+            btn.classList.remove('border-primary', 'bg-primary', 'text-white');
+        });
+        btnElement.classList.add('border-primary', 'bg-primary', 'text-white');
+
+        const stockInfo = document.getElementById('stockInfo');
+        if (stock > 0 && stock <= 5) {
+            stockInfo.textContent = `Only ${stock} left in ${size} size!`;
+            stockInfo.className = 'text-sm text-orange-600';
+        } else if (stock > 5) {
+            stockInfo.textContent = `In Stock`;
+            stockInfo.className = 'text-sm text-green-600';
+        } else {
+            stockInfo.textContent = `Out of stock`;
+             stockInfo.className = 'text-sm text-red-600';
         }
     }
-    </script>
 
-@include('template3.footer3')
+    function showTab(tabName) {
+        document.querySelectorAll('.tab-content').forEach(content => {
+            content.classList.add('hidden');
+        });
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.classList.remove('active', 'border-primary', 'text-primary');
+            btn.classList.add('border-transparent', 'text-gray-500');
+        });
+
+        document.getElementById(tabName + 'Content').classList.remove('hidden');
+        const activeBtn = document.querySelector(`.tab-btn[onclick="showTab('${tabName}')"]`);
+        activeBtn.classList.add('active', 'border-primary', 'text-primary');
+        activeBtn.classList.remove('border-transparent', 'text-gray-500');
+    }
+
+    function addToCart() {
+        if (!selectedSize) {
+            alert('Please select a size.');
+            return;
+        }
+        console.log(`Added to cart: {{ $product->name }}, Color: ${selectedColor}, Size: ${selectedSize}`);
+        alert('Added to cart!');
+    }
+
+    function buyNow() {
+        if (!selectedSize) {
+            alert('Please select a size.');
+            return;
+        }
+        console.log(`Buying now: {{ $product->name }}, Color: ${selectedColor}, Size: ${selectedSize}`);
+        alert('Proceeding to checkout!');
+    }
+
+    function openSizeGuide() {
+        alert('Displaying size guide...');
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const firstSizeBtn = document.querySelector('.size-btn');
+        if(firstSizeBtn) {
+            selectSize(firstSizeBtn.dataset.size, firstSizeBtn);
+        }
+    });
+
+</script>
+
+@include('template3.footer3', ['is_default' => $is_default, 'headerFooter' => $headerFooter])

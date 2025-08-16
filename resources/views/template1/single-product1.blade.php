@@ -71,22 +71,8 @@
                             <span class="text-lg font-semibold text-green-600">{{ round((($product->original_price - $product->price) / $product->original_price) * 100) }}% off</span>
                         @endif
                     </div>
-                    <p class="text-sm text-gray-600">Inclusive of all taxes • GST invoice available</p>
+                    <p class="text-sm text-gray-600">Inclusive of all taxes</p>
                 </div>
-
-                <!-- Key Features -->
-                @if(isset($product->details['key_features']) && is_array($product->details['key_features']))
-                <div class="bg-blue-50 p-4 rounded-lg">
-                    <div class="grid grid-cols-2 md:grid-cols-3 gap-4 text-sm">
-                        @foreach(array_slice($product->details['key_features'], 0, 3) as $feature)
-                        <div class="flex items-center space-x-2">
-                            <i class="fas fa-check text-green-600"></i>
-                            <span>{{ $feature }}</span>
-                        </div>
-                        @endforeach
-                    </div>
-                </div>
-                @endif
 
                 <!-- Color Selection -->
                 @if(is_array($product->colors) && !empty($product->colors))
@@ -109,7 +95,7 @@
                 </div>
                 @endif
 
-                <!-- Size Selection with Stock Info -->
+                <!-- Size Selection -->
                 @if(is_array($product->sizes) && !empty($product->sizes))
                 <div>
                     <div class="flex items-center justify-between mb-3">
@@ -126,7 +112,7 @@
                         </button>
                         @endforeach
                     </div>
-                    <p class="text-sm text-orange-600" id="stockInfo"></p>
+                    <p class="text-sm" id="stockInfo"></p>
                 </div>
                 @endif
 
@@ -141,165 +127,157 @@
                         </button>
                     </div>
                 </div>
-            </div>
-        </div>
 
-        <!-- Product Information Tabs -->
-        <div class="mt-16">
-            <div class="border-b border-gray-200">
-                <nav class="-mb-px flex space-x-8 overflow-x-auto">
-                    <button class="tab-btn active py-4 px-1 border-b-2 border-primary text-primary font-medium whitespace-nowrap" onclick="showTab('description')">Description</button>
-                    @if(isset($product->details) && !empty(array_filter((array)$product->details)))
-                    <button class="tab-btn py-4 px-1 border-b-2 border-transparent text-gray-500 hover:text-gray-700 whitespace-nowrap" onclick="showTab('fit')">Fit & Materials</button>
-                    @endif
-                </nav>
-            </div>
-
-            <!-- Tab Content -->
-            <div class="mt-8">
-                <!-- Description Tab -->
-                <div id="description" class="tab-content">
-                    <div class="grid md:grid-cols-2 gap-8">
-                        <div>
-                            <h3 class="text-xl font-semibold mb-4">Product Details</h3>
-                            <p class="text-gray-700 mb-6 prose">{!! nl2br(e($product->description)) !!}</p>
-                            
-                            @if(isset($product->details['key_features']) && is_array($product->details['key_features']))
-                            <div class="space-y-4">
-                                <div>
-                                    <h4 class="font-semibold mb-2">Key Features:</h4>
-                                    <ul class="space-y-2 text-gray-700">
-                                        @foreach($product->details['key_features'] as $feature)
-                                        <li class="flex items-start space-x-2">
-                                            <i class="fas fa-check text-green-600 mt-1"></i>
-                                            <span>{{ $feature }}</span>
-                                        </li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            </div>
-                            @endif
-                        </div>
-                        
-                        @if(isset($product->details['styling_tips']) && is_array($product->details['styling_tips']))
-                        <div>
-                            <h4 class="font-semibold mb-4">Styling Tips:</h4>
-                            <div class="space-y-4">
-                                @foreach($product->details['styling_tips'] as $tip)
-                                <div class="bg-gray-50 p-4 rounded-lg">
-                                    <h5 class="font-medium mb-2">{{ $tip['title'] }}</h5>
-                                    <p class="text-sm text-gray-700">{{ $tip['description'] }}</p>
-                                </div>
-                                @endforeach
-                            </div>
-                        </div>
-                        @endif
+                <!-- Description -->
+                <div class="pt-6">
+                    <h3 class="text-lg font-medium text-gray-900">Description</h3>
+                    <div class="mt-4 prose prose-sm text-gray-500">
+                        {!! nl2br(e($product->description)) !!}
                     </div>
                 </div>
 
-                <!-- Fit & Materials Tab -->
                 @if(isset($product->details) && !empty(array_filter((array)$product->details)))
-                <div id="fit" class="tab-content hidden">
-                    <!-- ... content for fit & materials ... -->
+                <div class="pt-6">
+                    <h3 class="text-lg font-medium text-gray-900">Details</h3>
+                    <div class="mt-4 prose prose-sm text-gray-500">
+                        <ul>
+                        @foreach($product->details as $key => $value)
+                            @if(!empty($value))
+                                @if(is_array($value))
+                                    <li><strong>{{ ucfirst(str_replace('_', ' ', $key)) }}:</strong>
+                                        <ul class="list-disc list-inside ml-4">
+                                            @foreach($value as $item)
+                                                <li>{{ $item }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </li>
+                                @else
+                                    <li><strong>{{ ucfirst(str_replace('_', ' ', $key)) }}:</strong> {{ $value }}</li>
+                                @endif
+                            @endif
+                        @endforeach
+                        </ul>
+                    </div>
                 </div>
                 @endif
             </div>
         </div>
     </div>
 
-    <script>
-        function changeImage(imageUrl, thumb) {
-            document.getElementById('mainImage').querySelector('img').src = imageUrl;
-            const thumbnails = document.querySelectorAll('.thumbnail-btn');
-            thumbnails.forEach(btn => {
-                btn.classList.remove('border-primary');
-                btn.classList.add('border-gray-200');
-            });
-            thumb.classList.add('border-primary');
-            thumb.classList.remove('border-gray-200');
-        }
+<script>
+    let selectedColor = '{{ count($product->colors ?? []) > 0 ? $product->colors[0]['name'] : '' }}';
+    let selectedSize = '';
 
-        function showTab(tabName) {
-            document.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden'));
-            document.querySelectorAll('.tab-btn').forEach(b => {
-                b.classList.remove('active', 'border-primary', 'text-primary');
-                b.classList.add('border-transparent', 'text-gray-500');
-            });
-            document.getElementById(tabName).classList.remove('hidden');
-            const clickedButton = document.querySelector(`button[onclick="showTab('${tabName}')"]`);
-            clickedButton.classList.add('active', 'border-primary', 'text-primary');
-            clickedButton.classList.remove('border-transparent', 'text-gray-500');
-        }
-
-        function selectColor(colorValue, colorName, thumb) {
-            document.getElementById('selectedColorName').textContent = colorName;
-            document.querySelectorAll('.color-btn').forEach(btn => {
-                btn.classList.remove('border-primary');
-                btn.classList.add('border-gray-200');
-                btn.querySelector('i').classList.add('hidden');
-            });
-            thumb.classList.add('border-primary');
-            thumb.classList.remove('border-gray-200');
-            thumb.querySelector('i').classList.remove('hidden');
-        }
-
-        function selectSize(size, thumb) {
-            document.getElementById('selectedSizeName').textContent = size;
-            document.querySelectorAll('.size-btn').forEach(btn => {
-                btn.classList.remove('border-primary', 'bg-primary', 'text-white');
-                btn.classList.add('border-gray-200');
-            });
-            thumb.classList.add('border-primary', 'bg-primary', 'text-white');
-            thumb.classList.remove('border-gray-200');
-            
-            const stock = thumb.dataset.stock;
-            const stockInfo = document.getElementById('stockInfo');
-            if (stock && parseInt(stock, 10) < 5) {
-                stockInfo.textContent = `Only ${stock} left!`;
-                stockInfo.classList.remove('hidden');
-            } else {
-                stockInfo.classList.add('hidden');
-            }
-        }
-
-        // Initialize default selections
-        document.addEventListener('DOMContentLoaded', () => {
-            const firstSize = document.querySelector('.size-btn');
-            if (firstSize) {
-                selectSize(firstSize.dataset.size, firstSize);
-            }
+    function changeImage(imageUrl, thumbElement) {
+        document.getElementById('mainImage').querySelector('img').src = imageUrl;
+        document.querySelectorAll('.flex.space-x-2.overflow-x-auto button').forEach(btn => {
+            btn.classList.remove('border-primary', 'border-2');
+            btn.classList.add('border-gray-200');
         });
-    </script>
+        thumbElement.classList.add('border-primary', 'border-2');
+        thumbElement.classList.remove('border-gray-200');
+    }
 
-    <!-- JSON-LD Structured Data -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org/",
-        "@type": "Product",
-        "name": "{{ $product->name }}",
-        "image": [
-            "{{ $product->image_url }}"
-            @if(is_array($product->images))
-                @foreach($product->images as $image)
-                , "{{ $image }}"
-                @endforeach
-            @endif
-        ],
-        "description": "{{ $product->description }}",
-        "sku": "{{ $product->sku }}",
-        "brand": {
-            "@type": "Brand",
-            "name": "{{ $product->brand->name ?? '' }}"
-        },
-        "offers": {
-            "@type": "Offer",
-            "url": "{{ url()->current() }}",
-            "priceCurrency": "INR",
-            "price": "{{ $product->price }}",
-            "itemCondition": "https://schema.org/NewCondition",
-            "availability": "https://schema.org/InStock"
+    function selectColor(colorValue, colorName, btnElement) {
+        selectedColor = colorName;
+        document.getElementById('selectedColorName').textContent = colorName;
+        document.querySelectorAll('.color-btn').forEach(btn => {
+            btn.classList.remove('border-primary');
+            btn.classList.add('border-gray-200');
+            btn.querySelector('.fa-check').classList.add('hidden');
+        });
+        btnElement.classList.add('border-primary');
+        btnElement.classList.remove('border-gray-200');
+        btnElement.querySelector('.fa-check').classList.remove('hidden');
+    }
+
+    function selectSize(size, btnElement) {
+        const stock = btnElement.dataset.stock;
+        selectedSize = size;
+        document.getElementById('selectedSizeName').textContent = size;
+        document.querySelectorAll('.size-btn').forEach(btn => {
+            btn.classList.remove('border-primary', 'bg-primary', 'text-white');
+        });
+        btnElement.classList.add('border-primary', 'bg-primary', 'text-white');
+        const stockInfo = document.getElementById('stockInfo');
+        if (stock > 0 && stock <= 10) {
+            stockInfo.textContent = `Only ${stock} left in stock!`;
+            stockInfo.className = 'text-sm text-red-600';
+        } else if (stock > 10) {
+            stockInfo.textContent = 'In Stock';
+            stockInfo.className = 'text-sm text-green-600';
+        } else {
+            stockInfo.textContent = 'Out of Stock';
+            stockInfo.className = 'text-sm text-gray-500';
         }
     }
-    </script>
 
-@include('template1.footer1')
+    function addToCart() {
+        if (!selectedSize) {
+            alert('Please select a size.');
+            return;
+        }
+        console.log(`Added to cart: {{ $product->name }}, Color: ${selectedColor}, Size: ${selectedSize}`);
+        alert('Added to cart!');
+    }
+
+    function buyNow() {
+        if (!selectedSize) {
+            alert('Please select a size.');
+            return;
+        }
+        console.log(`Buying now: {{ $product->name }}, Color: ${selectedColor}, Size: ${selectedSize}`);
+        alert('Proceeding to checkout!');
+    }
+
+    function openSizeGuide() {
+        alert('Displaying size guide...');
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const firstSizeBtn = document.querySelector('.size-btn');
+        if (firstSizeBtn) {
+            selectSize(firstSizeBtn.dataset.size, firstSizeBtn);
+        }
+        const firstThumbnail = document.querySelector('.flex.space-x-2.overflow-x-auto button');
+        if(firstThumbnail) {
+            firstThumbnail.classList.add('border-primary', 'border-2');
+            firstThumbnail.classList.remove('border-gray-200');
+        }
+    });
+</script>
+
+<!-- JSON-LD Structured Data -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org/",
+    "@type": "Product",
+    "name": "{{ $product->name }}",
+    "image": [
+        "{{ $product->image_url }}"
+        @if(is_array($product->images))
+            @foreach($product->images as $image)
+            , "{{ $image }}"
+            @endforeach
+        @endif
+    ],
+    "description": "{{ addslashes(str_replace(["\r", "\n"], '', $product->description)) }}",
+    "sku": "{{ $product->id }}",
+    @if($product->brand)
+    "brand": {
+        "@type": "Brand",
+        "name": "{{ $product->brand->name }}"
+    },
+    @endif
+    "offers": {
+        "@type": "Offer",
+        "url": "{{ url()->current() }}",
+        "priceCurrency": "INR",
+        "price": "{{ $product->price }}",
+        "itemCondition": "https://schema.org/NewCondition",
+        "availability": "https://schema.org/InStock"
+    }
+}
+</script>
+
+@include('template1.footer1', ['is_default' => $is_default, 'headerFooter' => $headerFooter])

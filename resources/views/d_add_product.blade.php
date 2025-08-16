@@ -176,17 +176,18 @@
             </div>
 
             <!-- Media -->
-            <div>
-                <label class="block text-sm font-medium text-gray-700">Main Image URL</label>
-                <input type="text" name="image_url" class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md">
-            </div>
-            <div>
-                <label class="block text-sm font-medium text-gray-700">Additional Images (JSON)</label>
-                <textarea name="images" rows="3" class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md" placeholder='["url1", "url2", "url3"]'></textarea>
-            </div>
-            <div>
-                <label class="block text-sm font-medium text-gray-700">Video URL</label>
-                <input type="text" name="video_url" class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md">
+            <div class="space-y-4 border-t pt-4">
+                 <h4 class="text-lg font-semibold text-gray-800">Product Media</h4>
+                <div id="image-inputs-container" class="space-y-2">
+                    <label class="block text-sm font-medium text-gray-700">Image URLs</label>
+                    <!-- Image inputs will be dynamically added here -->
+                </div>
+                <button type="button" id="add-image-btn" class="px-3 py-1 text-sm bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300">+ Add Image</button>
+
+                <div class="mt-4">
+                    <label class="block text-sm font-medium text-gray-700">Video URL</label>
+                    <input type="text" name="video_url" class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md">
+                </div>
             </div>
 
             <!-- Description -->
@@ -287,124 +288,153 @@
 
 <!-- ========== JS ========== -->
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const modals = {
-            product: document.getElementById('product-modal'),
-            brand: document.getElementById('brand-modal')
+document.addEventListener('DOMContentLoaded', function () {
+    // --- MODAL AND GENERIC UI CONTROLS ---
+    const modals = {
+        product: document.getElementById('product-modal'),
+        brand: document.getElementById('brand-modal')
+    };
+    const productModal = modals.product;
+    const productForm = document.getElementById('product-form');
+    const modalTitle = productModal.querySelector('h3');
+    const addProductBtn = document.getElementById('add-product-btn');
+    const addBrandBtn = document.getElementById('add-brand-btn');
+    const editProductBtns = document.querySelectorAll('.edit-product-btn');
+
+    function openModal(modal) {
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+        Object.values(modals).forEach(m => m.classList.add('hidden'));
+        document.body.style.overflow = 'auto';
+    }
+
+    addBrandBtn.addEventListener('click', () => openModal(modals.brand));
+    document.querySelectorAll('.close-modal').forEach(btn => btn.addEventListener('click', closeModal));
+    window.addEventListener('click', (e) => {
+        if (Object.values(modals).includes(e.target)) closeModal();
+    });
+
+    // --- DYNAMIC IMAGE INPUT LOGIC ---
+    const imageInputsContainer = document.getElementById('image-inputs-container');
+    const addImageBtn = document.getElementById('add-image-btn');
+
+    function addImageInput(value = '') {
+        const inputGroup = document.createElement('div');
+        inputGroup.className = 'flex items-center gap-2';
+
+        const newInput = document.createElement('input');
+        newInput.type = 'text';
+        newInput.name = 'images[]';
+        newInput.className = 'w-full px-3 py-2 border border-gray-300 rounded-md';
+        newInput.placeholder = 'https://example.com/image.png';
+        newInput.value = value;
+
+        const removeBtn = document.createElement('button');
+        removeBtn.type = 'button';
+        removeBtn.className = 'px-3 py-2 text-sm bg-red-500 text-white rounded-md hover:bg-red-600';
+        removeBtn.textContent = 'Remove';
+        removeBtn.onclick = () => {
+            inputGroup.remove();
+            if (imageInputsContainer.querySelectorAll('input').length === 0) {
+                addImageInput(); // Always ensure at least one input exists
+            }
         };
 
-        // Buttons
-        document.getElementById('add-product-btn').addEventListener('click', () => openModal(modals.product));
-        document.getElementById('add-brand-btn').addEventListener('click', () => openModal(modals.brand));
+        inputGroup.appendChild(newInput);
+        inputGroup.appendChild(removeBtn);
+        imageInputsContainer.appendChild(inputGroup);
+    }
 
-        // Modal open/close functions
-        function openModal(modal) {
-            modal.classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
+    addImageBtn.addEventListener('click', () => addImageInput());
+
+    function setupImageInputs(imageUrls = ['']) {
+        imageInputsContainer.innerHTML = '<label class="block text-sm font-medium text-gray-700">Image URLs (first is main)</label>';
+        const urls = imageUrls.filter(url => url); // Filter out empty/null values
+        if (urls.length > 0) {
+            urls.forEach(url => addImageInput(url));
+        } else {
+            addImageInput(); // If no images, add one empty input
         }
-        function closeModal() {
-            Object.values(modals).forEach(m => m.classList.add('hidden'));
-            document.body.style.overflow = 'auto';
-        }
+    }
 
-        // Close buttons
-        document.querySelectorAll('.close-modal').forEach(btn => btn.addEventListener('click', closeModal));
-        window.addEventListener('click', (e) => {
-            if (Object.values(modals).includes(e.target)) closeModal();
-        });
+    // --- PRODUCT FORM LOGIC ---
+    addProductBtn.addEventListener('click', function () {
+        modalTitle.textContent = 'Add Product';
+        productForm.action = "{{ route('storeProduct', $headerFooter->id) }}";
+        productForm.reset();
+        const methodInput = productForm.querySelector('input[name="_method"]');
+        if (methodInput) methodInput.remove();
 
+        document.querySelectorAll('input[name^="sizes"]').forEach(input => input.value = 0);
+        document.querySelectorAll('[name^="details["]').forEach(input => input.value = '');
+
+        setupImageInputs(['']); // Setup with one empty input for new product
+        openModal(productModal);
     });
 
-    document.addEventListener('DOMContentLoaded', function () {
-        const productModal = document.getElementById('product-modal');
-        const productForm = document.getElementById('product-form');
-        const modalTitle = productModal.querySelector('h3');
-        const addProductBtn = document.getElementById('add-product-btn');
-        const editProductBtns = document.querySelectorAll('.edit-product-btn');
+    editProductBtns.forEach(btn => {
+        btn.addEventListener('click', function () {
+            const data = this.dataset;
+            modalTitle.textContent = 'Edit Product';
+            productForm.action = `/products/update/${data.id}`;
 
-        addProductBtn.addEventListener('click', function () {
-            modalTitle.textContent = 'Add Product';
-            productForm.action = "{{ route('storeProduct', $headerFooter->id) }}";
-            productForm.reset();
-            // Reset sizes to 0
-            document.querySelectorAll('input[name^="sizes"]').forEach(input => input.value = 0);
-            const methodInput = productForm.querySelector('input[name="_method"]');
-            if (methodInput) {
-                methodInput.remove();
+            if (!productForm.querySelector('input[name="_method"]')) {
+                const methodInput = document.createElement('input');
+                methodInput.type = 'hidden';
+                methodInput.name = '_method';
+                methodInput.value = 'PUT';
+                productForm.prepend(methodInput);
             }
-        });
 
-        editProductBtns.forEach(btn => {
-            btn.addEventListener('click', function () {
-                const data = this.dataset;
-                modalTitle.textContent = 'Edit Product';
-                productForm.action = `/products/update/${data.id}`;
+            // Populate standard fields
+            productForm.querySelector('[name="name"]').value = data.name;
+            productForm.querySelector('[name="sku"]').value = data.sku;
+            productForm.querySelector('[name="category_name"]').value = data.category_name;
+            productForm.querySelector('[name="brand_id"]').value = data.brand_id;
+            productForm.querySelector('[name="price"]').value = data.price;
+            productForm.querySelector('[name="original_price"]').value = data.original_price;
+            productForm.querySelector('[name="quantity"]').value = data.quantity;
+            productForm.querySelector('[name="video_url"]').value = data.video_url;
+            productForm.querySelector('[name="description"]').value = data.description;
 
-                // Add method spoofing for PUT request
-                if (!productForm.querySelector('input[name="_method"]')) {
-                    const methodInput = document.createElement('input');
-                    methodInput.type = 'hidden';
-                    methodInput.name = '_method';
-                    methodInput.value = 'PUT';
-                    productForm.prepend(methodInput);
-                }
+            // Populate image inputs
+            const mainImage = data.image_url || '';
+            const additionalImages = data.images ? JSON.parse(data.images) : [];
+            setupImageInputs([mainImage, ...additionalImages]);
 
-                // Populate fields
-                productForm.querySelector('[name="name"]').value = data.name;
-                productForm.querySelector('[name="sku"]').value = data.sku;
-                productForm.querySelector('[name="category_name"]').value = data.category_name;
-                productForm.querySelector('[name="brand_id"]').value = data.brand_id;
-                productForm.querySelector('[name="price"]').value = data.price;
-                productForm.querySelector('[name="original_price"]').value = data.original_price;
-                productForm.querySelector('[name="quantity"]').value = data.quantity;
-                productForm.querySelector('[name="image_url"]').value = data.image_url;
-                productForm.querySelector('[name="video_url"]').value = data.video_url;
-                productForm.querySelector('[name="description"]').value = data.description;
+            // Populate JSON fields
+            productForm.querySelector('[name="colors"]').value = data.colors ? JSON.stringify(JSON.parse(data.colors), null, 2) : '';
 
-                // Handle JSON fields
-                productForm.querySelector('[name="images"]').value = data.images ? JSON.stringify(JSON.parse(data.images), null, 2) : '';
-                productForm.querySelector('[name="colors"]').value = data.colors ? JSON.stringify(JSON.parse(data.colors), null, 2) : '';
-
-                // Handle details
-                const details = data.details ? JSON.parse(data.details) : {};
-                // Reset all detail fields
-                document.querySelectorAll('[name^="details["]').forEach(input => input.value = '');
-
-                if (details.key_features) {
-                    productForm.querySelector('[name="details[key_features]"]').value = details.key_features.join('\\n');
-                }
-                if (details.care_tips) {
-                    productForm.querySelector('[name="details[care_tips]"]').value = details.care_tips.join('\\n');
-                }
-                const jsonDetailFields = ['styling_tips', 'model_info', 'garment_details', 'size_chart', 'fabric_details', 'care_instructions'];
-                jsonDetailFields.forEach(field => {
-                    if (details[field]) {
-                        productForm.querySelector(`[name="details[${field}]"]`).value = JSON.stringify(details[field], null, 2);
-                    }
-                });
-
-                // Handle sizes
-                const sizes = data.sizes ? JSON.parse(data.sizes) : [];
-                document.querySelectorAll('input[name^="sizes"]').forEach(input => input.value = 0); // Reset all to 0 first
-                sizes.forEach(item => {
-                    const sizeInput = productForm.querySelector(`[name="sizes[${item.size}]"]`);
-                    if (sizeInput) {
-                        sizeInput.value = item.stock;
-                    }
-                });
-
-                // Open the modal
-                productModal.classList.remove('hidden');
-                document.body.style.overflow = 'hidden';
+            // Populate details
+            const details = data.details ? JSON.parse(data.details) : {};
+            document.querySelectorAll('[name^="details["]').forEach(input => input.value = '');
+            if (details.key_features) productForm.querySelector('[name="details[key_features]"]').value = details.key_features.join('\\n');
+            if (details.care_tips) productForm.querySelector('[name="details[care_tips]"]').value = details.care_tips.join('\\n');
+            ['styling_tips', 'model_info', 'garment_details', 'size_chart', 'fabric_details', 'care_instructions'].forEach(field => {
+                if (details[field]) productForm.querySelector(`[name="details[${field}]"]`).value = JSON.stringify(details[field], null, 2);
             });
-        });
 
-        let hasBrands = {{ $brands->count() > 0 ? 'true' : 'false' }};
-        if (!hasBrands) {
-            addProductBtn.disabled = true;
-            addProductBtn.classList.add('opacity-50', 'cursor-not-allowed');
-            addProductBtn.title = "Add a brand first!";
-        }
+            // Populate sizes
+            const sizes = data.sizes ? JSON.parse(data.sizes) : [];
+            document.querySelectorAll('input[name^="sizes"]').forEach(input => input.value = 0);
+            sizes.forEach(item => {
+                const sizeInput = productForm.querySelector(`[name="sizes[${item.size}]"]`);
+                if (sizeInput) sizeInput.value = item.stock;
+            });
+
+            openModal(productModal);
+        });
     });
 
+    // Disable add product button if no brands exist
+    let hasBrands = {{ $brands->count() > 0 ? 'true' : 'false' }};
+    if (!hasBrands) {
+        addProductBtn.disabled = true;
+        addProductBtn.classList.add('opacity-50', 'cursor-not-allowed');
+        addProductBtn.title = "Add a brand first!";
+    }
+});
 </script>
