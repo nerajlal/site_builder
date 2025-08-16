@@ -7,8 +7,6 @@ use App\Models\HeaderFooter;
 use App\Models\Product;
 use App\Models\Feature;
 use App\Models\SelectedTemplate;
-use App\Models\HeaderFooter;
-use App\Models\Product;
 
 class ProductController3 extends Controller
 {
