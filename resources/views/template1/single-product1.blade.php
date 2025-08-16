@@ -1145,10 +1145,10 @@
         "@type": "Product",
         "name": "{{ $product->name }}",
         "image": [
-            "{{ $product->image_url }}",
-            @if($product->images)
+            "{{ $product->image_url }}"
+            @if(is_array($product->images))
                 @foreach($product->images as $image)
-                    "{{ $image }}",
+                , "{{ $image }}"
                 @endforeach
             @endif
         ],
