@@ -122,47 +122,37 @@
     </div>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
       @php
-        $defaultCategories = [
-            [
-                'name' => 'Men',
-                'image' => 'https://images.unsplash.com/photo-1504593811423-6dd665756598?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80',
-                'description' => 'Sophisticated styles for the modern man.'
-            ],
-            [
-                'name' => 'Women',
-                'image' => 'https://images.unsplash.com/photo-1502323777036-f29e3972d822?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80',
-                'description' => 'Chic and elegant fashion for every woman.'
-            ],
-            [
-                'name' => 'Kids',
-                'image' => 'https://images.unsplash.com/photo-1519340241574-289a8d381619?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80',
-                'description' => 'Fun, stylish, and comfortable clothing for kids.'
-            ]
-        ];
-
-        // if ($is_default) {
-            $categoriesToDisplay = $defaultCategories;
-        // } else {
-        //     $categoriesToDisplay = collect([$category1, $category2, $category3])->map(function ($category) {
-        //         return [
-        //             'name' => $category->name,
-        //             'image' => $category->image,
-        //             'description' => $category->description,
-        //         ];
-        //     })->all();
-        // }
+        $categoriesToDisplay = [];
+        if ($is_default) {
+            $categoriesToDisplay = [
+                ['name' => 'Men', 'image' => 'https://images.unsplash.com/photo-1504593811423-6dd665756598?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80'],
+                ['name' => 'Women', 'image' => 'https://images.unsplash.com/photo-1502323777036-f29e3972d822?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80'],
+                ['name' => 'Kids', 'image' => 'https://images.unsplash.com/photo-1519340241574-289a8d381619?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80'],
+            ];
+        } else {
+            $categoryNames = $categories->pluck('name')->all();
+            $categoryImages = [$section2->image1, $section2->image2, $section2->image3];
+            for ($i = 0; $i < 3; $i++) {
+                $categoriesToDisplay[] = [
+                    'name' => $categoryNames[$i] ?? 'Category ' . ($i + 1),
+                    'image' => $categoryImages[$i] ?? 'https://via.placeholder.com/400x500',
+                ];
+            }
+        }
       @endphp
 
       @foreach ($categoriesToDisplay as $category)
-        <div class="relative group overflow-hidden rounded-lg boutique-shadow">
-          <img src="{{ $category['image'] }}" alt="{{ $category['name'] }}" class="w-full h-96 object-cover transition-transform duration-300 group-hover:scale-110">
-          <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-          <div class="absolute bottom-0 left-0 p-6 text-white">
-            <h4 class="text-2xl font-bold mb-2">{{ $category['name'] }}</h4>
-            <p class="text-gray-200 mb-4">{{ $category['description'] }}</p>
-            <a href="#" class="font-semibold text-pink-400 hover:text-pink-300 transition">
-              Shop Now <i class="fas fa-arrow-right ml-1"></i>
+        <div class="relative group overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300">
+          <img src="{{ $category['image'] }}" alt="{{ $category['name'] }}" class="w-full h-96 object-cover transition-transform duration-500 ease-in-out group-hover:scale-110">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent"></div>
+          <div class="absolute inset-0 flex flex-col items-center justify-center text-center text-white p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/30">
+            <h4 class="text-3xl font-bold mb-4">{{ $category['name'] }}</h4>
+            <a href="#" class="bg-pink-600 hover:bg-pink-700 text-white px-6 py-3 rounded-lg font-medium transition-transform duration-300 group-hover:translate-y-0 translate-y-4">
+              Shop Now
             </a>
+          </div>
+          <div class="absolute bottom-0 left-0 p-6 text-white w-full transition-transform duration-500 ease-in-out group-hover:-translate-y-full">
+            <h4 class="text-2xl font-bold">{{ $category['name'] }}</h4>
           </div>
         </div>
       @endforeach

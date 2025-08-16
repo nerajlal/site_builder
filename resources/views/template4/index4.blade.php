@@ -134,38 +134,34 @@
       </p>
     </div>
     <div class="grid grid-cols-3 md:grid-cols-3 gap-8">
-      <!-- Category 1 -->
-      <div class="flex flex-col items-center justify-center p-6">
-        <div class="w-40 h-40 bg-white rounded-full shadow-md flex items-center justify-center
-                    transition-all duration-300 hover:scale-110 hover:rotate-3 hover:shadow-xl">
-          <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80"
-              alt="Women's Fashion"
-              class="object-cover w-32 h-32 opacity-80 hover:opacity-100 transition-opacity duration-300 rounded-full">
+      @php
+        $categoriesToDisplay = [];
+        if ($is_default) {
+            $categoriesToDisplay = [
+                ['name' => 'Women', 'image' => 'https://images.unsplash.com/photo-1445205170230-053b83016050?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80'],
+                ['name' => 'Men', 'image' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80'],
+                ['name' => 'Kids', 'image' => 'https://images.unsplash.com/photo-1551698618-1dfe5d97d256?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80'],
+            ];
+        } else {
+            $categoryNames = $categories->pluck('name')->all();
+            $categoryImages = [$section2->image1, $section2->image2, $section2->image3];
+            for ($i = 0; $i < 3; $i++) {
+                $categoriesToDisplay[] = [
+                    'name' => $categoryNames[$i] ?? 'Category ' . ($i + 1),
+                    'image' => $categoryImages[$i] ?? 'https://via.placeholder.com/400x400',
+                ];
+            }
+        }
+      @endphp
+      @foreach ($categoriesToDisplay as $category)
+      <div class="group">
+        <div class="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8">
+          <img src="{{ $category['image'] }}" alt="{{ $category['name'] }}" class="h-full w-full object-cover object-center group-hover:opacity-75">
         </div>
-        <p class="text-center mt-4 text-lg font-medium">Women</p>
+        <h3 class="mt-4 text-sm text-gray-700">{{ $category['name'] }}</h3>
+        <p class="mt-1 text-lg font-medium text-gray-900">Shop Now</p>
       </div>
-
-      <!-- Category 2 -->
-      <div class="flex flex-col items-center justify-center p-6">
-        <div class="w-40 h-40 bg-white rounded-full shadow-md flex items-center justify-center
-                    transition-all duration-300 hover:scale-110 hover:rotate-3 hover:shadow-xl">
-          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80"
-              alt="Men's Fashion"
-              class="object-cover w-32 h-32 opacity-80 hover:opacity-100 transition-opacity duration-300 rounded-full">
-        </div>
-        <p class="text-center mt-4 text-lg font-medium">Men</p>
-      </div>
-
-      <!-- Category 3 -->
-      <div class="flex flex-col items-center justify-center p-6">
-        <div class="w-40 h-40 bg-white rounded-full shadow-md flex items-center justify-center
-                    transition-all duration-300 hover:scale-110 hover:rotate-3 hover:shadow-xl">
-          <img src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
-              alt="Kids' Fashion"
-              class="object-cover w-32 h-32 opacity-80 hover:opacity-100 transition-opacity duration-300 rounded-full">
-        </div>
-        <p class="text-center mt-4 text-lg font-medium">Kids</p>
-      </div>
+      @endforeach
     </div>
   </div>
 </section>
