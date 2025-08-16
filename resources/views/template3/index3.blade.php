@@ -199,7 +199,7 @@
             <div class="product-card p-6 rounded-lg border border-gray-100 shadow-sm hover:shadow-md transition">
               <a href="{{ route('template3.single-product', ['headerFooterId' => $headerFooter->id, 'productId' => $product->id]) }}">
                 <div class="relative h-64 mb-6 overflow-hidden rounded-lg">
-                  <img src="{{ $product->image_url }}" alt="{{ $product->name }}" class="absolute inset-0 w-full h-full object-cover">
+                  <img src="{{ asset($product->image_url) }}" alt="{{ $product->name }}" class="absolute inset-0 w-full h-full object-cover">
                   <div class="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
                   @if($product->is_new)
                     <span class="absolute top-4 right-4 bg-white text-gray-900 text-xs font-medium px-2 py-1 rounded">NEW</span>
