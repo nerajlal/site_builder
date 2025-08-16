@@ -30,7 +30,7 @@
                     <button class="w-20 h-20 bg-pink-200 rounded-lg flex-shrink-0 border-2 border-primary" onclick="changeImage('{{ $product->image_url }}')">
                         <img src="{{ $product->image_url }}" alt="{{ $product->name }}" class="w-full h-full object-cover rounded-lg">
                     </button>
-                    @if($product->images)
+                    @if(is_array($product->images))
                         @foreach($product->images as $image)
                         <button class="w-20 h-20 bg-pink-100 rounded-lg flex-shrink-0 border border-gray-200 hover:border-primary" onclick="changeImage('{{ $image }}')">
                             <img src="{{ $image }}" alt="{{ $product->name }}" class="w-full h-full object-cover rounded-lg">
@@ -89,7 +89,7 @@
                 </div>
 
                 <!-- Key Features -->
-                @if($product->key_features)
+                @if(is_array($product->key_features))
                 <div class="bg-blue-50 p-4 rounded-lg">
                     <div class="grid grid-cols-3 gap-4 text-sm">
                         @foreach($product->key_features as $feature)
@@ -103,7 +103,7 @@
                 @endif
 
                 <!-- Color Selection -->
-                @if($product->colors)
+                @if(is_array($product->colors))
                 <div>
                     <h3 class="text-sm font-semibold mb-3">Color: <span id="selectedColorName"></span></h3>
                     <div class="flex space-x-3">
@@ -119,7 +119,7 @@
                 @endif
 
                 <!-- Size Selection with Stock Info -->
-                @if($product->sizes)
+                @if(is_array($product->sizes))
                 <div>
                     <div class="flex items-center justify-between mb-3">
                         <h3 class="text-sm font-semibold">Size: <span id="selectedSizeName"></span></h3>
@@ -270,7 +270,7 @@
                             <p class="text-gray-700 mb-6">{{ $product->description }}</p>
                             
                             <div class="space-y-4">
-                                @if($product->product_details_features)
+                                @if(is_array($product->product_details_features))
                                 <div>
                                     <h4 class="font-semibold mb-2">Key Features:</h4>
                                     <ul class="space-y-2 text-gray-700">
@@ -286,7 +286,7 @@
                             </div>
                         </div>
                         
-                        @if($product->styling_tips)
+                        @if(is_array($product->styling_tips))
                         <div>
                             <h4 class="font-semibold mb-4">Styling Tips:</h4>
                             <div class="space-y-4">
@@ -307,7 +307,7 @@
                         <div>
                             <h3 class="text-xl font-semibold mb-4">Fit & Measurements</h3>
                             <div class="space-y-4">
-                                @if($product->model_info)
+                                @if(is_array($product->model_info))
                                 <div class="bg-blue-50 p-4 rounded-lg">
                                     <h4 class="font-semibold mb-3">Model Information</h4>
                                     <div class="space-y-2 text-sm">
@@ -318,7 +318,7 @@
                                 </div>
                                 @endif
                                 
-                                @if($product->garment_details)
+                                @if(is_array($product->garment_details))
                                 <div>
                                     <h4 class="font-semibold mb-3">Garment Details</h4>
                                     <div class="space-y-2 text-sm">
@@ -329,7 +329,7 @@
                                 </div>
                                 @endif
 
-                                @if($product->size_chart)
+                                @if(is_array($product->size_chart))
                                 <!-- Size Chart -->
                                 <div>
                                     <h4 class="font-semibold mb-3">Size Chart</h4>
@@ -361,7 +361,7 @@
                         <div>
                             <h3 class="text-xl font-semibold mb-4">Materials & Care</h3>
                             <div class="space-y-6">
-                                @if($product->fabric_details)
+                                @if(is_array($product->fabric_details))
                                 <div>
                                     <h4 class="font-semibold mb-3">Fabric Details</h4>
                                     <div class="space-y-2 text-sm">
@@ -372,7 +372,7 @@
                                 </div>
                                 @endif
 
-                                @if($product->care_instructions)
+                                @if(is_array($product->care_instructions))
                                 <div>
                                     <h4 class="font-semibold mb-3">Care Instructions</h4>
                                     <div class="grid grid-cols-2 gap-4">
@@ -388,7 +388,7 @@
                                 </div>
                                 @endif
 
-                                @if($product->care_tips)
+                                @if(is_array($product->care_tips))
                                 <div class="bg-green-50 p-4 rounded-lg">
                                     <h4 class="font-semibold mb-2 text-green-800">Care Tips</h4>
                                     <ul class="text-sm text-green-700 space-y-1">
