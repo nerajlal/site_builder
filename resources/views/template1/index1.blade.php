@@ -222,23 +222,36 @@
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
             @foreach($products as $product)
-                <div class="bg-white p-6 rounded-lg product-card watch-shadow">
-                    <div class="relative h-64 mb-6 overflow-hidden rounded-lg">
-                        <img src="{{$product->image_url}}" alt="{{ $product->name }}" class="absolute inset-0 w-full h-full object-cover">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
-                        @if($product->is_new)
-                            <span class="absolute top-4 right-4 bg-yellow-600 text-white text-xs font-semibold px-2 py-1 rounded">NEW</span>
-                        @elseif($product->is_limited)
-                            <span class="absolute top-4 right-4 bg-red-600 text-white text-xs font-semibold px-2 py-1 rounded">LIMITED</span>
-                        @endif
+                <a href="{{ route('template1.single-product1.customer', ['headerFooterId' => $headerFooter->id, 'productId' => $product->id]) }}" class="block">
+                    <div class="bg-white rounded-lg overflow-hidden product-card boutique-shadow">
+                        <div class="relative">
+                            @if($product->is_new)
+                                <span class="absolute top-3 left-3 bg-pink-600 text-white px-3 py-1 rounded-full text-xs font-medium z-10">NEW</span>
+                            @elseif($product->is_limited)
+                                 <span class="absolute top-3 left-3 bg-red-600 text-white px-3 py-1 rounded-full text-xs font-medium z-10">LIMITED</span>
+                            @endif
+                            <div class="aspect-square bg-pink-50 flex items-center justify-center">
+                                 <img src="{{$product->image_url}}" alt="{{ $product->name }}" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-medium text-gray-900 mb-2">{{ $product->name }}</h3>
+                            <div class="flex items-center space-x-2 mb-2">
+                                <span class="text-lg font-bold text-gray-900">₹{{ number_format($product->price, 2) }}</span>
+                            </div>
+                            <div class="flex items-center mb-3">
+                                <div class="flex items-center">
+                                    <span class="text-yellow-500 text-sm">★★★★</span>
+                                    <span class="text-gray-300 text-sm">★</span>
+                                </div>
+                                <span class="ml-2 text-sm text-gray-500">76</span> <!-- Placeholder for reviews -->
+                            </div>
+                                <button class="w-full bg-pink-600 hover:bg-pink-700 text-white py-2 px-4 rounded-lg font-medium transition flex items-center justify-center">
+                                    <i class="fas fa-shopping-cart mr-2"></i> Add to Cart
+                                </button>
+                        </div>
                     </div>
-                    <h4 class="font-semibold text-lg mb-1">{{ $product->name }}</h4>
-                    <p class="text-gray-600 text-sm mb-3">{{ $product->description }}</p>
-                    <p class="text-green-700 font-bold text-xl mb-4">${{ number_format($product->price, 2) }}</p>
-                    <button class="w-full bg-gray-900 hover:bg-gray-800 text-white py-2 rounded-lg font-medium transition flex items-center justify-center">
-                        <i class="fas fa-shopping-cart mr-2"></i> Add to Cart
-                    </button>
-                </div>
+                </a>
             @endforeach
         </div>
 
