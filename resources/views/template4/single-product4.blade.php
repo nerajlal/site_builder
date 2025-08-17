@@ -87,7 +87,6 @@
                 </div>
 
                 <!-- Key Features -->
-                @if(is_array($product->key_features))
                 <div class="bg-blue-50 p-4 rounded-lg">
                     <div class="grid grid-cols-3 gap-4 text-sm">
                         @foreach($product->key_features ?? [] as $feature)
@@ -98,7 +97,6 @@
                         @endforeach
                     </div>
                 </div>
-                @endif
 
                 <!-- Color Selection -->
                 <div>
