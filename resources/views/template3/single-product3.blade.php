@@ -107,7 +107,7 @@
                         <h3 class="text-sm font-semibold">Size: <span id="selectedSizeName"></span></h3>
                         <button class="text-sm text-primary hover:underline" onclick="openSizeGuide()">Size Guide</button>
                     </div>
-                    <div class="grid grid-cols-5 gap-2 mb-2">
+                    <div class="grid grid-cols-6 gap-2 mb-2">
                         @foreach($product->sizes as $size)
                         <button class="size-btn py-3 text-center border rounded hover:border-primary"
                                 onclick="selectSize('{{ $size['size'] }}')"
