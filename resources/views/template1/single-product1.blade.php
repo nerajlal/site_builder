@@ -594,8 +594,11 @@
                         @if($product->faqs->count() > 0)
                             @foreach($product->faqs as $faq)
                                 <div class="bg-gray-50 p-4 rounded-lg">
-                                    <h4 class="font-semibold mb-2">{{ $faq->question }}</h4>
-                                    <p class="text-gray-700">{{ $faq->answer }}</p>
+                                    <h4 class="font-semibold mb-2 flex items-start">
+                                        <i class="fas fa-question-circle text-primary mr-3 mt-1"></i>
+                                        <span>{{ $faq->question }}</span>
+                                    </h4>
+                                    <p class="text-gray-700 ml-8">{{ $faq->answer }}</p>
                                 </div>
                             @endforeach
                         @else
