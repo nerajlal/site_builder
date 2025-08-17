@@ -200,15 +200,15 @@ class TemplateController extends Controller
         if ($request->has('details')) {
             $detailsData = $request->details;
             if (!empty($detailsData['key_features'])) {
-                $productData['key_features'] = json_encode(array_filter(preg_split('/\r\n|\r|\n/', $detailsData['key_features'])));
+                $productData['key_features'] = array_filter(preg_split('/\r\n|\r|\n/', $detailsData['key_features']));
             } else {
-                $productData['key_features'] = json_encode([]);
+                $productData['key_features'] = [];
             }
 
             if (!empty($detailsData['care_tips'])) {
-                $productData['care_tips'] = json_encode(array_filter(preg_split('/\r\n|\r|\n/', $detailsData['care_tips'])));
+                $productData['care_tips'] = array_filter(preg_split('/\r\n|\r|\n/', $detailsData['care_tips']));
             } else {
-                $productData['care_tips'] = json_encode([]);
+                $productData['care_tips'] = [];
             }
         }
 
@@ -362,15 +362,15 @@ class TemplateController extends Controller
         if ($request->has('details')) {
             $detailsData = $request->details;
             if (!empty($detailsData['key_features'])) {
-                $productData['key_features'] = json_encode(array_filter(preg_split('/\r\n|\r|\n/', $detailsData['key_features'])));
+                $productData['key_features'] = array_filter(preg_split('/\r\n|\r|\n/', $detailsData['key_features']));
             } else {
-                $productData['key_features'] = json_encode([]);
+                $productData['key_features'] = [];
             }
 
             if (!empty($detailsData['care_tips'])) {
-                $productData['care_tips'] = json_encode(array_filter(preg_split('/\r\n|\r|\n/', $detailsData['care_tips'])));
+                $productData['care_tips'] = array_filter(preg_split('/\r\n|\r|\n/', $detailsData['care_tips']));
             } else {
-                $productData['care_tips'] = json_encode([]);
+                $productData['care_tips'] = [];
             }
         }
 
