@@ -154,22 +154,6 @@
                     </div>
                 </div>
 
-                <!-- FAQ Tab -->
-                <div id="faq" class="tab-content hidden">
-                    <div class="space-y-6">
-                        @if($product->faqs->count() > 0)
-                            @foreach($product->faqs as $faq)
-                                <div class="bg-gray-50 p-4 rounded-lg">
-                                    <h4 class="font-semibold mb-2">{{ $faq->question }}</h4>
-                                    <p class="text-gray-700">{{ $faq->answer }}</p>
-                                </div>
-                            @endforeach
-                        @else
-                            <p class="text-gray-500">No frequently asked questions for this product yet.</p>
-                        @endif
-                    </div>
-                </div>
-
                 <!-- Offers -->
                 <div class="bg-green-50 p-4 rounded-lg border border-green-200">
                     <h3 class="text-sm font-semibold mb-3 text-green-800">Available Offers</h3>
@@ -267,9 +251,8 @@
                     <button class="tab-btn active py-4 px-1 border-b-2 border-primary text-primary font-medium whitespace-nowrap" onclick="showTab('description')">Description</button>
                     <button class="tab-btn py-4 px-1 border-b-2 border-transparent text-gray-500 hover:text-gray-700 whitespace-nowrap" onclick="showTab('fit')">Fit & Materials</button>
                     <button class="tab-btn py-4 px-1 border-b-2 border-transparent text-gray-500 hover:text-gray-700 whitespace-nowrap" onclick="showTab('reviews')">Reviews (128)</button>
-                    <button class="tab-btn py-4 px-1 border-b-2 border-transparent text-gray-500 hover:text-gray-700 whitespace-nowrap" onclick="showTab('qa')">Q&A (12)</button>
-                    <button class="tab-btn py-4 px-1 border-b-2 border-transparent text-gray-500 hover:text-gray-700 whitespace-nowrap" onclick="showTab('faq')">FAQ</button>
                     <button class="tab-btn py-4 px-1 border-b-2 border-transparent text-gray-500 hover:text-gray-700 whitespace-nowrap" onclick="showTab('shipping')">Shipping & Returns</button>
+                    <button class="tab-btn py-4 px-1 border-b-2 border-transparent text-gray-500 hover:text-gray-700 whitespace-nowrap" onclick="showTab('faq')">FAQ</button>
                 </nav>
             </div>
 
@@ -605,95 +588,19 @@
                     </div>
                 </div>
 
-                <!-- Q&A Tab -->
-                <div id="qa" class="tab-content hidden">
+                <!-- FAQ Tab -->
+                <div id="faq" class="tab-content hidden">
                     <div class="space-y-6">
-                        <div class="flex items-center justify-between">
-                            <h3 class="text-xl font-semibold">Questions & Answers</h3>
-                            <button class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary/90" onclick="askQuestion()">Ask a Question</button>
-                        </div>
-
-                        <!-- Popular Questions -->
-                        <div class="space-y-4">
-                            <div class="bg-gray-50 p-4 rounded-lg">
-                                <div class="flex items-start space-x-3">
-                                    <i class="fas fa-question-circle text-primary mt-1"></i>
-                                    <div class="flex-1">
-                                        <h4 class="font-semibold mb-2">Is this dress transparent or see-through?</h4>
-                                        <div class="flex items-start space-x-3">
-                                            <i class="fas fa-answer text-green-600 mt-1"></i>
-                                            <div>
-                                                <p class="text-gray-700">No, this dress is not transparent. It's made from quality cotton fabric that provides good coverage. Many customers have confirmed this in their reviews.</p>
-                                                <p class="text-sm text-gray-500 mt-2">Answered by Boutique Team • 3 days ago</p>
-                                            </div>
-                                        </div>
-                                    </div>
+                        @if($product->faqs->count() > 0)
+                            @foreach($product->faqs as $faq)
+                                <div class="bg-gray-50 p-4 rounded-lg">
+                                    <h4 class="font-semibold mb-2">{{ $faq->question }}</h4>
+                                    <p class="text-gray-700">{{ $faq->answer }}</p>
                                 </div>
-                            </div>
-
-                            <div class="bg-gray-50 p-4 rounded-lg">
-                                <div class="flex items-start space-x-3">
-                                    <i class="fas fa-question-circle text-primary mt-1"></i>
-                                    <div class="flex-1">
-                                        <h4 class="font-semibold mb-2">Does this dress shrink after washing?</h4>
-                                        <div class="flex items-start space-x-3">
-                                            <i class="fas fa-answer text-green-600 mt-1"></i>
-                                            <div>
-                                                <p class="text-gray-700">There might be minimal shrinkage (1-2%) after the first wash, which is normal for cotton fabrics. We recommend following the care instructions and washing in cold water to minimize this.</p>
-                                                <p class="text-sm text-gray-500 mt-2">Answered by Boutique Team • 5 days ago</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="bg-gray-50 p-4 rounded-lg">
-                                <div class="flex items-start space-x-3">
-                                    <i class="fas fa-question-circle text-primary mt-1"></i>
-                                    <div class="flex-1">
-                                        <h4 class="font-semibold mb-2">What's the exact length of size M?</h4>
-                                        <div class="flex items-start space-x-3">
-                                            <i class="fas fa-answer text-green-600 mt-1"></i>
-                                            <div>
-                                                <p class="text-gray-700">The size M dress measures approximately 44 inches (112 cm) in length from shoulder to hem. You can check the complete size chart in the 'Fit & Materials' tab for detailed measurements.</p>
-                                                <p class="text-sm text-gray-500 mt-2">Answered by Boutique Team • 1 week ago</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="bg-gray-50 p-4 rounded-lg">
-                                <div class="flex items-start space-x-3">
-                                    <i class="fas fa-question-circle text-primary mt-1"></i>
-                                    <div class="flex-1">
-                                        <h4 class="font-semibold mb-2">Is this suitable for formal occasions?</h4>
-                                        <div class="flex items-start space-x-3">
-                                            <i class="fas fa-answer text-green-600 mt-1"></i>
-                                            <div>
-                                                <p class="text-gray-700">This dress works great for semi-formal occasions like brunches, casual office events, or dinner dates. For very formal events, you might want to consider our formal dress collection.</p>
-                                                <p class="text-sm text-gray-500 mt-2">Answered by Boutique Team • 1 week ago</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="bg-gray-50 p-4 rounded-lg">
-                                <div class="flex items-start space-x-3">
-                                    <i class="fas fa-question-circle text-primary mt-1"></i>
-                                    <div class="flex-1">
-                                        <h4 class="font-semibold mb-2">Can I machine wash this dress?</h4>
-                                        <div class="text-sm text-gray-600 mb-2">Asked by Meera R. • 2 days ago</div>
-                                        <button class="text-primary hover:underline text-sm">Answer this question</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="text-center">
-                            <button class="px-8 py-3 border border-primary text-primary rounded-lg hover:bg-primary hover:text-white transition-colors">View All Questions</button>
-                        </div>
+                            @endforeach
+                        @else
+                            <p class="text-gray-500">No frequently asked questions for this product yet.</p>
+                        @endif
                     </div>
                 </div>
 
