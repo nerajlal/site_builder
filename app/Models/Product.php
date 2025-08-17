@@ -9,6 +9,8 @@ class Product extends Model
 {
     use HasFactory;
 
+    const ALL_SIZES = ['S', 'M', 'L', 'XL', 'XXL', 'XXXL'];
+
     protected $fillable = [
         'name',
         'sku',
