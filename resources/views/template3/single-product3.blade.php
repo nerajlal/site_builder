@@ -1135,11 +1135,9 @@
         "name": "{{ $product->name }}",
         "image": [
             "{{ $product->image_url }}"
-            @if(is_array($product->images))
-                @foreach($product->images as $image)
-                , "{{ $image }}"
-                @endforeach
-            @endif
+            @foreach($product->images ?? [] as $image)
+            , "{{ $image->image_url }}"
+            @endforeach
         ],
         "description": "{{ $product->description }}",
         "sku": "{{ $product->sku }}",
