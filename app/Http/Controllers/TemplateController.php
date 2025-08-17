@@ -196,26 +196,21 @@ class TemplateController extends Controller
         }
         $productData['sizes'] = json_encode($sizes);
 
-        // Transform details data
-        $details = [];
+        // Handle key_features and care_tips
         if ($request->has('details')) {
             $detailsData = $request->details;
-            // Handle line-separated fields
             if (!empty($detailsData['key_features'])) {
-                $details['key_features'] = array_filter(preg_split('/\r\n|\r|\n/', $detailsData['key_features']));
+                $productData['key_features'] = json_encode(array_filter(preg_split('/\r\n|\r|\n/', $detailsData['key_features'])));
+            } else {
+                $productData['key_features'] = json_encode([]);
             }
+
             if (!empty($detailsData['care_tips'])) {
-                $details['care_tips'] = array_filter(preg_split('/\r\n|\r|\n/', $detailsData['care_tips']));
-            }
-            // Handle JSON string fields
-            $jsonFields = [];
-            foreach($jsonFields as $field) {
-                if (!empty($detailsData[$field])) {
-                    $details[$field] = json_decode($detailsData[$field], true);
-                }
+                $productData['care_tips'] = json_encode(array_filter(preg_split('/\r\n|\r|\n/', $detailsData['care_tips'])));
+            } else {
+                $productData['care_tips'] = json_encode([]);
             }
         }
-        $productData['details'] = json_encode($details);
 
         $productData['header_footer_id'] = $siteId;
 
@@ -363,26 +358,21 @@ class TemplateController extends Controller
         }
         $productData['sizes'] = json_encode($sizes);
 
-        // Transform details data
-        $details = [];
+        // Handle key_features and care_tips
         if ($request->has('details')) {
             $detailsData = $request->details;
-            // Handle line-separated fields
             if (!empty($detailsData['key_features'])) {
-                $details['key_features'] = array_filter(preg_split('/\r\n|\r|\n/', $detailsData['key_features']));
+                $productData['key_features'] = json_encode(array_filter(preg_split('/\r\n|\r|\n/', $detailsData['key_features'])));
+            } else {
+                $productData['key_features'] = json_encode([]);
             }
+
             if (!empty($detailsData['care_tips'])) {
-                $details['care_tips'] = array_filter(preg_split('/\r\n|\r|\n/', $detailsData['care_tips']));
-            }
-            // Handle JSON string fields
-            $jsonFields = [];
-            foreach($jsonFields as $field) {
-                if (!empty($detailsData[$field])) {
-                    $details[$field] = json_decode($detailsData[$field], true);
-                }
+                $productData['care_tips'] = json_encode(array_filter(preg_split('/\r\n|\r|\n/', $detailsData['care_tips'])));
+            } else {
+                $productData['care_tips'] = json_encode([]);
             }
         }
-        $productData['details'] = json_encode($details);
 
         $product->update($productData);
 
