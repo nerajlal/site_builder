@@ -34,6 +34,33 @@ class Product extends Model
         'care_tips' => 'array',
     ];
 
+    public function getKeyFeaturesAttribute($value)
+    {
+        $data = json_decode($value, true);
+        if (is_string($data)) {
+            return json_decode($data, true) ?? [];
+        }
+        return $data ?? [];
+    }
+
+    public function getCareTipsAttribute($value)
+    {
+        $data = json_decode($value, true);
+        if (is_string($data)) {
+            return json_decode($data, true) ?? [];
+        }
+        return $data ?? [];
+    }
+
+    public function getProductDetailsFeaturesAttribute($value)
+    {
+        $data = json_decode($value, true);
+        if (is_string($data)) {
+            return json_decode($data, true) ?? [];
+        }
+        return $data ?? [];
+    }
+
     public function brand()
     {
         return $this->belongsTo(Brand::class);
