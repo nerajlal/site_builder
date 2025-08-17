@@ -88,9 +88,10 @@
                             </div>
                             <span class="ml-2 text-sm text-gray-500">76</span> <!-- Placeholder for reviews -->
                         </div>
-                            <button class="w-full bg-blue-800 hover:bg-blue-900 text-white py-2 px-4 rounded-lg font-medium transition duration-300 flex items-center justify-center">
+                            <a href="{{ route('template3.single-product3.customer', ['headerFooterId' => $headerFooter->id, 'productId' => $product->id]) }}"
+                               class="w-full bg-blue-800 hover:bg-blue-900 text-white py-2 px-4 rounded-lg font-medium transition duration-300 flex items-center justify-center">
                                 <i class="fas fa-shopping-cart mr-2"></i> Add to Cart
-                            </button>
+                            </a>
                     </div>
                 </div>
             @endforeach
