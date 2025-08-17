@@ -141,9 +141,17 @@ class TemplateController extends Controller
     {
         $headerFooter = HeaderFooter::findOrFail($id);
         $brands = Brand::where('header_footer_id', $id)->get();
-        $products = Product::with('brand')
-                       ->where('header_footer_id', $id)
-                       ->get();
+        $products = Product::with([
+            'brand',
+            'colors',
+            'images',
+            'stylingTips',
+            'modelInfo',
+            'garmentDetails',
+            'sizeChart',
+            'fabricDetails',
+            'careInstructions'
+        ])->where('header_footer_id', $id)->get();
         
         return view('d_add_product', compact('headerFooter', 'brands', 'products'));
     }
@@ -169,15 +177,13 @@ class TemplateController extends Controller
             'brand_id' => 'required|exists:brands,id',
             'category_name' => 'required|string',
             'image_url' => 'nullable|url',
-            'images' => 'nullable|json',
             'video_url' => 'nullable|url',
             'description' => 'nullable|string',
-            'colors' => 'nullable|json',
             'sizes' => 'nullable|array',
             'details' => 'nullable|array',
         ]);
 
-        $productData = $request->except(['sizes', 'details']);
+        $productData = $request->except(['sizes', 'details', 'colors', 'images']);
 
         // Transform sizes data
         $sizes = [];
@@ -202,7 +208,7 @@ class TemplateController extends Controller
                 $details['care_tips'] = array_filter(preg_split('/\r\n|\r|\n/', $detailsData['care_tips']));
             }
             // Handle JSON string fields
-            $jsonFields = ['styling_tips', 'model_info', 'garment_details', 'size_chart', 'fabric_details', 'care_instructions'];
+            $jsonFields = [];
             foreach($jsonFields as $field) {
                 if (!empty($detailsData[$field])) {
                     $details[$field] = json_decode($detailsData[$field], true);
@@ -213,7 +219,91 @@ class TemplateController extends Controller
 
         $productData['header_footer_id'] = $siteId;
 
-        Product::create($productData);
+        $product = Product::create($productData);
+
+        if ($request->has('colors')) {
+            foreach ($request->colors as $color) {
+                $product->colors()->create([
+                    'name' => $color['name'],
+                    'value' => $color['value'],
+                ]);
+            }
+        }
+
+        if ($request->has('images')) {
+            foreach ($request->images as $image) {
+                if (!empty($image['url'])) {
+                    $product->images()->create([
+                        'image_url' => $image['url'],
+                    ]);
+                }
+            }
+        }
+
+        if ($request->has('details') && isset($request->details['styling_tips'])) {
+            foreach ($request->details['styling_tips'] as $tip) {
+                if (!empty($tip['title']) && !empty($tip['description'])) {
+                    $product->stylingTips()->create([
+                        'title' => $tip['title'],
+                        'description' => $tip['description'],
+                    ]);
+                }
+            }
+        }
+
+        if ($request->has('details') && isset($request->details['model_info'])) {
+            foreach ($request->details['model_info'] as $info) {
+                if (!empty($info['key']) && !empty($info['value'])) {
+                    $product->modelInfo()->create([
+                        'key' => $info['key'],
+                        'value' => $info['value'],
+                    ]);
+                }
+            }
+        }
+
+        if ($request->has('details') && isset($request->details['garment_details'])) {
+            foreach ($request->details['garment_details'] as $detail) {
+                if (!empty($detail['key']) && !empty($detail['value'])) {
+                    $product->garmentDetails()->create([
+                        'key' => $detail['key'],
+                        'value' => $detail['value'],
+                    ]);
+                }
+            }
+        }
+
+        if ($request->has('details') && isset($request->details['size_chart'])) {
+            foreach ($request->details['size_chart'] as $size) {
+                if (!empty($size['size']) && !empty($size['measurements'])) {
+                    $product->sizeChart()->create([
+                        'size' => $size['size'],
+                        'measurements' => $size['measurements'],
+                    ]);
+                }
+            }
+        }
+
+        if ($request->has('details') && isset($request->details['fabric_details'])) {
+            foreach ($request->details['fabric_details'] as $detail) {
+                if (!empty($detail['key']) && !empty($detail['value'])) {
+                    $product->fabricDetails()->create([
+                        'key' => $detail['key'],
+                        'value' => $detail['value'],
+                    ]);
+                }
+            }
+        }
+
+        if ($request->has('details') && isset($request->details['care_instructions'])) {
+            foreach ($request->details['care_instructions'] as $instruction) {
+                if (!empty($instruction['instruction'])) {
+                    $product->careInstructions()->create([
+                        'instruction' => $instruction['instruction'],
+                    ]);
+                }
+            }
+        }
 
         return back()->with('success', 'Product added successfully!');
     }
@@ -242,16 +332,14 @@ class TemplateController extends Controller
             'brand_id' => 'required|exists:brands,id',
             'category_name' => 'required|string',
             'image_url' => 'nullable|url',
-            'images' => 'nullable|json',
             'video_url' => 'nullable|url',
             'description' => 'nullable|string',
-            'colors' => 'nullable|json',
             'sizes' => 'nullable|array',
             'details' => 'nullable|array',
         ]);
 
         $product = Product::findOrFail($id);
-        $productData = $request->except(['sizes', 'details']);
+        $productData = $request->except(['sizes', 'details', 'colors', 'images']);
 
         // Transform sizes data
         $sizes = [];
@@ -276,7 +364,7 @@ class TemplateController extends Controller
                 $details['care_tips'] = array_filter(preg_split('/\r\n|\r|\n/', $detailsData['care_tips']));
             }
             // Handle JSON string fields
-            $jsonFields = ['styling_tips', 'model_info', 'garment_details', 'size_chart', 'fabric_details', 'care_instructions'];
+            $jsonFields = [];
             foreach($jsonFields as $field) {
                 if (!empty($detailsData[$field])) {
                     $details[$field] = json_decode($detailsData[$field], true);
@@ -286,6 +374,98 @@ class TemplateController extends Controller
         $productData['details'] = json_encode($details);
 
         $product->update($productData);
+
+        $product->colors()->delete();
+        if ($request->has('colors')) {
+            foreach ($request->colors as $color) {
+                $product->colors()->create([
+                    'name' => $color['name'],
+                    'value' => $color['value'],
+                ]);
+            }
+        }
+
+        $product->images()->delete();
+        if ($request->has('images')) {
+            foreach ($request->images as $image) {
+                if (!empty($image['url'])) {
+                    $product->images()->create([
+                        'image_url' => $image['url'],
+                    ]);
+                }
+            }
+        }
+
+        $product->stylingTips()->delete();
+        if ($request->has('details') && isset($request->details['styling_tips'])) {
+            foreach ($request->details['styling_tips'] as $tip) {
+                if (!empty($tip['title']) && !empty($tip['description'])) {
+                    $product->stylingTips()->create([
+                        'title' => $tip['title'],
+                        'description' => $tip['description'],
+                    ]);
+                }
+            }
+        }
+
+        $product->modelInfo()->delete();
+        if ($request->has('details') && isset($request->details['model_info'])) {
+            foreach ($request->details['model_info'] as $info) {
+                if (!empty($info['key']) && !empty($info['value'])) {
+                    $product->modelInfo()->create([
+                        'key' => $info['key'],
+                        'value' => $info['value'],
+                    ]);
+                }
+            }
+        }
+
+        $product->garmentDetails()->delete();
+        if ($request->has('details') && isset($request->details['garment_details'])) {
+            foreach ($request->details['garment_details'] as $detail) {
+                if (!empty($detail['key']) && !empty($detail['value'])) {
+                    $product->garmentDetails()->create([
+                        'key' => $detail['key'],
+                        'value' => $detail['value'],
+                    ]);
+                }
+            }
+        }
+
+        $product->sizeChart()->delete();
+        if ($request->has('details') && isset($request->details['size_chart'])) {
+            foreach ($request->details['size_chart'] as $size) {
+                if (!empty($size['size']) && !empty($size['measurements'])) {
+                    $product->sizeChart()->create([
+                        'size' => $size['size'],
+                        'measurements' => $size['measurements'],
+                    ]);
+                }
+            }
+        }
+
+        $product->fabricDetails()->delete();
+        if ($request->has('details') && isset($request->details['fabric_details'])) {
+            foreach ($request->details['fabric_details'] as $detail) {
+                if (!empty($detail['key']) && !empty($detail['value'])) {
+                    $product->fabricDetails()->create([
+                        'key' => $detail['key'],
+                        'value' => $detail['value'],
+                    ]);
+                }
+            }
+        }
+
+        $product->careInstructions()->delete();
+        if ($request->has('details') && isset($request->details['care_instructions'])) {
+            foreach ($request->details['care_instructions'] as $instruction) {
+                if (!empty($instruction['instruction'])) {
+                    $product->careInstructions()->create([
+                        'instruction' => $instruction['instruction'],
+                    ]);
+                }
+            }
+        }
 
         return redirect()->back()->with('success', 'Product updated successfully!');
     }

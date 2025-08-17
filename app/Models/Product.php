@@ -19,34 +19,18 @@ class Product extends Model
         'category_name',
         'header_footer_id',
         'image_url',
-        'images',
         'video_url',
         'description',
-        'colors',
         'sizes',
         'key_features',
         'product_details_features',
-        'styling_tips',
-        'model_info',
-        'garment_details',
-        'size_chart',
-        'fabric_details',
-        'care_instructions',
         'care_tips',
     ];
 
     protected $casts = [
-        'images' => 'array',
-        'colors' => 'array',
         'sizes' => 'array',
         'key_features' => 'array',
         'product_details_features' => 'array',
-        'styling_tips' => 'array',
-        'model_info' => 'array',
-        'garment_details' => 'array',
-        'size_chart' => 'array',
-        'fabric_details' => 'array',
-        'care_instructions' => 'array',
         'care_tips' => 'array',
     ];
 
@@ -58,5 +42,45 @@ class Product extends Model
     public function site()
     {
         return $this->belongsTo(HeaderFooter::class, 'header_footer_id');
+    }
+
+    public function colors()
+    {
+        return $this->hasMany(ProductColor::class);
+    }
+
+    public function images()
+    {
+        return $this->hasMany(ProductImage::class);
+    }
+
+    public function stylingTips()
+    {
+        return $this->hasMany(ProductStylingTip::class);
+    }
+
+    public function modelInfo()
+    {
+        return $this->hasMany(ProductModelInfo::class);
+    }
+
+    public function garmentDetails()
+    {
+        return $this->hasMany(ProductGarmentDetail::class);
+    }
+
+    public function sizeChart()
+    {
+        return $this->hasMany(ProductSizeChart::class);
+    }
+
+    public function fabricDetails()
+    {
+        return $this->hasMany(ProductFabricDetail::class);
+    }
+
+    public function careInstructions()
+    {
+        return $this->hasMany(ProductCareInstruction::class);
     }
 }

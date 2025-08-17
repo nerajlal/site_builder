@@ -94,6 +94,12 @@
                                     data-description="{{ $product->description }}"
                                     data-colors="{{ json_encode($product->colors) }}"
                                     data-sizes="{{ json_encode($product->sizes) }}"
+                                    data-styling_tips="{{ json_encode($product->stylingTips) }}"
+                                    data-model_info="{{ json_encode($product->modelInfo) }}"
+                                    data-garment_details="{{ json_encode($product->garmentDetails) }}"
+                                    data-size_chart="{{ json_encode($product->sizeChart) }}"
+                                    data-fabric_details="{{ json_encode($product->fabricDetails) }}"
+                                    data-care_instructions="{{ json_encode($product->careInstructions) }}"
                                     data-details="{{ json_encode($product->details) }}">
                                     Edit
                                 </button>
@@ -181,8 +187,11 @@
                 <input type="text" name="image_url" class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md">
             </div>
             <div>
-                <label class="block text-sm font-medium text-gray-700">Additional Images (JSON)</label>
-                <textarea name="images" rows="3" class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md" placeholder='["url1", "url2", "url3"]'></textarea>
+                <label class="block text-sm font-medium text-gray-700">Additional Images</label>
+                <div id="images-container" class="space-y-2">
+                    <!-- Dynamic image inputs will be added here -->
+                </div>
+                <button type="button" id="add-image-btn" class="mt-2 px-3 py-1 bg-blue-500 text-white rounded-md text-sm">Add Image</button>
             </div>
             <div>
                 <label class="block text-sm font-medium text-gray-700">Video URL</label>
@@ -198,8 +207,11 @@
             <!-- Variants -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                    <label class="block text-sm font-medium text-gray-700">Colors (JSON)</label>
-                    <textarea name="colors" rows="4" class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md" placeholder='[{"name": "Pink Floral", "value": "#e91e63"}]'></textarea>
+                    <label class="block text-sm font-medium text-gray-700">Colors</label>
+                    <div id="colors-container" class="space-y-2">
+                        <!-- Dynamic color inputs will be added here -->
+                    </div>
+                    <button type="button" id="add-color-btn" class="mt-2 px-3 py-1 bg-blue-500 text-white rounded-md text-sm">Add Color</button>
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">Sizes & Stock</label>
@@ -227,28 +239,46 @@
                         <textarea name="details[care_tips]" rows="3" class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md"></textarea>
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-gray-700">Styling Tips (JSON)</label>
-                        <textarea name="details[styling_tips]" rows="4" class="mt-1 w-full px-3 py-2 font-mono text-xs border border-gray-300 rounded-md" placeholder='[{"title": "Casual", "description": "..."}]'></textarea>
+                        <label class="block text-sm font-medium text-gray-700">Styling Tips</label>
+                        <div id="styling-tips-container" class="space-y-2">
+                            <!-- Dynamic styling tip inputs will be added here -->
+                        </div>
+                        <button type="button" id="add-styling-tip-btn" class="mt-2 px-3 py-1 bg-blue-500 text-white rounded-md text-sm">Add Tip</button>
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-gray-700">Model Info (JSON)</label>
-                        <textarea name="details[model_info]" rows="4" class="mt-1 w-full px-3 py-2 font-mono text-xs border border-gray-300 rounded-md" placeholder='{"height": "5\'7\""}'></textarea>
+                        <label class="block text-sm font-medium text-gray-700">Model Info</label>
+                        <div id="model-info-container" class="space-y-2">
+                            <!-- Dynamic model info inputs will be added here -->
+                        </div>
+                        <button type="button" id="add-model-info-btn" class="mt-2 px-3 py-1 bg-blue-500 text-white rounded-md text-sm">Add Info</button>
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-gray-700">Garment Details (JSON)</label>
-                        <textarea name="details[garment_details]" rows="4" class="mt-1 w-full px-3 py-2 font-mono text-xs border border-gray-300 rounded-md" placeholder='{"fit_type": "Regular"}'></textarea>
+                        <label class="block text-sm font-medium text-gray-700">Garment Details</label>
+                        <div id="garment-details-container" class="space-y-2">
+                            <!-- Dynamic garment detail inputs will be added here -->
+                        </div>
+                        <button type="button" id="add-garment-detail-btn" class="mt-2 px-3 py-1 bg-blue-500 text-white rounded-md text-sm">Add Detail</button>
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-gray-700">Size Chart (JSON)</label>
-                        <textarea name="details[size_chart]" rows="4" class="mt-1 w-full px-3 py-2 font-mono text-xs border border-gray-300 rounded-md" placeholder='{"S": {"bust": "34"}}'></textarea>
+                        <label class="block text-sm font-medium text-gray-700">Size Chart</label>
+                        <div id="size-chart-container" class="space-y-2">
+                            <!-- Dynamic size chart inputs will be added here -->
+                        </div>
+                        <button type="button" id="add-size-chart-btn" class="mt-2 px-3 py-1 bg-blue-500 text-white rounded-md text-sm">Add Size</button>
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-gray-700">Fabric Details (JSON)</label>
-                        <textarea name="details[fabric_details]" rows="4" class="mt-1 w-full px-3 py-2 font-mono text-xs border border-gray-300 rounded-md" placeholder='{"material": "Cotton"}'></textarea>
+                        <label class="block text-sm font-medium text-gray-700">Fabric Details</label>
+                        <div id="fabric-details-container" class="space-y-2">
+                            <!-- Dynamic fabric detail inputs will be added here -->
+                        </div>
+                        <button type="button" id="add-fabric-detail-btn" class="mt-2 px-3 py-1 bg-blue-500 text-white rounded-md text-sm">Add Detail</button>
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-gray-700">Care Instructions (JSON)</label>
-                        <textarea name="details[care_instructions]" rows="4" class="mt-1 w-full px-3 py-2 font-mono text-xs border border-gray-300 rounded-md" placeholder='[{"instruction": "Wash Cold"}]'></textarea>
+                        <label class="block text-sm font-medium text-gray-700">Care Instructions</label>
+                        <div id="care-instructions-container" class="space-y-2">
+                            <!-- Dynamic care instruction inputs will be added here -->
+                        </div>
+                        <button type="button" id="add-care-instruction-btn" class="mt-2 px-3 py-1 bg-blue-500 text-white rounded-md text-sm">Add Instruction</button>
                     </div>
                 </div>
             </div>
@@ -361,9 +391,45 @@
                 productForm.querySelector('[name="video_url"]').value = data.video_url;
                 productForm.querySelector('[name="description"]').value = data.description;
 
-                // Handle JSON fields
-                productForm.querySelector('[name="images"]').value = data.images ? JSON.stringify(JSON.parse(data.images), null, 2) : '';
-                productForm.querySelector('[name="colors"]').value = data.colors ? JSON.stringify(JSON.parse(data.colors), null, 2) : '';
+                // Clear and populate colors
+                const colorsContainer = document.getElementById('colors-container');
+                colorsContainer.innerHTML = '';
+                JSON.parse(data.colors).forEach(c => addColorInput(c.name, c.value));
+
+                // Clear and populate images
+                const imagesContainer = document.getElementById('images-container');
+                imagesContainer.innerHTML = '';
+                JSON.parse(data.images).forEach(i => addImageInput(i.image_url));
+
+                // Clear and populate styling tips
+                const stylingTipsContainer = document.getElementById('styling-tips-container');
+                stylingTipsContainer.innerHTML = '';
+                JSON.parse(data.styling_tips).forEach(st => addStylingTipInput(st.title, st.description));
+
+                // Clear and populate model info
+                const modelInfoContainer = document.getElementById('model-info-container');
+                modelInfoContainer.innerHTML = '';
+                JSON.parse(data.model_info).forEach(mi => addModelInfoInput(mi.key, mi.value));
+
+                // Clear and populate garment details
+                const garmentDetailsContainer = document.getElementById('garment-details-container');
+                garmentDetailsContainer.innerHTML = '';
+                JSON.parse(data.garment_details).forEach(gd => addGarmentDetailInput(gd.key, gd.value));
+
+                // Clear and populate size chart
+                const sizeChartContainer = document.getElementById('size-chart-container');
+                sizeChartContainer.innerHTML = '';
+                JSON.parse(data.size_chart).forEach(sc => addSizeChartInput(sc.size, JSON.stringify(sc.measurements, null, 2)));
+
+                // Clear and populate fabric details
+                const fabricDetailsContainer = document.getElementById('fabric-details-container');
+                fabricDetailsContainer.innerHTML = '';
+                JSON.parse(data.fabric_details).forEach(fd => addFabricDetailInput(fd.key, fd.value));
+
+                // Clear and populate care instructions
+                const careInstructionsContainer = document.getElementById('care-instructions-container');
+                careInstructionsContainer.innerHTML = '';
+                JSON.parse(data.care_instructions).forEach(ci => addCareInstructionInput(ci.instruction));
 
                 // Handle details
                 const details = data.details ? JSON.parse(data.details) : {};
@@ -376,12 +442,6 @@
                 if (details.care_tips) {
                     productForm.querySelector('[name="details[care_tips]"]').value = details.care_tips.join('\\n');
                 }
-                const jsonDetailFields = ['styling_tips', 'model_info', 'garment_details', 'size_chart', 'fabric_details', 'care_instructions'];
-                jsonDetailFields.forEach(field => {
-                    if (details[field]) {
-                        productForm.querySelector(`[name="details[${field}]"]`).value = JSON.stringify(details[field], null, 2);
-                    }
-                });
 
                 // Handle sizes
                 const sizes = data.sizes ? JSON.parse(data.sizes) : [];
@@ -405,6 +465,214 @@
             addProductBtn.classList.add('opacity-50', 'cursor-not-allowed');
             addProductBtn.title = "Add a brand first!";
         }
+
+        // Color management
+        const addColorBtn = document.getElementById('add-color-btn');
+        const colorsContainer = document.getElementById('colors-container');
+        let colorIndex = 0;
+
+        function addColorInput(name = '', value = '') {
+            const colorInput = document.createElement('div');
+            colorInput.classList.add('flex', 'items-center', 'space-x-2');
+            colorInput.innerHTML = `
+                <input type="text" name="colors[${colorIndex}][name]" placeholder="Color Name" class="w-full px-2 py-1 border border-gray-300 rounded-md" value="${name}">
+                <input type="text" name="colors[${colorIndex}][value]" placeholder="Color Value" class="w-full px-2 py-1 border border-gray-300 rounded-md" value="${value}">
+                <button type="button" class="remove-color-btn px-2 py-1 bg-red-500 text-white rounded-md text-sm">X</button>
+            `;
+            colorsContainer.appendChild(colorInput);
+            colorIndex++;
+        }
+
+        addColorBtn.addEventListener('click', () => addColorInput());
+
+        colorsContainer.addEventListener('click', function (e) {
+            if (e.target.classList.contains('remove-color-btn')) {
+                e.target.parentElement.remove();
+            }
+        });
+
+        // When opening the "Add Product" modal, clear the colors
+        addProductBtn.addEventListener('click', function () {
+            colorsContainer.innerHTML = '';
+            imagesContainer.innerHTML = '';
+        });
+
+        // Image management
+        const addImageBtn = document.getElementById('add-image-btn');
+        const imagesContainer = document.getElementById('images-container');
+        let imageIndex = 0;
+
+        function addImageInput(url = '') {
+            const imageInput = document.createElement('div');
+            imageInput.classList.add('flex', 'items-center', 'space-x-2');
+            imageInput.innerHTML = `
+                <input type="text" name="images[${imageIndex}][url]" placeholder="Image URL" class="w-full px-2 py-1 border border-gray-300 rounded-md" value="${url}">
+                <button type="button" class="remove-image-btn px-2 py-1 bg-red-500 text-white rounded-md text-sm">X</button>
+            `;
+            imagesContainer.appendChild(imageInput);
+            imageIndex++;
+        }
+
+        addImageBtn.addEventListener('click', () => addImageInput());
+
+        imagesContainer.addEventListener('click', function (e) {
+            if (e.target.classList.contains('remove-image-btn')) {
+                e.target.parentElement.remove();
+            }
+        });
+
+        // Styling Tip management
+        const addStylingTipBtn = document.getElementById('add-styling-tip-btn');
+        const stylingTipsContainer = document.getElementById('styling-tips-container');
+        let stylingTipIndex = 0;
+
+        function addStylingTipInput(title = '', description = '') {
+            const stylingTipInput = document.createElement('div');
+            stylingTipInput.classList.add('space-y-1');
+            stylingTipInput.innerHTML = `
+                <div class="flex items-center space-x-2">
+                    <input type="text" name="details[styling_tips][${stylingTipIndex}][title]" placeholder="Title" class="w-full px-2 py-1 border border-gray-300 rounded-md" value="${title}">
+                    <button type="button" class="remove-styling-tip-btn px-2 py-1 bg-red-500 text-white rounded-md text-sm">X</button>
+                </div>
+                <textarea name="details[styling_tips][${stylingTipIndex}][description]" placeholder="Description" rows="2" class="w-full px-2 py-1 border border-gray-300 rounded-md">${description}</textarea>
+            `;
+            stylingTipsContainer.appendChild(stylingTipInput);
+            stylingTipIndex++;
+        }
+
+        addStylingTipBtn.addEventListener('click', () => addStylingTipInput());
+
+        stylingTipsContainer.addEventListener('click', function (e) {
+            if (e.target.classList.contains('remove-styling-tip-btn')) {
+                e.target.parentElement.parentElement.remove();
+            }
+        });
+
+        // Model Info management
+        const addModelInfoBtn = document.getElementById('add-model-info-btn');
+        const modelInfoContainer = document.getElementById('model-info-container');
+        let modelInfoIndex = 0;
+
+        function addModelInfoInput(key = '', value = '') {
+            const modelInfoInput = document.createElement('div');
+            modelInfoInput.classList.add('flex', 'items-center', 'space-x-2');
+            modelInfoInput.innerHTML = `
+                <input type="text" name="details[model_info][${modelInfoIndex}][key]" placeholder="Key" class="w-full px-2 py-1 border border-gray-300 rounded-md" value="${key}">
+                <input type="text" name="details[model_info][${modelInfoIndex}][value]" placeholder="Value" class="w-full px-2 py-1 border border-gray-300 rounded-md" value="${value}">
+                <button type="button" class="remove-model-info-btn px-2 py-1 bg-red-500 text-white rounded-md text-sm">X</button>
+            `;
+            modelInfoContainer.appendChild(modelInfoInput);
+            modelInfoIndex++;
+        }
+
+        addModelInfoBtn.addEventListener('click', () => addModelInfoInput());
+
+        modelInfoContainer.addEventListener('click', function (e) {
+            if (e.target.classList.contains('remove-model-info-btn')) {
+                e.target.parentElement.remove();
+            }
+        });
+
+        // Garment Detail management
+        const addGarmentDetailBtn = document.getElementById('add-garment-detail-btn');
+        const garmentDetailsContainer = document.getElementById('garment-details-container');
+        let garmentDetailIndex = 0;
+
+        function addGarmentDetailInput(key = '', value = '') {
+            const garmentDetailInput = document.createElement('div');
+            garmentDetailInput.classList.add('flex', 'items-center', 'space-x-2');
+            garmentDetailInput.innerHTML = `
+                <input type="text" name="details[garment_details][${garmentDetailIndex}][key]" placeholder="Key" class="w-full px-2 py-1 border border-gray-300 rounded-md" value="${key}">
+                <input type="text" name="details[garment_details][${garmentDetailIndex}][value]" placeholder="Value" class="w-full px-2 py-1 border border-gray-300 rounded-md" value="${value}">
+                <button type="button" class="remove-garment-detail-btn px-2 py-1 bg-red-500 text-white rounded-md text-sm">X</button>
+            `;
+            garmentDetailsContainer.appendChild(garmentDetailInput);
+            garmentDetailIndex++;
+        }
+
+        addGarmentDetailBtn.addEventListener('click', () => addGarmentDetailInput());
+
+        garmentDetailsContainer.addEventListener('click', function (e) {
+            if (e.target.classList.contains('remove-garment-detail-btn')) {
+                e.target.parentElement.remove();
+            }
+        });
+
+        // Size Chart management
+        const addSizeChartBtn = document.getElementById('add-size-chart-btn');
+        const sizeChartContainer = document.getElementById('size-chart-container');
+        let sizeChartIndex = 0;
+
+        function addSizeChartInput(size = '', measurements = '') {
+            const sizeChartInput = document.createElement('div');
+            sizeChartInput.classList.add('space-y-1');
+            sizeChartInput.innerHTML = `
+                <div class="flex items-center space-x-2">
+                    <input type="text" name="details[size_chart][${sizeChartIndex}][size]" placeholder="Size (e.g., S, M, L)" class="w-full px-2 py-1 border border-gray-300 rounded-md" value="${size}">
+                    <button type="button" class="remove-size-chart-btn px-2 py-1 bg-red-500 text-white rounded-md text-sm">X</button>
+                </div>
+                <textarea name="details[size_chart][${sizeChartIndex}][measurements]" placeholder='Measurements (JSON format, e.g., {"bust": "34", "waist": "28"})' rows="3" class="w-full px-2 py-1 border border-gray-300 rounded-md font-mono text-xs">${measurements}</textarea>
+            `;
+            sizeChartContainer.appendChild(sizeChartInput);
+            sizeChartIndex++;
+        }
+
+        addSizeChartBtn.addEventListener('click', () => addSizeChartInput());
+
+        sizeChartContainer.addEventListener('click', function (e) {
+            if (e.target.classList.contains('remove-size-chart-btn')) {
+                e.target.parentElement.parentElement.remove();
+            }
+        });
+
+        // Fabric Detail management
+        const addFabricDetailBtn = document.getElementById('add-fabric-detail-btn');
+        const fabricDetailsContainer = document.getElementById('fabric-details-container');
+        let fabricDetailIndex = 0;
+
+        function addFabricDetailInput(key = '', value = '') {
+            const fabricDetailInput = document.createElement('div');
+            fabricDetailInput.classList.add('flex', 'items-center', 'space-x-2');
+            fabricDetailInput.innerHTML = `
+                <input type="text" name="details[fabric_details][${fabricDetailIndex}][key]" placeholder="Key" class="w-full px-2 py-1 border border-gray-300 rounded-md" value="${key}">
+                <input type="text" name="details[fabric_details][${fabricDetailIndex}][value]" placeholder="Value" class="w-full px-2 py-1 border border-gray-300 rounded-md" value="${value}">
+                <button type="button" class="remove-fabric-detail-btn px-2 py-1 bg-red-500 text-white rounded-md text-sm">X</button>
+            `;
+            fabricDetailsContainer.appendChild(fabricDetailInput);
+            fabricDetailIndex++;
+        }
+
+        addFabricDetailBtn.addEventListener('click', () => addFabricDetailInput());
+
+        fabricDetailsContainer.addEventListener('click', function (e) {
+            if (e.target.classList.contains('remove-fabric-detail-btn')) {
+                e.target.parentElement.remove();
+            }
+        });
+
+        // Care Instruction management
+        const addCareInstructionBtn = document.getElementById('add-care-instruction-btn');
+        const careInstructionsContainer = document.getElementById('care-instructions-container');
+        let careInstructionIndex = 0;
+
+        function addCareInstructionInput(instruction = '') {
+            const careInstructionInput = document.createElement('div');
+            careInstructionInput.classList.add('flex', 'items-center', 'space-x-2');
+            careInstructionInput.innerHTML = `
+                <input type="text" name="details[care_instructions][${careInstructionIndex}][instruction]" placeholder="Instruction" class="w-full px-2 py-1 border border-gray-300 rounded-md" value="${instruction}">
+                <button type="button" class="remove-care-instruction-btn px-2 py-1 bg-red-500 text-white rounded-md text-sm">X</button>
+            `;
+            careInstructionsContainer.appendChild(careInstructionInput);
+            careInstructionIndex++;
+        }
+
+        addCareInstructionBtn.addEventListener('click', () => addCareInstructionInput());
+
+        careInstructionsContainer.addEventListener('click', function (e) {
+            if (e.target.classList.contains('remove-care-instruction-btn')) {
+                e.target.parentElement.remove();
+            }
+        });
     });
 
 </script>
