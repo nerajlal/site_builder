@@ -86,18 +86,6 @@
                     <p class="text-sm text-gray-600">Inclusive of all taxes • GST invoice available</p>
                 </div>
 
-                <!-- Key Features -->
-                <div class="bg-blue-50 p-4 rounded-lg">
-                    <div class="grid grid-cols-3 gap-4 text-sm">
-                        @foreach($product->key_features ?? [] as $feature)
-                        <div class="flex items-center space-x-2">
-                            <i class="fas fa-check text-green-600"></i>
-                            <span>{{ $feature }}</span>
-                        </div>
-                        @endforeach
-                    </div>
-                </div>
-
                 <!-- Color Selection -->
                 <div>
                     <h3 class="text-sm font-semibold mb-3">Color: <span id="selectedColorName"></span></h3>
