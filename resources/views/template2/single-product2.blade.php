@@ -252,11 +252,11 @@
                             <p class="text-gray-700 mb-6">{{ $product->description }}</p>
                             
                             <div class="space-y-4">
-                                @if(is_array($product->product_details_features))
+                                @if(!empty($product->key_features))
                                 <div>
                                     <h4 class="font-semibold mb-2">Key Features:</h4>
                                     <ul class="space-y-2 text-gray-700">
-                                        @foreach($product->product_details_features ?? [] as $feature)
+                                        @foreach($product->key_features as $feature)
                                         <li class="flex items-start space-x-2">
                                             <i class="fas fa-check text-green-600 mt-1"></i>
                                             <span>{{ $feature }}</span>
