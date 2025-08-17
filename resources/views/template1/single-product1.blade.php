@@ -110,10 +110,10 @@
                     <div class="grid grid-cols-5 gap-2 mb-2">
                         @foreach($product->sizes as $size)
                         <button class="size-btn py-3 text-center border rounded hover:border-primary"
-                                onclick="selectSize('{{ $size }}')"
-                                data-size="{{ $size }}"
+                                onclick="selectSize('{{ $size['size'] }}')"
+                                data-size="{{ $size['size'] }}"
                                 data-stock="{{ $product->quantity }}">
-                            <span>{{ $size }}</span>
+                            <span>{{ $size['size'] }}</span>
                         </button>
                         @endforeach
                     </div>
