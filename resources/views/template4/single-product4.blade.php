@@ -705,6 +705,12 @@
 
 
     <script>
+        let currentState = {
+            selectedColor: null,
+            selectedSize: null,
+            quantity: 1,
+            pinCode: null
+        };
 
         // Handle sticky add to cart bar
         window.addEventListener('scroll', function() {
