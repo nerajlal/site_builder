@@ -90,7 +90,7 @@
                 <div>
                     <h3 class="text-sm font-semibold mb-3">Color: <span id="selectedColorName"></span></h3>
                     <div class="flex space-x-3">
-                        @foreach($product->colors ?? [] as $color)
+                        @foreach($productColors ?? [] as $color)
                         <button class="color-btn w-10 h-10 rounded-full border-2 border-gray-200 hover:border-gray-400 shadow-md"
                                 onclick="selectColor('{{ $color->value }}', '{{ $color->name }}')"
                                 data-color="{{ $color->value }}"

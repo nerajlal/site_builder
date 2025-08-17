@@ -97,7 +97,6 @@ class ProductController3 extends Controller
         $headerFooter = HeaderFooter::find($headerFooterId);
         $product = \App\Models\Product::with([
             'brand',
-            'colors',
             'stylingTips',
             'modelInfo',
             'garmentDetails',
@@ -117,9 +116,10 @@ class ProductController3 extends Controller
         }
 
         $productImages = ProductImage::where('product_id', $productId)->get();
+        $productColors = \App\Models\ProductColor::where('product_id', $productId)->get();
 
         // Pass all the data
-        return view('template3.single-product3', compact('headerFooter', 'product', 'selectedTemplate', 'productImages'))
+        return view('template3.single-product3', compact('headerFooter', 'product', 'selectedTemplate', 'productImages', 'productColors'))
             ->with('is_default', false);
     }
 }
