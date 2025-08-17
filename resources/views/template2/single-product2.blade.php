@@ -177,7 +177,7 @@
                 <!-- Action Buttons -->
                 <div class="space-y-3">
                     <!-- WhatsApp Button -->
-                    <button class="w-full bg-primary text-white py-4 rounded-lg font-semibold hover:bg-primary/90 transition-colors flex items-center justify-center" onclick="chatOnWhatsApp()">
+                    <button class="w-full bg-secondary text-white py-4 rounded-lg font-semibold hover:bg-secondary/90 transition-colors flex items-center justify-center" onclick="chatOnWhatsApp()">
                         <i class="fab fa-whatsapp mr-2 text-xl"></i>Chat on WhatsApp
                     </button>
                     
