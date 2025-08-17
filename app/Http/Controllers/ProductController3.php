@@ -7,8 +7,7 @@ use App\Models\HeaderFooter;
 use App\Models\Product;
 use App\Models\Feature;
 use App\Models\SelectedTemplate;
-use App\Models\HeaderFooter;
-use App\Models\Product;
+use App\Models\ProductImage;
 
 class ProductController3 extends Controller
 {
@@ -116,8 +115,10 @@ class ProductController3 extends Controller
             abort(404, 'Template not found for this header/footer.');
         }
 
+        $productImages = ProductImage::where('product_id', $productId)->get();
+
         // Pass all the data
-        return view('template3.single-product3', compact('headerFooter', 'product', 'selectedTemplate'))
+        return view('template3.single-product3', compact('headerFooter', 'product', 'selectedTemplate', 'productImages'))
             ->with('is_default', false);
     }
 }

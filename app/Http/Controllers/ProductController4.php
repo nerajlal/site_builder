@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\HeaderFooter;
 use App\Models\Product;
 use App\Models\Feature;
+use App\Models\ProductImage;
 use App\Models\SelectedTemplate;
 
 class ProductController4 extends Controller
@@ -112,8 +113,10 @@ class ProductController4 extends Controller
             abort(404, 'Template not found for this header/footer.');
         }
 
+        $productImages = ProductImage::where('product_id', $productId)->get();
+
         // Pass all the data
-        return view('template4.single-product4', compact('headerFooter', 'product', 'selectedTemplate'))
+        return view('template4.single-product4', compact('headerFooter', 'product', 'selectedTemplate', 'productImages'))
             ->with('is_default', false);
     }
 }
