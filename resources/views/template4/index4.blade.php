@@ -159,13 +159,13 @@
 
   <!-- Collection -->
   @if($is_default)
-    <section id="collection" class="py-20 px-6 bg-white">
-      <div class="max-w-7xl mx-auto">
+    <section id="collection" class="bg-white">
+      <div class="max-w-7xl mx-auto py-20 px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16">
           <h3 class="text-3xl font-semibold mb-4">Our <span class="text-[#ec4899]">Collection</span></h3>
           <p class="text-gray-600 max-w-2xl mx-auto">Discover our handpicked selection of fashion pieces</p>
         </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
           <!-- Static Product Cards -->
           <div class="boutique-card p-6 rounded-lg border border-gray-100">
             <div class="relative h-64 mb-6 overflow-hidden rounded-lg">
@@ -234,15 +234,15 @@
       </div>
     </section>
   @else
-    <section id="collection" class="py-20 px-6 bg-white">
-      <div class="max-w-7xl mx-auto">
+    <section id="collection" class="bg-white">
+      <div class="max-w-7xl mx-auto py-20 px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16">
           <h3 class="text-3xl font-semibold mb-4">
             <span class="text-[#d4af37]">{{ $section2->main_text2 ?? 'Best Collections' }}</span>
           </h3>
           <p class="text-gray-600 max-w-2xl mx-auto">{{ $section2->sub_text2 ?? 'Perfect choices specially for you' }}</p>
         </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
             @foreach($products as $product)
                 <a href="{{ route('template4.single-product4.customer', ['headerFooterId' => $headerFooter->id, 'productId' => $product->id]) }}" class="block group">
                     <div class="bg-white rounded-lg overflow-hidden transition-all duration-300 group-hover:shadow-2xl border border-gray-200/80">

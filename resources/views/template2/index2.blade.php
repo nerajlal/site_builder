@@ -169,13 +169,13 @@
 
 <!-- Collection -->
 @if($is_default)
-  <section id="collection" class="py-20 px-6 bg-gray-900">
-    <div class="max-w-7xl mx-auto">
+  <section id="collection" class="bg-gray-900">
+    <div class="max-w-7xl mx-auto py-20 px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16">
         <h3 class="text-3xl font-light mb-4">Featured <span class="font-medium">Collection</span></h3>
         <p class="text-gray-400 max-w-2xl mx-auto">Handpicked fashion pieces for the discerning collector</p>
       </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
         <!-- Fashion Product Cards -->
         <div class="product-card bg-black p-6 border border-gray-800 rounded-lg">
           <div class="relative h-64 mb-6 overflow-hidden rounded-lg">
@@ -239,13 +239,13 @@
     </div>
   </section>
 @else
-  <section id="collection" class="py-20 px-6 bg-gray-900">
-    <div class="max-w-7xl mx-auto">
+  <section id="collection" class="bg-gray-900">
+    <div class="max-w-7xl mx-auto py-20 px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16">
         <h3 class="text-3xl font-light mb-4">Best Collections</h3>
         <p class="text-gray-400 max-w-2xl mx-auto">Perfect choices specially for you</p>
       </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
         @foreach($products as $product)
         <a href="{{ route('template2.single-product2.customer', ['headerFooterId' => $headerFooter->id, 'productId' => $product->id]) }}" class="block group">
             <div class="bg-black border border-gray-800 rounded-lg overflow-hidden transition-all duration-300 group-hover:border-pink-600 group-hover:shadow-lg group-hover:shadow-pink-600/20">
