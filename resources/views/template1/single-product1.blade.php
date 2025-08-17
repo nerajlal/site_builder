@@ -10,7 +10,7 @@
                 <div class="relative group">
                     <div class="aspect-[4/5] bg-pink-100 rounded-lg overflow-hidden">
                         <div id="mainImage" class="w-full h-full">
-                            <img src="{{ $product->image_url }}" alt="{{ $product->name }}" class="w-full h-full object-cover">
+                            <img id="mainProductImage" src="{{ $product->image_url }}" alt="{{ $product->name }}" class="w-full h-full object-cover">
                         </div>
                         @if($product->video_url)
                         <!-- Try-on Video Button -->
@@ -26,12 +26,12 @@
                 </div>
                 
                 <!-- Image Gallery Thumbnails -->
-                <div class="flex space-x-2 overflow-x-auto pb-2">
-                    <button class="w-20 h-20 bg-pink-200 rounded-lg flex-shrink-0 border-2 border-primary" onclick="changeImage('{{ $product->image_url }}')">
+                <div class="flex space-x-2 overflow-x-auto pb-2" id="thumbnail-gallery">
+                    <button class="thumbnail-btn w-20 h-20 bg-pink-200 rounded-lg flex-shrink-0 border-2 border-primary">
                         <img src="{{ $product->image_url }}" alt="{{ $product->name }}" class="w-full h-full object-cover rounded-lg">
                     </button>
                     @foreach($productImages as $image)
-                    <button class="w-20 h-20 bg-pink-100 rounded-lg flex-shrink-0 border border-gray-200 hover:border-primary" onclick="changeImage('{{ $image->image_url }}')">
+                    <button class="thumbnail-btn w-20 h-20 bg-pink-100 rounded-lg flex-shrink-0 border border-gray-200 hover:border-primary">
                         <img src="{{ $image->image_url }}" alt="{{ $product->name }}" class="w-full h-full object-cover rounded-lg">
                     </button>
                     @endforeach
@@ -1036,10 +1036,11 @@
         }
 
         // Image gallery
-        function changeImage(index) {
-            currentState.currentImageIndex = index;
-            // Update main image logic here
-            console.log('Changed to image index:', index);
+        function changeImage(imageUrl) {
+            const mainImage = document.getElementById('mainProductImage');
+            if (mainImage) {
+                mainImage.src = imageUrl;
+            }
         }
 
         // Toast notification
@@ -1436,6 +1437,23 @@
 
         // Initialize all features when DOM is ready
         document.addEventListener('DOMContentLoaded', function() {
+            // Image gallery functionality
+            const thumbnailBtns = document.querySelectorAll('.thumbnail-btn');
+            thumbnailBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const newImageUrl = this.querySelector('img').src;
+                    changeImage(newImageUrl);
+
+                    // Update active state for thumbnails
+                    thumbnailBtns.forEach(innerBtn => {
+                        innerBtn.classList.remove('border-2', 'border-primary');
+                        innerBtn.classList.add('border', 'border-gray-200');
+                    });
+                    this.classList.add('border-2', 'border-primary');
+                    this.classList.remove('border', 'border-gray-200');
+                });
+            });
+
             // Set initial state
             selectColor('pink', 'Pink Floral');
             selectSize('M');
