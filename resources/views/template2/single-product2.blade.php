@@ -1028,7 +1028,9 @@
         // Initialize page
         document.addEventListener('DOMContentLoaded', function() {
             // Set initial state
-            selectColor('pink', 'Pink Floral');
+            @if($productColors->isNotEmpty())
+                selectColor('{{ $productColors->first()->value }}', '{{ $productColors->first()->name }}');
+            @endif
             selectSize('M');
             
             // Track page view
