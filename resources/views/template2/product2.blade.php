@@ -88,8 +88,8 @@
                             </div>
                             <span class="ml-2 text-sm text-gray-500">76</span> <!-- Placeholder for reviews -->
                         </div>
-                            <button class="w-full bg-gray-800 hover:bg-gray-700 text-white py-2 px-4 rounded-lg transition-colors">
-                                View Product
+                            <button class="w-full border-2 border-yellow-500 text-yellow-500 hover:bg-yellow-500 hover:text-black py-2 px-4 rounded-lg transition-colors flex items-center justify-center">
+                                <i class="fas fa-shopping-cart mr-2"></i> Add to Cart
                             </button>
                     </div>
                 </div>

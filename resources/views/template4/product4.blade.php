@@ -181,8 +181,8 @@
                             </div>
                             <span class="ml-2 text-sm text-gray-500">76</span> <!-- Placeholder for reviews -->
                         </div>
-                            <button class="w-full btn-pink py-2 rounded font-medium">
-                                View Product
+                            <button class="w-full text-purple-600 hover:text-purple-800 hover:underline py-2 rounded font-medium flex items-center justify-center">
+                                <i class="fas fa-shopping-cart mr-2"></i> Add to Cart
                             </button>
                     </div>
                 </div>
