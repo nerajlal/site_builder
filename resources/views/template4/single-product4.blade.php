@@ -154,6 +154,22 @@
                     </div>
                 </div>
 
+                <!-- FAQ Tab -->
+                <div id="faq" class="tab-content hidden">
+                    <div class="space-y-6">
+                        @if($product->faqs->count() > 0)
+                            @foreach($product->faqs as $faq)
+                                <div class="bg-gray-50 p-4 rounded-lg">
+                                    <h4 class="font-semibold mb-2">{{ $faq->question }}</h4>
+                                    <p class="text-gray-700">{{ $faq->answer }}</p>
+                                </div>
+                            @endforeach
+                        @else
+                            <p class="text-gray-500">No frequently asked questions for this product yet.</p>
+                        @endif
+                    </div>
+                </div>
+
                 <!-- Offers -->
                 <div class="bg-green-50 p-4 rounded-lg border border-green-200">
                     <h3 class="text-sm font-semibold mb-3 text-green-800">Available Offers</h3>
@@ -252,6 +268,7 @@
                     <button class="tab-btn py-4 px-1 border-b-2 border-transparent text-gray-500 hover:text-gray-700 whitespace-nowrap" onclick="showTab('fit')">Fit & Materials</button>
                     <button class="tab-btn py-4 px-1 border-b-2 border-transparent text-gray-500 hover:text-gray-700 whitespace-nowrap" onclick="showTab('reviews')">Reviews (128)</button>
                     <button class="tab-btn py-4 px-1 border-b-2 border-transparent text-gray-500 hover:text-gray-700 whitespace-nowrap" onclick="showTab('qa')">Q&A (12)</button>
+                    <button class="tab-btn py-4 px-1 border-b-2 border-transparent text-gray-500 hover:text-gray-700 whitespace-nowrap" onclick="showTab('faq')">FAQ</button>
                     <button class="tab-btn py-4 px-1 border-b-2 border-transparent text-gray-500 hover:text-gray-700 whitespace-nowrap" onclick="showTab('shipping')">Shipping & Returns</button>
                 </nav>
             </div>

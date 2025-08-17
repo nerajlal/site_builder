@@ -100,6 +100,7 @@
                                     data-size_chart="{{ json_encode($product->sizeChart) }}"
                                     data-fabric_details="{{ json_encode($product->fabricDetails) }}"
                                     data-care_instructions="{{ json_encode($product->careInstructions) }}"
+                                    data-faqs="{{ json_encode($product->faqs) }}"
                                     data-details="{{ json_encode($product->details) }}">
                                     Edit
                                 </button>
@@ -237,6 +238,13 @@
                     <div>
                         <label class="block text-sm font-medium text-gray-700">Care Tips (one per line)</label>
                         <textarea name="details[care_tips]" rows="3" class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md"></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">FAQs</label>
+                        <div id="faqs-container" class="space-y-2">
+                            <!-- Dynamic faq inputs will be added here -->
+                        </div>
+                        <button type="button" id="add-faq-btn" class="mt-2 px-3 py-1 bg-blue-500 text-white rounded-md text-sm">Add FAQ</button>
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-700">Styling Tips</label>
@@ -430,6 +438,13 @@
                 const careInstructionsContainer = document.getElementById('care-instructions-container');
                 careInstructionsContainer.innerHTML = '';
                 JSON.parse(data.care_instructions).forEach(ci => addCareInstructionInput(ci.instruction));
+
+                // Clear and populate FAQs
+                const faqsContainer = document.getElementById('faqs-container');
+                faqsContainer.innerHTML = '';
+                if (data.faqs) {
+                    JSON.parse(data.faqs).forEach(f => addFaqInput(f.question, f.answer));
+                }
 
                 // Handle details
                 const details = data.details ? JSON.parse(data.details) : {};
@@ -671,6 +686,33 @@
         careInstructionsContainer.addEventListener('click', function (e) {
             if (e.target.classList.contains('remove-care-instruction-btn')) {
                 e.target.parentElement.remove();
+            }
+        });
+
+        // FAQ management
+        const addFaqBtn = document.getElementById('add-faq-btn');
+        const faqsContainer = document.getElementById('faqs-container');
+        let faqIndex = 0;
+
+        function addFaqInput(question = '', answer = '') {
+            const faqInput = document.createElement('div');
+            faqInput.classList.add('space-y-1');
+            faqInput.innerHTML = `
+                <div class="flex items-center space-x-2">
+                    <input type="text" name="details[faqs][${faqIndex}][question]" placeholder="Question" class="w-full px-2 py-1 border border-gray-300 rounded-md" value="${question}">
+                    <button type="button" class="remove-faq-btn px-2 py-1 bg-red-500 text-white rounded-md text-sm">X</button>
+                </div>
+                <textarea name="details[faqs][${faqIndex}][answer]" placeholder="Answer" rows="2" class="w-full px-2 py-1 border border-gray-300 rounded-md">${answer}</textarea>
+            `;
+            faqsContainer.appendChild(faqInput);
+            faqIndex++;
+        }
+
+        addFaqBtn.addEventListener('click', () => addFaqInput());
+
+        faqsContainer.addEventListener('click', function (e) {
+            if (e.target.classList.contains('remove-faq-btn')) {
+                e.target.parentElement.parentElement.remove();
             }
         });
     });

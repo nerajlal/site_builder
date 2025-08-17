@@ -7,8 +7,7 @@ use App\Models\HeaderFooter;
 use App\Models\Product;
 use App\Models\Feature;
 use App\Models\SelectedTemplate;
-use App\Models\HeaderFooter;
-use App\Models\Product;
+use App\Models\ProductImage;
 
 class ProductController3 extends Controller
 {
@@ -104,7 +103,8 @@ class ProductController3 extends Controller
             'garmentDetails',
             'sizeChart',
             'fabricDetails',
-            'careInstructions'
+            'careInstructions',
+            'faqs'
         ])->find($productId);
 
         if (!$headerFooter || !$product) {

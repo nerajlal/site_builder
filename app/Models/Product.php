@@ -83,4 +83,9 @@ class Product extends Model
     {
         return $this->hasMany(ProductCareInstruction::class);
     }
+
+    public function faqs()
+    {
+        return $this->hasMany(ProductFaq::class);
+    }
 }

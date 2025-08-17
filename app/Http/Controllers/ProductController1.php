@@ -101,7 +101,8 @@ class ProductController1 extends Controller
             'garmentDetails',
             'sizeChart',
             'fabricDetails',
-            'careInstructions'
+            'careInstructions',
+            'faqs'
         ])->find($productId);
 
         if (!$headerFooter || !$product) {

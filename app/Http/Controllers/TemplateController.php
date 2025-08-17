@@ -305,6 +305,17 @@ class TemplateController extends Controller
             }
         }
 
+        if ($request->has('details') && isset($request->details['faqs'])) {
+            foreach ($request->details['faqs'] as $faq) {
+                if (!empty($faq['question']) && !empty($faq['answer'])) {
+                    $product->faqs()->create([
+                        'question' => $faq['question'],
+                        'answer' => $faq['answer'],
+                    ]);
+                }
+            }
+        }
+
         return back()->with('success', 'Product added successfully!');
     }
 
@@ -462,6 +473,18 @@ class TemplateController extends Controller
                 if (!empty($instruction['instruction'])) {
                     $product->careInstructions()->create([
                         'instruction' => $instruction['instruction'],
+                    ]);
+                }
+            }
+        }
+
+        $product->faqs()->delete();
+        if ($request->has('details') && isset($request->details['faqs'])) {
+            foreach ($request->details['faqs'] as $faq) {
+                if (!empty($faq['question']) && !empty($faq['answer'])) {
+                    $product->faqs()->create([
+                        'question' => $faq['question'],
+                        'answer' => $faq['answer'],
                     ]);
                 }
             }
