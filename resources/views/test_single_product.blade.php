@@ -56,19 +56,26 @@
                 
                 <!-- Image Gallery Thumbnails -->
                 <div class="flex space-x-2 overflow-x-auto pb-2">
-                    <button class="w-20 h-20 bg-pink-200 rounded-lg flex-shrink-0 border-2 border-primary" onclick="changeImage('{{ $product->image_url }}')">
-                        <img src="{{ $product->image_url }}" alt="{{ $product->name }}" class="w-full h-full object-cover rounded-lg">
+                    <button class="w-20 h-20 bg-pink-200 rounded-lg flex-shrink-0 border-2 border-primary" onclick="changeImage(0)">
+                        <div class="w-full h-full flex items-center justify-center text-gray-400">
+                            <i class="fas fa-image"></i>
+                        </div>
                     </button>
-                    @foreach($product->images ?? [] as $image)
-                    <button class="w-20 h-20 bg-pink-100 rounded-lg flex-shrink-0 border border-gray-200 hover:border-primary" onclick="changeImage('{{ $image->image_url }}')">
-                        <img src="{{ $image->image_url }}" alt="{{ $product->name }}" class="w-full h-full object-cover rounded-lg">
+                    <button class="w-20 h-20 bg-pink-100 rounded-lg flex-shrink-0 border border-gray-200 hover:border-primary" onclick="changeImage(1)">
+                        <div class="w-full h-full flex items-center justify-center text-gray-400">
+                            <i class="fas fa-image"></i>
+                        </div>
                     </button>
-                    @endforeach
-                    @if($product->video_url)
-                    <a href="{{ $product->video_url }}" target="_blank" class="w-20 h-20 bg-pink-100 rounded-lg flex-shrink-0 border border-gray-200 hover:border-primary flex items-center justify-center text-gray-400">
-                        <i class="fas fa-video text-primary"></i>
-                    </a>
-                    @endif
+                    <button class="w-20 h-20 bg-pink-100 rounded-lg flex-shrink-0 border border-gray-200 hover:border-primary" onclick="changeImage(2)">
+                        <div class="w-full h-full flex items-center justify-center text-gray-400">
+                            <i class="fas fa-image"></i>
+                        </div>
+                    </button>
+                    <button class="w-20 h-20 bg-pink-100 rounded-lg flex-shrink-0 border border-gray-200 hover:border-primary" onclick="changeImage(3)">
+                        <div class="w-full h-full flex items-center justify-center text-gray-400">
+                            <i class="fas fa-video text-primary"></i>
+                        </div>
+                    </button>
                 </div>
 
                 <!-- Social Proof Gallery -->
@@ -347,59 +354,6 @@
                                 </div>
                             </div>
 
-                <!-- Action Buttons -->
-                <div class="space-y-3">
-                    <!-- WhatsApp Button -->
-                    <button class="w-full bg-secondary text-white py-4 rounded-lg font-semibold hover:bg-secondary/90 transition-colors flex items-center justify-center" onclick="chatOnWhatsApp()">
-                        <i class="fab fa-whatsapp mr-2 text-xl"></i>Chat on WhatsApp
-                    </button>
-
-                    <!-- Primary CTAs -->
-                    <div class="grid grid-cols-2 gap-3">
-                        <button class="py-4 border-2 border-primary text-primary rounded-lg font-semibold hover:bg-primary hover:text-white transition-colors" onclick="addToCart()">
-                            Add to Cart
-                        </button>
-                        <button class="py-4 bg-primary text-white rounded-lg font-semibold hover:bg-primary/90 transition-colors" onclick="buyNow()">
-                            Buy Now
-                        </button>
-                    </div>
-
-                    <!-- Secondary Actions -->
-                    <div class="flex justify-center space-x-8 pt-4">
-                        <button class="flex items-center space-x-2 text-gray-600 hover:text-primary transition-colors" onclick="toggleWishlist()">
-                            <i class="far fa-heart text-lg"></i>
-                            <span>Wishlist</span>
-                        </button>
-                        <button class="flex items-center space-x-2 text-gray-600 hover:text-primary transition-colors" onclick="shareProduct()">
-                            <i class="fas fa-share-alt text-lg"></i>
-                            <span>Share</span>
-                        </button>
-                        <button class="flex items-center space-x-2 text-gray-600 hover:text-primary transition-colors" onclick="compareProduct()">
-                            <i class="fas fa-balance-scale text-lg"></i>
-                            <span>Compare</span>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Trust Badges -->
-                <div class="flex flex-wrap items-center justify-center gap-6 pt-6 border-t">
-                    <div class="flex items-center space-x-2 text-sm text-gray-600">
-                        <i class="fas fa-shield-alt text-green-600"></i>
-                        <span>Secure Payment</span>
-                    </div>
-                    <div class="flex items-center space-x-2 text-sm text-gray-600">
-                        <i class="fas fa-undo text-blue-600"></i>
-                        <span>7-Day Returns</span>
-                    </div>
-                    <div class="flex items-center space-x-2 text-sm text-gray-600">
-                        <i class="fas fa-file-invoice text-orange-600"></i>
-                        <span>GST Invoice</span>
-                    </div>
-                    <div class="flex items-center space-x-2 text-sm text-gray-600">
-                        <i class="fas fa-money-bill text-green-600"></i>
-                        <span>COD Available</span>
-                    </div>
-                </div>
                         </div>
                     </div>
                 </div>
