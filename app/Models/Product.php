@@ -61,6 +61,15 @@ class Product extends Model
         return $data ?? [];
     }
 
+    public function getSizesAttribute($value)
+    {
+        $data = json_decode($value, true);
+        if (is_string($data)) {
+            return json_decode($data, true) ?? [];
+        }
+        return $data ?? [];
+    }
+
     public function brand()
     {
         return $this->belongsTo(Brand::class);
