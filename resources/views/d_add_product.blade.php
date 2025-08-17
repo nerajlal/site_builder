@@ -476,7 +476,7 @@
             colorInput.classList.add('flex', 'items-center', 'space-x-2');
             colorInput.innerHTML = `
                 <input type="text" name="colors[${colorIndex}][name]" placeholder="Color Name" class="w-full px-2 py-1 border border-gray-300 rounded-md" value="${name}">
-                <input type="text" name="colors[${colorIndex}][value]" placeholder="Color Value" class="w-full px-2 py-1 border border-gray-300 rounded-md" value="${value}">
+                <input type="color" name="colors[${colorIndex}][value]" placeholder="Color Value" class="w-full px-2 py-1 border border-gray-300 rounded-md" value="${value}">
                 <button type="button" class="remove-color-btn px-2 py-1 bg-red-500 text-white rounded-md text-sm">X</button>
             `;
             colorsContainer.appendChild(colorInput);
