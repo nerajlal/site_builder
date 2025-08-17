@@ -30,13 +30,11 @@
                     <button class="w-20 h-20 bg-pink-200 rounded-lg flex-shrink-0 border-2 border-primary" onclick="changeImage('{{ $product->image_url }}')">
                         <img src="{{ $product->image_url }}" alt="{{ $product->name }}" class="w-full h-full object-cover rounded-lg">
                     </button>
-                    @if(is_array($product->images))
-                        @foreach($product->images as $image)
-                        <button class="w-20 h-20 bg-pink-100 rounded-lg flex-shrink-0 border border-gray-200 hover:border-primary" onclick="changeImage('{{ $image }}')">
-                            <img src="{{ $image }}" alt="{{ $product->name }}" class="w-full h-full object-cover rounded-lg">
-                        </button>
-                        @endforeach
-                    @endif
+                    @foreach($product->images as $image)
+                    <button class="w-20 h-20 bg-pink-100 rounded-lg flex-shrink-0 border border-gray-200 hover:border-primary" onclick="changeImage('{{ $image->image_url }}')">
+                        <img src="{{ $image->image_url }}" alt="{{ $product->name }}" class="w-full h-full object-cover rounded-lg">
+                    </button>
+                    @endforeach
                     @if($product->video_url)
                     <a href="{{ $product->video_url }}" target="_blank" class="w-20 h-20 bg-pink-100 rounded-lg flex-shrink-0 border border-gray-200 hover:border-primary flex items-center justify-center text-gray-400">
                         <i class="fas fa-video text-primary"></i>
@@ -103,20 +101,18 @@
                 @endif
 
                 <!-- Color Selection -->
-                @if(is_array($product->colors))
                 <div>
                     <h3 class="text-sm font-semibold mb-3">Color: <span id="selectedColorName"></span></h3>
                     <div class="flex space-x-3">
                         @foreach($product->colors as $color)
                         <button class="color-btn w-10 h-10 rounded-full border-2 border-gray-200 hover:border-gray-400 shadow-md"
-                                onclick="selectColor('{{ $color }}', '{{ $color }}')"
-                                data-color="{{ $color }}"
-                                style="background-color: {{ $color }};">
+                                onclick="selectColor('{{ $color->value }}', '{{ $color->name }}')"
+                                data-color="{{ $color->value }}"
+                                style="background-color: {{ $color->value }};">
                         </button>
                         @endforeach
                     </div>
                 </div>
-                @endif
 
                 <!-- Size Selection with Stock Info -->
                 @if(is_array($product->sizes))
@@ -286,18 +282,17 @@
                             </div>
                         </div>
                         
-                        @if(is_array($product->styling_tips))
                         <div>
                             <h4 class="font-semibold mb-4">Styling Tips:</h4>
                             <div class="space-y-4">
-                                @foreach($product->styling_tips as $tip)
+                                @foreach($product->stylingTips as $tip)
                                 <div class="bg-gray-50 p-4 rounded-lg">
-                                    <p class="text-sm text-gray-700">{{ $tip }}</p>
+                                    <h5 class="font-semibold">{{ $tip->title }}</h5>
+                                    <p class="text-sm text-gray-700">{{ $tip->description }}</p>
                                 </div>
                                 @endforeach
                             </div>
                         </div>
-                        @endif
                     </div>
                 </div>
 
@@ -307,29 +302,24 @@
                         <div>
                             <h3 class="text-xl font-semibold mb-4">Fit & Measurements</h3>
                             <div class="space-y-4">
-                                @if(is_array($product->model_info))
                                 <div class="bg-blue-50 p-4 rounded-lg">
                                     <h4 class="font-semibold mb-3">Model Information</h4>
                                     <div class="space-y-2 text-sm">
-                                        @foreach($product->model_info as $info)
-                                        <p>{{ $info }}</p>
+                                        @foreach($product->modelInfo as $info)
+                                        <p><strong>{{ $info->key }}:</strong> {{ $info->value }}</p>
                                         @endforeach
                                     </div>
                                 </div>
-                                @endif
                                 
-                                @if(is_array($product->garment_details))
                                 <div>
                                     <h4 class="font-semibold mb-3">Garment Details</h4>
                                     <div class="space-y-2 text-sm">
-                                        @foreach($product->garment_details as $detail)
-                                        <p>{{ $detail }}</p>
+                                        @foreach($product->garmentDetails as $detail)
+                                        <p><strong>{{ $detail->key }}:</strong> {{ $detail->value }}</p>
                                         @endforeach
                                     </div>
                                 </div>
-                                @endif
 
-                                @if(is_array($product->size_chart))
                                 <!-- Size Chart -->
                                 <div>
                                     <h4 class="font-semibold mb-3">Size Chart</h4>
@@ -337,56 +327,55 @@
                                         <table class="w-full text-sm border border-gray-300">
                                             <thead class="bg-gray-100">
                                                 <tr>
-                                                    @foreach($product->size_chart[0] as $header)
-                                                    <th class="border border-gray-300 p-2 font-medium">{{ $header }}</th>
-                                                    @endforeach
+                                                    <th class="border border-gray-300 p-2 font-medium">Size</th>
+                                                    @if($product->sizeChart->count() > 0)
+                                                        @foreach(json_decode($product->sizeChart[0]->measurements, true) as $key => $value)
+                                                            <th class="border border-gray-300 p-2 font-medium">{{ ucfirst($key) }}</th>
+                                                        @endforeach
+                                                    @endif
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @for($i = 1; $i < count($product->size_chart); $i++)
+                                                @foreach($product->sizeChart as $size)
                                                 <tr>
-                                                    @foreach($product->size_chart[$i] as $cell)
-                                                    <td class="border border-gray-300 p-2">{{ $cell }}</td>
+                                                    <td class="border border-gray-300 p-2">{{ $size->size }}</td>
+                                                    @foreach(json_decode($size->measurements, true) as $key => $value)
+                                                        <td class="border border-gray-300 p-2">{{ $value }}</td>
                                                     @endforeach
                                                 </tr>
-                                                @endfor
+                                                @endforeach
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
-                                @endif
                             </div>
                         </div>
                         
                         <div>
                             <h3 class="text-xl font-semibold mb-4">Materials & Care</h3>
                             <div class="space-y-6">
-                                @if(is_array($product->fabric_details))
                                 <div>
                                     <h4 class="font-semibold mb-3">Fabric Details</h4>
                                     <div class="space-y-2 text-sm">
-                                        @foreach($product->fabric_details as $detail)
-                                        <p>{{ $detail }}</p>
+                                        @foreach($product->fabricDetails as $detail)
+                                        <p><strong>{{ $detail->key }}:</strong> {{ $detail->value }}</p>
                                         @endforeach
                                     </div>
                                 </div>
-                                @endif
 
-                                @if(is_array($product->care_instructions))
                                 <div>
                                     <h4 class="font-semibold mb-3">Care Instructions</h4>
                                     <div class="grid grid-cols-2 gap-4">
-                                        @foreach($product->care_instructions as $instruction)
+                                        @foreach($product->careInstructions as $instruction)
                                         <div class="flex items-center space-x-3 p-3 bg-blue-50 rounded-lg">
                                             <i class="fas fa-info-circle text-blue-500 text-xl"></i>
                                             <div>
-                                                <p class="font-medium">{{ $instruction }}</p>
+                                                <p class="font-medium">{{ $instruction->instruction }}</p>
                                             </div>
                                         </div>
                                         @endforeach
                                     </div>
                                 </div>
-                                @endif
 
                                 @if(is_array($product->care_tips))
                                 <div class="bg-green-50 p-4 rounded-lg">

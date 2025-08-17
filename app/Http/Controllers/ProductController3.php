@@ -96,7 +96,17 @@ class ProductController3 extends Controller
     public function showSingleProduct($headerFooterId, $productId)
     {
         $headerFooter = HeaderFooter::find($headerFooterId);
-        $product = Product::with('brand')->find($productId);
+        $product = \App\Models\Product::with([
+            'brand',
+            'colors',
+            'images',
+            'stylingTips',
+            'modelInfo',
+            'garmentDetails',
+            'sizeChart',
+            'fabricDetails',
+            'careInstructions'
+        ])->find($productId);
 
         if (!$headerFooter || !$product) {
             abort(404, 'Product not found');
