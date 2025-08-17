@@ -99,7 +99,6 @@ class ProductController3 extends Controller
         $product = \App\Models\Product::with([
             'brand',
             'colors',
-            'productImages',
             'stylingTips',
             'modelInfo',
             'garmentDetails',

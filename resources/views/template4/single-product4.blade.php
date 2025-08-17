@@ -30,7 +30,7 @@
                     <button class="w-20 h-20 bg-pink-200 rounded-lg flex-shrink-0 border-2 border-primary" onclick="changeImage('{{ $product->image_url }}')">
                         <img src="{{ $product->image_url }}" alt="{{ $product->name }}" class="w-full h-full object-cover rounded-lg">
                     </button>
-                    @foreach($product->productImages ?? [] as $image)
+                    @foreach($productImages as $image)
                     <button class="w-20 h-20 bg-pink-100 rounded-lg flex-shrink-0 border border-gray-200 hover:border-primary" onclick="changeImage('{{ $image->image_url }}')">
                         <img src="{{ $image->image_url }}" alt="{{ $product->name }}" class="w-full h-full object-cover rounded-lg">
                     </button>
@@ -1135,7 +1135,7 @@
         "name": "{{ $product->name }}",
         "image": [
             "{{ $product->image_url }}"
-            @foreach($product->productImages ?? [] as $image)
+            @foreach($productImages as $image)
             , "{{ $image->image_url }}"
             @endforeach
         ],
