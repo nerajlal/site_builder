@@ -30,7 +30,7 @@
                     <button class="w-20 h-20 bg-pink-200 rounded-lg flex-shrink-0 border-2 border-primary" onclick="changeImage('{{ $product->image_url }}')">
                         <img src="{{ $product->image_url }}" alt="{{ $product->name }}" class="w-full h-full object-cover rounded-lg">
                     </button>
-                    @foreach($product->images as $image)
+                    @foreach($product->images ?? [] as $image)
                     <button class="w-20 h-20 bg-pink-100 rounded-lg flex-shrink-0 border border-gray-200 hover:border-primary" onclick="changeImage('{{ $image->image_url }}')">
                         <img src="{{ $image->image_url }}" alt="{{ $product->name }}" class="w-full h-full object-cover rounded-lg">
                     </button>
@@ -90,7 +90,7 @@
                 @if(is_array($product->key_features))
                 <div class="bg-blue-50 p-4 rounded-lg">
                     <div class="grid grid-cols-3 gap-4 text-sm">
-                        @foreach($product->key_features as $feature)
+                        @foreach($product->key_features ?? [] as $feature)
                         <div class="flex items-center space-x-2">
                             <i class="fas fa-check text-green-600"></i>
                             <span>{{ $feature }}</span>
@@ -104,7 +104,7 @@
                 <div>
                     <h3 class="text-sm font-semibold mb-3">Color: <span id="selectedColorName"></span></h3>
                     <div class="flex space-x-3">
-                        @foreach($product->colors as $color)
+                        @foreach($product->colors ?? [] as $color)
                         <button class="color-btn w-10 h-10 rounded-full border-2 border-gray-200 hover:border-gray-400 shadow-md"
                                 onclick="selectColor('{{ $color->value }}', '{{ $color->name }}')"
                                 data-color="{{ $color->value }}"
@@ -270,7 +270,7 @@
                                 <div>
                                     <h4 class="font-semibold mb-2">Key Features:</h4>
                                     <ul class="space-y-2 text-gray-700">
-                                        @foreach($product->product_details_features as $feature)
+                                        @foreach($product->product_details_features ?? [] as $feature)
                                         <li class="flex items-start space-x-2">
                                             <i class="fas fa-check text-green-600 mt-1"></i>
                                             <span>{{ $feature }}</span>
@@ -285,7 +285,7 @@
                         <div>
                             <h4 class="font-semibold mb-4">Styling Tips:</h4>
                             <div class="space-y-4">
-                                @foreach($product->stylingTips as $tip)
+                                @foreach($product->stylingTips ?? [] as $tip)
                                 <div class="bg-gray-50 p-4 rounded-lg">
                                     <h5 class="font-semibold">{{ $tip->title }}</h5>
                                     <p class="text-sm text-gray-700">{{ $tip->description }}</p>
@@ -305,7 +305,7 @@
                                 <div class="bg-blue-50 p-4 rounded-lg">
                                     <h4 class="font-semibold mb-3">Model Information</h4>
                                     <div class="space-y-2 text-sm">
-                                        @foreach($product->modelInfo as $info)
+                                        @foreach($product->modelInfo ?? [] as $info)
                                         <p><strong>{{ $info->key }}:</strong> {{ $info->value }}</p>
                                         @endforeach
                                     </div>
@@ -314,7 +314,7 @@
                                 <div>
                                     <h4 class="font-semibold mb-3">Garment Details</h4>
                                     <div class="space-y-2 text-sm">
-                                        @foreach($product->garmentDetails as $detail)
+                                        @foreach($product->garmentDetails ?? [] as $detail)
                                         <p><strong>{{ $detail->key }}:</strong> {{ $detail->value }}</p>
                                         @endforeach
                                     </div>
@@ -336,7 +336,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach($product->sizeChart as $size)
+                                                @foreach($product->sizeChart ?? [] as $size)
                                                 <tr>
                                                     <td class="border border-gray-300 p-2">{{ $size->size }}</td>
                                                     @foreach(json_decode($size->measurements, true) as $key => $value)
@@ -357,7 +357,7 @@
                                 <div>
                                     <h4 class="font-semibold mb-3">Fabric Details</h4>
                                     <div class="space-y-2 text-sm">
-                                        @foreach($product->fabricDetails as $detail)
+                                        @foreach($product->fabricDetails ?? [] as $detail)
                                         <p><strong>{{ $detail->key }}:</strong> {{ $detail->value }}</p>
                                         @endforeach
                                     </div>
@@ -366,7 +366,7 @@
                                 <div>
                                     <h4 class="font-semibold mb-3">Care Instructions</h4>
                                     <div class="grid grid-cols-2 gap-4">
-                                        @foreach($product->careInstructions as $instruction)
+                                        @foreach($product->careInstructions ?? [] as $instruction)
                                         <div class="flex items-center space-x-3 p-3 bg-blue-50 rounded-lg">
                                             <i class="fas fa-info-circle text-blue-500 text-xl"></i>
                                             <div>
