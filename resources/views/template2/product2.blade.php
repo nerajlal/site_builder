@@ -65,8 +65,9 @@
         <!-- Product Grid -->
         <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6" id="productGrid">
             @foreach($products as $product)
-                <div class="bg-black rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow border border-gray-800">
-                    <div class="relative">
+                <a href="{{ route('template2.single-product2.customer', ['headerFooterId' => $headerFooter->id, 'productId' => $product->id]) }}" class="block">
+                    <div class="bg-black rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow border border-gray-800">
+                        <div class="relative">
                         @if($product->is_new)
                             <span class="absolute top-3 left-3 bg-pink-600 text-white px-3 py-1 rounded-full text-xs font-medium z-10">NEW</span>
                         @elseif($product->is_limited)
@@ -88,12 +89,12 @@
                             </div>
                             <span class="ml-2 text-sm text-gray-500">76</span> <!-- Placeholder for reviews -->
                         </div>
-                            <a href="{{ route('template2.single-product2.customer', ['headerFooterId' => $headerFooter->id, 'productId' => $product->id]) }}"
-                               class="w-full border-2 border-yellow-500 text-yellow-500 hover:bg-yellow-500 hover:text-black py-2 px-4 rounded-lg transition-colors flex items-center justify-center">
+                            <button class="w-full border-2 border-yellow-500 text-yellow-500 hover:bg-yellow-500 hover:text-black py-2 px-4 rounded-lg transition-colors flex items-center justify-center">
                                 <i class="fas fa-shopping-cart mr-2"></i> Add to Cart
-                            </a>
+                            </button>
                     </div>
                 </div>
+                </a>
             @endforeach
         </div>
     </main>

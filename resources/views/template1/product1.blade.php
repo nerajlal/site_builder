@@ -50,8 +50,8 @@
                         </div>
                         <span class="ml-2 text-sm text-gray-500">45</span>
                     </div>
-                    <button class="w-full bg-gray-900 hover:bg-pink-800 text-white py-2 px-4 rounded-lg font-medium transition flex items-center justify-center">
-                        <i class="fas fa-shopping-bag mr-2"></i> View Product
+                            <button class="w-full bg-pink-600 hover:bg-pink-700 text-white py-2 px-4 rounded-lg font-medium transition flex items-center justify-center">
+                                <i class="fas fa-shopping-cart mr-2"></i> Add to Cart
                     </button>
                 </div>
             </div>
@@ -159,35 +159,36 @@
         <!-- Product Grid -->
         <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6" id="productGrid">
             @foreach($products as $product)
-                <div class="bg-white rounded-lg overflow-hidden product-card boutique-shadow">
-                    <div class="relative">
-                        @if($product->is_new)
-                            <span class="absolute top-3 left-3 bg-pink-600 text-white px-3 py-1 rounded-full text-xs font-medium z-10">NEW</span>
-                        @elseif($product->is_limited)
-                             <span class="absolute top-3 left-3 bg-red-600 text-white px-3 py-1 rounded-full text-xs font-medium z-10">LIMITED</span>
-                        @endif
-                        <div class="aspect-square bg-pink-50 flex items-center justify-center">
-                             <img src="{{$product->image_url}}" alt="{{ $product->name }}" class="w-full h-full object-cover">
-                        </div>
-                    </div>
-                    <div class="p-4">
-                        <h3 class="font-medium text-gray-900 mb-2">{{ $product->name }}</h3>
-                        <div class="flex items-center space-x-2 mb-2">
-                            <span class="text-lg font-bold text-gray-900">₹{{ number_format($product->price, 2) }}</span>
-                        </div>
-                        <div class="flex items-center mb-3">
-                            <div class="flex items-center">
-                                <span class="text-yellow-500 text-sm">★★★★</span>
-                                <span class="text-gray-300 text-sm">★</span>
+                <a href="{{ route('template1.single-product1.customer', ['headerFooterId' => $headerFooter->id, 'productId' => $product->id]) }}" class="block">
+                    <div class="bg-white rounded-lg overflow-hidden product-card boutique-shadow">
+                        <div class="relative">
+                            @if($product->is_new)
+                                <span class="absolute top-3 left-3 bg-pink-600 text-white px-3 py-1 rounded-full text-xs font-medium z-10">NEW</span>
+                            @elseif($product->is_limited)
+                                 <span class="absolute top-3 left-3 bg-red-600 text-white px-3 py-1 rounded-full text-xs font-medium z-10">LIMITED</span>
+                            @endif
+                            <div class="aspect-square bg-pink-50 flex items-center justify-center">
+                                 <img src="{{$product->image_url}}" alt="{{ $product->name }}" class="w-full h-full object-cover">
                             </div>
-                            <span class="ml-2 text-sm text-gray-500">76</span> <!-- Placeholder for reviews -->
                         </div>
-                            <a href="{{ route('template1.single-product1.customer', ['headerFooterId' => $headerFooter->id, 'productId' => $product->id]) }}"
-                               class="w-full bg-pink-600 hover:bg-pink-700 text-white py-2 px-4 rounded-lg font-medium transition flex items-center justify-center">
-                                <i class="fas fa-shopping-cart mr-2"></i> Add to Cart
-                            </a>
+                        <div class="p-4">
+                            <h3 class="font-medium text-gray-900 mb-2">{{ $product->name }}</h3>
+                            <div class="flex items-center space-x-2 mb-2">
+                                <span class="text-lg font-bold text-gray-900">₹{{ number_format($product->price, 2) }}</span>
+                            </div>
+                            <div class="flex items-center mb-3">
+                                <div class="flex items-center">
+                                    <span class="text-yellow-500 text-sm">★★★★</span>
+                                    <span class="text-gray-300 text-sm">★</span>
+                                </div>
+                                <span class="ml-2 text-sm text-gray-500">76</span> <!-- Placeholder for reviews -->
+                            </div>
+                                <button class="w-full bg-pink-600 hover:bg-pink-700 text-white py-2 px-4 rounded-lg font-medium transition flex items-center justify-center">
+                                    <i class="fas fa-shopping-cart mr-2"></i> Add to Cart
+                                </button>
+                        </div>
                     </div>
-                </div>
+                </a>
             @endforeach
         </div>
     </main>
