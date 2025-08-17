@@ -112,7 +112,7 @@
                         <button class="size-btn py-3 text-center border rounded hover:border-primary"
                                 onclick="selectSize('{{ $size['size'] }}')"
                                 data-size="{{ $size['size'] }}"
-                                data-stock="{{ $product->quantity }}">
+                                data-stock="{{ $size['stock'] }}">
                             <span>{{ $size['size'] }}</span>
                         </button>
                         @endforeach
