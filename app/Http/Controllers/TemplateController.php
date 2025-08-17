@@ -144,7 +144,7 @@ class TemplateController extends Controller
         $products = Product::with([
             'brand',
             'colors',
-            'images',
+            'productImages',
             'stylingTips',
             'modelInfo',
             'garmentDetails',
@@ -233,7 +233,7 @@ class TemplateController extends Controller
         if ($request->has('images')) {
             foreach ($request->images as $image) {
                 if (!empty($image['url'])) {
-                    $product->images()->create([
+                    $product->productImages()->create([
                         'image_url' => $image['url'],
                     ]);
                 }
@@ -385,11 +385,11 @@ class TemplateController extends Controller
             }
         }
 
-        $product->images()->delete();
+        $product->productImages()->delete();
         if ($request->has('images')) {
             foreach ($request->images as $image) {
                 if (!empty($image['url'])) {
-                    $product->images()->create([
+                    $product->productImages()->create([
                         'image_url' => $image['url'],
                     ]);
                 }

@@ -89,7 +89,7 @@
                                     data-category_name="{{ $product->category_name }}"
                                     data-brand_id="{{ $product->brand_id }}"
                                     data-image_url="{{ $product->image_url }}"
-                                    data-images="{{ json_encode($product->images) }}"
+                                    data-images="{{ json_encode($product->productImages) }}"
                                     data-video_url="{{ $product->video_url }}"
                                     data-description="{{ $product->description }}"
                                     data-colors="{{ json_encode($product->colors) }}"
