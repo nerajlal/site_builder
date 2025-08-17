@@ -95,7 +95,7 @@ class ProductController2 extends Controller
         $product = \App\Models\Product::with([
             'brand',
             'colors',
-            'images',
+            'productImages',
             'stylingTips',
             'modelInfo',
             'garmentDetails',
