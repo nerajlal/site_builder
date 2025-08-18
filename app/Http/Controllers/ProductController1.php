@@ -84,9 +84,9 @@ class ProductController1 extends Controller
             $query->where('price', '<=', $request->get('max_price'));
         }
 
-        // Filtering by category
-        if ($request->has('category_id')) {
-            $query->where('category_id', $request->get('category_id'));
+        // Filtering by category name
+        if ($request->has('category_name')) {
+            $query->where('category_name', $request->get('category_name'));
         }
 
         $products = $query->get();

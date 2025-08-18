@@ -134,35 +134,31 @@
       </p>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      @if($is_default)
-        @php
-          // Placeholder for default view when no site is configured
-          $placeholder_categories = [
-              ['name' => 'Women', 'image' => 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=720&q=80'],
-              ['name' => 'Men', 'image' => 'https://images.unsplash.com/photo-1521119989659-a83eee488004?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=723&q=80'],
-              ['name' => 'Kids', 'image' => 'https://images.unsplash.com/photo-1519340241574-2cec6a12a52d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80'],
-          ];
-        @endphp
-        @foreach ($placeholder_categories as $category)
-        <div class="relative group overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-          <img src="{{ $category['image'] }}" alt="{{ $category['name'] }}" class="w-full h-96 object-cover transition-transform duration-300 group-hover:scale-105">
-          <div class="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition-colors duration-300"></div>
-          <div class="absolute bottom-0 left-0 right-0 p-6">
-            <h4 class="text-white text-2xl font-serif font-semibold drop-shadow-md">{{ $category['name'] }}</h4>
-            <div class="h-0.5 bg-pink-500 w-16 mt-2 transition-all duration-300 group-hover:w-24"></div>
+      @php
+        $categories = [
+            ['name' => 'Women', 'image' => 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=720&q=80'],
+            ['name' => 'Men', 'image' => 'https://images.unsplash.com/photo-1521119989659-a83eee488004?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=723&q=80'],
+            ['name' => 'Kids', 'image' => 'https://images.unsplash.com/photo-1519340241574-2cec6a12a52d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80'],
+        ];
+      @endphp
+      @foreach ($categories as $category)
+        @if ($is_default)
+          <div class="relative group overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+            <img src="{{ $category['image'] }}" alt="{{ $category['name'] }}" class="w-full h-96 object-cover transition-transform duration-300 group-hover:scale-105">
+            <div class="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition-colors duration-300"></div>
+            <div class="absolute bottom-0 left-0 right-0 p-6">
+              <h4 class="text-white text-2xl font-serif font-semibold drop-shadow-md">{{ $category['name'] }}</h4>
+              <div class="h-0.5 bg-pink-500 w-16 mt-2 transition-all duration-300 group-hover:w-24"></div>
+            </div>
+            <a href="#" class="absolute inset-0" aria-label="Shop {{ $category['name'] }}"></a>
           </div>
-          <a href="#" class="absolute inset-0" aria-label="Shop {{ $category['name'] }}"></a>
-        </div>
-        @endforeach
-      @else
-        @foreach ($categories as $category)
-          <a href="{{ route('template4.product4.customer', ['headerFooterId' => $headerFooter->id, 'category_id' => $category->id]) }}" class="block text-center p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 bg-white">
-            <h4 class="text-2xl font-serif font-semibold text-gray-800">{{ $category->name }}</h4>
-            <div class="h-0.5 bg-pink-500 w-16 mt-4 mx-auto"></div>
-            <p class="mt-4 text-gray-600">Explore Collection</p>
+        @else
+          <a href="{{ route('template4.product4.customer', ['headerFooterId' => $headerFooter->id, 'category_name' => $category['name']]) }}" class="group block text-center p-8 rounded-lg">
+            <h4 class="text-3xl font-serif text-gray-800 group-hover:text-pink-500 transition-colors duration-300">{{ $category['name'] }}</h4>
+            <div class="w-24 h-1 bg-gray-200 mx-auto mt-4 group-hover:bg-pink-500 transition-colors duration-300"></div>
           </a>
-        @endforeach
-      @endif
+        @endif
+      @endforeach
     </div>
   </div>
 </section>

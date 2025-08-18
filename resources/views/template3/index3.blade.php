@@ -143,36 +143,33 @@
       </p>
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-      @if($is_default)
-        @php
-          // Placeholder for default view when no site is configured
-          $placeholder_categories = [
-              ['name' => 'Women', 'image' => 'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80'],
-              ['name' => 'Men', 'image' => 'https://images.unsplash.com/photo-1504593811423-6dd665756598?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80'],
-              ['name' => 'Kids', 'image' => 'https://images.unsplash.com/photo-1622422034001-3a8a3f287118?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80'],
-          ];
-        @endphp
-        @foreach($placeholder_categories as $category)
-        <div class="relative group h-96 overflow-hidden rounded-lg shadow-sm hover:shadow-xl transition-shadow duration-300">
-          <img
-            src="{{ $category['image'] }}"
-            alt="{{ $category['name'] }}'s Fashion"
-            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out"
-          >
-          <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent flex items-end justify-start p-6">
-            <h4 class="text-white text-2xl font-semibold drop-shadow-md">{{ $category['name'] }}</h4>
+      @php
+        $categories = [
+            ['name' => 'Women', 'image' => 'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80'],
+            ['name' => 'Men', 'image' => 'https://images.unsplash.com/photo-1504593811423-6dd665756598?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80'],
+            ['name' => 'Kids', 'image' => 'https://images.unsplash.com/photo-1622422034001-3a8a3f287118?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80'],
+        ];
+      @endphp
+      @foreach($categories as $category)
+        @if ($is_default)
+          <div class="relative group h-96 overflow-hidden rounded-lg shadow-sm hover:shadow-xl transition-shadow duration-300">
+            <img
+              src="{{ $category['image'] }}"
+              alt="{{ $category['name'] }}'s Fashion"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out"
+            >
+            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent flex items-end justify-start p-6">
+              <h4 class="text-white text-2xl font-semibold drop-shadow-md">{{ $category['name'] }}</h4>
+            </div>
+            <a href="#" class="absolute inset-0" aria-label="Shop {{ $category['name'] }}"></a>
           </div>
-          <a href="#" class="absolute inset-0" aria-label="Shop {{ $category['name'] }}"></a>
-        </div>
-        @endforeach
-      @else
-        @foreach ($categories as $category)
-          <a href="{{ route('template3.product3.customer', ['headerFooterId' => $headerFooter->id, 'category_id' => $category->id]) }}" class="block text-center p-8 rounded-lg shadow-sm hover:shadow-xl transition-shadow duration-300 bg-white">
-            <h4 class="text-xl font-medium text-gray-800">{{ $category->name }}</h4>
-            <p class="mt-2 text-pink-600">Shop Collection</p>
+        @else
+          <a href="{{ route('template3.product3.customer', ['headerFooterId' => $headerFooter->id, 'category_name' => $category['name']]) }}" class="block p-8 rounded-lg bg-white shadow-md hover:shadow-2xl transition-shadow duration-300 group">
+            <h4 class="text-2xl font-medium text-gray-800 text-center">{{ $category['name'] }}</h4>
+            <p class="text-center text-pink-600 mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">Explore Now &rarr;</p>
           </a>
-        @endforeach
-      @endif
+        @endif
+      @endforeach
     </div>
   </div>
 </section>

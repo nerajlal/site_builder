@@ -121,40 +121,30 @@
       <p class="max-w-2xl mx-auto text-gray-600">Find the perfect outfit for any occasion from our curated collections.</p>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-      @if($is_default)
-        @php
-          // Placeholder for default view when no site is configured
-          $placeholder_categories = [
-              ['name' => 'Women', 'image' => 'https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80'],
-              ['name' => 'Men', 'image' => 'https://images.unsplash.com/photo-1490114538077-0a7f8cb49891?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80'],
-              ['name' => 'Kids', 'image' => 'https://images.unsplash.com/photo-1529428135324-19341b37517c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80'],
-          ];
-        @endphp
-        @foreach ($placeholder_categories as $category)
-          <div class="relative group overflow-hidden rounded-xl border border-gray-200/50 shadow-sm hover:shadow-xl transition-all duration-300 ease-in-out">
-            <div class="aspect-w-1 aspect-h-1">
-              <img src="{{ $category['image'] }}" alt="{{ $category['name'] }}" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
-            </div>
-            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-            <div class="absolute bottom-0 left-0 p-6">
-              <h4 class="text-2xl font-semibold text-white tracking-wider">{{ $category['name'] }}</h4>
-            </div>
-            <div class="absolute inset-0 bg-white/80 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <a href="#" class="bg-gray-900 text-white px-8 py-3 rounded-lg font-medium">
-                Explore
-              </a>
-            </div>
+      @php
+        $categories = [
+            ['name' => 'Women', 'image' => 'https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80'],
+            ['name' => 'Men', 'image' => 'https://images.unsplash.com/photo-1490114538077-0a7f8cb49891?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80'],
+            ['name' => 'Kids', 'image' => 'https://images.unsplash.com/photo-1529428135324-19341b37517c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80'],
+        ];
+      @endphp
+      @foreach ($categories as $category)
+        <div class="relative group overflow-hidden rounded-xl border border-gray-200/50 shadow-sm hover:shadow-xl transition-all duration-300 ease-in-out">
+          <div class="aspect-w-1 aspect-h-1">
+            <img src="{{ $category['image'] }}" alt="{{ $category['name'] }}" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
           </div>
-        @endforeach
-      @else
-        @foreach ($categories as $category)
-          <a href="{{ route('template1.product1.customer', ['headerFooterId' => $headerFooter->id, 'category_id' => $category->id]) }}" class="block text-center p-8 rounded-lg boutique-shadow bg-white hover:bg-pink-50 transition-colors">
-            <h4 class="text-xl font-semibold mb-3">{{ $category->name }}</h4>
-            <p class="text-pink-600 font-medium">View Collection <i class="fas fa-arrow-right ml-2"></i></p>
-          </a>
-        @endforeach
-      @endif
-    </div>
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 p-6">
+            <h4 class="text-2xl font-semibold text-white tracking-wider">{{ $category['name'] }}</h4>
+          </div>
+          <div class="absolute inset-0 bg-white/80 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <a href="#" class="bg-gray-900 text-white px-8 py-3 rounded-lg font-medium">
+              Explore
+            </a>
+          </div>
+        </div>
+      @endforeach
+</div>
 
   </section>
 
