@@ -1,4 +1,4 @@
-@include('template1.head1', ['is_default' => $is_default, 'headerFooter' => $headerFooter])
+@include('template1.head1')
     
 
     <!-- Product Container -->
