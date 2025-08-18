@@ -1386,7 +1386,7 @@
             });
 
             // Set initial state
-            selectColor('pink', 'Pink Floral');
+            // selectColor('pink', 'Pink Floral');
             selectSize('M');
             
             // Initialize features
