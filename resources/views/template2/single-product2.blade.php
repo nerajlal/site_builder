@@ -2,13 +2,13 @@
     
 
     <!-- Product Container -->
-    <div class="max-w-7xl mx-auto px-4 pb-12">
+    <div class="max-w-7xl mx-auto px-4 pb-12 text-gray-300">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
             <!-- Product Images -->
             <div class="space-y-4">
                 <!-- Main Image with Video Support -->
                 <div class="relative group">
-                    <div class="aspect-[4/5] bg-pink-100 rounded-lg overflow-hidden">
+                    <div class="aspect-[4/5] bg-gray-900 rounded-lg overflow-hidden">
                         <div id="mainImage" class="w-full h-full">
                             <img id="mainProductImage" src="{{ $product->image_url }}" alt="{{ $product->name }}" class="w-full h-full object-cover">
                         </div>
@@ -20,38 +20,38 @@
                         @endif
                     </div>
                     <!-- Zoom Button -->
-                    <button class="absolute top-4 right-4 p-2 bg-white rounded-full shadow-md opacity-0 group-hover:opacity-100 transition-opacity">
-                        <i class="fas fa-expand text-gray-600"></i>
+                    <button class="absolute top-4 right-4 p-2 bg-gray-800 rounded-full shadow-md opacity-0 group-hover:opacity-100 transition-opacity">
+                        <i class="fas fa-expand text-gray-300"></i>
                     </button>
                 </div>
                 
                 <!-- Image Gallery Thumbnails -->
                 <div class="flex space-x-2 overflow-x-auto pb-2" id="thumbnail-gallery">
-                    <button class="thumbnail-btn w-20 h-20 bg-pink-200 rounded-lg flex-shrink-0 border-2 border-primary">
+                    <button class="thumbnail-btn w-20 h-20 bg-gray-800 rounded-lg flex-shrink-0 border-2 border-primary">
                         <img src="{{ $product->image_url }}" alt="{{ $product->name }}" class="w-full h-full object-cover rounded-lg">
                     </button>
                     @foreach($productImages as $image)
-                    <button class="thumbnail-btn w-20 h-20 bg-pink-100 rounded-lg flex-shrink-0 border border-gray-200 hover:border-primary">
+                    <button class="thumbnail-btn w-20 h-20 bg-gray-900 rounded-lg flex-shrink-0 border border-gray-700 hover:border-primary">
                         <img src="{{ $image->image_url }}" alt="{{ $product->name }}" class="w-full h-full object-cover rounded-lg">
                     </button>
                     @endforeach
                     @if($product->video_url)
-                    <a href="{{ $product->video_url }}" target="_blank" class="w-20 h-20 bg-pink-100 rounded-lg flex-shrink-0 border border-gray-200 hover:border-primary flex items-center justify-center text-gray-400">
+                    <a href="{{ $product->video_url }}" target="_blank" class="w-20 h-20 bg-gray-900 rounded-lg flex-shrink-0 border border-gray-700 hover:border-primary flex items-center justify-center text-gray-400">
                         <i class="fas fa-video text-primary"></i>
                     </a>
                     @endif
                 </div>
 
                 <!-- Social Proof Gallery -->
-                <div class="bg-white rounded-lg p-4 mt-6">
-                    <h3 class="text-sm font-semibold mb-3 flex items-center">
+                <div class="bg-gray-900 border border-gray-800 rounded-lg p-4 mt-6">
+                    <h3 class="text-sm font-semibold mb-3 flex items-center text-gray-300">
                         <i class="fab fa-instagram text-pink-500 mr-2"></i>
                         As seen on Instagram
                     </h3>
                     <div class="flex space-x-2 overflow-x-auto">
-                        <div class="w-16 h-16 bg-gray-200 rounded-lg flex-shrink-0"></div>
-                        <div class="w-16 h-16 bg-gray-200 rounded-lg flex-shrink-0"></div>
-                        <div class="w-16 h-16 bg-gray-200 rounded-lg flex-shrink-0"></div>
+                        <div class="w-16 h-16 bg-gray-800 rounded-lg flex-shrink-0"></div>
+                        <div class="w-16 h-16 bg-gray-800 rounded-lg flex-shrink-0"></div>
+                        <div class="w-16 h-16 bg-gray-800 rounded-lg flex-shrink-0"></div>
                     </div>
                 </div>
             </div>
@@ -60,9 +60,9 @@
             <div class="space-y-6">
                 <!-- Product Title & Rating -->
                 <div>
-                    <h1 class="text-3xl font-bold mb-3">{{ $product->name }}</h1>
+                    <h1 class="text-3xl font-bold mb-3 text-white">{{ $product->name }}</h1>
                     <div class="flex items-center space-x-4 mb-4">
-                        <button class="flex items-center space-x-2 hover:bg-gray-50 p-1 rounded" onclick="scrollToReviews()">
+                        <button class="flex items-center space-x-2 hover:bg-gray-800 p-1 rounded" onclick="scrollToReviews()">
                             <div class="flex text-yellow-400">
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
@@ -70,7 +70,7 @@
                                 <i class="fas fa-star"></i>
                                 <i class="far fa-star"></i>
                             </div>
-                            <span class="text-gray-600">(128 reviews)</span>
+                            <span class="text-gray-400">(128 reviews)</span>
                         </button>
                     </div>
                 </div>
@@ -78,20 +78,20 @@
                 <!-- Price Stack -->
                 <div class="space-y-2">
                     <div class="flex items-center space-x-4">
-                        <span class="text-3xl font-bold text-gray-900">₹{{ number_format($product->price, 2) }}</span>
+                        <span class="text-3xl font-bold text-white">₹{{ number_format($product->price, 2) }}</span>
                         @if($product->original_price)
                             <span class="text-xl text-gray-500 line-through">₹{{ number_format($product->original_price, 2) }}</span>
                         @endif
                     </div>
-                    <p class="text-sm text-gray-600">Inclusive of all taxes • GST invoice available</p>
+                    <p class="text-sm text-gray-400">Inclusive of all taxes • GST invoice available</p>
                 </div>
 
                 <!-- Color Selection -->
                 <div>
-                    <h3 class="text-sm font-semibold mb-3">Color: <span id="selectedColorName"></span></h3>
+                    <h3 class="text-sm font-semibold mb-3 text-gray-300">Color: <span id="selectedColorName"></span></h3>
                     <div class="flex space-x-3">
                         @foreach($productColors ?? [] as $color)
-                        <button class="color-btn w-10 h-10 rounded-full border-2 border-gray-200 hover:border-gray-400 shadow-md"
+                        <button class="color-btn w-10 h-10 rounded-full border-2 border-gray-700 hover:border-gray-400 shadow-md"
                                 onclick="selectColor('{{ $color->value }}', '{{ $color->name }}')"
                                 data-color="{{ $color->value }}"
                                 style="background-color: {{ $color->value }};">
@@ -103,20 +103,20 @@
                 <!-- Size Selection with Stock Info -->
                 <div>
                     <div class="flex items-center justify-between mb-3">
-                        <h3 class="text-sm font-semibold">Size: <span id="selectedSizeName"></span></h3>
+                        <h3 class="text-sm font-semibold text-gray-300">Size: <span id="selectedSizeName"></span></h3>
                         <button class="text-sm text-primary hover:underline" onclick="openSizeGuide()">Size Guide</button>
                     </div>
                     <div class="grid grid-cols-6 gap-2 mb-2">
                         @foreach($sizes as $size)
                             @if($size->in_stock)
-                                <button class="size-btn py-3 text-center border rounded hover:border-primary"
+                                <button class="size-btn py-3 text-center border border-gray-700 rounded hover:border-primary bg-gray-900 text-gray-300"
                                         onclick="selectSize('{{ $size->size }}')"
                                         data-size="{{ $size->size }}"
                                         data-stock="{{ $size->stock }}">
                                     <span>{{ $size->size }}</span>
                                 </button>
                             @else
-                                <button class="size-btn py-3 text-center border rounded bg-gray-100 text-gray-400 cursor-not-allowed"
+                                <button class="size-btn py-3 text-center border rounded bg-gray-800 text-gray-600 cursor-not-allowed"
                                         disabled
                                         onclick="showOutOfStockMessage()">
                                     <span>{{ $size->size }}</span>
@@ -124,43 +124,43 @@
                             @endif
                         @endforeach
                     </div>
-                    <p class="text-sm text-orange-600" id="stockInfo"></p>
+                    <p class="text-sm text-orange-500" id="stockInfo"></p>
                 </div>
 
                 <!-- PIN Code Check -->
-                <div class="bg-gray-50 p-4 rounded-lg">
-                    <h3 class="text-sm font-semibold mb-3">Delivery Options</h3>
+                <div class="bg-gray-900 border border-gray-800 p-4 rounded-lg">
+                    <h3 class="text-sm font-semibold mb-3 text-gray-300">Delivery Options</h3>
                     <div class="flex items-center space-x-2 mb-3">
                         <input type="text" 
                                placeholder="Enter PIN code" 
-                               class="flex-1 px-3 py-2 border rounded focus:outline-none focus:border-primary" 
+                               class="flex-1 px-3 py-2 border border-gray-700 rounded bg-gray-800 text-white focus:outline-none focus:border-primary"
                                id="pinCodeInput"
                                maxlength="6">
-                        <button class="px-6 py-2 bg-gray-800 text-white rounded hover:bg-gray-900 transition-colors" onclick="checkPinCode()">Check</button>
+                        <button class="px-6 py-2 bg-gray-700 text-white rounded hover:bg-gray-600 transition-colors" onclick="checkPinCode()">Check</button>
                     </div>
-                    <div id="deliveryInfo" class="text-sm space-y-1 text-gray-600">
+                    <div id="deliveryInfo" class="text-sm space-y-1 text-gray-400">
                         <div class="flex items-center space-x-2">
-                            <i class="fas fa-truck text-green-600"></i>
+                            <i class="fas fa-truck text-green-500"></i>
                             <span>Enter PIN to check delivery options</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Offers -->
-                <div class="bg-green-50 p-4 rounded-lg border border-green-200">
-                    <h3 class="text-sm font-semibold mb-3 text-green-800">Available Offers</h3>
-                    <div class="space-y-2 text-sm">
+                <div class="bg-green-900/20 p-4 rounded-lg border border-green-800">
+                    <h3 class="text-sm font-semibold mb-3 text-green-400">Available Offers</h3>
+                    <div class="space-y-2 text-sm text-gray-300">
                         <div class="flex items-center space-x-2">
-                            <i class="fas fa-percentage text-green-600"></i>
+                            <i class="fas fa-percentage text-green-500"></i>
                             <span>Get 10% off on orders above ₹1,999. Code: <strong>SAVE10</strong></span>
-                            <button class="text-green-700 underline hover:no-underline" onclick="applyCoupon('SAVE10')">Apply</button>
+                            <button class="text-green-400 underline hover:no-underline" onclick="applyCoupon('SAVE10')">Apply</button>
                         </div>
                         <div class="flex items-center space-x-2">
-                            <i class="fas fa-shipping-fast text-blue-600"></i>
+                            <i class="fas fa-shipping-fast text-blue-500"></i>
                             <span>Free shipping on orders above ₹2,000</span>
                         </div>
                         <div class="flex items-center space-x-2">
-                            <i class="fas fa-gift text-purple-600"></i>
+                            <i class="fas fa-gift text-purple-500"></i>
                             <span>Free gift wrapping available</span>
                         </div>
                     </div>
@@ -169,7 +169,7 @@
                 <!-- Action Buttons -->
                 <div class="space-y-3">
                     <!-- WhatsApp Button -->
-                    <button class="w-full bg-secondary text-white py-4 rounded-lg font-semibold hover:bg-secondary/90 transition-colors flex items-center justify-center" onclick="chatOnWhatsApp()">
+                    <button class="w-full bg-green-600 text-white py-4 rounded-lg font-semibold hover:bg-green-700 transition-colors flex items-center justify-center" onclick="chatOnWhatsApp()">
                         <i class="fab fa-whatsapp mr-2 text-xl"></i>Chat on WhatsApp
                     </button>
                     
@@ -185,15 +185,15 @@
                     
                     <!-- Secondary Actions -->
                     <div class="flex justify-center space-x-8 pt-4">
-                        <button class="flex items-center space-x-2 text-gray-600 hover:text-primary transition-colors" onclick="toggleWishlist()">
+                        <button class="flex items-center space-x-2 text-gray-400 hover:text-primary transition-colors" onclick="toggleWishlist()">
                             <i class="far fa-heart text-lg"></i>
                             <span>Wishlist</span>
                         </button>
-                        <button class="flex items-center space-x-2 text-gray-600 hover:text-primary transition-colors" onclick="shareProduct()">
+                        <button class="flex items-center space-x-2 text-gray-400 hover:text-primary transition-colors" onclick="shareProduct()">
                             <i class="fas fa-share-alt text-lg"></i>
                             <span>Share</span>
                         </button>
-                        <button class="flex items-center space-x-2 text-gray-600 hover:text-primary transition-colors" onclick="compareProduct()">
+                        <button class="flex items-center space-x-2 text-gray-400 hover:text-primary transition-colors" onclick="compareProduct()">
                             <i class="fas fa-balance-scale text-lg"></i>
                             <span>Compare</span>
                         </button>
@@ -201,21 +201,21 @@
                 </div>
 
                 <!-- Trust Badges -->
-                <div class="flex flex-wrap items-center justify-center gap-6 pt-6 border-t">
-                    <div class="flex items-center space-x-2 text-sm text-gray-600">
-                        <i class="fas fa-shield-alt text-green-600"></i>
+                <div class="flex flex-wrap items-center justify-center gap-6 pt-6 border-t border-gray-800">
+                    <div class="flex items-center space-x-2 text-sm text-gray-400">
+                        <i class="fas fa-shield-alt text-green-500"></i>
                         <span>Secure Payment</span>
                     </div>
-                    <div class="flex items-center space-x-2 text-sm text-gray-600">
-                        <i class="fas fa-undo text-blue-600"></i>
+                    <div class="flex items-center space-x-2 text-sm text-gray-400">
+                        <i class="fas fa-undo text-blue-500"></i>
                         <span>7-Day Returns</span>
                     </div>
-                    <div class="flex items-center space-x-2 text-sm text-gray-600">
-                        <i class="fas fa-file-invoice text-orange-600"></i>
+                    <div class="flex items-center space-x-2 text-sm text-gray-400">
+                        <i class="fas fa-file-invoice text-orange-500"></i>
                         <span>GST Invoice</span>
                     </div>
-                    <div class="flex items-center space-x-2 text-sm text-gray-600">
-                        <i class="fas fa-money-bill text-green-600"></i>
+                    <div class="flex items-center space-x-2 text-sm text-gray-400">
+                        <i class="fas fa-money-bill text-green-500"></i>
                         <span>COD Available</span>
                     </div>
                 </div>
@@ -223,11 +223,11 @@
         </div>
 
         <!-- Sticky Add to Cart Bar (Mobile) -->
-        <div id="stickyBar" class="fixed bottom-0 left-0 right-0 bg-white border-t shadow-lg p-4 hidden lg:hidden z-30">
+        <div id="stickyBar" class="fixed bottom-0 left-0 right-0 bg-gray-900 border-t border-gray-800 shadow-lg p-4 hidden lg:hidden z-30">
             <div class="flex items-center justify-between">
                 <div>
-                    <span class="text-lg font-bold">₹2,199</span>
-                    <span class="text-sm text-gray-500 ml-2">Size: M</span>
+                    <span class="text-lg font-bold text-white">₹2,199</span>
+                    <span class="text-sm text-gray-400 ml-2">Size: M</span>
                 </div>
                 <div class="flex space-x-2">
                     <button class="px-4 py-2 border border-primary text-primary rounded" onclick="addToCart()">Add to Cart</button>
@@ -238,13 +238,13 @@
 
         <!-- Product Information Tabs -->
         <div class="mt-16">
-            <div class="border-b border-gray-200">
+            <div class="border-b border-gray-800">
                 <nav class="-mb-px flex space-x-8 overflow-x-auto">
                     <button class="tab-btn active py-4 px-1 border-b-2 border-primary text-primary font-medium whitespace-nowrap" onclick="showTab('description')">Description</button>
-                    <button class="tab-btn py-4 px-1 border-b-2 border-transparent text-gray-500 hover:text-gray-700 whitespace-nowrap" onclick="showTab('fit')">Fit & Materials</button>
-                    <button class="tab-btn py-4 px-1 border-b-2 border-transparent text-gray-500 hover:text-gray-700 whitespace-nowrap" onclick="showTab('reviews')">Reviews (128)</button>
-                    <button class="tab-btn py-4 px-1 border-b-2 border-transparent text-gray-500 hover:text-gray-700 whitespace-nowrap" onclick="showTab('shipping')">Shipping & Returns</button>
-                    <button class="tab-btn py-4 px-1 border-b-2 border-transparent text-gray-500 hover:text-gray-700 whitespace-nowrap" onclick="showTab('faq')">FAQ</button>
+                    <button class="tab-btn py-4 px-1 border-b-2 border-transparent text-gray-500 hover:text-gray-300 whitespace-nowrap" onclick="showTab('fit')">Fit & Materials</button>
+                    <button class="tab-btn py-4 px-1 border-b-2 border-transparent text-gray-500 hover:text-gray-300 whitespace-nowrap" onclick="showTab('reviews')">Reviews (128)</button>
+                    <button class="tab-btn py-4 px-1 border-b-2 border-transparent text-gray-500 hover:text-gray-300 whitespace-nowrap" onclick="showTab('shipping')">Shipping & Returns</button>
+                    <button class="tab-btn py-4 px-1 border-b-2 border-transparent text-gray-500 hover:text-gray-300 whitespace-nowrap" onclick="showTab('faq')">FAQ</button>
                 </nav>
             </div>
 
@@ -254,17 +254,17 @@
                 <div id="description" class="tab-content">
                     <div class="grid md:grid-cols-2 gap-8">
                         <div>
-                            <h3 class="text-xl font-semibold mb-4">Product Details</h3>
-                            <p class="text-gray-700 mb-6">{{ $product->description }}</p>
+                            <h3 class="text-xl font-semibold mb-4 text-white">Product Details</h3>
+                            <p class="text-gray-400 mb-6">{{ $product->description }}</p>
                             
                             <div class="space-y-4">
                                 @if(!empty($product->key_features))
                                 <div>
-                                    <h4 class="font-semibold mb-2">Key Features:</h4>
-                                    <ul class="space-y-2 text-gray-700">
+                                    <h4 class="font-semibold mb-2 text-white">Key Features:</h4>
+                                    <ul class="space-y-2 text-gray-400">
                                         @foreach($product->key_features as $feature)
                                         <li class="flex items-start space-x-2">
-                                            <i class="fas fa-check text-green-600 mt-1"></i>
+                                            <i class="fas fa-check text-green-500 mt-1"></i>
                                             <span>{{ $feature }}</span>
                                         </li>
                                         @endforeach
@@ -275,12 +275,12 @@
                         </div>
                         
                         <div>
-                            <h4 class="font-semibold mb-4">Styling Tips:</h4>
+                            <h4 class="font-semibold mb-4 text-white">Styling Tips:</h4>
                             <div class="space-y-4">
                                 @foreach($product->stylingTips ?? [] as $tip)
-                                <div class="bg-gray-50 p-4 rounded-lg">
-                                    <h5 class="font-semibold">{{ $tip->title }}</h5>
-                                    <p class="text-sm text-gray-700">{{ $tip->description }}</p>
+                                <div class="bg-gray-900 border border-gray-800 p-4 rounded-lg">
+                                    <h5 class="font-semibold text-white">{{ $tip->title }}</h5>
+                                    <p class="text-sm text-gray-400">{{ $tip->description }}</p>
                                 </div>
                                 @endforeach
                             </div>
@@ -292,11 +292,11 @@
                 <div id="fit" class="tab-content hidden">
                     <div class="grid md:grid-cols-2 gap-8">
                         <div>
-                            <h3 class="text-xl font-semibold mb-4">Fit & Measurements</h3>
+                            <h3 class="text-xl font-semibold mb-4 text-white">Fit & Measurements</h3>
                             <div class="space-y-4">
-                                <div class="bg-blue-50 p-4 rounded-lg">
-                                    <h4 class="font-semibold mb-3">Model Information</h4>
-                                    <div class="space-y-2 text-sm">
+                                <div class="bg-gray-900 border border-gray-800 p-4 rounded-lg">
+                                    <h4 class="font-semibold mb-3 text-white">Model Information</h4>
+                                    <div class="space-y-2 text-sm text-gray-400">
                                         @foreach($product->modelInfo ?? [] as $info)
                                         <p><strong>{{ $info->key }}:</strong> {{ $info->value }}</p>
                                         @endforeach
@@ -304,8 +304,8 @@
                                 </div>
                                 
                                 <div>
-                                    <h4 class="font-semibold mb-3">Garment Details</h4>
-                                    <div class="space-y-2 text-sm">
+                                    <h4 class="font-semibold mb-3 text-white">Garment Details</h4>
+                                    <div class="space-y-2 text-sm text-gray-400">
                                         @foreach($product->garmentDetails ?? [] as $detail)
                                         <p><strong>{{ $detail->key }}:</strong> {{ $detail->value }}</p>
                                         @endforeach
@@ -314,25 +314,25 @@
 
                                 <!-- Size Chart -->
                                 <div>
-                                    <h4 class="font-semibold mb-3">Size Chart</h4>
+                                    <h4 class="font-semibold mb-3 text-white">Size Chart</h4>
                                     <div class="overflow-x-auto">
-                                        <table class="w-full text-sm border border-gray-300">
-                                            <thead class="bg-gray-100">
+                                        <table class="w-full text-sm border border-gray-700 text-gray-300">
+                                            <thead class="bg-gray-800">
                                                 <tr>
-                                                    <th class="border border-gray-300 p-2 font-medium">Size</th>
+                                                    <th class="border border-gray-700 p-2 font-medium">Size</th>
                                                     @if($product->sizeChart->count() > 0)
                                                         @foreach(json_decode($product->sizeChart[0]->measurements, true) as $key => $value)
-                                                            <th class="border border-gray-300 p-2 font-medium">{{ ucfirst($key) }}</th>
+                                                            <th class="border border-gray-700 p-2 font-medium">{{ ucfirst($key) }}</th>
                                                         @endforeach
                                                     @endif
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 @foreach($product->sizeChart ?? [] as $size)
-                                                <tr>
-                                                    <td class="border border-gray-300 p-2">{{ $size->size }}</td>
+                                                <tr class="hover:bg-gray-800">
+                                                    <td class="border border-gray-700 p-2">{{ $size->size }}</td>
                                                     @foreach(json_decode($size->measurements, true) as $key => $value)
-                                                        <td class="border border-gray-300 p-2">{{ $value }}</td>
+                                                        <td class="border border-gray-700 p-2">{{ $value }}</td>
                                                     @endforeach
                                                 </tr>
                                                 @endforeach
@@ -344,11 +344,11 @@
                         </div>
                         
                         <div>
-                            <h3 class="text-xl font-semibold mb-4">Materials & Care</h3>
+                            <h3 class="text-xl font-semibold mb-4 text-white">Materials & Care</h3>
                             <div class="space-y-6">
                                 <div>
-                                    <h4 class="font-semibold mb-3">Fabric Details</h4>
-                                    <div class="space-y-2 text-sm">
+                                    <h4 class="font-semibold mb-3 text-white">Fabric Details</h4>
+                                    <div class="space-y-2 text-sm text-gray-400">
                                         @foreach($product->fabricDetails ?? [] as $detail)
                                         <p><strong>{{ $detail->key }}:</strong> {{ $detail->value }}</p>
                                         @endforeach
@@ -356,13 +356,13 @@
                                 </div>
 
                                 <div>
-                                    <h4 class="font-semibold mb-3">Care Instructions</h4>
+                                    <h4 class="font-semibold mb-3 text-white">Care Instructions</h4>
                                     <div class="grid grid-cols-2 gap-4">
                                         @foreach($product->careInstructions ?? [] as $instruction)
-                                        <div class="flex items-center space-x-3 p-3 bg-blue-50 rounded-lg">
+                                        <div class="flex items-center space-x-3 p-3 bg-gray-900 border border-gray-800 rounded-lg">
                                             <i class="fas fa-info-circle text-blue-500 text-xl"></i>
                                             <div>
-                                                <p class="font-medium">{{ $instruction->instruction }}</p>
+                                                <p class="font-medium text-gray-300">{{ $instruction->instruction }}</p>
                                             </div>
                                         </div>
                                         @endforeach
@@ -370,9 +370,9 @@
                                 </div>
 
                                 @if(is_array($product->care_tips))
-                                <div class="bg-green-50 p-4 rounded-lg">
-                                    <h4 class="font-semibold mb-2 text-green-800">Care Tips</h4>
-                                    <ul class="text-sm text-green-700 space-y-1">
+                                <div class="bg-green-900/20 p-4 rounded-lg border border-green-800">
+                                    <h4 class="font-semibold mb-2 text-green-400">Care Tips</h4>
+                                    <ul class="text-sm text-green-300 space-y-1">
                                         @foreach($product->care_tips as $tip)
                                         <li>• {{ $tip }}</li>
                                         @endforeach
@@ -389,8 +389,8 @@
                     <div class="space-y-8">
                         <!-- Review Summary -->
                         <div class="grid md:grid-cols-3 gap-8">
-                            <div class="bg-gray-50 p-6 rounded-lg text-center">
-                                <div class="text-4xl font-bold mb-2">4.2</div>
+                            <div class="bg-gray-900 border border-gray-800 p-6 rounded-lg text-center">
+                                <div class="text-4xl font-bold mb-2 text-white">4.2</div>
                                 <div class="flex justify-center text-yellow-400 mb-2">
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
@@ -398,71 +398,71 @@
                                     <i class="fas fa-star"></i>
                                     <i class="far fa-star"></i>
                                 </div>
-                                <p class="text-sm text-gray-600">Based on 128 reviews</p>
+                                <p class="text-sm text-gray-400">Based on 128 reviews</p>
                                 <button class="mt-4 text-primary hover:underline">Write a Review</button>
                             </div>
                             
                             <div class="md:col-span-2">
-                                <h3 class="font-semibold mb-4">Rating Breakdown</h3>
+                                <h3 class="font-semibold mb-4 text-white">Rating Breakdown</h3>
                                 <div class="space-y-2">
                                     <div class="flex items-center space-x-2">
-                                        <span class="text-sm w-8">5★</span>
-                                        <div class="flex-1 bg-gray-200 rounded-full h-2">
+                                        <span class="text-sm w-8 text-gray-400">5★</span>
+                                        <div class="flex-1 bg-gray-700 rounded-full h-2">
                                             <div class="bg-yellow-400 h-2 rounded-full" style="width: 65%"></div>
                                         </div>
-                                        <span class="text-sm text-gray-600">65%</span>
+                                        <span class="text-sm text-gray-400">65%</span>
                                     </div>
                                     <div class="flex items-center space-x-2">
-                                        <span class="text-sm w-8">4★</span>
-                                        <div class="flex-1 bg-gray-200 rounded-full h-2">
+                                        <span class="text-sm w-8 text-gray-400">4★</span>
+                                        <div class="flex-1 bg-gray-700 rounded-full h-2">
                                             <div class="bg-yellow-400 h-2 rounded-full" style="width: 25%"></div>
                                         </div>
-                                        <span class="text-sm text-gray-600">25%</span>
+                                        <span class="text-sm text-gray-400">25%</span>
                                     </div>
                                     <div class="flex items-center space-x-2">
-                                        <span class="text-sm w-8">3★</span>
-                                        <div class="flex-1 bg-gray-200 rounded-full h-2">
+                                        <span class="text-sm w-8 text-gray-400">3★</span>
+                                        <div class="flex-1 bg-gray-700 rounded-full h-2">
                                             <div class="bg-yellow-400 h-2 rounded-full" style="width: 8%"></div>
                                         </div>
-                                        <span class="text-sm text-gray-600">8%</span>
+                                        <span class="text-sm text-gray-400">8%</span>
                                     </div>
                                     <div class="flex items-center space-x-2">
-                                        <span class="text-sm w-8">2★</span>
-                                        <div class="flex-1 bg-gray-200 rounded-full h-2">
+                                        <span class="text-sm w-8 text-gray-400">2★</span>
+                                        <div class="flex-1 bg-gray-700 rounded-full h-2">
                                             <div class="bg-yellow-400 h-2 rounded-full" style="width: 2%"></div>
                                         </div>
-                                        <span class="text-sm text-gray-600">2%</span>
+                                        <span class="text-sm text-gray-400">2%</span>
                                     </div>
                                     <div class="flex items-center space-x-2">
-                                        <span class="text-sm w-8">1★</span>
-                                        <div class="flex-1 bg-gray-200 rounded-full h-2">
+                                        <span class="text-sm w-8 text-gray-400">1★</span>
+                                        <div class="flex-1 bg-gray-700 rounded-full h-2">
                                             <div class="bg-yellow-400 h-2 rounded-full" style="width: 0%"></div>
                                         </div>
-                                        <span class="text-sm text-gray-600">0%</span>
+                                        <span class="text-sm text-gray-400">0%</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Review Filters -->
-                        <div class="flex flex-wrap gap-2 py-4 border-y">
+                        <div class="flex flex-wrap gap-2 py-4 border-y border-gray-800">
                             <button class="px-4 py-2 bg-primary text-white rounded-full text-sm">All Reviews</button>
-                            <button class="px-4 py-2 border rounded-full text-sm hover:bg-gray-50">With Photos (45)</button>
-                            <button class="px-4 py-2 border rounded-full text-sm hover:bg-gray-50">Size M (38)</button>
-                            <button class="px-4 py-2 border rounded-full text-sm hover:bg-gray-50">Size L (29)</button>
-                            <button class="px-4 py-2 border rounded-full text-sm hover:bg-gray-50">Fit: True to Size</button>
+                            <button class="px-4 py-2 border border-gray-700 rounded-full text-sm hover:bg-gray-800">With Photos (45)</button>
+                            <button class="px-4 py-2 border border-gray-700 rounded-full text-sm hover:bg-gray-800">Size M (38)</button>
+                            <button class="px-4 py-2 border border-gray-700 rounded-full text-sm hover:bg-gray-800">Size L (29)</button>
+                            <button class="px-4 py-2 border border-gray-700 rounded-full text-sm hover:bg-gray-800">Fit: True to Size</button>
                         </div>
 
                         <!-- Individual Reviews -->
                         <div class="space-y-6">
                             <!-- Review 1 with Photos -->
-                            <div class="border-b pb-6">
+                            <div class="border-b border-gray-800 pb-6">
                                 <div class="flex items-start space-x-4">
                                     <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-semibold">P</div>
                                     <div class="flex-1">
                                         <div class="flex items-center justify-between mb-2">
                                             <div>
-                                                <h4 class="font-semibold">Priya S.</h4>
+                                                <h4 class="font-semibold text-white">Priya S.</h4>
                                                 <div class="flex items-center space-x-2 mt-1">
                                                     <div class="flex text-yellow-400 text-sm">
                                                         <i class="fas fa-star"></i>
@@ -471,21 +471,21 @@
                                                         <i class="fas fa-star"></i>
                                                         <i class="fas fa-star"></i>
                                                     </div>
-                                                    <span class="text-sm text-gray-500">Size M</span>
-                                                    <span class="text-sm text-green-600">✓ Verified Purchase</span>
+                                                    <span class="text-sm text-gray-400">Size M</span>
+                                                    <span class="text-sm text-green-500">✓ Verified Purchase</span>
                                                 </div>
                                             </div>
                                             <span class="text-sm text-gray-500">2 days ago</span>
                                         </div>
                                         
-                                        <p class="text-gray-700 mb-3">Beautiful dress with excellent quality! The fabric is soft and breathable, perfect for summer weather. The floral print is vibrant and the fit is just right. Highly recommend!</p>
+                                        <p class="text-gray-400 mb-3">Beautiful dress with excellent quality! The fabric is soft and breathable, perfect for summer weather. The floral print is vibrant and the fit is just right. Highly recommend!</p>
                                         
 
                                         <!-- Review Tags -->
                                         <div class="flex flex-wrap gap-2 mb-3">
-                                            <span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs">True to Size</span>
-                                            <span class="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs">Great Quality</span>
-                                            <span class="px-2 py-1 bg-purple-100 text-purple-800 rounded-full text-xs">Comfortable</span>
+                                            <span class="px-2 py-1 bg-green-900/50 text-green-400 rounded-full text-xs">True to Size</span>
+                                            <span class="px-2 py-1 bg-blue-900/50 text-blue-400 rounded-full text-xs">Great Quality</span>
+                                            <span class="px-2 py-1 bg-purple-900/50 text-purple-400 rounded-full text-xs">Comfortable</span>
                                         </div>
 
                                         <div class="flex items-center space-x-4 text-sm text-gray-500">
@@ -497,13 +497,13 @@
                             </div>
 
                             <!-- Review 2 -->
-                            <div class="border-b pb-6">
+                            <div class="border-b border-gray-800 pb-6">
                                 <div class="flex items-start space-x-4">
                                     <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-semibold">A</div>
                                     <div class="flex-1">
                                         <div class="flex items-center justify-between mb-2">
                                             <div>
-                                                <h4 class="font-semibold">Ananya M.</h4>
+                                                <h4 class="font-semibold text-white">Ananya M.</h4>
                                                 <div class="flex items-center space-x-2 mt-1">
                                                     <div class="flex text-yellow-400 text-sm">
                                                         <i class="fas fa-star"></i>
@@ -512,18 +512,18 @@
                                                         <i class="fas fa-star"></i>
                                                         <i class="far fa-star"></i>
                                                     </div>
-                                                    <span class="text-sm text-gray-500">Size L</span>
-                                                    <span class="text-sm text-green-600">✓ Verified Purchase</span>
+                                                    <span class="text-sm text-gray-400">Size L</span>
+                                                    <span class="text-sm text-green-500">✓ Verified Purchase</span>
                                                 </div>
                                             </div>
                                             <span class="text-sm text-gray-500">1 week ago</span>
                                         </div>
                                         
-                                        <p class="text-gray-700 mb-3">Good quality dress, colors are vibrant as shown in pictures. The length is perfect for midi style. Only issue is that it wrinkles easily, but overall satisfied with the purchase.</p>
+                                        <p class="text-gray-400 mb-3">Good quality dress, colors are vibrant as shown in pictures. The length is perfect for midi style. Only issue is that it wrinkles easily, but overall satisfied with the purchase.</p>
                                         
                                         <div class="flex flex-wrap gap-2 mb-3">
-                                            <span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs">True to Size</span>
-                                            <span class="px-2 py-1 bg-orange-100 text-orange-800 rounded-full text-xs">Wrinkles Easily</span>
+                                            <span class="px-2 py-1 bg-green-900/50 text-green-400 rounded-full text-xs">True to Size</span>
+                                            <span class="px-2 py-1 bg-orange-900/50 text-orange-400 rounded-full text-xs">Wrinkles Easily</span>
                                         </div>
 
                                         <div class="flex items-center space-x-4 text-sm text-gray-500">
@@ -535,13 +535,13 @@
                             </div>
 
                             <!-- Review 3 -->
-                            <div class="border-b pb-6">
+                            <div class="border-b border-gray-800 pb-6">
                                 <div class="flex items-start space-x-4">
                                     <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-semibold">S</div>
                                     <div class="flex-1">
                                         <div class="flex items-center justify-between mb-2">
                                             <div>
-                                                <h4 class="font-semibold">Sneha K.</h4>
+                                                <h4 class="font-semibold text-white">Sneha K.</h4>
                                                 <div class="flex items-center space-x-2 mt-1">
                                                     <div class="flex text-yellow-400 text-sm">
                                                         <i class="fas fa-star"></i>
@@ -550,19 +550,19 @@
                                                         <i class="fas fa-star"></i>
                                                         <i class="fas fa-star"></i>
                                                     </div>
-                                                    <span class="text-sm text-gray-500">Size S</span>
-                                                    <span class="text-sm text-green-600">✓ Verified Purchase</span>
+                                                    <span class="text-sm text-gray-400">Size S</span>
+                                                    <span class="text-sm text-green-500">✓ Verified Purchase</span>
                                                 </div>
                                             </div>
                                             <span class="text-sm text-gray-500">2 weeks ago</span>
                                         </div>
                                         
-                                        <p class="text-gray-700 mb-3">Absolutely love this dress! Perfect for summer occasions. The fabric is breathable and the cut is flattering. Received many compliments wearing this. Will definitely order in other colors.</p>
+                                        <p class="text-gray-400 mb-3">Absolutely love this dress! Perfect for summer occasions. The fabric is breathable and the cut is flattering. Received many compliments wearing this. Will definitely order in other colors.</p>
                                         
                                         <div class="flex flex-wrap gap-2 mb-3">
-                                            <span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs">Perfect Fit</span>
-                                            <span class="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs">Breathable</span>
-                                            <span class="px-2 py-1 bg-purple-100 text-purple-800 rounded-full text-xs">Flattering</span>
+                                            <span class="px-2 py-1 bg-green-900/50 text-green-400 rounded-full text-xs">Perfect Fit</span>
+                                            <span class="px-2 py-1 bg-blue-900/50 text-blue-400 rounded-full text-xs">Breathable</span>
+                                            <span class="px-2 py-1 bg-purple-900/50 text-purple-400 rounded-full text-xs">Flattering</span>
                                         </div>
 
                                         <div class="flex items-center space-x-4 text-sm text-gray-500">
@@ -585,12 +585,12 @@
                     <div class="space-y-6">
                         @if($product->faqs->count() > 0)
                             @foreach($product->faqs as $faq)
-                                <div class="bg-gray-50 p-4 rounded-lg">
-                                    <h4 class="font-semibold mb-2 flex items-start">
+                                <div class="bg-gray-900 border border-gray-800 p-4 rounded-lg">
+                                    <h4 class="font-semibold mb-2 flex items-start text-white">
                                         <i class="fas fa-question-circle text-primary mr-3 mt-1"></i>
                                         <span>{{ $faq->question }}</span>
                                     </h4>
-                                    <p class="text-gray-700 ml-8">{{ $faq->answer }}</p>
+                                    <p class="text-gray-400 ml-8">{{ $faq->answer }}</p>
                                 </div>
                             @endforeach
                         @else
@@ -603,74 +603,74 @@
                 <div id="shipping" class="tab-content hidden">
                     <div class="grid md:grid-cols-2 gap-8">
                         <div>
-                            <h3 class="text-xl font-semibold mb-4">Shipping Information</h3>
+                            <h3 class="text-xl font-semibold mb-4 text-white">Shipping Information</h3>
                             <div class="space-y-4">
                                 <div class="flex items-start space-x-3">
-                                    <i class="fas fa-truck text-green-600 mt-1"></i>
+                                    <i class="fas fa-truck text-green-500 mt-1"></i>
                                     <div>
-                                        <h4 class="font-semibold">Free Shipping</h4>
-                                        <p class="text-sm text-gray-600">On orders above ₹2,000 across India</p>
+                                        <h4 class="font-semibold text-white">Free Shipping</h4>
+                                        <p class="text-sm text-gray-400">On orders above ₹2,000 across India</p>
                                     </div>
                                 </div>
 
                                 <div class="flex items-start space-x-3">
-                                    <i class="fas fa-clock text-blue-600 mt-1"></i>
+                                    <i class="fas fa-clock text-blue-500 mt-1"></i>
                                     <div>
-                                        <h4 class="font-semibold">Delivery Time</h4>
-                                        <p class="text-sm text-gray-600">2-4 business days for metro cities<br>4-7 business days for other locations</p>
+                                        <h4 class="font-semibold text-white">Delivery Time</h4>
+                                        <p class="text-sm text-gray-400">2-4 business days for metro cities<br>4-7 business days for other locations</p>
                                     </div>
                                 </div>
 
                                 <div class="flex items-start space-x-3">
-                                    <i class="fas fa-money-bill-wave text-green-600 mt-1"></i>
+                                    <i class="fas fa-money-bill-wave text-green-500 mt-1"></i>
                                     <div>
-                                        <h4 class="font-semibold">Cash on Delivery</h4>
-                                        <p class="text-sm text-gray-600">Available for orders below ₹5,000<br>Additional ₹40 COD charges apply</p>
+                                        <h4 class="font-semibold text-white">Cash on Delivery</h4>
+                                        <p class="text-sm text-gray-400">Available for orders below ₹5,000<br>Additional ₹40 COD charges apply</p>
                                     </div>
                                 </div>
 
                                 <div class="flex items-start space-x-3">
-                                    <i class="fas fa-box text-purple-600 mt-1"></i>
+                                    <i class="fas fa-box text-purple-500 mt-1"></i>
                                     <div>
-                                        <h4 class="font-semibold">Packaging</h4>
-                                        <p class="text-sm text-gray-600">Eco-friendly packaging with care<br>Gift wrapping available on request</p>
+                                        <h4 class="font-semibold text-white">Packaging</h4>
+                                        <p class="text-sm text-gray-400">Eco-friendly packaging with care<br>Gift wrapping available on request</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                         <div>
-                            <h3 class="text-xl font-semibold mb-4">Returns & Exchanges</h3>
+                            <h3 class="text-xl font-semibold mb-4 text-white">Returns & Exchanges</h3>
                             <div class="space-y-4">
                                 <div class="flex items-start space-x-3">
-                                    <i class="fas fa-undo-alt text-blue-600 mt-1"></i>
+                                    <i class="fas fa-undo-alt text-blue-500 mt-1"></i>
                                     <div>
-                                        <h4 class="font-semibold">7-Day Easy Returns</h4>
-                                        <p class="text-sm text-gray-600">Return within 7 days of delivery<br>Original condition with tags attached</p>
+                                        <h4 class="font-semibold text-white">7-Day Easy Returns</h4>
+                                        <p class="text-sm text-gray-400">Return within 7 days of delivery<br>Original condition with tags attached</p>
                                     </div>
                                 </div>
 
                                 <div class="flex items-start space-x-3">
-                                    <i class="fas fa-exchange-alt text-green-600 mt-1"></i>
+                                    <i class="fas fa-exchange-alt text-green-500 mt-1"></i>
                                     <div>
-                                        <h4 class="font-semibold">Size Exchange</h4>
-                                        <p class="text-sm text-gray-600">Free size exchange within 7 days<br>Subject to stock availability</p>
+                                        <h4 class="font-semibold text-white">Size Exchange</h4>
+                                        <p class="text-sm text-gray-400">Free size exchange within 7 days<br>Subject to stock availability</p>
                                     </div>
                                 </div>
 
                                 <div class="flex items-start space-x-3">
-                                    <i class="fas fa-credit-card text-orange-600 mt-1"></i>
+                                    <i class="fas fa-credit-card text-orange-500 mt-1"></i>
                                     <div>
-                                        <h4 class="font-semibold">Refund Process</h4>
-                                        <p class="text-sm text-gray-600">Refunds processed within 3-5 business days<br>Original payment method</p>
+                                        <h4 class="font-semibold text-white">Refund Process</h4>
+                                        <p class="text-sm text-gray-400">Refunds processed within 3-5 business days<br>Original payment method</p>
                                     </div>
                                 </div>
 
                                 <div class="flex items-start space-x-3">
-                                    <i class="fas fa-phone text-purple-600 mt-1"></i>
+                                    <i class="fas fa-phone text-purple-500 mt-1"></i>
                                     <div>
-                                        <h4 class="font-semibold">Customer Support</h4>
-                                        <p class="text-sm text-gray-600">WhatsApp: +91 98765 43210<br>Email: support@boutique.com</p>
+                                        <h4 class="font-semibold text-white">Customer Support</h4>
+                                        <p class="text-sm text-gray-400">WhatsApp: +91 98765 43210<br>Email: support@boutique.com</p>
                                     </div>
                                 </div>
                             </div>
@@ -678,28 +678,28 @@
                     </div>
 
                     <!-- Return Process -->
-                    <div class="mt-8 bg-gray-50 p-6 rounded-lg">
-                        <h4 class="font-semibold mb-4">How to Return/Exchange</h4>
-                        <div class="grid md:grid-cols-4 gap-4 text-sm">
+                    <div class="mt-8 bg-gray-900 border border-gray-800 p-6 rounded-lg">
+                        <h4 class="font-semibold mb-4 text-white">How to Return/Exchange</h4>
+                        <div class="grid md:grid-cols-4 gap-4 text-sm text-gray-400">
                             <div class="text-center">
                                 <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-2">1</div>
-                                <p class="font-medium">Contact Us</p>
-                                <p class="text-gray-600">Via WhatsApp or email within 7 days</p>
+                                <p class="font-medium text-white">Contact Us</p>
+                                <p>Via WhatsApp or email within 7 days</p>
                             </div>
                             <div class="text-center">
                                 <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-2">2</div>
-                                <p class="font-medium">Schedule Pickup</p>
-                                <p class="text-gray-600">We'll arrange free pickup from your location</p>
+                                <p class="font-medium text-white">Schedule Pickup</p>
+                                <p>We'll arrange free pickup from your location</p>
                             </div>
                             <div class="text-center">
                                 <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-2">3</div>
-                                <p class="font-medium">Quality Check</p>
-                                <p class="text-gray-600">We verify the product condition</p>
+                                <p class="font-medium text-white">Quality Check</p>
+                                <p>We verify the product condition</p>
                             </div>
                             <div class="text-center">
                                 <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-2">4</div>
-                                <p class="font-medium">Refund/Exchange</p>
-                                <p class="text-gray-600">Process completed within 3-5 days</p>
+                                <p class="font-medium text-white">Refund/Exchange</p>
+                                <p>Process completed within 3-5 days</p>
                             </div>
                         </div>
                     </div>

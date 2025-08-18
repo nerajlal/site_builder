@@ -24,7 +24,7 @@
   <style>
     body {
         font-family: 'Work Sans', sans-serif;
-        background-color: #fdfcfa;
+        background-color: #FFFDD0;
         color: #4a4a4a;
     }
     h1, h2, h3, h4, h5, h6 {
