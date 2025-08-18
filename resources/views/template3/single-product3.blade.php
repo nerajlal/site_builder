@@ -1,4 +1,4 @@
-@include('template3.head3', ['is_default' => $is_default, 'headerFooter' => $headerFooter])
+@include('template3.head3')
     
 
     <!-- Product Container -->
@@ -27,17 +27,17 @@
                 
                 <!-- Image Gallery Thumbnails -->
                 <div class="flex space-x-2 overflow-x-auto pb-2" id="thumbnail-gallery">
-                    <button class="thumbnail-btn w-20 h-20 bg-pink-200 rounded-lg flex-shrink-0 border-2 border-primary">
+                    <button class="thumbnail-btn w-20 h-20 bg-pink-200 rounded-lg flex-shrink-0 border-2 border-pink-600">
                         <img src="{{ $product->image_url }}" alt="{{ $product->name }}" class="w-full h-full object-cover rounded-lg">
                     </button>
                     @foreach($productImages as $image)
-                    <button class="thumbnail-btn w-20 h-20 bg-pink-100 rounded-lg flex-shrink-0 border border-gray-200 hover:border-primary">
+                    <button class="thumbnail-btn w-20 h-20 bg-pink-100 rounded-lg flex-shrink-0 border border-gray-200 hover:border-pink-600">
                         <img src="{{ $image->image_url }}" alt="{{ $product->name }}" class="w-full h-full object-cover rounded-lg">
                     </button>
                     @endforeach
                     @if($product->video_url)
-                    <a href="{{ $product->video_url }}" target="_blank" class="w-20 h-20 bg-pink-100 rounded-lg flex-shrink-0 border border-gray-200 hover:border-primary flex items-center justify-center text-gray-400">
-                        <i class="fas fa-video text-primary"></i>
+                    <a href="{{ $product->video_url }}" target="_blank" class="w-20 h-20 bg-pink-100 rounded-lg flex-shrink-0 border border-gray-200 hover:border-pink-600 flex items-center justify-center text-gray-400">
+                        <i class="fas fa-video text-pink-600"></i>
                     </a>
                     @endif
                 </div>
@@ -104,12 +104,12 @@
                 <div>
                     <div class="flex items-center justify-between mb-3">
                         <h3 class="text-sm font-semibold">Size: <span id="selectedSizeName"></span></h3>
-                        <button class="text-sm text-primary hover:underline" onclick="openSizeGuide()">Size Guide</button>
+                        <button class="text-sm text-pink-600 hover:underline" onclick="openSizeGuide()">Size Guide</button>
                     </div>
                     <div class="grid grid-cols-6 gap-2 mb-2">
                         @foreach($sizes as $size)
                             @if($size->in_stock)
-                                <button class="size-btn py-3 text-center border rounded hover:border-primary"
+                                <button class="size-btn py-3 text-center border rounded hover:border-pink-600"
                                         onclick="selectSize('{{ $size->size }}')"
                                         data-size="{{ $size->size }}"
                                         data-stock="{{ $size->stock }}">
@@ -133,7 +133,7 @@
                     <div class="flex items-center space-x-2 mb-3">
                         <input type="text" 
                                placeholder="Enter PIN code" 
-                               class="flex-1 px-3 py-2 border rounded focus:outline-none focus:border-primary" 
+                               class="flex-1 px-3 py-2 border rounded focus:outline-none focus:border-pink-600"
                                id="pinCodeInput"
                                maxlength="6">
                         <button class="px-6 py-2 bg-gray-800 text-white rounded hover:bg-gray-900 transition-colors" onclick="checkPinCode()">Check</button>
@@ -169,31 +169,31 @@
                 <!-- Action Buttons -->
                 <div class="space-y-3">
                     <!-- WhatsApp Button -->
-                    <button class="w-full bg-secondary text-white py-4 rounded-lg font-semibold hover:bg-secondary/90 transition-colors flex items-center justify-center" onclick="chatOnWhatsApp()">
+                    <button class="w-full bg-green-600 text-white py-4 rounded-lg font-semibold hover:bg-green-700 transition-colors flex items-center justify-center" onclick="chatOnWhatsApp()">
                         <i class="fab fa-whatsapp mr-2 text-xl"></i>Chat on WhatsApp
                     </button>
                     
                     <!-- Primary CTAs -->
                     <div class="grid grid-cols-2 gap-3">
-                        <button class="py-4 border-2 border-primary text-primary rounded-lg font-semibold hover:bg-primary hover:text-white transition-colors" onclick="addToCart()">
+                        <button class="py-4 border-2 border-pink-600 text-pink-600 rounded-lg font-semibold hover:bg-pink-600 hover:text-white transition-colors" onclick="addToCart()">
                             Add to Cart
                         </button>
-                        <button class="py-4 bg-primary text-white rounded-lg font-semibold hover:bg-primary/90 transition-colors" onclick="buyNow()">
+                        <button class="py-4 bg-pink-600 text-white rounded-lg font-semibold hover:bg-pink-700 transition-colors" onclick="buyNow()">
                             Buy Now
                         </button>
                     </div>
                     
                     <!-- Secondary Actions -->
                     <div class="flex justify-center space-x-8 pt-4">
-                        <button class="flex items-center space-x-2 text-gray-600 hover:text-primary transition-colors" onclick="toggleWishlist()">
+                        <button class="flex items-center space-x-2 text-gray-600 hover:text-pink-600 transition-colors" onclick="toggleWishlist()">
                             <i class="far fa-heart text-lg"></i>
                             <span>Wishlist</span>
                         </button>
-                        <button class="flex items-center space-x-2 text-gray-600 hover:text-primary transition-colors" onclick="shareProduct()">
+                        <button class="flex items-center space-x-2 text-gray-600 hover:text-pink-600 transition-colors" onclick="shareProduct()">
                             <i class="fas fa-share-alt text-lg"></i>
                             <span>Share</span>
                         </button>
-                        <button class="flex items-center space-x-2 text-gray-600 hover:text-primary transition-colors" onclick="compareProduct()">
+                        <button class="flex items-center space-x-2 text-gray-600 hover:text-pink-600 transition-colors" onclick="compareProduct()">
                             <i class="fas fa-balance-scale text-lg"></i>
                             <span>Compare</span>
                         </button>
@@ -230,8 +230,8 @@
                     <span class="text-sm text-gray-500 ml-2">Size: M</span>
                 </div>
                 <div class="flex space-x-2">
-                    <button class="px-4 py-2 border border-primary text-primary rounded" onclick="addToCart()">Add to Cart</button>
-                    <button class="px-4 py-2 bg-primary text-white rounded" onclick="buyNow()">Buy Now</button>
+                    <button class="px-4 py-2 border border-pink-600 text-pink-600 rounded" onclick="addToCart()">Add to Cart</button>
+                    <button class="px-4 py-2 bg-pink-600 text-white rounded" onclick="buyNow()">Buy Now</button>
                 </div>
             </div>
         </div>
@@ -240,7 +240,7 @@
         <div class="mt-16">
             <div class="border-b border-gray-200">
                 <nav class="-mb-px flex space-x-8 overflow-x-auto">
-                    <button class="tab-btn active py-4 px-1 border-b-2 border-primary text-primary font-medium whitespace-nowrap" onclick="showTab('description')">Description</button>
+                    <button class="tab-btn active py-4 px-1 border-b-2 border-pink-600 text-pink-600 font-medium whitespace-nowrap" onclick="showTab('description')">Description</button>
                     <button class="tab-btn py-4 px-1 border-b-2 border-transparent text-gray-500 hover:text-gray-700 whitespace-nowrap" onclick="showTab('fit')">Fit & Materials</button>
                     <button class="tab-btn py-4 px-1 border-b-2 border-transparent text-gray-500 hover:text-gray-700 whitespace-nowrap" onclick="showTab('reviews')">Reviews (128)</button>
                     <button class="tab-btn py-4 px-1 border-b-2 border-transparent text-gray-500 hover:text-gray-700 whitespace-nowrap" onclick="showTab('shipping')">Shipping & Returns</button>
@@ -399,7 +399,7 @@
                                     <i class="far fa-star"></i>
                                 </div>
                                 <p class="text-sm text-gray-600">Based on 128 reviews</p>
-                                <button class="mt-4 text-primary hover:underline">Write a Review</button>
+                                <button class="mt-4 text-pink-600 hover:underline">Write a Review</button>
                             </div>
                             
                             <div class="md:col-span-2">
@@ -446,7 +446,7 @@
 
                         <!-- Review Filters -->
                         <div class="flex flex-wrap gap-2 py-4 border-y">
-                            <button class="px-4 py-2 bg-primary text-white rounded-full text-sm">All Reviews</button>
+                            <button class="px-4 py-2 bg-pink-600 text-white rounded-full text-sm">All Reviews</button>
                             <button class="px-4 py-2 border rounded-full text-sm hover:bg-gray-50">With Photos (45)</button>
                             <button class="px-4 py-2 border rounded-full text-sm hover:bg-gray-50">Size M (38)</button>
                             <button class="px-4 py-2 border rounded-full text-sm hover:bg-gray-50">Size L (29)</button>
@@ -458,7 +458,7 @@
                             <!-- Review 1 with Photos -->
                             <div class="border-b pb-6">
                                 <div class="flex items-start space-x-4">
-                                    <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-semibold">P</div>
+                                    <div class="w-12 h-12 bg-pink-600 text-white rounded-full flex items-center justify-center font-semibold">P</div>
                                     <div class="flex-1">
                                         <div class="flex items-center justify-between mb-2">
                                             <div>
@@ -489,8 +489,8 @@
                                         </div>
 
                                         <div class="flex items-center space-x-4 text-sm text-gray-500">
-                                            <button class="hover:text-primary">👍 Helpful (12)</button>
-                                            <button class="hover:text-primary">Reply</button>
+                                            <button class="hover:text-pink-600">👍 Helpful (12)</button>
+                                            <button class="hover:text-pink-600">Reply</button>
                                         </div>
                                     </div>
                                 </div>
@@ -499,7 +499,7 @@
                             <!-- Review 2 -->
                             <div class="border-b pb-6">
                                 <div class="flex items-start space-x-4">
-                                    <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-semibold">A</div>
+                                    <div class="w-12 h-12 bg-pink-600 text-white rounded-full flex items-center justify-center font-semibold">A</div>
                                     <div class="flex-1">
                                         <div class="flex items-center justify-between mb-2">
                                             <div>
@@ -527,8 +527,8 @@
                                         </div>
 
                                         <div class="flex items-center space-x-4 text-sm text-gray-500">
-                                            <button class="hover:text-primary">👍 Helpful (8)</button>
-                                            <button class="hover:text-primary">Reply</button>
+                                            <button class="hover:text-pink-600">👍 Helpful (8)</button>
+                                            <button class="hover:text-pink-600">Reply</button>
                                         </div>
                                     </div>
                                 </div>
@@ -537,7 +537,7 @@
                             <!-- Review 3 -->
                             <div class="border-b pb-6">
                                 <div class="flex items-start space-x-4">
-                                    <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-semibold">S</div>
+                                    <div class="w-12 h-12 bg-pink-600 text-white rounded-full flex items-center justify-center font-semibold">S</div>
                                     <div class="flex-1">
                                         <div class="flex items-center justify-between mb-2">
                                             <div>
@@ -566,8 +566,8 @@
                                         </div>
 
                                         <div class="flex items-center space-x-4 text-sm text-gray-500">
-                                            <button class="hover:text-primary">👍 Helpful (15)</button>
-                                            <button class="hover:text-primary">Reply</button>
+                                            <button class="hover:text-pink-600">👍 Helpful (15)</button>
+                                            <button class="hover:text-pink-600">Reply</button>
                                         </div>
                                     </div>
                                 </div>
@@ -575,7 +575,7 @@
                         </div>
 
                         <div class="text-center">
-                            <button class="px-8 py-3 border border-primary text-primary rounded-lg hover:bg-primary hover:text-white transition-colors">Load More Reviews</button>
+                            <button class="px-8 py-3 border border-pink-600 text-pink-600 rounded-lg hover:bg-pink-600 hover:text-white transition-colors">Load More Reviews</button>
                         </div>
                     </div>
                 </div>
@@ -587,7 +587,7 @@
                             @foreach($product->faqs as $faq)
                                 <div class="bg-gray-50 p-4 rounded-lg">
                                     <h4 class="font-semibold mb-2 flex items-start">
-                                        <i class="fas fa-question-circle text-primary mr-3 mt-1"></i>
+                                        <i class="fas fa-question-circle text-pink-600 mr-3 mt-1"></i>
                                         <span>{{ $faq->question }}</span>
                                     </h4>
                                     <p class="text-gray-700 ml-8">{{ $faq->answer }}</p>
@@ -682,22 +682,22 @@
                         <h4 class="font-semibold mb-4">How to Return/Exchange</h4>
                         <div class="grid md:grid-cols-4 gap-4 text-sm">
                             <div class="text-center">
-                                <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-2">1</div>
+                                <div class="w-12 h-12 bg-pink-600 text-white rounded-full flex items-center justify-center mx-auto mb-2">1</div>
                                 <p class="font-medium">Contact Us</p>
                                 <p class="text-gray-600">Via WhatsApp or email within 7 days</p>
                             </div>
                             <div class="text-center">
-                                <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-2">2</div>
+                                <div class="w-12 h-12 bg-pink-600 text-white rounded-full flex items-center justify-center mx-auto mb-2">2</div>
                                 <p class="font-medium">Schedule Pickup</p>
                                 <p class="text-gray-600">We'll arrange free pickup from your location</p>
                             </div>
                             <div class="text-center">
-                                <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-2">3</div>
+                                <div class="w-12 h-12 bg-pink-600 text-white rounded-full flex items-center justify-center mx-auto mb-2">3</div>
                                 <p class="font-medium">Quality Check</p>
                                 <p class="text-gray-600">We verify the product condition</p>
                             </div>
                             <div class="text-center">
-                                <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-2">4</div>
+                                <div class="w-12 h-12 bg-pink-600 text-white rounded-full flex items-center justify-center mx-auto mb-2">4</div>
                                 <p class="font-medium">Refund/Exchange</p>
                                 <p class="text-gray-600">Process completed within 3-5 days</p>
                             </div>
@@ -743,7 +743,7 @@
             // Remove active class from all tab buttons
             const tabButtons = document.querySelectorAll('.tab-btn');
             tabButtons.forEach(button => {
-                button.classList.remove('active', 'border-primary', 'text-primary');
+                button.classList.remove('active', 'border-pink-600', 'text-pink-600');
                 button.classList.add('border-transparent', 'text-gray-500');
             });
             
@@ -751,7 +751,7 @@
             document.getElementById(tabName).classList.remove('hidden');
             
             // Add active class to clicked tab button
-            event.target.classList.add('active', 'border-primary', 'text-primary');
+            event.target.classList.add('active', 'border-pink-600', 'text-pink-600');
             event.target.classList.remove('border-transparent', 'text-gray-500');
         }
 
@@ -769,11 +769,11 @@
                 const checkIcon = button.querySelector('i');
                 
                 if (buttonColor === color) {
-                    button.classList.add('border-primary');
+                    button.classList.add('border-pink-600');
                     button.classList.remove('border-gray-200');
                     if (checkIcon) checkIcon.style.display = 'flex';
                 } else {
-                    button.classList.remove('border-primary');
+                    button.classList.remove('border-pink-600');
                     button.classList.add('border-gray-200');
                     if (checkIcon) checkIcon.style.display = 'none';
                 }
@@ -796,10 +796,10 @@
                 const buttonSize = button.dataset.size;
                 
                 if (buttonSize === size) {
-                    button.classList.add('border-2', 'border-primary', 'bg-primary', 'text-white');
+                    button.classList.add('border-2', 'border-pink-600', 'bg-pink-600', 'text-white');
                     button.classList.remove('border', 'border-gray-200');
                 } else if (!button.disabled) {
-                    button.classList.remove('border-2', 'border-primary', 'bg-primary', 'text-white');
+                    button.classList.remove('border-2', 'border-pink-600', 'bg-pink-600', 'text-white');
                     button.classList.add('border', 'border-gray-200');
                 }
             });
