@@ -692,7 +692,7 @@
                                 <p class="text-gray-600">We'll arrange free pickup from your location</p>
                             </div>
                             <div class="text-center">
-                                <.div class="w-12 h-12 bg-pink-600 text-white rounded-full flex items-center justify-center mx-auto mb-2">3</div>
+                                <div class="w-12 h-12 bg-pink-600 text-white rounded-full flex items-center justify-center mx-auto mb-2">3</div>
                                 <p class="font-medium">Quality Check</p>
                                 <p class="text-gray-600">We verify the product condition</p>
                             </div>
