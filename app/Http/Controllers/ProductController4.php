@@ -116,20 +116,8 @@ class ProductController4 extends Controller
         $productImages = ProductImage::where('product_id', $productId)->get();
         $productColors = \App\Models\ProductColor::where('product_id', $productId)->get();
 
-        $allSizes = \App\Models\Product::ALL_SIZES;
-        $productSizesData = collect($product->sizes)->keyBy('size');
-
-        $sizes = collect($allSizes)->map(function ($size) use ($productSizesData) {
-            $productSize = $productSizesData->get($size);
-            return (object)[
-                'size' => $size,
-                'stock' => $productSize ? $productSize['stock'] : 0,
-                'in_stock' => !!$productSize,
-            ];
-        });
-
         // Pass all the data
-        return view('template4.single-product4', compact('headerFooter', 'product', 'selectedTemplate', 'productImages', 'productColors', 'sizes'))
+        return view('template4.single-product4', compact('headerFooter', 'product', 'selectedTemplate', 'productImages', 'productColors'))
             ->with('is_default', false);
     }
 }

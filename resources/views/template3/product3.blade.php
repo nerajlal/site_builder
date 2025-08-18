@@ -65,9 +65,8 @@
         <!-- Product Grid -->
         <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6" id="productGrid">
             @foreach($products as $product)
-                <a href="{{ route('template3.single-product3.customer', ['headerFooterId' => $headerFooter->id, 'productId' => $product->id]) }}" class="block">
-                    <div class="bg-white rounded-lg overflow-hidden boutique-card">
-                        <div class="relative">
+                <div class="bg-white rounded-lg overflow-hidden boutique-card">
+                    <div class="relative">
                         @if($product->is_new)
                             <span class="absolute top-3 left-3 bg-pink-600 text-white px-3 py-1 rounded-full text-xs font-medium z-10">NEW</span>
                         @elseif($product->is_limited)
@@ -89,12 +88,11 @@
                             </div>
                             <span class="ml-2 text-sm text-gray-500">76</span> <!-- Placeholder for reviews -->
                         </div>
-                            <button class="w-full bg-blue-800 hover:bg-blue-900 text-white py-2 px-4 rounded-lg font-medium transition duration-300 flex items-center justify-center">
-                                <i class="fas fa-shopping-cart mr-2"></i> Add to Cart
+                            <button class="w-full border border-gray-900 hover:bg-gray-900 hover:text-white text-gray-900 py-2 px-4 rounded-lg font-medium transition duration-300">
+                                View Product
                             </button>
                     </div>
                 </div>
-                </a>
             @endforeach
         </div>
     </main>

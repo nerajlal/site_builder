@@ -101,31 +101,25 @@
                 </div>
 
                 <!-- Size Selection with Stock Info -->
+                @if(is_array($product->sizes))
                 <div>
                     <div class="flex items-center justify-between mb-3">
                         <h3 class="text-sm font-semibold">Size: <span id="selectedSizeName"></span></h3>
                         <button class="text-sm text-primary hover:underline" onclick="openSizeGuide()">Size Guide</button>
                     </div>
-                    <div class="grid grid-cols-6 gap-2 mb-2">
-                        @foreach($sizes as $size)
-                            @if($size->in_stock)
-                                <button class="size-btn py-3 text-center border rounded hover:border-primary"
-                                        onclick="selectSize('{{ $size->size }}')"
-                                        data-size="{{ $size->size }}"
-                                        data-stock="{{ $size->stock }}">
-                                    <span>{{ $size->size }}</span>
-                                </button>
-                            @else
-                                <button class="size-btn py-3 text-center border rounded bg-gray-100 text-gray-400 cursor-not-allowed"
-                                        disabled
-                                        onclick="showOutOfStockMessage()">
-                                    <span>{{ $size->size }}</span>
-                                </button>
-                            @endif
+                    <div class="grid grid-cols-5 gap-2 mb-2">
+                        @foreach($product->sizes as $size)
+                        <button class="size-btn py-3 text-center border rounded hover:border-primary"
+                                onclick="selectSize('{{ $size }}')"
+                                data-size="{{ $size }}"
+                                data-stock="{{ $product->quantity }}">
+                            <span>{{ $size }}</span>
+                        </button>
                         @endforeach
                     </div>
                     <p class="text-sm text-orange-600" id="stockInfo"></p>
                 </div>
+                @endif
 
                 <!-- PIN Code Check -->
                 <div class="bg-gray-50 p-4 rounded-lg">
@@ -949,10 +943,6 @@
             // Open size guide modal logic here
         }
 
-        function showOutOfStockMessage() {
-            showToast('This size is out of stock.', 'error');
-        }
-
         // Notify when available
         function notifyWhenAvailable() {
             showToast('You will be notified when XS is back in stock!', 'success');
@@ -1028,9 +1018,7 @@
         // Initialize page
         document.addEventListener('DOMContentLoaded', function() {
             // Set initial state
-            @if($productColors->isNotEmpty())
-                selectColor('{{ $productColors->first()->value }}', '{{ $productColors->first()->name }}');
-            @endif
+            selectColor('pink', 'Pink Floral');
             selectSize('M');
             
             // Track page view

@@ -150,80 +150,129 @@
 
   <!-- Products -->
   @if($is_default)
-    <section id="products" class="bg-white">
-      <div class="max-w-7xl mx-auto py-20 px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-          <h3 class="text-3xl font-bold mb-4">Featured Collection</h3>
-          <p class="max-w-2xl mx-auto text-gray-600">Handpicked pieces for the fashion-forward</p>
-        </div>
-        <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
-          <div class="bg-white p-6 rounded-lg product-card boutique-shadow">
-            <div class="relative h-64 mb-6 overflow-hidden rounded-lg">
-              <img src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=705&q=80" alt="Elegant Dress" class="absolute inset-0 w-full h-full object-cover">
-              <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
-              <span class="absolute top-4 right-4 bg-pink-600 text-white text-xs font-semibold px-2 py-1 rounded">NEW</span>
+    <section id="products" class="py-20 px-6 bg-white">
+      <div class="text-center mb-16">
+        <h3 class="text-3xl font-bold mb-4">Featured Collection</h3>
+        <p class="max-w-2xl mx-auto text-gray-600">Handpicked pieces for the fashion-forward</p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+        <a href="#" class="block">
+            <div class="bg-white rounded-lg overflow-hidden product-card boutique-shadow">
+                <div class="relative">
+                    <span class="absolute top-3 left-3 bg-pink-600 text-white px-3 py-1 rounded-full text-xs font-medium z-10">NEW</span>
+                    <div class="aspect-square bg-pink-50 flex items-center justify-center">
+                        <img src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=705&q=80" alt="Elegant Dress" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div class="p-4">
+                    <h3 class="font-medium text-gray-900 mb-2">Elegant Evening Dress</h3>
+                    <div class="flex items-center space-x-2 mb-2">
+                        <span class="text-lg font-bold text-gray-900">₹299.00</span>
+                    </div>
+                    <div class="flex items-center mb-3">
+                        <div class="flex items-center">
+                            <span class="text-yellow-500 text-sm">★★★★</span>
+                            <span class="text-gray-300 text-sm">★</span>
+                        </div>
+                        <span class="ml-2 text-sm text-gray-500">76</span>
+                    </div>
+                    <button class="w-full bg-gray-900 hover:bg-pink-800 text-white py-2 px-4 rounded-lg font-medium transition flex items-center justify-center">
+                        <i class="fas fa-shopping-bag mr-2"></i> View Product
+                    </button>
+                </div>
             </div>
-            <h4 class="font-semibold text-lg mb-1">Elegant Evening Dress</h4>
-            <p class="text-gray-600 text-sm mb-3">Silk, Designer Collection</p>
-            <p class="text-green-700 font-bold text-xl mb-4">$299.00</p>
-            <button class="w-full bg-gray-900 hover:bg-gray-800 text-white py-2 rounded-lg font-medium transition flex items-center justify-center">
-              <i class="fas fa-shopping-cart mr-2"></i> Add to Cart
-            </button>
-          </div>
-          <div class="bg-white p-6 rounded-lg product-card boutique-shadow">
-            <div class="relative h-64 mb-6 overflow-hidden rounded-lg">
-              <img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Designer Heels" class="absolute inset-0 w-full h-full object-cover">
-              <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+        </a>
+        <a href="#" class="block">
+            <div class="bg-white rounded-lg overflow-hidden product-card boutique-shadow">
+                <div class="relative">
+                    <div class="aspect-square bg-pink-50 flex items-center justify-center">
+                        <img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Designer Heels" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div class="p-4">
+                    <h3 class="font-medium text-gray-900 mb-2">Designer Heels</h3>
+                    <div class="flex items-center space-x-2 mb-2">
+                        <span class="text-lg font-bold text-gray-900">₹189.00</span>
+                    </div>
+                    <div class="flex items-center mb-3">
+                        <div class="flex items-center">
+                            <span class="text-yellow-500 text-sm">★★★★</span>
+                            <span class="text-gray-300 text-sm">★</span>
+                        </div>
+                        <span class="ml-2 text-sm text-gray-500">76</span>
+                    </div>
+                    <button class="w-full bg-gray-900 hover:bg-pink-800 text-white py-2 px-4 rounded-lg font-medium transition flex items-center justify-center">
+                        <i class="fas fa-shopping-bag mr-2"></i> View Product
+                    </button>
+                </div>
             </div>
-            <h4 class="font-semibold text-lg mb-1">Designer Heels</h4>
-            <p class="text-gray-600 text-sm mb-3">Leather, Premium Quality</p>
-            <p class="text-green-700 font-bold text-xl mb-4">$189.00</p>
-            <button class="w-full bg-gray-900 hover:bg-gray-800 text-white py-2 rounded-lg font-medium transition flex items-center justify-center">
-              <i class="fas fa-shopping-cart mr-2"></i> Add to Cart
-            </button>
-          </div>
-          <div class="bg-white p-6 rounded-lg product-card boutique-shadow">
-            <div class="relative h-64 mb-6 overflow-hidden rounded-lg">
-              <img src="https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Luxury Handbag" class="absolute inset-0 w-full h-full object-cover">
-              <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
-              <span class="absolute top-4 right-4 bg-red-600 text-white text-xs font-semibold px-2 py-1 rounded">LIMITED</span>
+        </a>
+        <a href="#" class="block">
+            <div class="bg-white rounded-lg overflow-hidden product-card boutique-shadow">
+                <div class="relative">
+                    <span class="absolute top-3 left-3 bg-red-600 text-white px-3 py-1 rounded-full text-xs font-medium z-10">LIMITED</span>
+                    <div class="aspect-square bg-pink-50 flex items-center justify-center">
+                        <img src="https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Luxury Handbag" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div class="p-4">
+                    <h3 class="font-medium text-gray-900 mb-2">Luxury Handbag</h3>
+                    <div class="flex items-center space-x-2 mb-2">
+                        <span class="text-lg font-bold text-gray-900">₹450.00</span>
+                    </div>
+                    <div class="flex items-center mb-3">
+                        <div class="flex items-center">
+                            <span class="text-yellow-500 text-sm">★★★★</span>
+                            <span class="text-gray-300 text-sm">★</span>
+                        </div>
+                        <span class="ml-2 text-sm text-gray-500">76</span>
+                    </div>
+                    <button class="w-full bg-gray-900 hover:bg-pink-800 text-white py-2 px-4 rounded-lg font-medium transition flex items-center justify-center">
+                        <i class="fas fa-shopping-bag mr-2"></i> View Product
+                    </button>
+                </div>
             </div>
-            <h4 class="font-semibold text-lg mb-1">Luxury Handbag</h4>
-            <p class="text-gray-600 text-sm mb-3">Genuine Leather, Italian-made</p>
-            <p class="text-green-700 font-bold text-xl mb-4">$450.00</p>
-            <button class="w-full bg-gray-900 hover:bg-gray-800 text-white py-2 rounded-lg font-medium transition flex items-center justify-center">
-              <i class="fas fa-shopping-cart mr-2"></i> Add to Cart
-            </button>
-          </div>
-          <div class="bg-white p-6 rounded-lg product-card watch-shadow">
-            <div class="relative h-64 mb-6 overflow-hidden rounded-lg">
-              <img src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=705&q=80Cartier Tank" class="absolute inset-0 w-full h-full object-cover">
-              <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+        </a>
+        <a href="#" class="block">
+            <div class="bg-white rounded-lg overflow-hidden product-card boutique-shadow">
+                <div class="relative">
+                    <div class="aspect-square bg-pink-50 flex items-center justify-center">
+                        <img src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=705&q=80" alt="Statement Necklace" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div class="p-4">
+                    <h3 class="font-medium text-gray-900 mb-2">Statement Necklace</h3>
+                    <div class="flex items-center space-x-2 mb-2">
+                        <span class="text-lg font-bold text-gray-900">₹150.00</span>
+                    </div>
+                    <div class="flex items-center mb-3">
+                        <div class="flex items-center">
+                            <span class="text-yellow-500 text-sm">★★★★</span>
+                            <span class="text-gray-300 text-sm">★</span>
+                        </div>
+                        <span class="ml-2 text-sm text-gray-500">76</span>
+                    </div>
+                    <button class="w-full bg-gray-900 hover:bg-pink-800 text-white py-2 px-4 rounded-lg font-medium transition flex items-center justify-center">
+                        <i class="fas fa-shopping-bag mr-2"></i> View Product
+                    </button>
+                </div>
             </div>
-            <h4 class="font-semibold text-lg mb-1">Statement Necklace</h4>
-            <p class="text-gray-600 text-sm mb-3">Gold-plated, Crystal Embellished</p>
-            <p class="text-green-700 font-bold text-xl mb-4">$150.00</p>
-            <button class="w-full bg-gray-900 hover:bg-gray-800 text-white py-2 rounded-lg font-medium transition flex items-center justify-center">
-              <i class="fas fa-shopping-cart mr-2"></i> Add to Cart
-            </button>
-          </div>
-        </div>
-        <div class="text-center mt-12">
-          <button class="bg-transparent hover:bg-gray-900 text-gray-900 hover:text-white border-2 border-gray-900 px-8 py-3 rounded-lg font-medium transition">
-            View Full Collection <i class="fas fa-arrow-right ml-2"></i>
-          </button>
-        </div>
+        </a>
+      </div>
+      <div class="text-center mt-12">
+        <button class="bg-transparent hover:bg-gray-900 text-gray-900 hover:text-white border-2 border-gray-900 px-8 py-3 rounded-lg font-medium transition">
+          View Full Collection <i class="fas fa-arrow-right ml-2"></i>
+        </button>
       </div>
     </section>
   @else
-    <section id="products" class="bg-white">
-      <div class="max-w-7xl mx-auto py-20 px-4 sm:px-6 lg:px-8">
+    <section id="products" class="py-20 px-6 bg-white">
         <div class="text-center mb-16">
             <h3 class="text-3xl font-bold mb-4">Best Collections</h3>
             <p class="max-w-2xl mx-auto text-gray-600">Perfect choices specially for you</p>
         </div>
 
-        <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
             @foreach($products as $product)
                 <a href="{{ route('template1.single-product1.customer', ['headerFooterId' => $headerFooter->id, 'productId' => $product->id]) }}" class="block">
                     <div class="bg-white rounded-lg overflow-hidden product-card boutique-shadow">
@@ -249,8 +298,8 @@
                                 </div>
                                 <span class="ml-2 text-sm text-gray-500">76</span> <!-- Placeholder for reviews -->
                             </div>
-                                <button class="w-full bg-pink-600 hover:bg-pink-700 text-white py-2 px-4 rounded-lg font-medium transition flex items-center justify-center">
-                                    <i class="fas fa-shopping-cart mr-2"></i> Add to Cart
+                                <button class="w-full bg-gray-900 hover:bg-pink-800 text-white py-2 px-4 rounded-lg font-medium transition flex items-center justify-center">
+                                    <i class="fas fa-shopping-bag mr-2"></i> View Product
                                 </button>
                         </div>
                     </div>
@@ -273,7 +322,6 @@
                 </a>
             @endif
         </div>
-      </div>
     </section>
   @endif
 

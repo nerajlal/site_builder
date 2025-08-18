@@ -9,8 +9,6 @@ class Product extends Model
 {
     use HasFactory;
 
-    const ALL_SIZES = ['S', 'M', 'L', 'XL', 'XXL', 'XXXL'];
-
     protected $fillable = [
         'name',
         'sku',
@@ -55,15 +53,6 @@ class Product extends Model
     }
 
     public function getProductDetailsFeaturesAttribute($value)
-    {
-        $data = json_decode($value, true);
-        if (is_string($data)) {
-            return json_decode($data, true) ?? [];
-        }
-        return $data ?? [];
-    }
-
-    public function getSizesAttribute($value)
     {
         $data = json_decode($value, true);
         if (is_string($data)) {

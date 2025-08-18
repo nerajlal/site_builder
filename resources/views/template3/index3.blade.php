@@ -170,13 +170,13 @@
 
   <!-- Collection -->
   @if($is_default)
-    <section id="collection" class="bg-white">
-      <div class="max-w-7xl mx-auto py-20 px-4 sm:px-6 lg:px-8">
+    <section id="collection" class="py-20 px-6 bg-white">
+      <div class="max-w-7xl mx-auto">
         <div class="text-center mb-16">
           <h3 class="text-3xl font-medium mb-4">Curated Collection</h3>
           <p class="text-gray-600 max-w-2xl mx-auto">Handpicked pieces for the fashion-forward</p>
         </div>
-        <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           <!-- Static Product Cards -->
           @include('template3.collection-default')
         </div>
@@ -188,32 +188,41 @@
       </div>
     </section>
   @else
-    <section id="collection" class="bg-white">
-      <div class="max-w-7xl mx-auto py-20 px-4 sm:px-6 lg:px-8">
+    <section id="collection" class="py-20 px-6 bg-white">
+      <div class="max-w-7xl mx-auto">
         <div class="text-center mb-16">
           <h3 class="text-3xl font-medium mb-4">{{ $section2->main_text2 ?? 'Best Collections' }}</h3>
           <p class="text-gray-600 max-w-2xl mx-auto">{{ $section2->sub_text2 ?? 'Perfect choices specially for you' }}</p>
         </div>
-        <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             @foreach($products as $product)
-                <a href="{{ route('template3.single-product3.customer', ['headerFooterId' => $headerFooter->id, 'productId' => $product->id]) }}" class="block group">
-                    <div class="bg-white rounded-lg overflow-hidden transition-all duration-300 group-hover:shadow-xl border border-gray-200">
+                <a href="{{ route('template3.single-product3.customer', ['headerFooterId' => $headerFooter->id, 'productId' => $product->id]) }}" class="block">
+                    <div class="bg-white rounded-lg overflow-hidden boutique-card">
                         <div class="relative">
                             @if($product->is_new)
-                                <span class="absolute top-3 right-3 bg-white text-gray-900 px-3 py-1 rounded-full text-xs font-medium z-10 shadow-sm">NEW</span>
+                                <span class="absolute top-3 left-3 bg-pink-600 text-white px-3 py-1 rounded-full text-xs font-medium z-10">NEW</span>
                             @elseif($product->is_limited)
-                                <span class="absolute top-3 right-3 bg-red-600 text-white px-3 py-1 rounded-full text-xs font-medium z-10">LIMITED</span>
+                                 <span class="absolute top-3 left-3 bg-red-600 text-white px-3 py-1 rounded-full text-xs font-medium z-10">LIMITED</span>
                             @endif
-                            <div class="aspect-square bg-gray-50 overflow-hidden">
-                                <img src="{{$product->image_url}}" alt="{{ $product->name }}" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                            <div class="aspect-w-1 aspect-h-1 bg-gray-50 flex items-center justify-center">
+                                 <img src="{{$product->image_url}}" alt="{{ $product->name }}" class="w-full h-full object-cover">
                             </div>
                         </div>
-                        <div class="p-4 text-center">
-                            <h3 class="font-medium text-gray-800 mb-1 truncate">{{ $product->name }}</h3>
-                            <p class="text-lg font-semibold text-gray-900 mb-3">₹{{ number_format($product->price, 2) }}</p>
-                            <button class="w-full bg-gray-100 group-hover:bg-gray-900 group-hover:text-white text-gray-800 py-2 px-4 rounded-lg font-medium transition">
-                                Add to Cart
-                            </button>
+                        <div class="p-4">
+                            <h3 class="font-medium text-gray-900 mb-2" style="font-family: 'Playfair Display', serif;">{{ $product->name }}</h3>
+                            <div class="flex items-center space-x-2 mb-2">
+                                <span class="text-lg font-bold text-gray-900">₹{{ number_format($product->price, 2) }}</span>
+                            </div>
+                            <div class="flex items-center mb-3">
+                                <div class="flex items-center">
+                                    <span class="text-yellow-500 text-sm">★★★★</span>
+                                    <span class="text-gray-300 text-sm">★</span>
+                                </div>
+                                <span class="ml-2 text-sm text-gray-500">76</span> <!-- Placeholder for reviews -->
+                            </div>
+                                <button class="w-full border border-gray-900 hover:bg-gray-900 hover:text-white text-gray-900 py-2 px-4 rounded-lg font-medium transition duration-300">
+                                    View Product
+                                </button>
                         </div>
                     </div>
                 </a>

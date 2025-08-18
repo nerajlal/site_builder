@@ -158,9 +158,8 @@
         <!-- Product Grid -->
         <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6" id="productGrid">
             @foreach($products as $product)
-                <a href="{{ route('template4.single-product4.customer', ['headerFooterId' => $headerFooter->id, 'productId' => $product->id]) }}" class="block">
-                    <div class="bg-white rounded-lg overflow-hidden boutique-card">
-                        <div class="relative">
+                <div class="bg-white rounded-lg overflow-hidden boutique-card">
+                    <div class="relative">
                         @if($product->is_new)
                             <span class="absolute top-3 left-3 bg-[#ec4899] text-white px-3 py-1 rounded-full text-xs font-medium z-10">NEW</span>
                         @elseif($product->is_limited)
@@ -182,12 +181,11 @@
                             </div>
                             <span class="ml-2 text-sm text-gray-500">76</span> <!-- Placeholder for reviews -->
                         </div>
-                            <button class="w-full text-purple-600 hover:text-purple-800 hover:underline py-2 rounded font-medium flex items-center justify-center">
-                                <i class="fas fa-shopping-cart mr-2"></i> Add to Cart
+                            <button class="w-full btn-pink py-2 rounded font-medium">
+                                View Product
                             </button>
                     </div>
                 </div>
-                </a>
             @endforeach
         </div>
     </main>
