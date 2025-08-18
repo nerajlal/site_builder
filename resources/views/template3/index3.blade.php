@@ -1,4 +1,4 @@
-  @include('template3.head3')
+@include('template3.head3')
 
   <!-- Hero Section -->
   @if($is_default)
@@ -151,24 +151,16 @@
         ];
       @endphp
       @foreach($categories as $category)
-        @if ($is_default)
-          <div class="relative group h-96 overflow-hidden rounded-lg shadow-sm hover:shadow-xl transition-shadow duration-300">
-            <img
-              src="{{ $category['image'] }}"
-              alt="{{ $category['name'] }}'s Fashion"
-              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out"
-            >
-            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent flex items-end justify-start p-6">
-              <h4 class="text-white text-2xl font-semibold drop-shadow-md">{{ $category['name'] }}</h4>
-            </div>
-            <a href="#" class="absolute inset-0" aria-label="Shop {{ $category['name'] }}"></a>
+        <a href="{{ $is_default ? '#' : route('template3.product3.customer', ['headerFooterId' => $headerFooter->id, 'category_name' => $category['name']]) }}" class="relative group h-96 overflow-hidden rounded-lg shadow-sm hover:shadow-xl transition-shadow duration-300">
+          <img
+            src="{{ $category['image'] }}"
+            alt="{{ $category['name'] }}'s Fashion"
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out"
+          >
+          <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent flex items-end justify-start p-6">
+            <h4 class="text-white text-2xl font-semibold drop-shadow-md">{{ $category['name'] }}</h4>
           </div>
-        @else
-          <a href="{{ route('template3.product3.customer', ['headerFooterId' => $headerFooter->id, 'category_name' => $category['name']]) }}" class="block p-8 rounded-lg bg-white shadow-md hover:shadow-2xl transition-shadow duration-300 group">
-            <h4 class="text-2xl font-medium text-gray-800 text-center">{{ $category['name'] }}</h4>
-            <p class="text-center text-pink-600 mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">Explore Now &rarr;</p>
-          </a>
-        @endif
+        </a>
       @endforeach
     </div>
   </div>

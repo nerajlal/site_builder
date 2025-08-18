@@ -129,7 +129,7 @@
         ];
       @endphp
       @foreach ($categories as $category)
-        <div class="relative group overflow-hidden rounded-xl border border-gray-200/50 shadow-sm hover:shadow-xl transition-all duration-300 ease-in-out">
+        <a href="{{ $is_default ? '#' : route('template1.product1.customer', ['headerFooterId' => $headerFooter->id, 'category_name' => $category['name']]) }}" class="relative group overflow-hidden rounded-xl border border-gray-200/50 shadow-sm hover:shadow-xl transition-all duration-300 ease-in-out">
           <div class="aspect-w-1 aspect-h-1">
             <img src="{{ $category['image'] }}" alt="{{ $category['name'] }}" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
           </div>
@@ -138,13 +138,13 @@
             <h4 class="text-2xl font-semibold text-white tracking-wider">{{ $category['name'] }}</h4>
           </div>
           <div class="absolute inset-0 bg-white/80 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <a href="#" class="bg-gray-900 text-white px-8 py-3 rounded-lg font-medium">
+            <span class="bg-gray-900 text-white px-8 py-3 rounded-lg font-medium">
               Explore
-            </a>
+            </span>
           </div>
-        </div>
+        </a>
       @endforeach
-</div>
+    </div>
 
   </section>
 
