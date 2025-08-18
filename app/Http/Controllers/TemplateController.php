@@ -190,7 +190,7 @@ class TemplateController extends Controller
         // Handle main image upload
         if ($request->hasFile('image_url')) {
             $path = $request->file('image_url')->store('products', 'public');
-            $productData['image_url'] = Storage::url($path);
+            $productData['image_url'] = asset(Storage::url($path));
         }
 
         // Transform sizes data and calculate quantity
@@ -243,7 +243,7 @@ class TemplateController extends Controller
                 if ($image) {
                     $path = $image->store('products', 'public');
                     $product->productImages()->create([
-                        'image_url' => Storage::url($path),
+                        'image_url' => asset(Storage::url($path)),
                     ]);
                 }
             }
@@ -370,7 +370,7 @@ class TemplateController extends Controller
                 Storage::delete($oldPath);
             }
             $path = $request->file('image_url')->store('products', 'public');
-            $productData['image_url'] = Storage::url($path);
+            $productData['image_url'] = asset(Storage::url($path));
         }
 
         // Transform sizes data and calculate quantity
@@ -420,7 +420,7 @@ class TemplateController extends Controller
                 if ($image) {
                     $path = $image->store('products', 'public');
                     $product->productImages()->create([
-                        'image_url' => Storage::url($path),
+                        'image_url' => asset(Storage::url($path)),
                     ]);
                 }
             }
