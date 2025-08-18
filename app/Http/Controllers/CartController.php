@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cart;
 use App\Models\Product;
 use App\Models\HeaderFooter;
+use App\Models\SelectedTemplate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -35,7 +36,18 @@ class CartController extends Controller
             return $item->product->price * $item->quantity;
         });
 
-        $viewName = 'template' . $headerFooter->template_id . '.cart' . $headerFooter->template_id;
+        // Determine the template to use
+        $selectedTemplate = SelectedTemplate::where('header_footer_id', $headerFooterId)->first();
+        $templateId = '1'; // Default to 1
+        if ($selectedTemplate) {
+            // Extract the template number from the template_name (e.g., 'template1.index1')
+            preg_match('/template(\d+)/', $selectedTemplate->template_name, $matches);
+            if (isset($matches[1])) {
+                $templateId = $matches[1];
+            }
+        }
+
+        $viewName = 'template' . $templateId . '.cart' . $templateId;
 
         return view($viewName, [
             'is_default' => false,
