@@ -15,10 +15,14 @@ use App\Http\Controllers\ProductController4;
 use App\Http\Controllers\TemplateSelectionController;
 use App\Http\Controllers\TemplateViewController;
 use App\Http\Controllers\Customer\SiteCustomerAuthController;
+use App\Http\Controllers\ImageController;
 
 // Public routes
 Route::get('/', fn() => view('index'));
 Route::get('/register', fn() => view('register'));
+
+// Route to handle storage files
+Route::get('/storage/{path}', [ImageController::class, 'show'])->where('path', '.*');
 
 // Auth routes
 Route::post('/register', [AuthController::class, 'register']);
