@@ -16,6 +16,7 @@ use App\Http\Controllers\TemplateSelectionController;
 use App\Http\Controllers\TemplateViewController;
 use App\Http\Controllers\Customer\SiteCustomerAuthController;
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\CartController;
 
 // Public routes
 Route::get('/', fn() => view('index'));
@@ -104,6 +105,10 @@ Route::post('/customer/send-otp', [SiteCustomerAuthController::class, 'sendOtp']
 Route::post('/customer/verify-otp', [SiteCustomerAuthController::class, 'verifyOtp']);
 Route::post('/customer/set-credentials', [SiteCustomerAuthController::class, 'setCredentials']);
 Route::post('/customer/sign-out', [SiteCustomerAuthController::class, 'signOut']);
+
+// Cart routes
+Route::post('/cart/add/{headerFooterId}', [CartController::class, 'addToCart'])->name('cart.add');
+Route::get('/cart/count/{headerFooterId}', [CartController::class, 'getCartCount'])->name('cart.count');
 
 // Template save route
 Route::post('/template1/save', [TemplateController::class, 'store'])->name('template1.save');

@@ -125,7 +125,7 @@
         </button>
         <button class="text-gray-400 hover:text-white relative">
           <i class="fas fa-shopping-bag"></i>
-          <span class="absolute -top-2 -right-2 bg-pink-600 text-black text-xs w-5 h-5 flex items-center justify-center rounded-full">0</span>
+          <span id="cart-count" class="absolute -top-2 -right-2 bg-pink-600 text-black text-xs w-5 h-5 flex items-center justify-center rounded-full">0</span>
         </button>
       </div>
     </div>
@@ -193,8 +193,37 @@
       }
     }
 
+    // Update cart count
+    async function updateCartCount() {
+        try {
+            const headerFooterId = {{ $headerFooterId ?? 'null' }};
+            if (!headerFooterId) {
+                // Try to extract from URL for customer-facing pages
+                const urlParts = window.location.pathname.split('/');
+                const idIndex = urlParts.indexOf('index2') + 1 || urlParts.indexOf('product2') + 1 || urlParts.indexOf('single-product2') + 1;
+                if (idIndex > 0 && urlParts[idIndex]) {
+                    const id = parseInt(urlParts[idIndex]);
+                    if (!isNaN(id)) {
+                        const response = await fetch(`/cart/count/${id}`);
+                        const data = await response.json();
+                        document.getElementById('cart-count').textContent = data.cart_count || 0;
+                    }
+                }
+                return;
+            }
+            const response = await fetch(`/cart/count/${headerFooterId}`);
+            const data = await response.json();
+            document.getElementById('cart-count').textContent = data.cart_count || 0;
+        } catch (error) {
+            console.error('Error fetching cart count:', error);
+        }
+    }
+
     // Check auth on page load
-    document.addEventListener('DOMContentLoaded', checkAuthOnLoad);
+    document.addEventListener('DOMContentLoaded', () => {
+        checkAuthOnLoad();
+        updateCartCount();
+    });
 
     const menuToggle = document.getElementById('menu-toggle');
     const mobileMenu = document.getElementById('mobile-menu');

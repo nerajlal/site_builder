@@ -856,22 +856,44 @@
         }
 
         // Add to cart
-        function addToCart() {
+        async function addToCart() {
+            if (!currentState.selectedColor || !currentState.selectedSize) {
+                showToast('Please select a color and size.', 'error');
+                return;
+            }
+
             const productData = {
-                id: 'summer-floral-midi-dress',
-                name: 'Summer Floral Midi Dress',
-                price: 2199,
-                color: currentState.selectedColor,
-                size: currentState.selectedSize,
-                quantity: currentState.quantity
+                product_id: {{ $product->id }},
+                quantity: currentState.quantity,
+                options: {
+                    color: currentState.selectedColor,
+                    size: currentState.selectedSize,
+                }
             };
-            
-            // Add to cart logic here
-            console.log('Adding to cart:', productData);
-            
-            // Show success message
-            showToast('Added to cart successfully!', 'success');
-            
+
+            try {
+                const response = await fetch(`/cart/add/{{ $headerFooterId }}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                    },
+                    body: JSON.stringify(productData)
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    showToast(data.message, 'success');
+                    updateCartCount(); // Update cart count in header
+                } else {
+                    showToast(data.message || 'Something went wrong!', 'error');
+                }
+            } catch (error) {
+                console.error('Error adding to cart:', error);
+                showToast('An error occurred. Please try again.', 'error');
+            }
+
             // Analytics event
             trackEvent('add_to_cart', productData);
         }

@@ -106,7 +106,7 @@
           </a>
           <a href="#" class="ml-8 text-gray-500 group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
             <i class="fas fa-shopping-bag"></i>
-            <span class="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">0</span>
+            <span id="cart-count" class="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">0</span>
           </a>
           <button id="authButton" onclick="openLoginModal()" class="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-purple-600 hover:bg-purple-700 hidden md:inline-flex">
             <span id="authButtonText">Sign In</span>
@@ -207,8 +207,37 @@
       if (originalOpenLoginModal) originalOpenLoginModal();
     };
 
+    // Update cart count
+    async function updateCartCount() {
+        try {
+            const headerFooterId = {{ $headerFooterId ?? 'null' }};
+            if (!headerFooterId) {
+                // Try to extract from URL for customer-facing pages
+                const urlParts = window.location.pathname.split('/');
+                const idIndex = urlParts.indexOf('index4') + 1 || urlParts.indexOf('product4') + 1 || urlParts.indexOf('single-product4') + 1;
+                if (idIndex > 0 && urlParts[idIndex]) {
+                    const id = parseInt(urlParts[idIndex]);
+                    if (!isNaN(id)) {
+                        const response = await fetch(`/cart/count/${id}`);
+                        const data = await response.json();
+                        document.getElementById('cart-count').textContent = data.cart_count || 0;
+                    }
+                }
+                return;
+            }
+            const response = await fetch(`/cart/count/${headerFooterId}`);
+            const data = await response.json();
+            document.getElementById('cart-count').textContent = data.cart_count || 0;
+        } catch (error) {
+            console.error('Error fetching cart count:', error);
+        }
+    }
+
     // Check auth on page load
-    document.addEventListener('DOMContentLoaded', checkAuthOnLoad);
+    document.addEventListener('DOMContentLoaded', () => {
+        checkAuthOnLoad();
+        updateCartCount();
+    });
 
     const menuToggle = document.getElementById('menu-toggle');
     const mobileMenu = document.getElementById('mobile-menu');
