@@ -1,58 +1,86 @@
 @include('template1.head1', ['is_default' => $is_default, 'headerFooter' => $headerFooter])
 
-<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-    <!-- Page Title -->
-    <div class="mb-8 text-center">
-        <h2 class="text-3xl font-bold text-gray-900">Your Shopping Cart</h2>
-        <p class="text-gray-600 mt-2">{{ count($cartItems) }} items in your cart</p>
-    </div>
+<div class="bg-gray-100 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col lg:flex-row -mx-4">
+            <!-- Cart Items -->
+            <div class="w-full lg:w-2/3 px-4">
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Your Cart ({{ count($cartItems) }} items)</h2>
 
-    @if(count($cartItems) > 0)
-        <!-- Cart Items Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            @foreach($cartItems as $item)
-                <div class="bg-white rounded-lg overflow-hidden product-card boutique-shadow">
-                    <div class="relative">
-                        <div class="aspect-square bg-pink-50 flex items-center justify-center">
-                            <img src="{{ $item->product->image_url }}" alt="{{ $item->product->name }}" class="w-full h-full object-cover">
-                        </div>
-                    </div>
-                    <div class="p-4">
-                        <h3 class="font-medium text-gray-900 mb-2">{{ $item->product->name }}</h3>
-                        <div class="flex items-center justify-between mb-2">
-                            <span class="text-lg font-bold text-gray-900">₹{{ number_format($item->product->price, 2) }}</span>
-                            <span class="text-gray-600">Qty: {{ $item->quantity }}</span>
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <span class="text-lg font-bold text-gray-900">Subtotal: ₹{{ number_format($item->product->price * $item->quantity, 2) }}</span>
-                             <button class="w-half bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded-lg font-medium transition flex items-center justify-center">
-                                <i class="fas fa-trash-alt mr-2"></i> Remove
-                            </button>
-                        </div>
+                    @if(count($cartItems) > 0)
+                        <div class="divide-y divide-gray-200">
+                            @foreach($cartItems as $item)
+                                <div class="flex items-center py-6">
+                                    <div class="w-24 h-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+                                        <img src="{{ $item->product->image_url }}" alt="{{ $item->product->name }}" class="h-full w-full object-cover object-center">
+                                    </div>
 
-                    </div>
+                                    <div class="ml-4 flex flex-1 flex-col">
+                                        <div>
+                                            <div class="flex justify-between text-base font-medium text-gray-900">
+                                                <h3>
+                                                    <a href="#">{{ $item->product->name }}</a>
+                                                </h3>
+                                                <p class="ml-4">₹{{ number_format($item->product->price * $item->quantity, 2) }}</p>
+                                            </div>
+                                            <p class="mt-1 text-sm text-gray-500">
+                                                Unit Price: ₹{{ number_format($item->product->price, 2) }}
+                                            </p>
+                                        </div>
+                                        <div class="flex flex-1 items-end justify-between text-sm mt-4">
+                                            <div class="flex items-center">
+                                                <label for="quantity-{{$item->id}}" class="mr-2 text-gray-500">Qty:</label>
+                                                <input type="number" id="quantity-{{$item->id}}" name="quantity" value="{{ $item->quantity }}" class="w-16 rounded-md border border-gray-300 py-1.5 text-left text-base font-medium leading-5 text-gray-700 shadow-sm focus:border-pink-500 focus:ring-1 focus:ring-pink-500 sm:text-sm" min="1">
+                                            </div>
+
+                                            <div class="flex">
+                                                <button type="button" class="font-medium text-pink-600 hover:text-pink-500">Remove</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    @else
+                        <div class="text-center py-16">
+                            <i class="fas fa-shopping-cart text-6xl text-gray-300"></i>
+                            <h3 class="mt-4 text-2xl font-bold text-gray-800">Your cart is empty.</h3>
+                            <p class="text-gray-500 mt-2">Looks like you haven't added anything to your cart yet.</p>
+                            <a href="{{ route('template1.product1.customer', ['headerFooterId' => $headerFooter->id]) }}" class="mt-6 inline-block px-6 py-3 bg-pink-600 text-white rounded-lg hover:bg-pink-700 font-medium">
+                                Continue Shopping
+                            </a>
+                        </div>
+                    @endif
                 </div>
-            @endforeach
-        </div>
+            </div>
 
-        <!-- Cart Summary -->
-        <div class="mt-8 bg-pink-50 p-6 rounded-lg shadow-sm text-right">
-            <h3 class="text-2xl font-bold text-gray-900">Cart Total</h3>
-            <p class="text-3xl font-bold text-gray-800 mt-2">₹{{ number_format($totalPrice, 2) }}</p>
-            <button class="mt-4 w-full md:w-auto px-6 py-3 bg-pink-600 text-white rounded-lg hover:bg-pink-700 text-lg font-medium">
-                Proceed to Checkout
-            </button>
+            <!-- Order Summary -->
+            <div class="w-full lg:w-1/3 px-4 mt-8 lg:mt-0">
+                <div class="bg-white rounded-lg shadow-lg p-6 sticky top-24">
+                    <h3 class="text-xl font-bold text-gray-800 border-b pb-4 mb-4">Order Summary</h3>
+                    <div class="flex justify-between mb-4">
+                        <span class="text-gray-600">Subtotal</span>
+                        <span class="font-medium text-gray-900">₹{{ number_format($totalPrice, 2) }}</span>
+                    </div>
+                    <div class="flex justify-between mb-4">
+                        <span class="text-gray-600">Shipping</span>
+                        <span class="font-medium text-gray-900">Free</span>
+                    </div>
+                    <div class="border-t pt-4 flex justify-between font-bold text-lg">
+                        <span class="text-gray-900">Total</span>
+                        <span class="text-pink-600">₹{{ number_format($totalPrice, 2) }}</span>
+                    </div>
+                    <button class="w-full mt-6 bg-pink-600 hover:bg-pink-700 text-white py-3 px-4 rounded-lg font-bold text-lg transition">
+                        Proceed to Checkout
+                    </button>
+                    <a href="{{ route('template1.product1.customer', ['headerFooterId' => $headerFooter->id]) }}" class="block text-center mt-4 text-pink-600 hover:text-pink-500 font-medium">
+                        or Continue Shopping
+                    </a>
+                </div>
+            </div>
         </div>
-    @else
-        <div class="text-center py-16">
-            <i class="fas fa-shopping-cart text-6xl text-gray-300"></i>
-            <h3 class="mt-4 text-2xl font-bold text-gray-800">Your cart is empty.</h3>
-            <p class="text-gray-500 mt-2">Looks like you haven't added anything to your cart yet.</p>
-            <a href="{{ route('template1.product1.customer', ['headerFooterId' => $headerFooter->id]) }}" class="mt-6 inline-block px-6 py-3 bg-pink-600 text-white rounded-lg hover:bg-pink-700 font-medium">
-                Continue Shopping
-            </a>
-        </div>
-    @endif
-</main>
+    </div>
+</div>
 
 @include('template1.footer1')
