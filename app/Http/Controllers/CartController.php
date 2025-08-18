@@ -124,6 +124,58 @@ class CartController extends Controller
         return response()->json(['cart_count' => $cartCount]);
     }
 
+    public function removeFromCart(Request $request)
+    {
+        $request->validate([
+            'cart_item_id' => 'required|exists:carts,id',
+        ]);
+
+        $cartItemId = $request->input('cart_item_id');
+        $siteCustomerId = Session::get('site_customer_id');
+        $sessionId = Session::getId();
+
+        $cartItem = Cart::find($cartItemId);
+
+        // Security check: ensure the item belongs to the current user/session
+        $isOwner = ($siteCustomerId && $cartItem->site_customer_id == $siteCustomerId) ||
+                   (!$siteCustomerId && $cartItem->session_id == $sessionId);
+
+        if (!$cartItem || !$isOwner) {
+            return response()->json(['success' => false, 'message' => 'Item not found or not authorized.'], 404);
+        }
+
+        $headerFooterId = $cartItem->header_footer_id;
+        $cartItem->delete();
+
+        $cartCount = $this->getCartItemCount($headerFooterId, $siteCustomerId, $sessionId);
+        $totalPrice = $this->getCartTotalPrice($headerFooterId, $siteCustomerId, $sessionId);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Item removed from cart.',
+            'cart_count' => $cartCount,
+            'total_price' => number_format($totalPrice, 2),
+        ]);
+    }
+
+    private function getCartTotalPrice($headerFooterId, $siteCustomerId, $sessionId)
+    {
+        $cartQuery = Cart::where('header_footer_id', $headerFooterId)
+            ->where(function ($query) use ($siteCustomerId, $sessionId) {
+                if ($siteCustomerId) {
+                    $query->where('site_customer_id', $siteCustomerId);
+                } else {
+                    $query->where('session_id', $sessionId);
+                }
+            });
+
+        $cartItems = $cartQuery->with('product')->get();
+
+        return $cartItems->sum(function($item) {
+            return $item->product->price * $item->quantity;
+        });
+    }
+
     private function getCartItemCount($headerFooterId, $siteCustomerId, $sessionId)
     {
         $query = Cart::where('header_footer_id', $headerFooterId);
