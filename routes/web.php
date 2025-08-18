@@ -109,6 +109,7 @@ Route::post('/customer/sign-out', [SiteCustomerAuthController::class, 'signOut']
 // Cart routes
 Route::post('/cart/add/{headerFooterId}', [CartController::class, 'addToCart'])->name('cart.add');
 Route::get('/cart/count/{headerFooterId}', [CartController::class, 'getCartCount'])->name('cart.count');
+Route::get('/cart/{headerFooterId}', [CartController::class, 'getCartItems'])->name('cart.view');
 
 // Template save route
 Route::post('/template1/save', [TemplateController::class, 'store'])->name('template1.save');

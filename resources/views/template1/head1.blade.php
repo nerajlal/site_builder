@@ -99,10 +99,10 @@
       <button class="text-gray-700 hover:text-pink-600 transition">
         <i class="fas fa-search"></i>
       </button>
-      <button class="text-gray-700 hover:text-pink-600 transition relative">
+      <a href="{{ route('cart.view', ['headerFooterId' => $headerFooter->id]) }}" class="text-gray-700 hover:text-pink-600 transition relative">
         <i class="fas fa-shopping-cart"></i>
         <span id="cart-count" class="absolute -top-2 -right-2 bg-pink-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
-      </button>
+      </a>
       <button id="authButton" onclick="openLoginModal()" class="bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded transition hidden md:block">
         <span id="authButtonText">Sign In</span>
       </button>
