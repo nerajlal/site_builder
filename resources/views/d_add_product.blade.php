@@ -176,10 +176,10 @@
                     <label class="block text-sm font-medium text-gray-700">Original Price</label>
                     <input type="number" name="original_price" step="0.01" class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md">
                 </div>
-                <div>
+                <!-- <div>
                     <label class="block text-sm font-medium text-gray-700">Quantity</label>
                     <input type="number" name="quantity" required class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md">
-                </div>
+                </div> -->
             </div>
 
             <!-- Media -->
