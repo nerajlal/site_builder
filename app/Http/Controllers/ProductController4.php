@@ -134,7 +134,7 @@ class ProductController4 extends Controller
         });
 
         // Pass all the data
-        return view('template4.single-product4', compact('headerFooter', 'product', 'selectedTemplate', 'productImages', 'productColors', 'sizes'))
+        return view('template4.single-product4', compact('headerFooter', 'product', 'selectedTemplate', 'productImages', 'productColors', 'sizes', 'headerFooterId'))
             ->with('is_default', false);
     }
 }
