@@ -126,4 +126,15 @@ class Product extends Model
     {
         return $this->hasMany(ProductFaq::class);
     }
+
+    public function getImageUrlAttribute($value)
+    {
+        if (str_starts_with($value, 'http')) {
+            return $value;
+        }
+        if (str_starts_with($value, '/storage/')) {
+            return asset(ltrim($value, '/'));
+        }
+        return asset('storage/' . $value);
+    }
 }
