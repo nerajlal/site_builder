@@ -139,7 +139,7 @@
             <button class="close-modal text-gray-500 hover:text-gray-700 text-lg">&times;</button>
         </div>
 
-        <form id="product-form" method="POST" action="{{ route('storeProduct', $headerFooter->id) }}" class="space-y-4 max-h-[80vh] overflow-y-auto pr-2">
+        <form id="product-form" method="POST" action="{{ route('storeProduct', $headerFooter->id) }}" class="space-y-4 max-h-[80vh] overflow-y-auto pr-2" enctype="multipart/form-data">
             @csrf
 
             <!-- Core Product Info -->
@@ -184,8 +184,8 @@
 
             <!-- Media -->
             <div>
-                <label class="block text-sm font-medium text-gray-700">Main Image URL</label>
-                <input type="text" name="image_url" class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md">
+                <label class="block text-sm font-medium text-gray-700">Main Image</label>
+                <input type="file" name="image_url" class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md">
             </div>
             <div>
                 <label class="block text-sm font-medium text-gray-700">Additional Images</label>
@@ -521,7 +521,7 @@
             const imageInput = document.createElement('div');
             imageInput.classList.add('flex', 'items-center', 'space-x-2');
             imageInput.innerHTML = `
-                <input type="text" name="images[${imageIndex}][url]" placeholder="Image URL" class="w-full px-2 py-1 border border-gray-300 rounded-md" value="${url}">
+                <input type="file" name="images[]" class="w-full px-2 py-1 border border-gray-300 rounded-md">
                 <button type="button" class="remove-image-btn px-2 py-1 bg-red-500 text-white rounded-md text-sm">X</button>
             `;
             imagesContainer.appendChild(imageInput);

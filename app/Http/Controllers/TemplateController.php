@@ -12,6 +12,8 @@ use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Template;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 class TemplateController extends Controller
 {
@@ -173,28 +175,38 @@ class TemplateController extends Controller
             'sku' => 'nullable|string|max:255',
             'price' => 'required|numeric',
             'original_price' => 'nullable|numeric',
-            'quantity' => 'required|integer',
             'brand_id' => 'required|exists:brands,id',
             'category_name' => 'required|string',
-            'image_url' => 'nullable|url',
+            'image_url' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'video_url' => 'nullable|url',
             'description' => 'nullable|string',
             'sizes' => 'nullable|array',
             'details' => 'nullable|array',
         ]);
 
-        $productData = $request->except(['sizes', 'details', 'colors', 'images']);
+        $productData = $request->except(['sizes', 'details', 'colors', 'images', 'image_url']);
 
-        // Transform sizes data
+        // Handle main image upload
+        if ($request->hasFile('image_url')) {
+            $path = $request->file('image_url')->store('products', 'public');
+            $productData['image_url'] = Storage::url($path);
+        }
+
+        // Transform sizes data and calculate quantity
+        $quantity = 0;
         $sizes = [];
         if ($request->has('sizes')) {
             foreach ($request->sizes as $size => $stock) {
+                $stock = (int)$stock;
                 if ($stock > 0) {
-                    $sizes[] = ['size' => $size, 'stock' => (int)$stock];
+                    $sizes[] = ['size' => $size, 'stock' => $stock];
+                    $quantity += $stock;
                 }
             }
         }
         $productData['sizes'] = json_encode($sizes);
+        $productData['quantity'] = $quantity;
 
         // Handle key_features and care_tips
         if ($request->has('details')) {
@@ -225,15 +237,18 @@ class TemplateController extends Controller
             }
         }
 
-        if ($request->has('images')) {
-            foreach ($request->images as $image) {
-                if (!empty($image['url'])) {
+        // Handle additional image uploads
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                if ($image) {
+                    $path = $image->store('products', 'public');
                     $product->productImages()->create([
-                        'image_url' => $image['url'],
+                        'image_url' => Storage::url($path),
                     ]);
                 }
             }
         }
+
 
         if ($request->has('details') && isset($request->details['styling_tips'])) {
             foreach ($request->details['styling_tips'] as $tip) {
@@ -334,10 +349,10 @@ class TemplateController extends Controller
             'sku' => 'nullable|string|max:255',
             'price' => 'required|numeric',
             'original_price' => 'nullable|numeric',
-            'quantity' => 'required|integer',
             'brand_id' => 'required|exists:brands,id',
             'category_name' => 'required|string',
-            'image_url' => 'nullable|url',
+            'image_url' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'video_url' => 'nullable|url',
             'description' => 'nullable|string',
             'sizes' => 'nullable|array',
@@ -345,18 +360,33 @@ class TemplateController extends Controller
         ]);
 
         $product = Product::findOrFail($id);
-        $productData = $request->except(['sizes', 'details', 'colors', 'images']);
+        $productData = $request->except(['sizes', 'details', 'colors', 'images', 'image_url']);
 
-        // Transform sizes data
+        // Handle main image upload
+        if ($request->hasFile('image_url')) {
+            // Delete old image
+            if ($product->image_url) {
+                $oldPath = str_replace('/storage', 'public', $product->image_url);
+                Storage::delete($oldPath);
+            }
+            $path = $request->file('image_url')->store('products', 'public');
+            $productData['image_url'] = Storage::url($path);
+        }
+
+        // Transform sizes data and calculate quantity
+        $quantity = 0;
         $sizes = [];
         if ($request->has('sizes')) {
             foreach ($request->sizes as $size => $stock) {
+                $stock = (int)$stock;
                 if ($stock > 0) {
-                    $sizes[] = ['size' => $size, 'stock' => (int)$stock];
+                    $sizes[] = ['size' => $size, 'stock' => $stock];
+                    $quantity += $stock;
                 }
             }
         }
         $productData['sizes'] = json_encode($sizes);
+        $productData['quantity'] = $quantity;
 
         // Handle key_features and care_tips
         if ($request->has('details')) {
@@ -376,6 +406,26 @@ class TemplateController extends Controller
 
         $product->update($productData);
 
+        // Handle additional image uploads
+        if ($request->hasFile('images')) {
+            // Delete old images
+            foreach ($product->productImages as $image) {
+                $oldPath = str_replace('/storage', 'public', $image->image_url);
+                Storage::delete($oldPath);
+            }
+            $product->productImages()->delete();
+
+            // Upload new images
+            foreach ($request->file('images') as $image) {
+                if ($image) {
+                    $path = $image->store('products', 'public');
+                    $product->productImages()->create([
+                        'image_url' => Storage::url($path),
+                    ]);
+                }
+            }
+        }
+
         $product->colors()->delete();
         if ($request->has('colors')) {
             foreach ($request->colors as $color) {
@@ -383,17 +433,6 @@ class TemplateController extends Controller
                     'name' => $color['name'],
                     'value' => $color['value'],
                 ]);
-            }
-        }
-
-        $product->productImages()->delete();
-        if ($request->has('images')) {
-            foreach ($request->images as $image) {
-                if (!empty($image['url'])) {
-                    $product->productImages()->create([
-                        'image_url' => $image['url'],
-                    ]);
-                }
             }
         }
 
