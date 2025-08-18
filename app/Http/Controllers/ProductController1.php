@@ -84,6 +84,11 @@ class ProductController1 extends Controller
             $query->where('price', '<=', $request->get('max_price'));
         }
 
+        // Filtering by category
+        if ($request->has('category_id')) {
+            $query->where('category_id', $request->get('category_id'));
+        }
+
         $products = $query->get();
 
         return view('template1.product1', compact('headerFooter', 'products'))
