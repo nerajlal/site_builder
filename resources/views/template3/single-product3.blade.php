@@ -185,9 +185,9 @@
                     
                     <!-- Secondary Actions -->
                     <div class="flex justify-center space-x-8 pt-4">
-                        <button class="flex items-center space-x-2 text-gray-600 hover:text-pink-600 transition-colors" onclick="toggleWishlist()">
-                            <i class="far fa-heart text-lg"></i>
-                            <span>Wishlist</span>
+                        <button class="flex items-center space-x-2 text-gray-600 hover:text-pink-600 transition-colors" onclick="toggleWishlist(this)" data-product-id="{{ $product->id }}">
+                            <i class="{{ $inWishlist ? 'fas' : 'far' }} fa-heart text-lg"></i>
+                            <span>{{ $inWishlist ? 'Wishlisted' : 'Wishlist' }}</span>
                         </button>
                         <button class="flex items-center space-x-2 text-gray-600 hover:text-pink-600 transition-colors" onclick="shareProduct()">
                             <i class="fas fa-share-alt text-lg"></i>
@@ -898,6 +898,20 @@
             trackEvent('add_to_cart', productData);
         }
 
+        // Update wishlist count in header
+        async function updateWishlistCount() {
+            try {
+                const response = await fetch(`/wishlist/count/{{ $headerFooterId }}`);
+                const data = await response.json();
+                const wishlistCountElement = document.getElementById('wishlist-count');
+                if (wishlistCountElement) {
+                    wishlistCountElement.textContent = data.wishlist_count;
+                }
+            } catch (error) {
+                console.error('Error fetching wishlist count:', error);
+            }
+        }
+
         // Buy now
         function buyNow() {
             const productData = {
@@ -929,9 +943,45 @@
         }
 
         // Wishlist toggle
-        function toggleWishlist() {
-            // Wishlist logic here
-            showToast('Added to wishlist!', 'success');
+        async function toggleWishlist(button) {
+            const productId = button.dataset.productId;
+            const icon = button.querySelector('i');
+            const span = button.querySelector('span');
+            const isWishlisted = icon.classList.contains('fas');
+
+            const url = isWishlisted ? `/wishlist/remove/{{ $headerFooterId }}` : `/wishlist/add/{{ $headerFooterId }}`;
+
+            try {
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                    },
+                    body: JSON.stringify({ product_id: productId })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    showToast(data.message, 'success');
+                    if (isWishlisted) {
+                        icon.classList.remove('fas');
+                        icon.classList.add('far');
+                        span.textContent = 'Wishlist';
+                    } else {
+                        icon.classList.remove('far');
+                        icon.classList.add('fas');
+                        span.textContent = 'Wishlisted';
+                    }
+                    updateWishlistCount(); // Update wishlist count in header
+                } else {
+                    showToast(data.message || 'Something went wrong!', 'error');
+                }
+            } catch (error) {
+                console.error('Error toggling wishlist:', error);
+                showToast('An error occurred. Please try again.', 'error');
+            }
         }
 
         // Share product

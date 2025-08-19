@@ -8,6 +8,8 @@ use App\Models\Product;
 use App\Models\Feature;
 use App\Models\ProductImage;
 use App\Models\SelectedTemplate;
+use App\Models\Wishlist;
+use Illuminate\Support\Facades\Session;
 
 class ProductController4 extends Controller
 {
@@ -133,8 +135,21 @@ class ProductController4 extends Controller
             ];
         });
 
+        $siteCustomerId = Session::get('site_customer_id');
+        $sessionId = Session::getId();
+        $inWishlist = Wishlist::where('product_id', $productId)
+            ->where('header_footer_id', $headerFooterId)
+            ->where(function ($query) use ($siteCustomerId, $sessionId) {
+                if ($siteCustomerId) {
+                    $query->where('site_customer_id', $siteCustomerId);
+                } else {
+                    $query->where('session_id', $sessionId);
+                }
+            })
+            ->exists();
+
         // Pass all the data
-        return view('template4.single-product4', compact('headerFooter', 'product', 'selectedTemplate', 'productImages', 'productColors', 'sizes', 'headerFooterId'))
+        return view('template4.single-product4', compact('headerFooter', 'product', 'selectedTemplate', 'productImages', 'productColors', 'sizes', 'headerFooterId', 'inWishlist'))
             ->with('is_default', false);
     }
 }
