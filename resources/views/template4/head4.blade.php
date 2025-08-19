@@ -104,6 +104,10 @@
           <a href="#" class="text-gray-500 group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
             <i class="fas fa-search"></i>
           </a>
+          <a href="#" class="ml-8 text-gray-500 group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
+            <i class="fas fa-heart"></i>
+            <span id="wishlist-count" class="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">0</span>
+          </a>
           <a href="{{ route('cart.view', ['headerFooterId' => $headerFooter->id]) }}" class="ml-8 text-gray-500 group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
             <i class="fas fa-shopping-bag"></i>
             <span id="cart-count" class="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">0</span>
@@ -233,10 +237,36 @@
         }
     }
 
+    // Update wishlist count
+    async function updateWishlistCount() {
+        try {
+            const headerFooterId = {{ $headerFooterId ?? 'null' }};
+            if (!headerFooterId) {
+                const urlParts = window.location.pathname.split('/');
+                const idIndex = urlParts.indexOf('index4') + 1 || urlParts.indexOf('product4') + 1 || urlParts.indexOf('single-product4') + 1;
+                if (idIndex > 0 && urlParts[idIndex]) {
+                    const id = parseInt(urlParts[idIndex]);
+                    if (!isNaN(id)) {
+                        const response = await fetch(`/wishlist/count/${id}`);
+                        const data = await response.json();
+                        document.getElementById('wishlist-count').textContent = data.wishlist_count || 0;
+                    }
+                }
+                return;
+            }
+            const response = await fetch(`/wishlist/count/${headerFooterId}`);
+            const data = await response.json();
+            document.getElementById('wishlist-count').textContent = data.wishlist_count || 0;
+        } catch (error) {
+            console.error('Error fetching wishlist count:', error);
+        }
+    }
+
     // Check auth on page load
     document.addEventListener('DOMContentLoaded', () => {
         checkAuthOnLoad();
         updateCartCount();
+        updateWishlistCount();
     });
 
     const menuToggle = document.getElementById('menu-toggle');

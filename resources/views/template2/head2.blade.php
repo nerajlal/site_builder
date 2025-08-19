@@ -123,6 +123,10 @@
         <button onclick="openLoginModal()" class="text-gray-400 hover:text-white">
           <i class="fas fa-user"></i>
         </button>
+        <a href="#" class="text-gray-400 hover:text-white relative">
+            <i class="fas fa-heart"></i>
+            <span id="wishlist-count" class="absolute -top-2 -right-2 bg-pink-600 text-black text-xs w-5 h-5 flex items-center justify-center rounded-full">0</span>
+        </a>
         <a href="{{ route('cart.view', ['headerFooterId' => $headerFooter->id]) }}" class="text-gray-400 hover:text-white relative">
           <i class="fas fa-shopping-bag"></i>
           <span id="cart-count" class="absolute -top-2 -right-2 bg-pink-600 text-black text-xs w-5 h-5 flex items-center justify-center rounded-full">0</span>
@@ -219,10 +223,36 @@
         }
     }
 
+    // Update wishlist count
+    async function updateWishlistCount() {
+        try {
+            const headerFooterId = {{ $headerFooterId ?? 'null' }};
+            if (!headerFooterId) {
+                const urlParts = window.location.pathname.split('/');
+                const idIndex = urlParts.indexOf('index2') + 1 || urlParts.indexOf('product2') + 1 || urlParts.indexOf('single-product2') + 1;
+                if (idIndex > 0 && urlParts[idIndex]) {
+                    const id = parseInt(urlParts[idIndex]);
+                    if (!isNaN(id)) {
+                        const response = await fetch(`/wishlist/count/${id}`);
+                        const data = await response.json();
+                        document.getElementById('wishlist-count').textContent = data.wishlist_count || 0;
+                    }
+                }
+                return;
+            }
+            const response = await fetch(`/wishlist/count/${headerFooterId}`);
+            const data = await response.json();
+            document.getElementById('wishlist-count').textContent = data.wishlist_count || 0;
+        } catch (error) {
+            console.error('Error fetching wishlist count:', error);
+        }
+    }
+
     // Check auth on page load
     document.addEventListener('DOMContentLoaded', () => {
         checkAuthOnLoad();
         updateCartCount();
+        updateWishlistCount();
     });
 
     const menuToggle = document.getElementById('menu-toggle');
