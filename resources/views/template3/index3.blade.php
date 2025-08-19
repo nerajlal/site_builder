@@ -14,7 +14,7 @@
           <h2 class="text-5xl font-medium mb-6 leading-tight">Sophisticated Style,<br>Timeless Beauty</h2>
           <p class="text-gray-600 mb-8">Discover fashion pieces that embody elegance and sophistication</p>
           <div class="flex space-x-4">
-            <button class="bg-pink-600 hover:bg-pink-700 text-white px-8 py-3 font-medium transition duration-300">
+            <button class="bg-[#2d3748] hover:bg-pink-700 text-white px-8 py-3 font-medium transition duration-300">
               Explore Collection
             </button>
             <button class="border border-gray-300 hover:border-pink-600 text-gray-900 px-8 py-3 font-medium transition duration-300">
@@ -46,17 +46,17 @@
           
           <div class="flex space-x-4">
             @if($headerFooterId)
-              <button class="bg-pink-600 hover:bg-pink-700 text-white px-8 py-3 font-medium transition duration-300" onclick="window.location.href='/product3/{{ $headerFooter->id }}'">
+              <button class="bg-[#2d3748] hover:bg-[#4a5568] text-white px-8 py-3 font-medium transition duration-300" onclick="window.location.href='/product3/{{ $headerFooter->id }}'">
                 {{ $homesetting->button1_text }}
               </button>
-              <button class="border border-gray-300 hover:border-pink-600 text-gray-900 px-8 py-3 font-medium transition duration-300" onclick="window.location.href='/product3/{{ $headerFooter->id }}'">
-                {{ $homesetting->button2_text }}
+              <button class="border border-gray-300 hover:border-[#2d3748] text-gray-900 px-8 py-3 font-medium transition duration-300" onclick="window.location.href='/product3/{{$headerFooter->id }}'">{{ $homesetting->button2_text }}
               </button>
+
             @else
-              <button class="bg-pink-600 hover:bg-pink-700 text-white px-8 py-3 font-medium transition duration-300" onclick="window.location.href='/product3'">
+              <button class="bg-[#2d3748] hover:bg-[#4a5568] text-white px-8 py-3 font-medium transition duration-300" onclick="window.location.href='/product3'">
                 {{ $homesetting->button1_text }}
               </button>
-              <button class="border border-gray-300 hover:border-pink-600 text-gray-900 px-8 py-3 font-medium transition duration-300" onclick="window.location.href='/product3'">
+              <button class="border border-gray-300 hover:border-[#2d3748] text-gray-900 px-8 py-3 font-medium transition duration-300" onclick="window.location.href='/product3'">
                 {{ $homesetting->button2_text }}
               </button>
             @endif
@@ -147,7 +147,7 @@
         $categories = [
             ['name' => 'Women', 'image' => 'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80'],
             ['name' => 'Men', 'image' => 'https://images.unsplash.com/photo-1504593811423-6dd665756598?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80'],
-            ['name' => 'Kids', 'image' => 'https://images.unsplash.com/photo-1622422034001-3a8a3f287118?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80'],
+            ['name' => 'Kids', 'image' => 'https://i.etsystatic.com/23196141/r/il/bdbc34/4123811975/il_fullxfull.4123811975_1w6o.jpg'],
         ];
       @endphp
       @foreach($categories as $category)
@@ -319,7 +319,7 @@
         <p class="text-gray-600 mb-8">Our fashion specialists are available to assist you with any inquiries about our collection or services.</p>
         <div class="space-y-6">
           <div class="flex items-start">
-            <div class="text-pink-600 text-xl w-10 mr-4 mt-1">
+            <div class="text-[#2d3748] text-xl w-10 mr-4 mt-1">
               <i class="fas fa-phone"></i>
             </div>
             <div>
@@ -329,7 +329,7 @@
             </div>
           </div>
           <div class="flex items-start">
-            <div class="text-pink-600 text-xl w-10 mr-4 mt-1">
+            <div class="text-[#2d3748] text-xl w-10 mr-4 mt-1">
               <i class="fas fa-envelope"></i>
             </div>
             <div>
@@ -339,7 +339,7 @@
             </div>
           </div>
           <div class="flex items-start">
-            <div class="text-pink-600 text-xl w-10 mr-4 mt-1">
+            <div class="text-[#2d3748] text-xl w-10 mr-4 mt-1">
               <i class="fas fa-map-marker-alt"></i>
             </div>
             <div>
@@ -355,17 +355,17 @@
         <form class="space-y-4">
           <div>
             <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Name</label>
-            <input type="text" id="name" class="w-full px-4 py-2 bg-white border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-pink-600">
+            <input type="text" id="name" class="w-full px-4 py-2 bg-white border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#2d3748]">
           </div>
           <div>
             <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-            <input type="email" id="email" class="w-full px-4 py-2 bg-white border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-pink-600">
+            <input type="email" id="email" class="w-full px-4 py-2 bg-white border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#2d3748]">
           </div>
           <div>
             <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Message</label>
-            <textarea id="message" rows="4" class="w-full px-4 py-2 bg-white border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-pink-600"></textarea>
+            <textarea id="message" rows="4" class="w-full px-4 py-2 bg-white border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#2d3748]"></textarea>
           </div>
-          <button type="submit" class="w-full bg-pink-600 hover:bg-pink-700 text-white py-3 rounded-lg font-medium transition duration-300">
+          <button type="submit" class="w-full bg-[#2d3748] hover:bg-[#4a5568] text-white py-3 rounded-lg font-medium transition duration-300">
             Send Message
           </button>
         </form>
