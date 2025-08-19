@@ -27,7 +27,7 @@
                                         <button type="button" class="remove-item-btn font-medium text-pink-600 hover:text-pink-500" data-id="{{ $item->id }}" data-product-id="{{ $item->product->id }}">Remove</button>
                                     </div>
                                     <div class="flex">
-                                        <button type="button" class="add-to-cart-btn font-medium text-white bg-pink-600 hover:bg-pink-700 px-4 py-2 rounded-md" data-id="{{ $item->product->id }}">Add to Cart</button>
+                                        <a href="{{ route('template2.single-product2.customer', ['headerFooterId' => $headerFooter->id, 'productId' => $item->product->id]) }}" class="add-to-cart-btn font-medium text-white bg-pink-600 hover:bg-pink-700 px-4 py-2 rounded-md">View Product</a>
                                     </div>
                                 </div>
                             </div>
