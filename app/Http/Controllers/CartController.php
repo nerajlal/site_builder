@@ -40,7 +40,6 @@ class CartController extends Controller
         $selectedTemplate = SelectedTemplate::where('header_footer_id', $headerFooterId)->first();
         $templateId = '1'; // Default to 1
         if ($selectedTemplate) {
-            // Extract the template number from the template_name (e.g., 'template1.index1')
             preg_match('/template(\d+)/', $selectedTemplate->template_name, $matches);
             if (isset($matches[1])) {
                 $templateId = $matches[1];
