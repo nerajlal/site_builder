@@ -106,11 +106,11 @@
           </a>
           <a href="{{ route('wishlist.view', ['headerFooterId' => $headerFooter->id]) }}" class="ml-8 text-gray-500 group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
             <i class="fas fa-heart"></i>
-            <span id="wishlist-count" class="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">0</span>
+            <span id="wishlist-count" class="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">{{ $wishlistCount ?? 0 }}</span>
           </a>
           <a href="{{ route('cart.view', ['headerFooterId' => $headerFooter->id]) }}" class="ml-8 text-gray-500 group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
             <i class="fas fa-shopping-bag"></i>
-            <span id="cart-count" class="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">0</span>
+            <span id="cart-count" class="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">{{ $cartCount ?? 0 }}</span>
           </a>
           <button id="authButton" onclick="openLoginModal()" class="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-purple-600 hover:bg-purple-700 hidden md:inline-flex">
             <span id="authButtonText">Sign In</span>
