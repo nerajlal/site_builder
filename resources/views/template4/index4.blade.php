@@ -148,14 +148,15 @@
             <div class="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition-colors duration-300"></div>
             <div class="absolute bottom-0 left-0 right-0 p-6">
               <h4 class="text-white text-2xl font-serif font-semibold drop-shadow-md">{{ $category['name'] }}</h4>
-              <div class="h-0.5 bg-pink-500 w-16 mt-2 transition-all duration-300 group-hover:w-24"></div>
+              <div class="h-0.5 bg-[#7e22ce] w-16 mt-2 transition-all duration-300 group-hover:w-24"></div>
             </div>
             <a href="#" class="absolute inset-0" aria-label="Shop {{ $category['name'] }}"></a>
           </div>
         @else
           <a href="{{ route('template4.product4.customer', ['headerFooterId' => $headerFooter->id, 'category_name' => $category['name']]) }}" class="group block text-center p-8 rounded-lg">
-            <h4 class="text-3xl font-serif text-gray-800 group-hover:text-pink-500 transition-colors duration-300">{{ $category['name'] }}</h4>
-            <div class="w-24 h-1 bg-gray-200 mx-auto mt-4 group-hover:bg-pink-500 transition-colors duration-300"></div>
+            <h4 class="text-3xl font-serif text-gray-800 group-hover:text-[#7e22ce] transition-colors duration-300">{{ $category['name'] }}
+            </h4>
+            <div class="w-24 h-1 bg-gray-200 mx-auto mt-4 group-hover:bg-[#7e22ce] transition-colors duration-300"></div>
           </a>
         @endif
       @endforeach
@@ -251,29 +252,35 @@
         </div>
         <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
             @foreach($products as $product)
-                <a href="{{ route('template4.single-product4.customer', ['headerFooterId' => $headerFooter->id, 'productId' => $product->id]) }}" class="block group">
-                    <div class="bg-white rounded-lg overflow-hidden transition-all duration-300 group-hover:shadow-2xl border border-gray-200/80">
+                <a href="{{ route('template4.single-product4.customer', ['headerFooterId' => $headerFooter->id, 'productId' => $product->id]) }}" class="block">
+                    <div class="bg-white rounded-lg overflow-hidden boutique-card">
                         <div class="relative">
-                            @if($product->is_new)
-                                <span class="absolute top-3 left-3 bg-yellow-400 text-gray-900 px-3 py-1 rounded-full text-xs font-bold z-10 -rotate-6">NEW!</span>
-                            @elseif($product->is_limited)
-                                <span class="absolute top-3 left-3 bg-red-600 text-white px-3 py-1 rounded-full text-xs font-bold z-10 -rotate-6">LIMITED</span>
-                            @endif
-                            <div class="aspect-video bg-gray-100 overflow-hidden">
-                                <img src="{{$product->image_url}}" alt="{{ $product->name }}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 group-hover:rotate-2">
-                            </div>
-                        </div>
-                        <div class="p-5">
-                            <h3 class="text-lg font-serif font-semibold text-gray-800 mb-2 truncate">{{ $product->name }}</h3>
-                            <p class="text-gray-500 text-sm mb-4 h-10 overflow-hidden">{{ $product->description }}</p>
-                            <div class="flex justify-between items-center">
-                                <p class="text-2xl font-bold text-pink-500">₹{{ number_format($product->price, 2) }}</p>
-                                <button class="btn-pink rounded-full font-medium text-sm px-5 py-2.5 shadow-lg group-hover:shadow-pink-300 transition-shadow">
-                                    Add to Cart
-                                </button>
-                            </div>
+                        @if($product->is_new)
+                            <span class="absolute top-3 left-3 bg-[#7e22ce] text-white px-3 py-1 rounded-full text-xs font-medium z-10">NEW</span>
+                        @elseif($product->is_limited)
+                             <span class="absolute top-3 left-3 bg-red-600 text-white px-3 py-1 rounded-full text-xs font-medium z-10">LIMITED</span>
+                        @endif
+                        <div class="aspect-square bg-pink-50 flex items-center justify-center">
+                             <img src="{{$product->image_url}}" alt="{{ $product->name }}" class="w-full h-full object-cover">
                         </div>
                     </div>
+                    <div class="p-4">
+                        <h3 class="font-semibold text-lg mb-4 gold-underline" style="font-family: 'Cormorant Garamond', serif;">{{ $product->name }}</h3>
+                        <div class="flex items-center space-x-2 mb-2">
+                            <span class="text-lg font-bold text-gray-900">₹{{ number_format($product->price, 2) }}</span>
+                        </div>
+                        <div class="flex items-center mb-3">
+                            <div class="flex items-center">
+                                <span class="text-yellow-500 text-sm">★★★★</span>
+                                <span class="text-gray-300 text-sm">★</span>
+                            </div>
+                            <span class="ml-2 text-sm text-gray-500">76</span> <!-- Placeholder for reviews -->
+                        </div>
+                            <button class="w-full text-purple-600 hover:text-purple-800 hover:underline py-2 rounded font-medium flex items-center justify-center">
+                                <i class="fas fa-shopping-cart mr-2"></i> Add to Cart
+                            </button>
+                    </div>
+                </div>
                 </a>
             @endforeach
         </div>
