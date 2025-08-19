@@ -91,7 +91,7 @@
         <div class="flex items-center space-x-4">
             <button class="text-gray-500 hover:text-blue-600"><i class="fas fa-search"></i></button>
             <button onclick="openLoginModal()" class="text-gray-500 hover:text-blue-600"><i class="fas fa-user"></i></button>
-            <a href="#" class="text-gray-500 hover:text-blue-600 relative">
+            <a href="{{ route('wishlist.view', ['headerFooterId' => $headerFooter->id]) }}" class="text-gray-500 hover:text-blue-600 relative">
                 <i class="fas fa-heart"></i>
                 <span id="wishlist-count" class="absolute -top-2 -right-2 bg-blue-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">0</span>
             </a>

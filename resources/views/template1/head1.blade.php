@@ -99,7 +99,7 @@
       <button class="text-gray-700 hover:text-pink-600 transition">
         <i class="fas fa-search"></i>
       </button>
-      <a href="#" class="text-gray-700 hover:text-pink-600 transition relative">
+      <a href="{{ route('wishlist.view', ['headerFooterId' => $headerFooter->id]) }}" class="text-gray-700 hover:text-pink-600 transition relative">
         <i class="fas fa-heart"></i>
         <span id="wishlist-count" class="absolute -top-2 -right-2 bg-pink-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
       </a>

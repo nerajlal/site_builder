@@ -114,6 +114,7 @@ Route::get('/cart/{headerFooterId}', [CartController::class, 'getCartItems'])->n
 Route::post('/cart/remove', [CartController::class, 'removeFromCart'])->name('cart.remove');
 
 // Wishlist routes
+Route::get('/wishlist/{headerFooterId}', [WishlistController::class, 'getWishlistItems'])->name('wishlist.view');
 Route::post('/wishlist/add/{headerFooterId}', [WishlistController::class, 'addToWishlist'])->name('wishlist.add');
 Route::post('/wishlist/remove/{headerFooterId}', [WishlistController::class, 'removeFromWishlist'])->name('wishlist.remove');
 Route::get('/wishlist/count/{headerFooterId}', [WishlistController::class, 'getWishlistCount'])->name('wishlist.count');

@@ -104,7 +104,7 @@
           <a href="#" class="text-gray-500 group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
             <i class="fas fa-search"></i>
           </a>
-          <a href="#" class="ml-8 text-gray-500 group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
+          <a href="{{ route('wishlist.view', ['headerFooterId' => $headerFooter->id]) }}" class="ml-8 text-gray-500 group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
             <i class="fas fa-heart"></i>
             <span id="wishlist-count" class="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">0</span>
           </a>

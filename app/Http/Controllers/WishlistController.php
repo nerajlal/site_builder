@@ -5,9 +5,51 @@ namespace App\Http\Controllers;
 use App\Models\Wishlist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use App\Models\HeaderFooter;
+use App\Models\SelectedTemplate;
 
 class WishlistController extends Controller
 {
+    public function getWishlistItems($headerFooterId)
+    {
+        $headerFooter = HeaderFooter::find($headerFooterId);
+        if (!$headerFooter) {
+            abort(404, 'Header/Footer not found');
+        }
+
+        $siteCustomerId = Session::get('site_customer_id');
+        $sessionId = Session::getId();
+
+        $wishlistQuery = Wishlist::where('header_footer_id', $headerFooterId)
+            ->where(function ($query) use ($siteCustomerId, $sessionId) {
+                if ($siteCustomerId) {
+                    $query->where('site_customer_id', $siteCustomerId);
+                } else {
+                    $query->where('session_id', $sessionId);
+                }
+            });
+
+        $wishlistItems = $wishlistQuery->with('product')->get();
+
+        // Determine the template to use
+        $selectedTemplate = SelectedTemplate::where('header_footer_id', $headerFooterId)->first();
+        $templateId = '1'; // Default to 1
+        if ($selectedTemplate) {
+            preg_match('/template(\d+)/', $selectedTemplate->template_name, $matches);
+            if (isset($matches[1])) {
+                $templateId = $matches[1];
+            }
+        }
+
+        $viewName = 'template' . $templateId . '.wishlist' . $templateId;
+
+        return view($viewName, [
+            'is_default' => false,
+            'headerFooter' => $headerFooter,
+            'wishlistItems' => $wishlistItems,
+        ]);
+    }
+
     public function addToWishlist(Request $request, $headerFooterId)
     {
         $request->validate([
