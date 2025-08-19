@@ -123,10 +123,10 @@
         <button onclick="openLoginModal()" class="text-gray-400 hover:text-white">
           <i class="fas fa-user"></i>
         </button>
-        <button class="text-gray-400 hover:text-white relative">
+        <a href="{{ route('cart.view', ['headerFooterId' => $headerFooter->id]) }}" class="text-gray-400 hover:text-white relative">
           <i class="fas fa-shopping-bag"></i>
           <span id="cart-count" class="absolute -top-2 -right-2 bg-pink-600 text-black text-xs w-5 h-5 flex items-center justify-center rounded-full">0</span>
-        </button>
+        </a>
       </div>
     </div>
   </header>
