@@ -4,7 +4,7 @@
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8" style="font-family: 'Montserrat', sans-serif;">
         <!-- Page Title -->
         <div class="mb-8 text-center">
-            <h3 class="text-3xl font-semibold mb-4" style="font-family: 'Cormorant Garamond', serif;">Our <span class="text-[#ec4899]">Collection</span></h3>
+            <h3 class="text-3xl font-semibold mb-4" style="font-family: 'Cormorant Garamond', serif;">Our <span class="text-[#7e22ce]">Collection</span></h3>
             <p class="text-gray-600 max-w-2xl mx-auto">Discover our handpicked selection of fashion pieces</p>
         </div>
 
@@ -33,7 +33,7 @@
             <!-- Static Product Cards -->
             <div class="bg-white rounded-lg overflow-hidden boutique-card">
                 <div class="relative">
-                    <span class="absolute top-3 left-3 bg-[#ec4899] text-white px-3 py-1 rounded-full text-xs font-medium z-10">NEW</span>
+                    <span class="absolute top-3 left-3 bg-[#7e22ce] text-white px-3 py-1 rounded-full text-xs font-medium z-10">NEW</span>
                     <div class="aspect-square bg-pink-50 flex items-center justify-center">
                         <img src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=705&q=80" alt="Elegant Dress" class="w-full h-full object-cover">
                     </div>
@@ -79,7 +79,7 @@
             </div>
             <div class="bg-white rounded-lg overflow-hidden boutique-card">
                 <div class="relative">
-                    <span class="absolute top-3 left-3 bg-[#ec4899] text-white px-3 py-1 rounded-full text-xs font-medium z-10">LIMITED</span>
+                    <span class="absolute top-3 left-3 bg-[#7e22ce] text-white px-3 py-1 rounded-full text-xs font-medium z-10">LIMITED</span>
                     <div class="aspect-square bg-pink-50 flex items-center justify-center">
                         <img src="https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Silk Scarf" class="w-full h-full object-cover">
                     </div>
@@ -130,7 +130,7 @@
         <!-- Page Title -->
         <div class="mb-8 text-center">
             <h3 class="text-3xl font-semibold mb-4" style="font-family: 'Cormorant Garamond', serif;">
-                <span class="text-[#ec4899]">{{ $section2->main_text2 ?? 'Best Collections' }}</span>
+                <span class="text-[#7e22ce]">{{ $section2->main_text2 ?? 'Best Collections' }}</span>
             </h3>
             <p class="text-gray-600 mt-2">{{ count($products) }} products</p>
         </div>
@@ -162,7 +162,7 @@
                     <div class="bg-white rounded-lg overflow-hidden boutique-card">
                         <div class="relative">
                         @if($product->is_new)
-                            <span class="absolute top-3 left-3 bg-[#ec4899] text-white px-3 py-1 rounded-full text-xs font-medium z-10">NEW</span>
+                            <span class="absolute top-3 left-3 bg-[#7e22ce] text-white px-3 py-1 rounded-full text-xs font-medium z-10">NEW</span>
                         @elseif($product->is_limited)
                              <span class="absolute top-3 left-3 bg-red-600 text-white px-3 py-1 rounded-full text-xs font-medium z-10">LIMITED</span>
                         @endif

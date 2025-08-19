@@ -56,28 +56,28 @@
     <section id="features" class="py-20 px-6 bg-white">
       <div class="max-w-7xl mx-auto">
         <div class="text-center mb-16">
-          <h3 class="text-3xl font-semibold mb-4">The <span class="text-[#ec4899]">Art</span> of Style</h3>
+          <h3 class="text-3xl font-semibold mb-4">The <span class="text-[#7e22ce]">Art</span> of Style</h3>
           <p class="text-gray-600 max-w-2xl mx-auto">
             Each piece represents timeless elegance and refined taste
           </p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div class="p-8 text-center border-b border-[#ec4899]/20 hover:border-[#ec4899] transition-all duration-300">
-            <div class="text-[#ec4899] text-3xl mb-6">
+          <div class="p-8 text-center border-b border-[#7e22ce]/20 hover:border-[#7e22ce] transition-all duration-300">
+            <div class="text-[#7e22ce] text-3xl mb-6">
               <i class="fas fa-star"></i>
             </div>
             <h4 class="text-xl font-semibold mb-3">Premium Quality</h4>
             <p class="text-gray-600">Every garment is crafted with the finest materials and attention to detail</p>
           </div>
-          <div class="p-8 text-center border-b border-[#ec4899]/20 hover:border-[#ec4899] transition-all duration-300">
-            <div class="text-[#ec4899] text-3xl mb-6">
+          <div class="p-8 text-center border-b border-[#7e22ce]/20 hover:border-[#7e22ce] transition-all duration-300">
+            <div class="text-[#7e22ce] text-3xl mb-6">
               <i class="fas fa-history"></i>
             </div>
             <h4 class="text-xl font-semibold mb-3">Timeless Design</h4>
             <p class="text-gray-600">Classic silhouettes that never go out of style and always look elegant</p>
           </div>
-          <div class="p-8 text-center border-b border-[#ec4899]/20 hover:border-[#ec4899] transition-all duration-300">
-            <div class="text-[#ec4899] text-3xl mb-6">
+          <div class="p-8 text-center border-b border-[#7e22ce]/20 hover:border-[#7e22ce] transition-all duration-300">
+            <div class="text-[#7e22ce] text-3xl mb-6">
               <i class="fas fa-magic"></i>
             </div>
             <h4 class="text-xl font-semibold mb-3">Personal Touch</h4>
@@ -96,22 +96,22 @@
           <p class="text-gray-600 max-w-2xl mx-auto">{{ $section1->sub_heading }}</p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div class="p-8 text-center border-b border-[#ec4899]/20 hover:border-[#ec4899] transition-all duration-300">
-            <div class="text-[#ec4899] text-3xl mb-6">
+          <div class="p-8 text-center border-b border-[#7e22ce]/20 hover:border-[#7e22ce] transition-all duration-300">
+            <div class="text-[#7e22ce] text-3xl mb-6">
               <i class="fas fa-star"></i>
             </div>
             <h4 class="text-xl font-semibold mb-3">Premium Quality</h4>
             <p class="text-gray-600">Every garment is crafted with the finest materials and attention to detail</p>
           </div>
-          <div class="p-8 text-center border-b border-[#ec4899]/20 hover:border-[#ec4899] transition-all duration-300">
-            <div class="text-[#ec4899] text-3xl mb-6">
+          <div class="p-8 text-center border-b border-[#7e22ce]/20 hover:border-[#7e22ce] transition-all duration-300">
+            <div class="text-[#7e22ce] text-3xl mb-6">
               <i class="fas fa-history"></i>
             </div>
             <h4 class="text-xl font-semibold mb-3">Timeless Design</h4>
             <p class="text-gray-600">Classic silhouettes that never go out of style and always look elegant</p>
           </div>
-          <div class="p-8 text-center border-b border-[#ec4899]/20 hover:border-[#ec4899] transition-all duration-300">
-            <div class="text-[#ec4899] text-3xl mb-6">
+          <div class="p-8 text-center border-b border-[#7e22ce]/20 hover:border-[#7e22ce] transition-all duration-300">
+            <div class="text-[#7e22ce] text-3xl mb-6">
               <i class="fas fa-magic"></i>
             </div>
             <h4 class="text-xl font-semibold mb-3">Personal Touch</h4>
@@ -127,7 +127,7 @@
   <div class="max-w-7xl mx-auto">
     <div class="text-center mb-16">
       <h3 class="text-3xl font-semibold mb-4">
-        Fashion <span class="text-[#ec4899]">Categories</span>
+        Fashion <span class="text-[#7e22ce]">Categories</span>
       </h3>
       <p class="text-gray-600 max-w-2xl mx-auto">
         Explore our curated collection of premium fashion categories
@@ -169,7 +169,7 @@
     <section id="collection" class="bg-white">
       <div class="max-w-7xl mx-auto py-20 px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16">
-          <h3 class="text-3xl font-semibold mb-4">Our <span class="text-[#ec4899]">Collection</span></h3>
+          <h3 class="text-3xl font-semibold mb-4">Our <span class="text-[#7e22ce]">Collection</span></h3>
           <p class="text-gray-600 max-w-2xl mx-auto">Discover our handpicked selection of fashion pieces</p>
         </div>
         <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
@@ -301,12 +301,12 @@
     <section class="py-20 px-6 bg-[#faf9f7]">
       <div class="max-w-7xl mx-auto">
         <div class="text-center mb-16">
-          <h3 class="text-3xl font-semibold mb-4">Client <span class="text-[#ec4899]">Love</span></h3>
+          <h3 class="text-3xl font-semibold mb-4">Client <span class="text-[#7e22ce]">Love</span></h3>
           <p class="text-gray-600 max-w-2xl mx-auto">Experiences from our amazing community of fashion lovers</p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div class="bg-white p-8 rounded-lg shadow-sm">
-            <div class="flex mb-4 text-[#ec4899]">
+            <div class="flex mb-4 text-[#7e22ce]">
               <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
             </div>
             <p class="text-gray-700 mb-6 italic">"The personal styling session was a game-changer! I discovered a new sense of confidence and a wardrobe that truly represents me."</p>
@@ -321,7 +321,7 @@
             </div>
           </div>
           <div class="bg-white p-8 rounded-lg shadow-sm">
-            <div class="flex mb-4 text-[#ec4899]">
+            <div class="flex mb-4 text-[#7e22ce]">
               <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
             </div>
             <p class="text-gray-700 mb-6 italic">"An absolutely stunning collection with unparalleled quality. I always find unique pieces that I can't get anywhere else."</p>
@@ -336,7 +336,7 @@
             </div>
           </div>
           <div class="bg-white p-8 rounded-lg shadow-sm">
-            <div class="flex mb-4 text-[#ec4899]">
+            <div class="flex mb-4 text-[#7e22ce]">
               <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
             </div>
             <p class="text-gray-700 mb-6 italic">"The customer service is exceptional. They went above and beyond to ensure my order was perfect. I'm a customer for life!"</p>
@@ -414,11 +414,11 @@
   <section id="contact" class="py-20 px-6 bg-white">
     <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
       <div>
-        <h3 class="text-3xl font-semibold mb-6">Contact Our <span class="text-[#ec4899]">Stylists</span></h3>
+        <h3 class="text-3xl font-semibold mb-6">Contact Our <span class="text-[#7e22ce]">Stylists</span></h3>
         <p class="text-gray-600 mb-8">Our fashion specialists are available to assist you with any inquiries about our collection or services.</p>
         <div class="space-y-6">
           <div class="flex items-start">
-            <div class="text-[#ec4899] text-xl w-10 mr-4 mt-1">
+            <div class="text-[#7e22ce] text-xl w-10 mr-4 mt-1">
               <i class="fas fa-phone"></i>
             </div>
             <div>
@@ -428,7 +428,7 @@
             </div>
           </div>
           <div class="flex items-start">
-            <div class="text-[#ec4899] text-xl w-10 mr-4 mt-1">
+            <div class="text-[#7e22ce] text-xl w-10 mr-4 mt-1">
               <i class="fas fa-envelope"></i>
             </div>
             <div>
@@ -438,7 +438,7 @@
             </div>
           </div>
           <div class="flex items-start">
-            <div class="text-[#ec4899] text-xl w-10 mr-4 mt-1">
+            <div class="text-[#7e22ce] text-xl w-10 mr-4 mt-1">
               <i class="fas fa-map-marker-alt"></i>
             </div>
             <div>
@@ -454,15 +454,15 @@
         <form class="space-y-4">
           <div>
             <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Name</label>
-            <input type="text" id="name" class="w-full px-4 py-2 bg-white border border-gray-200 rounded focus:outline-none focus:ring-1 focus:ring-[#ec4899]">
+            <input type="text" id="name" class="w-full px-4 py-2 bg-white border border-gray-200 rounded focus:outline-none focus:ring-1 focus:ring-[#7e22ce]">
           </div>
           <div>
             <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-            <input type="email" id="email" class="w-full px-4 py-2 bg-white border border-gray-200 rounded focus:outline-none focus:ring-1 focus:ring-[#ec4899]">
+            <input type="email" id="email" class="w-full px-4 py-2 bg-white border border-gray-200 rounded focus:outline-none focus:ring-1 focus:ring-[#7e22ce]">
           </div>
           <div>
             <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Message</label>
-            <textarea id="message" rows="4" class="w-full px-4 py-2 bg-white border border-gray-200 rounded focus:outline-none focus:ring-1 focus:ring-[#ec4899]"></textarea>
+            <textarea id="message" rows="4" class="w-full px-4 py-2 bg-white border border-gray-200 rounded focus:outline-none focus:ring-1 focus:ring-[#7e22ce]"></textarea>
           </div>
           <button type="submit" class="w-full btn-pink py-3 rounded font-medium">
             Send Message
@@ -479,7 +479,7 @@
         <p class="text-gray-600 mb-8">{{ $contactus->contact_sub ?? 'Our fashion specialists are available to assist you.' }}</p>
         <div class="space-y-6">
           <div class="flex items-start">
-            <div class="text-[#d4af37] text-xl w-10 mr-4 mt-1">
+            <div class="text-[#7e22ce] text-xl w-10 mr-4 mt-1">
               <i class="fas fa-phone"></i>
             </div>
             <div>
@@ -489,7 +489,7 @@
             </div>
           </div>
           <div class="flex items-start">
-            <div class="text-[#d4af37] text-xl w-10 mr-4 mt-1">
+            <div class="text-[#7e22ce] text-xl w-10 mr-4 mt-1">
               <i class="fas fa-envelope"></i>
             </div>
             <div>
@@ -499,7 +499,7 @@
             </div>
           </div>
           <div class="flex items-start">
-            <div class="text-[#d4af37] text-xl w-10 mr-4 mt-1">
+            <div class="text-[#7e22ce] text-xl w-10 mr-4 mt-1">
               <i class="fas fa-map-marker-alt"></i>
             </div>
             <div>
@@ -515,15 +515,15 @@
         <form class="space-y-4">
           <div>
             <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Name</label>
-            <input type="text" id="name" class="w-full px-4 py-2 bg-white border border-gray-200 rounded focus:outline-none focus:ring-1 focus:ring-[#ec4899]">
+            <input type="text" id="name" class="w-full px-4 py-2 bg-white border border-gray-200 rounded focus:outline-none focus:ring-1 focus:ring-[#7e22ce]">
           </div>
           <div>
             <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-            <input type="email" id="email" class="w-full px-4 py-2 bg-white border border-gray-200 rounded focus:outline-none focus:ring-1 focus:ring-[#ec4899]">
+            <input type="email" id="email" class="w-full px-4 py-2 bg-white border border-gray-200 rounded focus:outline-none focus:ring-1 focus:ring-[#7e22ce]">
           </div>
           <div>
             <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Message</label>
-            <textarea id="message" rows="4" class="w-full px-4 py-2 bg-white border border-gray-200 rounded focus:outline-none focus:ring-1 focus:ring-[#ec4899]"></textarea>
+            <textarea id="message" rows="4" class="w-full px-4 py-2 bg-white border border-gray-200 rounded focus:outline-none focus:ring-1 focus:ring-[#7e22ce]"></textarea>
           </div>
           <button type="submit" class="w-full btn-pink py-3 rounded font-medium">
             Send Message
@@ -534,7 +534,7 @@
   </section>
 @endif
   <!-- Newsletter -->
-  <section class="py-16 px-6 bg-[#ec4899] text-white">
+  <section class="py-16 px-6 bg-[#7e22ce] text-white">
     <div class="max-w-4xl mx-auto text-center">
       <h3 class="text-3xl font-semibold mb-4">Join Our <span class="text-white">Style Circle</span></h3>
       <p class="text-white/90 mb-8 max-w-2xl mx-auto">Subscribe for exclusive access to new arrivals, special offers, and private styling events.</p>

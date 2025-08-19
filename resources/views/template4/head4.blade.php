@@ -44,7 +44,7 @@
                     <a href="#" class="hover:text-gray-200"><i class="fab fa-instagram"></i></a>
                 </div>
                 <div class="text-sm">
-                    Free shipping on orders over $50
+                    Free shipping on orders over ₹1000
                 </div>
             </div>
         </div>
