@@ -371,7 +371,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (orders.length > 0) {
             orders.forEach(order => {
                 const row = `
-                    <tr class="border-b">
+                    <tr class="border-b cursor-pointer hover:bg-gray-50 status-order-row" data-order-id="${order.id}">
                         <td class="p-2 text-sm text-gray-700">#${order.id}</td>
                         <td class="p-2 text-sm text-gray-500 text-center">${order.products_sum_quantity || 0}</td>
                         <td class="p-2 text-sm text-gray-500 text-right">${new Date(order.created_at).toLocaleDateString()}</td>
@@ -472,6 +472,23 @@ document.addEventListener('DOMContentLoaded', () => {
         websiteStatsSection.classList.add('hidden');
         websiteListSection.classList.remove('hidden');
         currentWebsiteId = null;
+    });
+
+    websiteStatsSection.addEventListener('click', async (e) => {
+        const row = e.target.closest('.status-order-row');
+        if (row) {
+            const orderId = row.dataset.orderId;
+            try {
+                const response = await fetch(`/orders/${orderId}/details`);
+                if (!response.ok) throw new Error('Failed to load order details');
+                const orderDetails = await response.json();
+                populateOrderDetailsModal(orderDetails);
+                openOrderDetailsModal();
+            } catch (error) {
+                console.error('Error fetching order details:', error);
+                alert('Failed to load order details.');
+            }
+        }
     });
 });
 </script>
