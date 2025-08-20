@@ -151,4 +151,14 @@ class OrderController extends Controller
             return response()->json(['success' => false, 'message' => 'Failed to update order status.'], 500);
         }
     }
+
+    public function show($order_id)
+    {
+        try {
+            $order = Order::with(['customer', 'products.product'])->findOrFail($order_id);
+            return response()->json($order);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'message' => 'Order not found.'], 404);
+        }
+    }
 }

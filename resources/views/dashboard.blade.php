@@ -81,6 +81,7 @@
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Amount</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                             </tr>
                         </thead>
                         <tbody id="orders-table-body" class="bg-white divide-y divide-gray-200">
@@ -92,6 +93,8 @@
         </div>
     </main>
 </div>
+
+@include('includes.order_details_modal')
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
@@ -147,6 +150,9 @@ document.addEventListener('DOMContentLoaded', () => {
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${new Date(order.created_at).toLocaleDateString()}</td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">₹${order.total_amount}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                    <button class="view-order-details-btn text-indigo-600 hover:text-indigo-900" data-order-id="${order.id}">View Detail</button>
+                                </td>
                             </tr>
                         `;
                         ordersTableBody.innerHTML += row;
@@ -173,8 +179,24 @@ document.addEventListener('DOMContentLoaded', () => {
                             }
                         });
                     });
+
+                    document.querySelectorAll('.view-order-details-btn').forEach(button => {
+                        button.addEventListener('click', async (e) => {
+                            const orderId = e.target.dataset.orderId;
+                            try {
+                                const response = await fetch(`/orders/${orderId}/details`);
+                                if (!response.ok) throw new Error('Failed to load order details');
+                                const orderDetails = await response.json();
+                                populateOrderDetailsModal(orderDetails);
+                                openOrderDetailsModal();
+                            } catch (error) {
+                                console.error('Error fetching order details:', error);
+                                alert('Failed to load order details.');
+                            }
+                        });
+                    });
                 } else {
-                    ordersTableBody.innerHTML = '<tr><td colspan="5" class="text-center py-4">No recent orders found.</td></tr>';
+                    ordersTableBody.innerHTML = '<tr><td colspan="6" class="text-center py-4">No recent orders found.</td></tr>';
                 }
 
             } catch (error) {
