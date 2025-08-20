@@ -101,7 +101,12 @@ document.addEventListener('DOMContentLoaded', function () {
                     alert('Order placed successfully!');
                     window.location.href = '{{ route("template2.index2.customer", ["headerFooterId" => $headerFooter->id]) }}';
                 } else {
-                    alert('Error placing order: ' + data.message);
+                    if (data.redirect_to_profile) {
+                        alert(data.message);
+                        openProfileModal();
+                    } else {
+                        alert('Error placing order: ' + data.message);
+                    }
                 }
             })
             .catch(error => {

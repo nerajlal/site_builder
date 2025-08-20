@@ -58,6 +58,23 @@ class OrderController extends Controller
             return response()->json(['success' => false, 'message' => 'User not logged in.'], 401);
         }
 
+        $customer = \App\Models\SiteCustomer::find($siteCustomerId);
+        if (
+            !$customer ||
+            empty($customer->address_line_1) ||
+            empty($customer->city) ||
+            empty($customer->state) ||
+            empty($customer->postal_code) ||
+            empty($customer->country) ||
+            empty($customer->phone)
+        ) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Please update your profile with your shipping address and phone number before placing an order.',
+                'redirect_to_profile' => true
+            ], 400);
+        }
+
         $cartItems = Cart::where('header_footer_id', $headerFooterId)
             ->where('site_customer_id', $siteCustomerId)
             ->with('product')

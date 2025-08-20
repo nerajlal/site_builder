@@ -136,7 +136,7 @@
   </div>
 
   @include('includes.customer_auth_modal')
-  @include('includes.customer_profile_modal')
+  @include('includes.customer_profile_modal3')
 
   <script>
     // Check authentication status on page load
