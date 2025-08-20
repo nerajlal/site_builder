@@ -53,7 +53,10 @@ class OrderController extends Controller
                 ]);
 
                 // Decrease product stock
-                $product = Product::find($item->product_id);
+                $product = $item->product;
+                if ($product->quantity < $item->quantity) {
+                    throw new \Exception('Not enough stock for product: ' . $product->name);
+                }
                 $product->quantity -= $item->quantity;
                 $product->save();
             }
