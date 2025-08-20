@@ -96,7 +96,9 @@
         <div class="flex items-center space-x-4">
             <button id="notification-btn" class="text-gray-500 focus:outline-none relative">
                 <i class="fas fa-bell"></i>
-                <span class="absolute -top-1 -right-1 bg-pink-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">3</span>
+                @if($newOrderCount > 0)
+                    <span class="absolute -top-1 -right-1 bg-pink-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">{{ $newOrderCount }}</span>
+                @endif
             </button>
             <div id="profile-dropdown" class="relative">
                 <button id="profile-btn" class="flex items-center space-x-2 focus:outline-none" onclick="window.location.href='/profile'">
