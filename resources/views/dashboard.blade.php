@@ -98,36 +98,8 @@
                 </div>
             </div>
 
-            <!-- Status-specific Order Tables -->
-            <div class="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="bg-white rounded-lg shadow p-4">
-                    <h3 class="text-md font-semibold text-gray-800 mb-2">New</h3>
-                    <table class="w-full">
-                        <tbody id="new-orders-table"></tbody>
-                    </table>
-                </div>
-                <div class="bg-white rounded-lg shadow p-4">
-                    <h3 class="text-md font-semibold text-gray-800 mb-2">Pending</h3>
-                    <table class="w-full">
-                        <tbody id="pending-orders-table"></tbody>
-                    </table>
-                </div>
-                <div class="bg-white rounded-lg shadow p-4">
-                    <h3 class="text-md font-semibold text-gray-800 mb-2">Packed</h3>
-                    <table class="w-full">
-                        <tbody id="packed-orders-table"></tbody>
-                    </table>
-                </div>
-                <div class="bg-white rounded-lg shadow p-4">
-                    <h3 class="text-md font-semibold text-gray-800 mb-2">Ready to Ship</h3>
-                    <table class="w-full">
-                        <tbody id="ready-to-ship-orders-table"></tbody>
-                    </table>
-                </div>
-            </div>
-
             <!-- Recent Orders & Activity -->
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div class="mt-6 grid grid-cols-1 lg:grid-cols-3 gap-6">
                 <div class="lg:col-span-2 bg-white rounded-lg shadow overflow-hidden">
                     <div class="px-6 py-4 border-b border-gray-200 flex flex-col md:flex-row justify-between md:items-center space-y-4 md:space-y-0">
                     <h2 class="text-lg font-semibold text-gray-800">Recent Orders</h2>
@@ -179,6 +151,34 @@
                     <div id="activity-feed" class="space-y-4">
                         <!-- Activity items will be added here by JavaScript -->
                     </div>
+                </div>
+            </div>
+
+            <!-- Status-specific Order Tables -->
+            <div class="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white rounded-lg shadow p-4">
+                    <h3 class="text-md font-semibold text-gray-800 mb-2">New</h3>
+                    <table class="w-full">
+                        <tbody id="new-orders-table"></tbody>
+                    </table>
+                </div>
+                <div class="bg-white rounded-lg shadow p-4">
+                    <h3 class="text-md font-semibold text-gray-800 mb-2">Pending</h3>
+                    <table class="w-full">
+                        <tbody id="pending-orders-table"></tbody>
+                    </table>
+                </div>
+                <div class="bg-white rounded-lg shadow p-4">
+                    <h3 class="text-md font-semibold text-gray-800 mb-2">Packed</h3>
+                    <table class="w-full">
+                        <tbody id="packed-orders-table"></tbody>
+                    </table>
+                </div>
+                <div class="bg-white rounded-lg shadow p-4">
+                    <h3 class="text-md font-semibold text-gray-800 mb-2">Ready to Ship</h3>
+                    <table class="w-full">
+                        <tbody id="ready-to-ship-orders-table"></tbody>
+                    </table>
                 </div>
             </div>
         </div>
