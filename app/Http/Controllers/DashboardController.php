@@ -41,6 +41,19 @@ class DashboardController extends Controller
         $inventoryItemsCount = Product::where('header_footer_id', $website_id)->count();
         $lowStockItemsCount = Product::where('header_footer_id', $website_id)->where('quantity', '<', 10)->count();
 
+        // Percentage change calculations
+        $salesCurrentMonth = Order::where('header_footer_id', $website_id)->whereMonth('created_at', now()->month)->sum('total_amount');
+        $salesLastMonth = Order::where('header_footer_id', $website_id)->whereMonth('created_at', now()->subMonth()->month)->sum('total_amount');
+        $salesChange = $salesLastMonth > 0 ? (($salesCurrentMonth - $salesLastMonth) / $salesLastMonth) * 100 : 0;
+
+        $productsSoldCurrentMonth = Order::where('header_footer_id', $website_id)->whereMonth('created_at', now()->month)->withCount('products')->get()->sum('products_count');
+        $productsSoldLastMonth = Order::where('header_footer_id', $website_id)->whereMonth('created_at', now()->subMonth()->month)->withCount('products')->get()->sum('products_count');
+        $productsSoldChange = $productsSoldLastMonth > 0 ? (($productsSoldCurrentMonth - $productsSoldLastMonth) / $productsSoldLastMonth) * 100 : 0;
+
+        $customersCurrentMonth = Order::where('header_footer_id', $website_id)->whereMonth('created_at', now()->month)->distinct('site_customer_id')->count();
+        $customersLastMonth = Order::where('header_footer_id', $website_id)->whereMonth('created_at', now()->subMonth()->month)->distinct('site_customer_id')->count();
+        $customersChange = $customersLastMonth > 0 ? (($customersCurrentMonth - $customersLastMonth) / $customersLastMonth) * 100 : 0;
+
         $date_filter = $request->input('date_filter', 'all');
         $status_filter = $request->input('status_filter', 'all');
 
@@ -76,6 +89,9 @@ class DashboardController extends Controller
             'inventory_items' => $inventoryItemsCount,
             'low_stock_items' => $lowStockItemsCount,
             'orders' => $orders,
+            'sales_change' => round($salesChange, 2),
+            'products_sold_change' => round($productsSoldChange, 2),
+            'customers_change' => round($customersChange, 2),
         ]);
     }
 

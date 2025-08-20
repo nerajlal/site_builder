@@ -49,21 +49,52 @@
             <!-- Stats Cards -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
                 <div class="bg-white rounded-lg shadow p-6">
-                    <p class="text-sm font-medium text-gray-500">Total Sales</p>
-                    <p id="total-sales" class="text-2xl font-bold text-gray-800"></p>
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm font-medium text-gray-500">Total Sales</p>
+                            <p id="total-sales" class="text-2xl font-bold text-gray-800"></p>
+                            <p id="sales-change" class="text-sm"></p>
+                        </div>
+                        <div class="p-3 rounded-full bg-pink-100 text-pink-600">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                    </div>
                 </div>
                 <div class="bg-white rounded-lg shadow p-6">
-                    <p class="text-sm font-medium text-gray-500">Products Sold</p>
-                    <p id="products-sold" class="text-2xl font-bold text-gray-800"></p>
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm font-medium text-gray-500">Products Sold</p>
+                            <p id="products-sold" class="text-2xl font-bold text-gray-800"></p>
+                            <p id="products-sold-change" class="text-sm"></p>
+                        </div>
+                        <div class="p-3 rounded-full bg-blue-100 text-blue-600">
+                            <i class="fas fa-tshirt"></i>
+                        </div>
+                    </div>
                 </div>
                 <div class="bg-white rounded-lg shadow p-6">
-                    <p class="text-sm font-medium text-gray-500">Active Customers</p>
-                    <p id="active-customers" class="text-2xl font-bold text-gray-800"></p>
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm font-medium text-gray-500">Active Customers</p>
+                            <p id="active-customers" class="text-2xl font-bold text-gray-800"></p>
+                            <p id="customers-change" class="text-sm"></p>
+                        </div>
+                        <div class="p-3 rounded-full bg-purple-100 text-purple-600">
+                            <i class="fas fa-users"></i>
+                        </div>
+                    </div>
                 </div>
                 <div class="bg-white rounded-lg shadow p-6">
-                    <p class="text-sm font-medium text-gray-500">Inventory Items</p>
-                    <p id="inventory-items" class="text-2xl font-bold text-gray-800"></p>
-                    <p id="low-stock-items" class="text-sm text-orange-500"></p>
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm font-medium text-gray-500">Inventory Items</p>
+                            <p id="inventory-items" class="text-2xl font-bold text-gray-800"></p>
+                            <p id="low-stock-items" class="text-sm text-orange-500"></p>
+                        </div>
+                        <div class="p-3 rounded-full bg-yellow-100 text-yellow-600">
+                            <i class="fas fa-boxes"></i>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -141,6 +172,18 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('active-customers').textContent = stats.active_customers;
             document.getElementById('inventory-items').textContent = stats.inventory_items;
             document.getElementById('low-stock-items').textContent = `${stats.low_stock_items} items low stock`;
+
+            const salesChangeEl = document.getElementById('sales-change');
+            salesChangeEl.textContent = `${stats.sales_change >= 0 ? '+' : ''}${stats.sales_change}% from last month`;
+            salesChangeEl.className = `text-sm ${stats.sales_change >= 0 ? 'text-green-500' : 'text-red-500'}`;
+
+            const productsSoldChangeEl = document.getElementById('products-sold-change');
+            productsSoldChangeEl.textContent = `${stats.products_sold_change >= 0 ? '+' : ''}${stats.products_sold_change}% from last month`;
+            productsSoldChangeEl.className = `text-sm ${stats.products_sold_change >= 0 ? 'text-green-500' : 'text-red-500'}`;
+
+            const customersChangeEl = document.getElementById('customers-change');
+            customersChangeEl.textContent = `${stats.customers_change >= 0 ? '+' : ''}${stats.customers_change}% from last month`;
+            customersChangeEl.className = `text-sm ${stats.customers_change >= 0 ? 'text-green-500' : 'text-red-500'}`;
 
             const ordersTableBody = document.getElementById('orders-table-body');
             ordersTableBody.innerHTML = '';
