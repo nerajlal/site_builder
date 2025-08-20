@@ -107,25 +107,32 @@
                 </div>
             </div>
             <div id="profile-dropdown" class="relative">
-                <button id="profile-btn" class="flex items-center space-x-2 focus:outline-none" onclick="window.location.href='/profile'">
+                <button id="profile-btn" class="flex items-center space-x-2 focus:outline-none">
                     <img class="w-8 h-8 rounded-full" src="https://static.vecteezy.com/system/resources/previews/019/879/186/non_2x/user-icon-on-transparent-background-free-png.png" alt="User profile">
                 </button>
 
-                <div id="dropdown-menu" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10">
-                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Your Profile</a>
-                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings</a>
-                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sign out</a>
+                <div id="profile-dropdown-menu" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10">
+                    <a href="/profile" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Your Profile</a>
+                    <button onclick="document.getElementById('logout-form').submit();" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sign out</button>
                 </div>
             </div>
         </div>
     </header>
 
+<form id="logout-form" action="/logout" method="POST" style="display: none;">
+    @csrf
+</form>
+
 <script>
 document.addEventListener('DOMContentLoaded', () => {
     const notificationBtn = document.getElementById('notification-btn');
     const notificationDropdown = document.getElementById('notification-dropdown');
+    const profileBtn = document.getElementById('profile-btn');
+    const profileDropdown = document.getElementById('profile-dropdown-menu');
 
-    notificationBtn.addEventListener('click', async () => {
+    notificationBtn.addEventListener('click', async (e) => {
+        e.stopPropagation();
+        profileDropdown.classList.add('hidden');
         notificationDropdown.classList.toggle('hidden');
         if (!notificationDropdown.classList.contains('hidden')) {
             try {
@@ -151,10 +158,19 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Close dropdown when clicking outside
+    profileBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        notificationDropdown.classList.add('hidden');
+        profileDropdown.classList.toggle('hidden');
+    });
+
+    // Close dropdowns when clicking outside
     window.addEventListener('click', function(e) {
-        if (!notificationBtn.contains(e.target)) {
+        if (!notificationBtn.contains(e.target) && !notificationDropdown.contains(e.target)) {
             notificationDropdown.classList.add('hidden');
+        }
+        if (!profileBtn.contains(e.target) && !profileDropdown.contains(e.target)) {
+            profileDropdown.classList.add('hidden');
         }
     });
 });
