@@ -70,7 +70,7 @@
                         <span class="text-gray-900">Total</span>
                         <span id="cart-total" class="text-pink-600">₹{{ number_format($totalPrice, 2) }}</span>
                     </div>
-                    <button class="w-full mt-6 bg-pink-600 hover:bg-pink-700 text-white py-3 px-4 rounded-lg font-bold text-lg transition">
+                    <button id="checkout-btn" class="w-full mt-6 bg-pink-600 hover:bg-pink-700 text-white py-3 px-4 rounded-lg font-bold text-lg transition">
                         Proceed to Checkout
                     </button>
                     <a href="{{ route('template3.product3.customer', ['headerFooterId' => $headerFooter->id]) }}" class="block text-center mt-4 text-pink-600 hover:text-pink-500 font-medium">
@@ -84,6 +84,33 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
+    const checkoutBtn = document.getElementById('checkout-btn');
+
+    if(checkoutBtn) {
+        checkoutBtn.addEventListener('click', function () {
+            fetch('{{ route("order.place", ["headerFooterId" => $headerFooter->id]) }}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                },
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Order placed successfully!');
+                    window.location.href = '{{ route("template3.index3.customer", ["headerFooterId" => $headerFooter->id]) }}';
+                } else {
+                    alert('Error placing order: ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred while placing the order.');
+            });
+        });
+    }
+
     const removeButtons = document.querySelectorAll('.remove-item-btn');
 
     removeButtons.forEach(button => {

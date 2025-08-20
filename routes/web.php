@@ -17,6 +17,7 @@ use App\Http\Controllers\TemplateViewController;
 use App\Http\Controllers\Customer\SiteCustomerAuthController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\WishlistController;
 
 // Public routes
@@ -112,6 +113,9 @@ Route::post('/cart/add/{headerFooterId}', [CartController::class, 'addToCart'])-
 Route::get('/cart/count/{headerFooterId}', [CartController::class, 'getCartCount'])->name('cart.count');
 Route::get('/cart/{headerFooterId}', [CartController::class, 'getCartItems'])->name('cart.view');
 Route::post('/cart/remove', [CartController::class, 'removeFromCart'])->name('cart.remove');
+
+// Order routes
+Route::post('/order/place/{headerFooterId}', [OrderController::class, 'placeOrder'])->name('order.place');
 
 // Wishlist routes
 Route::get('/wishlist/{headerFooterId}', [WishlistController::class, 'getWishlistItems'])->name('wishlist.view');
