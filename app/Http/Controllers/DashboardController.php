@@ -93,12 +93,13 @@ class DashboardController extends Controller
         $recentCustomers = SiteCustomer::where('header_footer_id', $website_id)->orderBy('created_at', 'desc')->take(5)->get();
 
         $activities = $recentOrdersForActivity->map(function($order) {
-            return ['type' => 'new_order', 'data' => $order, 'created_at' => $order->created_at];
+            return ['type' => 'new_order', 'data' => $order, 'time_ago' => $order->created_at->diffForHumans()];
         })->concat($recentCustomers->map(function($customer) {
-            return ['type' => 'new_customer', 'data' => $customer, 'created_at' => $customer->created_at];
+            return ['type' => 'new_customer', 'data' => $customer, 'time_ago' => $customer->created_at->diffForHumans()];
         }))->sortByDesc('created_at')->take(5);
 
         return response()->json([
+            'activities' => $activities->values()->all(),
             'total_sales' => number_format($totalSales, 2),
             'products_sold' => $productsSoldCount,
             'active_customers' => $activeCustomersCount,
