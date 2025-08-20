@@ -155,7 +155,7 @@
             </div>
 
             <!-- Status-specific Order Tables -->
-            <div class="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="mt-6 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
                 <div class="bg-white rounded-lg shadow p-4">
                     <h3 class="text-md font-semibold text-gray-800 mb-2">New</h3>
                     <table class="w-full">
@@ -206,6 +206,19 @@
                             </tr>
                         </thead>
                         <tbody id="ready-to-ship-orders-table"></tbody>
+                    </table>
+                </div>
+                <div class="bg-white rounded-lg shadow p-4">
+                    <h3 class="text-md font-semibold text-gray-800 mb-2">Shipped</h3>
+                    <table class="w-full">
+                        <thead>
+                            <tr class="text-xs text-gray-500 uppercase">
+                                <th class="p-2 text-left">ID</th>
+                                <th class="p-2 text-center">Items</th>
+                                <th class="p-2 text-right">Date</th>
+                            </tr>
+                        </thead>
+                        <tbody id="shipped-orders-table"></tbody>
                     </table>
                 </div>
             </div>
@@ -287,6 +300,7 @@ document.addEventListener('DOMContentLoaded', () => {
             populateStatusTable('pending-orders-table', stats.pending_orders);
             populateStatusTable('packed-orders-table', stats.packed_orders);
             populateStatusTable('ready-to-ship-orders-table', stats.ready_to_ship_orders);
+            populateStatusTable('shipped-orders-table', stats.shipped_orders);
 
             const ordersTableBody = document.getElementById('orders-table-body');
             ordersTableBody.innerHTML = '';

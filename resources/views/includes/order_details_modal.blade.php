@@ -36,6 +36,7 @@
   }
 
   function populateOrderDetailsModal(order) {
+    document.getElementById('modal-content').dataset.orderId = order.id;
     // Order Info
     const orderInfo = `
       <h4 class="text-lg font-semibold border-b mb-2 pb-2">Order Information</h4>
@@ -43,8 +44,16 @@
         <p><strong>Order ID:</strong> #${order.id}</p>
         <p><strong>Date:</strong> ${new Date(order.created_at).toLocaleString()}</p>
         <p><strong>Total Amount:</strong> ₹${order.total_amount}</p>
-        <p><strong>Status:</strong> ${getStatusText(order.status)}</p>
+        <div>
+            <p><strong>Status:</strong> ${getStatusText(order.status)}</p>
+        </div>
       </div>
+       <div class="mt-2">
+            <label for="modal-status-dropdown" class="block text-sm font-medium text-gray-700">Update Status</label>
+            <select id="modal-status-dropdown" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                ${Object.entries({ 0: 'New', 1: 'Pending', 2: 'Packed', 3: 'Ready to Ship', 4: 'Shipped', 5: 'Out for Delivery', 6: 'Delivered', 7: 'Cancelled' }).map(([key, value]) => `<option value="${key}" ${key == order.status ? 'selected' : ''}>${value}</option>`).join('')}
+            </select>
+        </div>
     `;
     document.getElementById('order-info').innerHTML = orderInfo;
 
@@ -101,4 +110,55 @@
     ];
     return parts.filter(part => part).join(', ') || 'N/A';
   }
+
+    document.addEventListener('DOMContentLoaded', () => {
+    const modalContent = document.getElementById('modal-content');
+    if (modalContent) {
+        modalContent.addEventListener('change', async (e) => {
+            if (e.target.id === 'modal-status-dropdown') {
+                const orderId = modalContent.dataset.orderId;
+                const newStatus = e.target.value;
+
+                if (!orderId) {
+                    console.error('Order ID not found');
+                    return;
+                }
+
+                try {
+                    const response = await fetch(`/orders/${orderId}/status`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                        },
+                        body: JSON.stringify({ status: newStatus })
+                    });
+
+                    if (!response.ok) {
+                        const errorData = await response.json();
+                        throw new Error(errorData.message || 'Failed to update status');
+                    }
+
+                    // Refresh dashboard data
+                    if (typeof fetchAndDisplayStats === 'function' && typeof currentWebsiteId !== 'undefined' && currentWebsiteId) {
+                        fetchAndDisplayStats(currentWebsiteId);
+                    }
+
+                    alert('Order status updated successfully!');
+
+                    // Update status text in the modal
+                    const orderInfoDiv = document.getElementById('order-info');
+                    const statusDiv = orderInfoDiv.querySelector('div:last-child > p');
+                    if (statusDiv) {
+                        statusDiv.innerHTML = `<strong>Status:</strong> ${getStatusText(newStatus)}`;
+                    }
+
+                } catch (error) {
+                    console.error('Error updating order status:', error);
+                    alert(`Failed to update order status: ${error.message}`);
+                }
+            }
+        });
+    }
+});
 </script>

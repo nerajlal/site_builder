@@ -97,6 +97,7 @@ class DashboardController extends Controller
         $pendingOrders = Order::where('header_footer_id', $website_id)->where('status', 1)->withSum('products', 'quantity')->get();
         $packedOrders = Order::where('header_footer_id', $website_id)->where('status', 2)->withSum('products', 'quantity')->get();
         $readyToShipOrders = Order::where('header_footer_id', $website_id)->where('status', 3)->withSum('products', 'quantity')->get();
+        $shippedOrders = Order::where('header_footer_id', $website_id)->where('status', 4)->withSum('products', 'quantity')->get();
 
         // Recent Activities
         $latestOrder = Order::where('header_footer_id', $website_id)->latest()->first();
@@ -107,6 +108,7 @@ class DashboardController extends Controller
             'pending_orders' => $pendingOrders,
             'packed_orders' => $packedOrders,
             'ready_to_ship_orders' => $readyToShipOrders,
+            'shipped_orders' => $shippedOrders,
             'latest_order' => $latestOrder ? [
                 'id' => $latestOrder->id,
                 'time_ago' => $latestOrder->created_at->diffForHumans()
