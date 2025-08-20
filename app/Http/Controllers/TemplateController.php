@@ -131,6 +131,19 @@ class TemplateController extends Controller
         return redirect()->back()->with('success', 'Settings updated successfully!');
     }
 
+    public function showSitesForTemplateSelection()
+    {
+        $userId = session('userid');
+        $headerFooters = HeaderFooter::where('user_id', $userId)->get();
+
+        return view('d_select_site_for_template', compact('headerFooters'));
+    }
+
+    public function showTemplateSelectionForSite($website_id)
+    {
+        return view('d_template', ['website_id' => $website_id]);
+    }
+
     public function showSites()
     {
         $userId = session('userid');

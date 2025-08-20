@@ -58,7 +58,8 @@
         <!-- Hidden Form for POSTing Template Selection -->
         <form id="templateForm" method="POST" action="{{ route('template.select') }}">
             @csrf
-            <input type="hidden" name="template" id="templateInput">
+            <input type="hidden" name="template_name" id="templateInput">
+            <input type="hidden" name="header_footer_id" value="{{ $website_id }}">
         </form>
 
         <!-- Templates Grid -->
