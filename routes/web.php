@@ -15,6 +15,7 @@ use App\Http\Controllers\ProductController4;
 use App\Http\Controllers\TemplateSelectionController;
 use App\Http\Controllers\TemplateViewController;
 use App\Http\Controllers\Customer\SiteCustomerAuthController;
+use App\Http\Controllers\Customer\SiteCustomerProfileController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
@@ -107,6 +108,10 @@ Route::post('/customer/send-otp', [SiteCustomerAuthController::class, 'sendOtp']
 Route::post('/customer/verify-otp', [SiteCustomerAuthController::class, 'verifyOtp']);
 Route::post('/customer/set-credentials', [SiteCustomerAuthController::class, 'setCredentials']);
 Route::post('/customer/sign-out', [SiteCustomerAuthController::class, 'signOut']);
+
+// Site customer profile endpoints (AJAX)
+Route::get('/customer/profile', [SiteCustomerProfileController::class, 'show']);
+Route::post('/customer/profile/update', [SiteCustomerProfileController::class, 'update']);
 
 // Cart routes
 Route::post('/cart/add/{headerFooterId}', [CartController::class, 'addToCart'])->name('cart.add');

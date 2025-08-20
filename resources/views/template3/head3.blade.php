@@ -94,6 +94,7 @@
               <button id="authButton" class="text-gray-500 hover:text-blue-600"><i class="fas fa-user"></i></button>
               <div id="account-dropdown" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50 text-black">
                 <a href="{{ route('orders.index', ['headerFooterId' => $headerFooter->id]) }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">My Orders</a>
+                <button onclick="openProfileModal()" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Update Profile</button>
                 <button id="signOutBtn" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sign Out</button>
               </div>
             </div>
@@ -135,6 +136,7 @@
   </div>
 
   @include('includes.customer_auth_modal')
+  @include('includes.customer_profile_modal')
 
   <script>
     // Check authentication status on page load
