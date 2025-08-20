@@ -9,9 +9,46 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use App\Models\HeaderFooter;
+use App\Models\SelectedTemplate;
 
 class OrderController extends Controller
 {
+    public function index($headerFooterId)
+    {
+        $headerFooter = HeaderFooter::find($headerFooterId);
+        if (!$headerFooter) {
+            abort(404, 'Header/Footer not found');
+        }
+
+        $siteCustomerId = Session::get('site_customer_id');
+        if (!$siteCustomerId) {
+            return redirect()->route('template1.index1.customer', ['headerFooterId' => $headerFooterId]);
+        }
+
+        $orders = Order::where('site_customer_id', $siteCustomerId)
+            ->with('products.product')
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        $selectedTemplate = SelectedTemplate::where('header_footer_id', $headerFooterId)->first();
+        $templateId = '1'; // Default to 1
+        if ($selectedTemplate) {
+            preg_match('/template(\d+)/', $selectedTemplate->template_name, $matches);
+            if (isset($matches[1])) {
+                $templateId = $matches[1];
+            }
+        }
+
+        $viewName = 'template' . $templateId . '.orders' . $templateId;
+
+        return view($viewName, [
+            'is_default' => false,
+            'headerFooter' => $headerFooter,
+            'orders' => $orders,
+        ]);
+    }
+
     public function placeOrder(Request $request, $headerFooterId)
     {
         $siteCustomerId = Session::get('site_customer_id');

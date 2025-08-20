@@ -107,9 +107,15 @@
         <i class="fas fa-shopping-cart"></i>
         <span id="cart-count" class="absolute -top-2 -right-2 bg-pink-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">{{ $cartCount ?? 0 }}</span>
       </a>
-      <button id="authButton" onclick="openLoginModal()" class="bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded transition hidden md:block">
-        <span id="authButtonText">Sign In</span>
-      </button>
+      <div class="relative hidden md:block">
+        <button id="authButton" class="bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded transition">
+          <span id="authButtonText">Sign In</span>
+        </button>
+        <div id="account-dropdown" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50">
+          <a href="{{ route('orders.index', ['headerFooterId' => $headerFooter->id]) }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">My Orders</a>
+          <button id="signOutBtn" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sign Out</button>
+        </div>
+      </div>
     </div>
   </header>
   <div id="mobile-menu" class="hidden md:hidden">
@@ -148,55 +154,77 @@
       try {
         const response = await fetch('/customer/check-auth');
         const data = await response.json();
-        
-        const authButton = document.getElementById('authButton');
-        const authButtonText = document.getElementById('authButtonText');
-        const authButtonMobile = document.getElementById('authButtonMobile');
-        const authButtonTextMobile = document.getElementById('authButtonTextMobile');
-        
-        if (data.signed_in) {
-          authButtonText.textContent = 'Account';
-          authButton.classList.remove('bg-pink-600', 'hover:bg-pink-700');
-          authButton.classList.add('bg-green-600', 'hover:bg-green-700');
-          authButtonTextMobile.textContent = 'Account';
-          authButtonMobile.classList.remove('bg-pink-600', 'hover:bg-pink-700');
-          authButtonMobile.classList.add('bg-green-600', 'hover:bg-green-700');
-        } else {
-          authButtonText.textContent = 'Sign In';
-          authButton.classList.remove('bg-green-600', 'hover:bg-green-700');
-          authButton.classList.add('bg-pink-600', 'hover:bg-pink-700');
-          authButtonTextMobile.textContent = 'Sign In';
-          authButtonMobile.classList.remove('bg-green-600', 'hover:bg-green-700');
-          authButtonMobile.classList.add('bg-pink-600', 'hover:bg-pink-700');
-        }
+        updateAuthUI(data.signed_in);
       } catch (error) {
         console.error('Error checking auth status:', error);
       }
     }
 
+    function updateAuthUI(signedIn) {
+        const authButton = document.getElementById('authButton');
+        const authButtonText = document.getElementById('authButtonText');
+        const accountDropdown = document.getElementById('account-dropdown');
+
+        const authButtonMobile = document.getElementById('authButtonMobile');
+        const authButtonTextMobile = document.getElementById('authButtonTextMobile');
+
+        if (signedIn) {
+            authButtonText.textContent = 'Account';
+            authButton.classList.remove('bg-pink-600', 'hover:bg-pink-700');
+            authButton.classList.add('bg-green-600', 'hover:bg-green-700');
+            authButton.onclick = () => {
+                accountDropdown.classList.toggle('hidden');
+            };
+
+            authButtonTextMobile.textContent = 'Account';
+            // Mobile can have a similar dropdown or just go to orders page
+            authButtonMobile.onclick = () => {
+                window.location.href = '{{ route("orders.index", ["headerFooterId" => $headerFooter->id]) }}';
+            };
+
+        } else {
+            authButtonText.textContent = 'Sign In';
+            authButton.classList.remove('bg-green-600', 'hover:bg-green-700');
+            authButton.classList.add('bg-pink-600', 'hover:bg-pink-700');
+            accountDropdown.classList.add('hidden');
+            authButton.onclick = () => openLoginModal();
+
+            authButtonTextMobile.textContent = 'Sign In';
+            authButtonMobile.onclick = () => openLoginModal();
+        }
+    }
+
     // Update auth button after sign in/out
     function updateAuthButton(signedIn) {
-      const authButton = document.getElementById('authButton');
-      const authButtonText = document.getElementById('authButtonText');
-      const authButtonMobile = document.getElementById('authButtonMobile');
-      const authButtonTextMobile = document.getElementById('authButtonTextMobile');
-      
-      if (signedIn) {
-        authButtonText.textContent = 'Account';
-        authButton.classList.remove('bg-pink-600', 'hover:bg-pink-700');
-        authButton.classList.add('bg-green-600', 'hover:bg-green-700');
-        authButtonTextMobile.textContent = 'Account';
-        authButtonMobile.classList.remove('bg-pink-600', 'hover:bg-pink-700');
-        authButtonMobile.classList.add('bg-green-600', 'hover:bg-green-700');
-      } else {
-        authButtonText.textContent = 'Sign In';
-        authButton.classList.remove('bg-green-600', 'hover:bg-green-700');
-        authButton.classList.add('bg-pink-600', 'hover:bg-pink-700');
-        authButtonTextMobile.textContent = 'Sign In';
-        authButtonMobile.classList.remove('bg-green-600', 'hover:bg-green-700');
-        authButtonMobile.classList.add('bg-pink-600', 'hover:bg-pink-700');
-      }
+        updateAuthUI(signedIn);
     }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const signOutBtn = document.getElementById('signOutBtn');
+        signOutBtn.addEventListener('click', async () => {
+            try {
+                await fetch('/customer/sign-out', {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                    }
+                });
+                updateAuthUI(false);
+                window.location.reload();
+            } catch (error) {
+                console.error('Error signing out:', error);
+            }
+        });
+
+        // Close dropdown when clicking outside
+        window.addEventListener('click', function(e) {
+            const authButton = document.getElementById('authButton');
+            const accountDropdown = document.getElementById('account-dropdown');
+            if (!authButton.contains(e.target) && !accountDropdown.contains(e.target)) {
+                accountDropdown.classList.add('hidden');
+            }
+        });
+    });
 
     // Override the modal functions to update button
     const originalOpenLoginModal = window.openLoginModal;

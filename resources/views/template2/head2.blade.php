@@ -120,9 +120,15 @@
         <button class="text-gray-400 hover:text-white">
           <i class="fas fa-search"></i>
         </button>
-        <button onclick="openLoginModal()" class="text-gray-400 hover:text-white">
-          <i class="fas fa-user"></i>
-        </button>
+        <div class="relative">
+          <button id="authButton" class="text-gray-400 hover:text-white">
+            <i class="fas fa-user"></i>
+          </button>
+          <div id="account-dropdown" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50 text-black">
+            <a href="{{ route('orders.index', ['headerFooterId' => $headerFooter->id]) }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">My Orders</a>
+            <button id="signOutBtn" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sign Out</button>
+          </div>
+        </div>
         <a href="{{ route('wishlist.view', ['headerFooterId' => $headerFooter->id]) }}" class="text-gray-400 hover:text-white relative">
             <i class="fas fa-heart"></i>
             <span id="wishlist-count" class="absolute -top-2 -right-2 bg-pink-600 text-black text-xs w-5 h-5 flex items-center justify-center rounded-full">{{ $wishlistCount ?? 0 }}</span>
@@ -167,35 +173,62 @@
       try {
         const response = await fetch('/customer/check-auth');
         const data = await response.json();
-        
-        const userButton = document.querySelector('button[onclick="openLoginModal()"]');
-        const userIcon = userButton.querySelector('i');
-        
-        if (data.signed_in) {
-          userIcon.className = 'fas fa-user-check text-green-400';
-          userButton.title = 'Account';
-        } else {
-          userIcon.className = 'fas fa-user text-gray-400';
-          userButton.title = 'Sign In';
-        }
+        updateAuthUI(data.signed_in);
       } catch (error) {
         console.error('Error checking auth status:', error);
       }
     }
 
+    function updateAuthUI(signedIn) {
+        const authButton = document.getElementById('authButton');
+        const userIcon = authButton.querySelector('i');
+        const accountDropdown = document.getElementById('account-dropdown');
+
+        if (signedIn) {
+            userIcon.className = 'fas fa-user-check text-green-400';
+            authButton.title = 'Account';
+            authButton.onclick = () => {
+                accountDropdown.classList.toggle('hidden');
+            };
+        } else {
+            userIcon.className = 'fas fa-user text-gray-400';
+            authButton.title = 'Sign In';
+            accountDropdown.classList.add('hidden');
+            authButton.onclick = () => openLoginModal();
+        }
+    }
+
     // Update auth button after sign in/out
     function updateAuthButton(signedIn) {
-      const userButton = document.querySelector('button[onclick="openLoginModal()"]');
-      const userIcon = userButton.querySelector('i');
-      
-      if (signedIn) {
-        userIcon.className = 'fas fa-user-check text-green-400';
-        userButton.title = 'Account';
-      } else {
-        userIcon.className = 'fas fa-user text-gray-400';
-        userButton.title = 'Sign In';
-      }
+        updateAuthUI(signedIn);
     }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const signOutBtn = document.getElementById('signOutBtn');
+        signOutBtn.addEventListener('click', async () => {
+            try {
+                await fetch('/customer/sign-out', {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                    }
+                });
+                updateAuthUI(false);
+                window.location.reload();
+            } catch (error) {
+                console.error('Error signing out:', error);
+            }
+        });
+
+        // Close dropdown when clicking outside
+        window.addEventListener('click', function(e) {
+            const authButton = document.getElementById('authButton');
+            const accountDropdown = document.getElementById('account-dropdown');
+            if (!authButton.contains(e.target) && !accountDropdown.contains(e.target)) {
+                accountDropdown.classList.add('hidden');
+            }
+        });
+    });
 
     // Update cart count
     async function updateCartCount() {
