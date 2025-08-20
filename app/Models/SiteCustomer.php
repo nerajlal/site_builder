@@ -23,6 +23,11 @@ class SiteCustomer extends Model
         'postal_code',
         'country',
     ];
+
+    public function site()
+    {
+        return $this->belongsTo(HeaderFooter::class, 'header_footer_id');
+    }
 }
 
 
