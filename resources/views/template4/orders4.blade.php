@@ -36,8 +36,10 @@
                                 ">
                                     @switch($order->status)
                                         @case(0) Pending @break
-                                        @case(1) Shipped @break
-                                        @case(2) Cancelled @break
+                                        @case(1) Processing @break
+                                        @case(2) Shipped @break
+                                        @case(3) Delivered @break
+                                        @case(4) Cancelled @break
                                         @default Unknown
                                     @endswitch
                                 </span>

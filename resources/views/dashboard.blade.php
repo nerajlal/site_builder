@@ -124,16 +124,54 @@ document.addEventListener('DOMContentLoaded', () => {
                 ordersTableBody.innerHTML = '';
                 if (stats.recent_orders.length > 0) {
                     stats.recent_orders.forEach(order => {
+                        const statuses = {
+                            0: 'Pending',
+                            1: 'Processing',
+                            2: 'Shipped',
+                            3: 'Delivered',
+                            4: 'Cancelled'
+                        };
+                        let options = '';
+                        for (const key in statuses) {
+                            options += `<option value="${key}" ${key == order.status ? 'selected' : ''}>${statuses[key]}</option>`;
+                        }
+
                         const row = `
                             <tr>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">#${order.id}</td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${order.customer ? order.customer.name : 'N/A'}</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${order.status == 0 ? 'Pending' : (order.status == 1 ? 'Shipped' : 'Cancelled')}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                    <select class="status-dropdown border-gray-300 rounded-md" data-order-id="${order.id}">
+                                        ${options}
+                                    </select>
+                                </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${new Date(order.created_at).toLocaleDateString()}</td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">₹${order.total_amount}</td>
                             </tr>
                         `;
                         ordersTableBody.innerHTML += row;
+                    });
+
+                    document.querySelectorAll('.status-dropdown').forEach(dropdown => {
+                        dropdown.addEventListener('change', async (e) => {
+                            const orderId = e.target.dataset.orderId;
+                            const newStatus = e.target.value;
+                            try {
+                                const response = await fetch(`/orders/${orderId}/status`, {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json',
+                                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                                    },
+                                    body: JSON.stringify({ status: newStatus })
+                                });
+                                if (!response.ok) throw new Error('Failed to update status');
+                                alert('Order status updated successfully!');
+                            } catch (error) {
+                                console.error('Error updating order status:', error);
+                                alert('Failed to update order status.');
+                            }
+                        });
                     });
                 } else {
                     ordersTableBody.innerHTML = '<tr><td colspan="5" class="text-center py-4">No recent orders found.</td></tr>';

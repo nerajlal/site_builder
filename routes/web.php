@@ -119,6 +119,7 @@ Route::post('/cart/remove', [CartController::class, 'removeFromCart'])->name('ca
 // Order routes
 Route::post('/order/place/{headerFooterId}', [OrderController::class, 'placeOrder'])->name('order.place');
 Route::get('/orders/{headerFooterId}', [OrderController::class, 'index'])->name('orders.index');
+Route::post('/orders/{order_id}/status', [OrderController::class, 'updateStatus'])->name('orders.updateStatus');
 
 // Wishlist routes
 Route::get('/wishlist/{headerFooterId}', [WishlistController::class, 'getWishlistItems'])->name('wishlist.view');

@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use App\Models\HeaderFooter;
 use App\Models\SelectedTemplate;
+use Illuminate\Support\Facades\Validator;
 
 class OrderController extends Controller
 {
@@ -127,6 +128,27 @@ class OrderController extends Controller
         } catch (\Exception $e) {
             DB::rollBack();
             return response()->json(['success' => false, 'message' => 'Failed to place order. ' . $e->getMessage()], 500);
+        }
+    }
+
+    public function updateStatus(Request $request, $order_id)
+    {
+        $validator = Validator::make($request->all(), [
+            'status' => 'required|integer|in:0,1,2,3,4',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['success' => false, 'errors' => $validator->errors()], 422);
+        }
+
+        try {
+            $order = Order::findOrFail($order_id);
+            $order->status = $request->input('status');
+            $order->save();
+
+            return response()->json(['success' => true, 'message' => 'Order status updated successfully.']);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'message' => 'Failed to update order status.'], 500);
         }
     }
 }
