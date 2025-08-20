@@ -6,7 +6,7 @@
       <button onclick="closeOrderDetailsModal()" class="text-gray-500 hover:text-gray-800"><i class="fas fa-times"></i></button>
     </div>
 
-    <div id="modal-content" class="space-y-6 max-h-[80vh] overflow-y-auto">
+    <div id="modal-content" class="space-y-6 max-h-[80vh] overflow-y-auto pr-4">
       <!-- Order Info -->
       <div id="order-info"></div>
 
@@ -15,6 +15,12 @@
 
       <!-- Products List -->
       <div id="products-list"></div>
+    </div>
+
+    <div class="mt-6 pt-4 border-t flex justify-end space-x-3">
+        <a href="#" id="whatsapp-btn" target="_blank" class="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 text-sm font-medium">WhatsApp</a>
+        <a href="#" id="call-btn" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 text-sm font-medium">Call</a>
+        <a href="#" id="invoice-btn" target="_blank" class="px-4 py-2 bg-gray-700 text-white rounded-lg hover:bg-gray-800 text-sm font-medium">Download Invoice</a>
     </div>
   </div>
 </div>
@@ -54,6 +60,11 @@
       </div>
     `;
     document.getElementById('customer-info').innerHTML = customerInfo;
+
+    // Buttons
+    document.getElementById('invoice-btn').href = `/orders/${order.id}/invoice`;
+    document.getElementById('whatsapp-btn').href = `https://wa.me/${customer.whatsapp.replace(/[^0-9]/g, '')}`;
+    document.getElementById('call-btn').href = `tel:${customer.phone || customer.whatsapp}`;
 
     // Products List
     let productsHtml = '<h4 class="text-lg font-semibold border-b mb-2 pb-2">Products</h4>';

@@ -123,6 +123,7 @@ Route::post('/order/place/{headerFooterId}', [OrderController::class, 'placeOrde
 Route::get('/orders/{headerFooterId}', [OrderController::class, 'index'])->name('orders.index');
 Route::post('/orders/{order_id}/status', [OrderController::class, 'updateStatus'])->name('orders.updateStatus');
 Route::get('/orders/{order_id}/details', [OrderController::class, 'show'])->name('orders.show');
+Route::get('/orders/{order_id}/invoice', [OrderController::class, 'showInvoice'])->name('orders.invoice');
 
 // Wishlist routes
 Route::get('/wishlist/{headerFooterId}', [WishlistController::class, 'getWishlistItems'])->name('wishlist.view');

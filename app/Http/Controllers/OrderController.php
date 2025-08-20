@@ -161,4 +161,14 @@ class OrderController extends Controller
             return response()->json(['success' => false, 'message' => 'Order not found.'], 404);
         }
     }
+
+    public function showInvoice($order_id)
+    {
+        try {
+            $order = Order::with(['customer.site', 'products.product'])->findOrFail($order_id);
+            return view('invoice', ['order' => $order]);
+        } catch (\Exception $e) {
+            return "Order not found.";
+        }
+    }
 }
