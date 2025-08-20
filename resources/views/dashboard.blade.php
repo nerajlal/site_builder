@@ -240,7 +240,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         body: JSON.stringify({ status: newStatus })
                     });
                     if (!response.ok) throw new Error('Failed to update status');
-                    alert('Order status updated successfully!');
                     updateNotificationCount();
                 } catch (error) {
                     console.error('Error updating order status:', error);
