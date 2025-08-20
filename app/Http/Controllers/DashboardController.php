@@ -7,6 +7,7 @@ use App\Models\HeaderFooter;
 use Illuminate\Support\Facades\Session;
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\SiteCustomer;
 
 class DashboardController extends Controller
 {
@@ -87,6 +88,16 @@ class DashboardController extends Controller
 
         $orders = $ordersQuery->orderBy('created_at', 'desc')->paginate(5);
 
+        // Recent Activities
+        $recentOrdersForActivity = Order::where('header_footer_id', $website_id)->with('customer')->orderBy('created_at', 'desc')->take(5)->get();
+        $recentCustomers = SiteCustomer::where('header_footer_id', $website_id)->orderBy('created_at', 'desc')->take(5)->get();
+
+        $activities = $recentOrdersForActivity->map(function($order) {
+            return ['type' => 'new_order', 'data' => $order, 'created_at' => $order->created_at];
+        })->concat($recentCustomers->map(function($customer) {
+            return ['type' => 'new_customer', 'data' => $customer, 'created_at' => $customer->created_at];
+        }))->sortByDesc('created_at')->take(5);
+
         return response()->json([
             'total_sales' => number_format($totalSales, 2),
             'products_sold' => $productsSoldCount,
@@ -97,6 +108,7 @@ class DashboardController extends Controller
             'sales_change' => round($salesChange, 2),
             'products_sold_change' => round($productsSoldChange, 2),
             'customers_change' => round($customersChange, 2),
+            'activities' => $activities->values()->all(),
         ]);
     }
 

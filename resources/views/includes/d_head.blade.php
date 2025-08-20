@@ -166,10 +166,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Close dropdowns when clicking outside
     window.addEventListener('click', function(e) {
-        if (!notificationBtn.contains(e.target) && !notificationDropdown.contains(e.target)) {
+        if (notificationDropdown && !notificationBtn.contains(e.target) && !notificationDropdown.contains(e.target)) {
             notificationDropdown.classList.add('hidden');
         }
-        if (!profileBtn.contains(e.target) && !profileDropdown.contains(e.target)) {
+        if (profileDropdown && !profileBtn.contains(e.target) && !profileDropdown.contains(e.target)) {
             profileDropdown.classList.add('hidden');
         }
     });
