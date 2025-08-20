@@ -108,7 +108,6 @@ class DashboardController extends Controller
             'sales_change' => round($salesChange, 2),
             'products_sold_change' => round($productsSoldChange, 2),
             'customers_change' => round($customersChange, 2),
-            'activities' => $activities->values()->all(),
         ]);
     }
 
