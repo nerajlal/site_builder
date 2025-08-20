@@ -85,7 +85,7 @@ class DashboardController extends Controller
             $ordersQuery->where('status', $status_filter);
         }
 
-        $orders = $ordersQuery->orderBy('created_at', 'desc')->get();
+        $orders = $ordersQuery->orderBy('created_at', 'desc')->paginate(5);
 
         return response()->json([
             'total_sales' => number_format($totalSales, 2),

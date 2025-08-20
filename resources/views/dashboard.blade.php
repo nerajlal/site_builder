@@ -141,6 +141,9 @@
                         </tbody>
                     </table>
                 </div>
+                <div id="pagination-footer" class="px-6 py-4 border-t border-gray-200 flex items-center justify-between">
+                    <!-- Pagination info and links will be added here by JavaScript -->
+                </div>
             </div>
         </div>
     </main>
@@ -158,12 +161,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const exportCsvBtn = document.getElementById('export-csv-btn');
     let currentWebsiteId = null;
 
-    async function fetchAndDisplayStats(websiteId) {
+    async function fetchAndDisplayStats(websiteId, page = 1) {
         const dateFilter = dateFilterSelect.value;
         const statusFilter = statusFilterSelect.value;
 
         try {
-            const response = await fetch(`/dashboard/stats/${websiteId}?date_filter=${dateFilter}&status_filter=${statusFilter}`);
+            const response = await fetch(`/dashboard/stats/${websiteId}?date_filter=${dateFilter}&status_filter=${statusFilter}&page=${page}`);
             if (!response.ok) throw new Error('Failed to load stats');
             const stats = await response.json();
 
@@ -187,8 +190,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const ordersTableBody = document.getElementById('orders-table-body');
             ordersTableBody.innerHTML = '';
-            if (stats.orders.length > 0) {
-                stats.orders.forEach(order => {
+            if (stats.orders.data.length > 0) {
+                stats.orders.data.forEach(order => {
                     const statuses = { 0: 'New', 1: 'Pending', 2: 'Packed', 3: 'Ready to Ship', 4: 'Shipped', 5: 'Out for Delivery', 6: 'Delivered', 7: 'Cancelled' };
                     let options = '';
                     for (const key in statuses) {
@@ -212,8 +215,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     ordersTableBody.innerHTML += row;
                 });
                 addEventListenersToButtons();
+                renderPagination(stats.orders);
             } else {
                 ordersTableBody.innerHTML = '<tr><td colspan="6" class="text-center py-4">No orders found for the selected filters.</td></tr>';
+                document.getElementById('pagination-footer').innerHTML = '';
             }
         } catch (error) {
             console.error('Error fetching website stats:', error);
@@ -256,6 +261,33 @@ document.addEventListener('DOMContentLoaded', () => {
                     console.error('Error fetching order details:', error);
                     alert('Failed to load order details.');
                 }
+            });
+        });
+    }
+
+    function renderPagination(paginator) {
+        const paginationFooter = document.getElementById('pagination-footer');
+        let paginationHtml = `
+            <div class="text-sm text-gray-500">
+                Showing <span class="font-medium">${paginator.from}</span> to <span class="font-medium">${paginator.to}</span> of <span class="font-medium">${paginator.total}</span> results
+            </div>
+            <div class="flex space-x-2">
+        `;
+        paginator.links.forEach(link => {
+            if (link.url) {
+                paginationHtml += `<button data-page="${link.url.split('page=')[1]}" class="pagination-link px-3 py-1 rounded-md ${link.active ? 'bg-pink-600 text-white' : 'bg-gray-100 text-gray-700'}">${link.label}</button>`;
+            } else {
+                paginationHtml += `<span class="px-3 py-1 rounded-md bg-gray-100 text-gray-400 cursor-not-allowed">${link.label}</span>`;
+            }
+        });
+        paginationHtml += '</div>';
+        paginationFooter.innerHTML = paginationHtml;
+
+        document.querySelectorAll('.pagination-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const page = e.target.dataset.page;
+                fetchAndDisplayStats(currentWebsiteId, page);
             });
         });
     }
