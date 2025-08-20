@@ -12,15 +12,13 @@
             @if(count($websites) > 0)
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     @foreach($websites as $website)
-                        <a href="#" class="website-link bg-white rounded-lg shadow p-6 hover:shadow-lg transition-shadow duration-300 block" data-website-id="{{ $website->id }}">
-                            <div class="flex items-center justify-between">
-                                <div>
-                                    <p class="text-lg font-semibold text-gray-800">{{ $website->site_name }}</p>
-                                    <p class="text-sm text-gray-500">Created on: {{ $website->created_at->format('d M Y') }}</p>
+                        <a href="#" class="website-link bg-white rounded-lg shadow p-6 hover:shadow-md transition-shadow duration-300 block" data-website-id="{{ $website->id }}">
+                            <div class="flex flex-col items-center text-center">
+                                <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-3">
+                                    <i class="fas fa-laptop text-blue-600 text-xl"></i>
                                 </div>
-                                <div class="p-3 rounded-full bg-pink-100 text-pink-600">
-                                    <i class="fas fa-arrow-right"></i>
-                                </div>
+                                <h3 class="font-semibold text-gray-800 mb-1">{{ $website->site_name }}</h3>
+                                <p class="text-sm text-gray-500">Created on: {{ $website->created_at->format('d M Y') }}</p>
                             </div>
                         </a>
                     @endforeach
