@@ -12,7 +12,7 @@
             @if(count($websites) > 0)
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     @foreach($websites as $website)
-                        <a href="#" class="website-link bg-white rounded-lg shadow p-6 hover:shadow-md transition-shadow duration-300 block" data-website-id="{{ $website->id }}">
+                        <div class="bg-white rounded-lg shadow p-6">
                             <div class="flex flex-col items-center text-center">
                                 <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-3">
                                     <i class="fas fa-laptop text-blue-600 text-xl"></i>
@@ -20,7 +20,11 @@
                                 <h3 class="font-semibold text-gray-800 mb-1">{{ $website->site_name }}</h3>
                                 <p class="text-sm text-gray-500">Created on: {{ $website->created_at->format('d M Y') }}</p>
                             </div>
-                        </a>
+                            <div class="mt-4 flex justify-around">
+                                <button class="website-link px-4 py-2 text-sm bg-pink-600 text-white rounded-lg hover:bg-pink-700" data-website-id="{{ $website->id }}">View Dashboard</button>
+                                <a href="/addproducts/{{ $website->id }}" class="px-4 py-2 text-sm bg-gray-600 text-white rounded-lg hover:bg-gray-700">Manage Site</a>
+                            </div>
+                        </div>
                     @endforeach
                 </div>
             @else
@@ -99,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
         link.addEventListener('click', async (e) => {
             e.preventDefault();
             const websiteId = link.dataset.websiteId;
-            const websiteName = link.querySelector('.text-lg').textContent;
+            const websiteName = link.closest('.bg-white').querySelector('h3').textContent;
             
             websiteListSection.classList.add('hidden');
             websiteStatsSection.classList.remove('hidden');
