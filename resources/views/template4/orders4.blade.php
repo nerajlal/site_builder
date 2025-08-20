@@ -7,15 +7,26 @@
         @if(count($orders) > 0)
             <div class="space-y-8">
                 @foreach($orders as $order)
-                    <div class="bg-white rounded-lg shadow-lg p-6">
-                        <div class="flex justify-between items-center mb-4">
-                            <div>
+                    @php
+                        $totalSavings = 0;
+                        foreach($order->products as $orderProduct) {
+                            if ($orderProduct->product && $orderProduct->product->original_price > $orderProduct->product->price) {
+                                $totalSavings += ($orderProduct->product->original_price - $orderProduct->product->price) * $orderProduct->quantity;
+                            }
+                        }
+                    @endphp
+                    <div class="bg-white rounded-lg shadow-lg p-4 sm:p-6">
+                        <div class="flex flex-col md:flex-row justify-between md:items-center mb-4 border-b pb-4">
+                            <div class="mb-4 md:mb-0">
                                 <h2 class="text-xl font-bold text-gray-800">Order #{{ $order->id }}</h2>
-                                <p class="text-sm text-gray-500">Placed on: {{ $order->created_at->format('d M Y') }}</p>
+                                <p class="text-sm text-gray-500">Placed on: {{ $order->created_at->format('d M Y, h:i A') }}</p>
                             </div>
-                            <div>
-                                <span class="text-lg font-medium text-gray-900">Total: ₹{{ number_format($order->total_amount, 2) }}</span>
-                                <span class="ml-4 px-2 py-1 text-sm rounded-full
+                            <div class="text-left md:text-right">
+                                <span class="block text-lg font-semibold text-gray-900">Total: ₹{{ number_format($order->total_amount, 2) }}</span>
+                                @if($totalSavings > 0)
+                                    <span class="block text-sm font-semibold text-green-600">You saved: ₹{{ number_format($totalSavings, 2) }}</span>
+                                @endif
+                                <span class="mt-2 inline-block px-3 py-1 text-xs font-semibold rounded-full
                                     @switch($order->status)
                                         @case(0) bg-yellow-200 text-yellow-800 @break
                                         @case(1) bg-green-200 text-green-800 @break
@@ -35,18 +46,18 @@
 
                         <div class="divide-y divide-gray-200">
                             @foreach($order->products as $orderProduct)
-                                <div class="flex items-center py-4">
-                                    <a href="{{ route('template4.single-product4.customer', ['headerFooterId' => $headerFooter->id, 'productId' => $orderProduct->product->id]) }}" class="w-16 h-16 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+                                <div class="flex flex-col sm:flex-row items-start sm:items-center py-4">
+                                    <a href="{{ route('template4.single-product4.customer', ['headerFooterId' => $headerFooter->id, 'productId' => $orderProduct->product->id]) }}" class="w-24 h-24 sm:w-20 sm:h-20 flex-shrink-0 overflow-hidden rounded-md border border-gray-200 mb-4 sm:mb-0">
                                         <img src="{{ $orderProduct->product->image_url }}" alt="{{ $orderProduct->product->name }}" class="h-full w-full object-cover object-center">
                                     </a>
-                                    <div class="ml-4 flex flex-1 flex-col">
-                                        <div>
-                                            <h3 class="text-base font-medium text-gray-900">
-                                                <a href="{{ route('template4.single-product4.customer', ['headerFooterId' => $headerFooter->id, 'productId' => $orderProduct->product->id]) }}">{{ $orderProduct->product->name }}</a>
-                                            </h3>
-                                            <p class="mt-1 text-sm text-gray-500">Qty: {{ $orderProduct->quantity }}</p>
+                                    <div class="ml-0 sm:ml-6 flex-1">
+                                        <h3 class="text-base font-semibold text-gray-900">
+                                            <a href="{{ route('template4.single-product4.customer', ['headerFooterId' => $headerFooter->id, 'productId' => $orderProduct->product->id]) }}">{{ $orderProduct->product->name }}</a>
+                                        </h3>
+                                        <div class="flex justify-between mt-2 text-sm">
+                                            <p class="text-gray-600">Qty: {{ $orderProduct->quantity }}</p>
+                                            <p class="font-medium text-gray-900">Price: ₹{{ number_format($orderProduct->price, 2) }}</p>
                                         </div>
-                                        <p class="text-sm font-medium text-gray-900">₹{{ number_format($orderProduct->price, 2) }}</p>
                                     </div>
                                 </div>
                             @endforeach
