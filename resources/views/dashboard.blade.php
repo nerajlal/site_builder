@@ -81,11 +81,14 @@
                         </select>
                         <select id="status-filter" class="border-gray-300 rounded-md">
                             <option value="all">All Statuses</option>
-                            <option value="0">Pending</option>
-                            <option value="1">Processing</option>
-                            <option value="2">Shipped</option>
-                            <option value="3">Delivered</option>
-                            <option value="4">Cancelled</option>
+                            <option value="0">New</option>
+                            <option value="1">Pending</option>
+                            <option value="2">Packed</option>
+                            <option value="3">Ready to Ship</option>
+                            <option value="4">Shipped</option>
+                            <option value="5">Out for Delivery</option>
+                            <option value="6">Delivered</option>
+                            <option value="7">Cancelled</option>
                         </select>
                         <a href="#" id="export-csv-btn" class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">Export as CSV</a>
                     </div>
@@ -143,7 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ordersTableBody.innerHTML = '';
             if (stats.orders.length > 0) {
                 stats.orders.forEach(order => {
-                    const statuses = { 0: 'Pending', 1: 'Processing', 2: 'Shipped', 3: 'Delivered', 4: 'Cancelled' };
+                    const statuses = { 0: 'New', 1: 'Pending', 2: 'Packed', 3: 'Ready to Ship', 4: 'Shipped', 5: 'Out for Delivery', 6: 'Delivered', 7: 'Cancelled' };
                     let options = '';
                     for (const key in statuses) {
                         options += `<option value="${key}" ${key == order.status ? 'selected' : ''}>${statuses[key]}</option>`;

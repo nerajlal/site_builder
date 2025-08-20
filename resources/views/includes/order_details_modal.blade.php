@@ -75,7 +75,7 @@
   }
 
   function getStatusText(status) {
-    const statuses = {0: 'Pending', 1: 'Processing', 2: 'Shipped', 3: 'Delivered', 4: 'Cancelled'};
+    const statuses = { 0: 'New', 1: 'Pending', 2: 'Packed', 3: 'Ready to Ship', 4: 'Shipped', 5: 'Out for Delivery', 6: 'Delivered', 7: 'Cancelled' };
     return statuses[status] || 'Unknown';
   }
 

@@ -136,8 +136,10 @@ class DashboardController extends Controller
             $file = fopen('php://output', 'w');
             fputcsv($file, $columns);
 
+            $statuses = [0 => 'New', 1 => 'Pending', 2 => 'Packed', 3 => 'Ready to Ship', 4 => 'Shipped', 5 => 'Out for Delivery', 6 => 'Delivered', 7 => 'Cancelled'];
+
             foreach ($orders as $order) {
-                $status = ['Pending', 'Processing', 'Shipped', 'Delivered', 'Cancelled'][$order->status] ?? 'Unknown';
+                $status = $statuses[$order->status] ?? 'Unknown';
                 $address = $order->customer ? "{$order->customer->address_line_1}, {$order->customer->city}, {$order->customer->state}" : 'N/A';
 
                 if ($order->products->isEmpty()) {
