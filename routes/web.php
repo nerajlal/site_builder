@@ -41,6 +41,7 @@ Route::post('/logout', function () {
 // Dashboard route
 Route::get('/dashboard', [DashboardController::class, 'index']);
 Route::get('/dashboard/stats/{website_id}', [DashboardController::class, 'getWebsiteStats']);
+Route::get('/dashboard/export/{website_id}', [DashboardController::class, 'exportOrders']);
 
 // Profile routes
 Route::get('/profile', [ProfileController::class, 'getProfile'])->name('profile');

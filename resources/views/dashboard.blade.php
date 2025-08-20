@@ -69,8 +69,20 @@
 
             <!-- Recent Orders Table -->
             <div class="bg-white rounded-lg shadow overflow-hidden">
-                <div class="px-6 py-4 border-b border-gray-200">
+                <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
                     <h2 class="text-lg font-semibold text-gray-800">Recent Orders</h2>
+                    <div class="flex items-center space-x-4">
+                        <select id="sort-by" class="border-gray-300 rounded-md">
+                            <option value="created_at">Sort by Date</option>
+                            <option value="status">Sort by Status</option>
+                            <option value="total_amount">Sort by Amount</option>
+                        </select>
+                        <select id="sort-order" class="border-gray-300 rounded-md">
+                            <option value="desc">Descending</option>
+                            <option value="asc">Ascending</option>
+                        </select>
+                        <a href="#" id="export-csv-btn" class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">Export as CSV</a>
+                    </div>
                 </div>
                 <div class="overflow-x-auto">
                     <table class="min-w-full divide-y divide-gray-200">
@@ -101,116 +113,129 @@ document.addEventListener('DOMContentLoaded', () => {
     const websiteListSection = document.getElementById('website-list-section');
     const websiteStatsSection = document.getElementById('website-stats-section');
     const backToWebsitesBtn = document.getElementById('back-to-websites');
+    const sortBySelect = document.getElementById('sort-by');
+    const sortOrderSelect = document.getElementById('sort-order');
+    const exportCsvBtn = document.getElementById('export-csv-btn');
+    let currentWebsiteId = null;
+
+    async function fetchAndDisplayStats(websiteId, sortBy = 'created_at', sortOrder = 'desc') {
+        try {
+            const response = await fetch(`/dashboard/stats/${websiteId}?sort_by=${sortBy}&sort_order=${sortOrder}`);
+            if (!response.ok) throw new Error('Failed to load stats');
+            const stats = await response.json();
+
+            document.getElementById('total-sales').textContent = `₹${stats.total_sales}`;
+            document.getElementById('products-sold').textContent = stats.products_sold;
+            document.getElementById('active-customers').textContent = stats.active_customers;
+            document.getElementById('inventory-items').textContent = stats.inventory_items;
+            document.getElementById('low-stock-items').textContent = `${stats.low_stock_items} items low stock`;
+
+            const ordersTableBody = document.getElementById('orders-table-body');
+            ordersTableBody.innerHTML = '';
+            if (stats.recent_orders.length > 0) {
+                stats.recent_orders.forEach(order => {
+                    const statuses = { 0: 'Pending', 1: 'Processing', 2: 'Shipped', 3: 'Delivered', 4: 'Cancelled' };
+                    let options = '';
+                    for (const key in statuses) {
+                        options += `<option value="${key}" ${key == order.status ? 'selected' : ''}>${statuses[key]}</option>`;
+                    }
+
+                    const row = `
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">#${order.id}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${order.customer ? order.customer.name : 'N/A'}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                <select class="status-dropdown border-gray-300 rounded-md" data-order-id="${order.id}">${options}</select>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${new Date(order.created_at).toLocaleDateString()}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">₹${order.total_amount}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                <button class="view-order-details-btn text-indigo-600 hover:text-indigo-900" data-order-id="${order.id}">View Detail</button>
+                            </td>
+                        </tr>
+                    `;
+                    ordersTableBody.innerHTML += row;
+                });
+                addEventListenersToButtons();
+            } else {
+                ordersTableBody.innerHTML = '<tr><td colspan="6" class="text-center py-4">No recent orders found.</td></tr>';
+            }
+        } catch (error) {
+            console.error('Error fetching website stats:', error);
+            alert('Could not load website stats. Please try again.');
+            websiteStatsSection.classList.add('hidden');
+            websiteListSection.classList.remove('hidden');
+        }
+    }
+
+    function addEventListenersToButtons() {
+        document.querySelectorAll('.status-dropdown').forEach(dropdown => {
+            dropdown.addEventListener('change', async (e) => {
+                const orderId = e.target.dataset.orderId;
+                const newStatus = e.target.value;
+                try {
+                    const response = await fetch(`/orders/${orderId}/status`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json', 'X-CSRF-TOKEN': '{{ csrf_token() }}' },
+                        body: JSON.stringify({ status: newStatus })
+                    });
+                    if (!response.ok) throw new Error('Failed to update status');
+                    alert('Order status updated successfully!');
+                } catch (error) {
+                    console.error('Error updating order status:', error);
+                    alert('Failed to update order status.');
+                }
+            });
+        });
+
+        document.querySelectorAll('.view-order-details-btn').forEach(button => {
+            button.addEventListener('click', async (e) => {
+                const orderId = e.target.dataset.orderId;
+                try {
+                    const response = await fetch(`/orders/${orderId}/details`);
+                    if (!response.ok) throw new Error('Failed to load order details');
+                    const orderDetails = await response.json();
+                    populateOrderDetailsModal(orderDetails);
+                    openOrderDetailsModal();
+                } catch (error) {
+                    console.error('Error fetching order details:', error);
+                    alert('Failed to load order details.');
+                }
+            });
+        });
+    }
 
     document.querySelectorAll('.website-link').forEach(link => {
         link.addEventListener('click', async (e) => {
             e.preventDefault();
-            const websiteId = link.dataset.websiteId;
+            currentWebsiteId = link.dataset.websiteId;
             const websiteName = link.closest('.bg-white').querySelector('h3').textContent;
-            
+
             websiteListSection.classList.add('hidden');
             websiteStatsSection.classList.remove('hidden');
             document.getElementById('stats-title').textContent = `${websiteName} - Dashboard`;
+            exportCsvBtn.href = `/dashboard/export/${currentWebsiteId}`;
 
-            try {
-                const response = await fetch(`/dashboard/stats/${websiteId}`);
-                if (!response.ok) throw new Error('Failed to load stats');
-                const stats = await response.json();
-
-                document.getElementById('total-sales').textContent = `₹${stats.total_sales}`;
-                document.getElementById('products-sold').textContent = stats.products_sold;
-                document.getElementById('active-customers').textContent = stats.active_customers;
-                document.getElementById('inventory-items').textContent = stats.inventory_items;
-                document.getElementById('low-stock-items').textContent = `${stats.low_stock_items} items low stock`;
-
-                const ordersTableBody = document.getElementById('orders-table-body');
-                ordersTableBody.innerHTML = '';
-                if (stats.recent_orders.length > 0) {
-                    stats.recent_orders.forEach(order => {
-                        const statuses = {
-                            0: 'Pending',
-                            1: 'Processing',
-                            2: 'Shipped',
-                            3: 'Delivered',
-                            4: 'Cancelled'
-                        };
-                        let options = '';
-                        for (const key in statuses) {
-                            options += `<option value="${key}" ${key == order.status ? 'selected' : ''}>${statuses[key]}</option>`;
-                        }
-
-                        const row = `
-                            <tr>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">#${order.id}</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${order.customer ? order.customer.name : 'N/A'}</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    <select class="status-dropdown border-gray-300 rounded-md" data-order-id="${order.id}">
-                                        ${options}
-                                    </select>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${new Date(order.created_at).toLocaleDateString()}</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">₹${order.total_amount}</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                    <button class="view-order-details-btn text-indigo-600 hover:text-indigo-900" data-order-id="${order.id}">View Detail</button>
-                                </td>
-                            </tr>
-                        `;
-                        ordersTableBody.innerHTML += row;
-                    });
-
-                    document.querySelectorAll('.status-dropdown').forEach(dropdown => {
-                        dropdown.addEventListener('change', async (e) => {
-                            const orderId = e.target.dataset.orderId;
-                            const newStatus = e.target.value;
-                            try {
-                                const response = await fetch(`/orders/${orderId}/status`, {
-                                    method: 'POST',
-                                    headers: {
-                                        'Content-Type': 'application/json',
-                                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                                    },
-                                    body: JSON.stringify({ status: newStatus })
-                                });
-                                if (!response.ok) throw new Error('Failed to update status');
-                                alert('Order status updated successfully!');
-                            } catch (error) {
-                                console.error('Error updating order status:', error);
-                                alert('Failed to update order status.');
-                            }
-                        });
-                    });
-
-                    document.querySelectorAll('.view-order-details-btn').forEach(button => {
-                        button.addEventListener('click', async (e) => {
-                            const orderId = e.target.dataset.orderId;
-                            try {
-                                const response = await fetch(`/orders/${orderId}/details`);
-                                if (!response.ok) throw new Error('Failed to load order details');
-                                const orderDetails = await response.json();
-                                populateOrderDetailsModal(orderDetails);
-                                openOrderDetailsModal();
-                            } catch (error) {
-                                console.error('Error fetching order details:', error);
-                                alert('Failed to load order details.');
-                            }
-                        });
-                    });
-                } else {
-                    ordersTableBody.innerHTML = '<tr><td colspan="6" class="text-center py-4">No recent orders found.</td></tr>';
-                }
-
-            } catch (error) {
-                console.error('Error fetching website stats:', error);
-                alert('Could not load website stats. Please try again.');
-                websiteListSection.classList.remove('hidden');
-                websiteStatsSection.classList.add('hidden');
-            }
+            fetchAndDisplayStats(currentWebsiteId);
         });
+    });
+
+    sortBySelect.addEventListener('change', () => {
+        if (currentWebsiteId) {
+            fetchAndDisplayStats(currentWebsiteId, sortBySelect.value, sortOrderSelect.value);
+        }
+    });
+
+    sortOrderSelect.addEventListener('change', () => {
+        if (currentWebsiteId) {
+            fetchAndDisplayStats(currentWebsiteId, sortBySelect.value, sortOrderSelect.value);
+        }
     });
 
     backToWebsitesBtn.addEventListener('click', () => {
         websiteStatsSection.classList.add('hidden');
         websiteListSection.classList.remove('hidden');
+        currentWebsiteId = null;
     });
 });
 </script>
