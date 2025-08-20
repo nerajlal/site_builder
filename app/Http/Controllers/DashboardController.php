@@ -88,11 +88,21 @@ class DashboardController extends Controller
 
         $orders = $ordersQuery->orderBy('created_at', 'desc')->paginate(5);
 
+        // Status-specific order lists
+        $newOrders = Order::where('header_footer_id', $website_id)->where('status', 0)->get();
+        $pendingOrders = Order::where('header_footer_id', $website_id)->where('status', 1)->get();
+        $packedOrders = Order::where('header_footer_id', $website_id)->where('status', 2)->get();
+        $readyToShipOrders = Order::where('header_footer_id', $website_id)->where('status', 3)->get();
+
         // Recent Activities
         $latestOrder = Order::where('header_footer_id', $website_id)->latest()->first();
         $latestCustomer = SiteCustomer::where('header_footer_id', $website_id)->latest()->first();
 
         return response()->json([
+            'new_orders' => $newOrders,
+            'pending_orders' => $pendingOrders,
+            'packed_orders' => $packedOrders,
+            'ready_to_ship_orders' => $readyToShipOrders,
             'latest_order' => $latestOrder ? [
                 'id' => $latestOrder->id,
                 'time_ago' => $latestOrder->created_at->diffForHumans()

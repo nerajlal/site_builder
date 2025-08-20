@@ -98,6 +98,34 @@
                 </div>
             </div>
 
+            <!-- Status-specific Order Tables -->
+            <div class="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white rounded-lg shadow p-4">
+                    <h3 class="text-md font-semibold text-gray-800 mb-2">New</h3>
+                    <table class="w-full">
+                        <tbody id="new-orders-table"></tbody>
+                    </table>
+                </div>
+                <div class="bg-white rounded-lg shadow p-4">
+                    <h3 class="text-md font-semibold text-gray-800 mb-2">Pending</h3>
+                    <table class="w-full">
+                        <tbody id="pending-orders-table"></tbody>
+                    </table>
+                </div>
+                <div class="bg-white rounded-lg shadow p-4">
+                    <h3 class="text-md font-semibold text-gray-800 mb-2">Packed</h3>
+                    <table class="w-full">
+                        <tbody id="packed-orders-table"></tbody>
+                    </table>
+                </div>
+                <div class="bg-white rounded-lg shadow p-4">
+                    <h3 class="text-md font-semibold text-gray-800 mb-2">Ready to Ship</h3>
+                    <table class="w-full">
+                        <tbody id="ready-to-ship-orders-table"></tbody>
+                    </table>
+                </div>
+            </div>
+
             <!-- Recent Orders & Activity -->
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 <div class="lg:col-span-2 bg-white rounded-lg shadow overflow-hidden">
@@ -226,6 +254,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 activityFeed.innerHTML = '<p class="text-sm text-gray-500">No recent activity.</p>';
             }
 
+            // Populate status-specific tables
+            populateStatusTable('new-orders-table', stats.new_orders);
+            populateStatusTable('pending-orders-table', stats.pending_orders);
+            populateStatusTable('packed-orders-table', stats.packed_orders);
+            populateStatusTable('ready-to-ship-orders-table', stats.ready_to_ship_orders);
+
             const ordersTableBody = document.getElementById('orders-table-body');
             ordersTableBody.innerHTML = '';
             if (stats.orders.data.length > 0) {
@@ -301,6 +335,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         });
+    }
+
+    function populateStatusTable(tableId, orders) {
+        const tableBody = document.getElementById(tableId);
+        tableBody.innerHTML = '';
+        if (orders.length > 0) {
+            orders.forEach(order => {
+                const row = `
+                    <tr class="border-b">
+                        <td class="p-2 text-sm text-gray-700">#${order.id}</td>
+                    </tr>
+                `;
+                tableBody.innerHTML += row;
+            });
+        } else {
+            tableBody.innerHTML = '<tr><td class="p-2 text-sm text-gray-400">No orders</td></tr>';
+        }
     }
 
     function renderPagination(paginator) {
