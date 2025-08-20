@@ -94,12 +94,18 @@
             </div>
         </div>
         <div class="flex items-center space-x-4">
-            <button id="notification-btn" class="text-gray-500 focus:outline-none relative">
-                <i class="fas fa-bell"></i>
-                @if($newOrderCount > 0)
-                    <span class="absolute -top-1 -right-1 bg-pink-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">{{ $newOrderCount }}</span>
-                @endif
-            </button>
+            <div class="relative">
+                <button id="notification-btn" class="text-gray-500 focus:outline-none relative">
+                    <i class="fas fa-bell"></i>
+                    <span id="notification-count" class="absolute -top-1 -right-1 bg-pink-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">{{ $newOrderCount ?? 0 }}</span>
+                </button>
+                <div id="notification-dropdown" class="hidden absolute right-0 mt-2 w-80 bg-white rounded-md shadow-lg py-1 z-10">
+                    <div class="px-4 py-2 font-bold border-b">New Orders</div>
+                    <div id="notification-list" class="max-h-64 overflow-y-auto">
+                        <!-- Notifications will be inserted here -->
+                    </div>
+                </div>
+            </div>
             <div id="profile-dropdown" class="relative">
                 <button id="profile-btn" class="flex items-center space-x-2 focus:outline-none" onclick="window.location.href='/profile'">
                     <img class="w-8 h-8 rounded-full" src="https://static.vecteezy.com/system/resources/previews/019/879/186/non_2x/user-icon-on-transparent-background-free-png.png" alt="User profile">
@@ -113,3 +119,43 @@
             </div>
         </div>
     </header>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const notificationBtn = document.getElementById('notification-btn');
+    const notificationDropdown = document.getElementById('notification-dropdown');
+
+    notificationBtn.addEventListener('click', async () => {
+        notificationDropdown.classList.toggle('hidden');
+        if (!notificationDropdown.classList.contains('hidden')) {
+            try {
+                const response = await fetch('/notifications/new-orders');
+                const orders = await response.json();
+                const notificationList = document.getElementById('notification-list');
+                notificationList.innerHTML = '';
+                if (orders.length > 0) {
+                    orders.forEach(order => {
+                        const item = document.createElement('a');
+                        item.href = '#'; // Or a link to the order details
+                        item.className = 'block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100';
+                        item.innerHTML = `New order #${order.id} from <span class="font-bold">${order.customer.name}</span>`;
+                        notificationList.appendChild(item);
+                    });
+                } else {
+                    notificationList.innerHTML = '<p class="px-4 py-2 text-sm text-gray-500">No new orders.</p>';
+                }
+            } catch (error) {
+                console.error('Error fetching new orders:', error);
+                document.getElementById('notification-list').innerHTML = '<p class="px-4 py-2 text-sm text-red-500">Could not load notifications.</p>';
+            }
+        }
+    });
+
+    // Close dropdown when clicking outside
+    window.addEventListener('click', function(e) {
+        if (!notificationBtn.contains(e.target)) {
+            notificationDropdown.classList.add('hidden');
+        }
+    });
+});
+</script>

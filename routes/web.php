@@ -43,6 +43,7 @@ Route::get('/dashboard', [DashboardController::class, 'index']);
 Route::get('/dashboard/stats/{website_id}', [DashboardController::class, 'getWebsiteStats']);
 Route::get('/dashboard/export/{website_id}', [DashboardController::class, 'exportOrders']);
 Route::get('/notifications/new-order-count', [DashboardController::class, 'getNewOrderCount']);
+Route::get('/notifications/new-orders', [DashboardController::class, 'getNewOrders']);
 
 // Profile routes
 Route::get('/profile', [ProfileController::class, 'getProfile'])->name('profile');

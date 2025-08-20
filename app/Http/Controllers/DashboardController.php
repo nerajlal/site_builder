@@ -213,4 +213,23 @@ class DashboardController extends Controller
 
         return response()->json(['count' => $newOrderCount]);
     }
+
+    public function getNewOrders()
+    {
+        if (!Session::has('userid')) {
+            return response()->json([]);
+        }
+
+        $userId = Session::get('userid');
+        $websiteIds = HeaderFooter::where('user_id', $userId)->pluck('id');
+
+        $newOrders = Order::whereIn('header_footer_id', $websiteIds)
+            ->where('status', 0)
+            ->with('customer')
+            ->orderBy('created_at', 'desc')
+            ->take(5)
+            ->get();
+
+        return response()->json($newOrders);
+    }
 }
