@@ -72,14 +72,20 @@
                 <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
                     <h2 class="text-lg font-semibold text-gray-800">Recent Orders</h2>
                     <div class="flex items-center space-x-4">
-                        <select id="sort-by" class="border-gray-300 rounded-md">
-                            <option value="created_at">Sort by Date</option>
-                            <option value="status">Sort by Status</option>
-                            <option value="total_amount">Sort by Amount</option>
+                        <select id="date-filter" class="border-gray-300 rounded-md">
+                            <option value="all">All Time</option>
+                            <option value="today">Today</option>
+                            <option value="week">This Week</option>
+                            <option value="month">This Month</option>
+                            <option value="year">This Year</option>
                         </select>
-                        <select id="sort-order" class="border-gray-300 rounded-md">
-                            <option value="desc">Descending</option>
-                            <option value="asc">Ascending</option>
+                        <select id="status-filter" class="border-gray-300 rounded-md">
+                            <option value="all">All Statuses</option>
+                            <option value="0">Pending</option>
+                            <option value="1">Processing</option>
+                            <option value="2">Shipped</option>
+                            <option value="3">Delivered</option>
+                            <option value="4">Cancelled</option>
                         </select>
                         <a href="#" id="export-csv-btn" class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">Export as CSV</a>
                     </div>
@@ -113,14 +119,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const websiteListSection = document.getElementById('website-list-section');
     const websiteStatsSection = document.getElementById('website-stats-section');
     const backToWebsitesBtn = document.getElementById('back-to-websites');
-    const sortBySelect = document.getElementById('sort-by');
-    const sortOrderSelect = document.getElementById('sort-order');
+    const dateFilterSelect = document.getElementById('date-filter');
+    const statusFilterSelect = document.getElementById('status-filter');
     const exportCsvBtn = document.getElementById('export-csv-btn');
     let currentWebsiteId = null;
 
-    async function fetchAndDisplayStats(websiteId, sortBy = 'created_at', sortOrder = 'desc') {
+    async function fetchAndDisplayStats(websiteId) {
+        const dateFilter = dateFilterSelect.value;
+        const statusFilter = statusFilterSelect.value;
+
         try {
-            const response = await fetch(`/dashboard/stats/${websiteId}?sort_by=${sortBy}&sort_order=${sortOrder}`);
+            const response = await fetch(`/dashboard/stats/${websiteId}?date_filter=${dateFilter}&status_filter=${statusFilter}`);
             if (!response.ok) throw new Error('Failed to load stats');
             const stats = await response.json();
 
@@ -132,8 +141,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const ordersTableBody = document.getElementById('orders-table-body');
             ordersTableBody.innerHTML = '';
-            if (stats.recent_orders.length > 0) {
-                stats.recent_orders.forEach(order => {
+            if (stats.orders.length > 0) {
+                stats.orders.forEach(order => {
                     const statuses = { 0: 'Pending', 1: 'Processing', 2: 'Shipped', 3: 'Delivered', 4: 'Cancelled' };
                     let options = '';
                     for (const key in statuses) {
@@ -158,7 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
                 addEventListenersToButtons();
             } else {
-                ordersTableBody.innerHTML = '<tr><td colspan="6" class="text-center py-4">No recent orders found.</td></tr>';
+                ordersTableBody.innerHTML = '<tr><td colspan="6" class="text-center py-4">No orders found for the selected filters.</td></tr>';
             }
         } catch (error) {
             console.error('Error fetching website stats:', error);
@@ -205,6 +214,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    function updateExportLink() {
+        if (currentWebsiteId) {
+            const dateFilter = dateFilterSelect.value;
+            const statusFilter = statusFilterSelect.value;
+            exportCsvBtn.href = `/dashboard/export/${currentWebsiteId}?date_filter=${dateFilter}&status_filter=${statusFilter}`;
+        }
+    }
+
     document.querySelectorAll('.website-link').forEach(link => {
         link.addEventListener('click', async (e) => {
             e.preventDefault();
@@ -214,21 +231,23 @@ document.addEventListener('DOMContentLoaded', () => {
             websiteListSection.classList.add('hidden');
             websiteStatsSection.classList.remove('hidden');
             document.getElementById('stats-title').textContent = `${websiteName} - Dashboard`;
-            exportCsvBtn.href = `/dashboard/export/${currentWebsiteId}`;
 
+            updateExportLink();
             fetchAndDisplayStats(currentWebsiteId);
         });
     });
 
-    sortBySelect.addEventListener('change', () => {
+    dateFilterSelect.addEventListener('change', () => {
         if (currentWebsiteId) {
-            fetchAndDisplayStats(currentWebsiteId, sortBySelect.value, sortOrderSelect.value);
+            updateExportLink();
+            fetchAndDisplayStats(currentWebsiteId);
         }
     });
 
-    sortOrderSelect.addEventListener('change', () => {
+    statusFilterSelect.addEventListener('change', () => {
         if (currentWebsiteId) {
-            fetchAndDisplayStats(currentWebsiteId, sortBySelect.value, sortOrderSelect.value);
+            updateExportLink();
+            fetchAndDisplayStats(currentWebsiteId);
         }
     });
 

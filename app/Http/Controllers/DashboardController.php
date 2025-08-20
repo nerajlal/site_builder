@@ -41,14 +41,33 @@ class DashboardController extends Controller
         $inventoryItemsCount = Product::where('header_footer_id', $website_id)->count();
         $lowStockItemsCount = Product::where('header_footer_id', $website_id)->where('quantity', '<', 10)->count();
 
-        $sort_by = $request->input('sort_by', 'created_at');
-        $sort_order = $request->input('sort_order', 'desc');
+        $date_filter = $request->input('date_filter', 'all');
+        $status_filter = $request->input('status_filter', 'all');
 
-        $recentOrders = Order::where('header_footer_id', $website_id)
-            ->with('customer')
-            ->orderBy($sort_by, $sort_order)
-            ->take(10)
-            ->get();
+        $ordersQuery = Order::where('header_footer_id', $website_id)->with('customer');
+
+        if ($date_filter != 'all') {
+            switch ($date_filter) {
+                case 'today':
+                    $ordersQuery->whereDate('created_at', today());
+                    break;
+                case 'week':
+                    $ordersQuery->whereBetween('created_at', [now()->startOfWeek(), now()->endOfWeek()]);
+                    break;
+                case 'month':
+                    $ordersQuery->whereMonth('created_at', now()->month);
+                    break;
+                case 'year':
+                    $ordersQuery->whereYear('created_at', now()->year);
+                    break;
+            }
+        }
+
+        if ($status_filter != 'all') {
+            $ordersQuery->where('status', $status_filter);
+        }
+
+        $orders = $ordersQuery->orderBy('created_at', 'desc')->get();
 
         return response()->json([
             'total_sales' => number_format($totalSales, 2),
@@ -56,11 +75,11 @@ class DashboardController extends Controller
             'active_customers' => $activeCustomersCount,
             'inventory_items' => $inventoryItemsCount,
             'low_stock_items' => $lowStockItemsCount,
-            'recent_orders' => $recentOrders,
+            'orders' => $orders,
         ]);
     }
 
-    public function exportOrders($website_id)
+    public function exportOrders(Request $request, $website_id)
     {
         if (!Session::has('userid')) {
             return redirect('/login');
@@ -73,7 +92,33 @@ class DashboardController extends Controller
             return redirect('/dashboard')->with('error', 'Website not found');
         }
 
-        $orders = Order::where('header_footer_id', $website_id)->with(['customer', 'products.product'])->get();
+        $date_filter = $request->input('date_filter', 'all');
+        $status_filter = $request->input('status_filter', 'all');
+
+        $ordersQuery = Order::where('header_footer_id', $website_id)->with(['customer', 'products.product']);
+
+        if ($date_filter != 'all') {
+            switch ($date_filter) {
+                case 'today':
+                    $ordersQuery->whereDate('created_at', today());
+                    break;
+                case 'week':
+                    $ordersQuery->whereBetween('created_at', [now()->startOfWeek(), now()->endOfWeek()]);
+                    break;
+                case 'month':
+                    $ordersQuery->whereMonth('created_at', now()->month);
+                    break;
+                case 'year':
+                    $ordersQuery->whereYear('created_at', now()->year);
+                    break;
+            }
+        }
+
+        if ($status_filter != 'all') {
+            $ordersQuery->where('status', $status_filter);
+        }
+
+        $orders = $ordersQuery->get();
 
         $fileName = "orders-{$website->site_name}-" . date('Y-m-d') . ".csv";
 
