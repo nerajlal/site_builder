@@ -37,7 +37,8 @@ class DashboardController extends Controller
         }
 
         $totalSales = Order::where('header_footer_id', $website_id)->sum('total_amount');
-        $productsSoldCount = Order::where('header_footer_id', $website_id)->withCount('products')->get()->sum('products_count');
+        $orderIds = Order::where('header_footer_id', $website_id)->pluck('id');
+        $productsSoldCount = \App\Models\OrderProduct::whereIn('order_id', $orderIds)->sum('quantity');
         $activeCustomersCount = Order::where('header_footer_id', $website_id)->distinct('site_customer_id')->count();
         $inventoryItemsCount = Product::where('header_footer_id', $website_id)->count();
         $lowStockItemsCount = Product::where('header_footer_id', $website_id)->where('quantity', '<', 10)->count();
@@ -52,8 +53,11 @@ class DashboardController extends Controller
         $salesLastMonth = Order::where('header_footer_id', $website_id)->whereBetween('created_at', [$lastMonthStart, $lastMonthEnd])->sum('total_amount');
         $salesChange = $salesLastMonth > 0 ? (($salesCurrentMonth - $salesLastMonth) / $salesLastMonth) * 100 : ($salesCurrentMonth > 0 ? 100 : 0);
 
-        $productsSoldCurrentMonth = Order::where('header_footer_id', $website_id)->whereBetween('created_at', [$currentMonthStart, $currentMonthEnd])->withCount('products')->get()->sum('products_count');
-        $productsSoldLastMonth = Order::where('header_footer_id', $website_id)->whereBetween('created_at', [$lastMonthStart, $lastMonthEnd])->withCount('products')->get()->sum('products_count');
+        $currentMonthOrderIds = Order::where('header_footer_id', $website_id)->whereBetween('created_at', [$currentMonthStart, $currentMonthEnd])->pluck('id');
+        $productsSoldCurrentMonth = \App\Models\OrderProduct::whereIn('order_id', $currentMonthOrderIds)->sum('quantity');
+
+        $lastMonthOrderIds = Order::where('header_footer_id', $website_id)->whereBetween('created_at', [$lastMonthStart, $lastMonthEnd])->pluck('id');
+        $productsSoldLastMonth = \App\Models\OrderProduct::whereIn('order_id', $lastMonthOrderIds)->sum('quantity');
         $productsSoldChange = $productsSoldLastMonth > 0 ? (($productsSoldCurrentMonth - $productsSoldLastMonth) / $productsSoldLastMonth) * 100 : ($productsSoldCurrentMonth > 0 ? 100 : 0);
 
         $customersCurrentMonth = Order::where('header_footer_id', $website_id)->whereBetween('created_at', [$currentMonthStart, $currentMonthEnd])->distinct('site_customer_id')->count();
@@ -89,10 +93,10 @@ class DashboardController extends Controller
         $orders = $ordersQuery->orderBy('created_at', 'desc')->paginate(5);
 
         // Status-specific order lists
-        $newOrders = Order::where('header_footer_id', $website_id)->where('status', 0)->get();
-        $pendingOrders = Order::where('header_footer_id', $website_id)->where('status', 1)->get();
-        $packedOrders = Order::where('header_footer_id', $website_id)->where('status', 2)->get();
-        $readyToShipOrders = Order::where('header_footer_id', $website_id)->where('status', 3)->get();
+        $newOrders = Order::where('header_footer_id', $website_id)->where('status', 0)->withSum('products', 'quantity')->get();
+        $pendingOrders = Order::where('header_footer_id', $website_id)->where('status', 1)->withSum('products', 'quantity')->get();
+        $packedOrders = Order::where('header_footer_id', $website_id)->where('status', 2)->withSum('products', 'quantity')->get();
+        $readyToShipOrders = Order::where('header_footer_id', $website_id)->where('status', 3)->withSum('products', 'quantity')->get();
 
         // Recent Activities
         $latestOrder = Order::where('header_footer_id', $website_id)->latest()->first();

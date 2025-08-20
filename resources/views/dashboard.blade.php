@@ -159,24 +159,52 @@
                 <div class="bg-white rounded-lg shadow p-4">
                     <h3 class="text-md font-semibold text-gray-800 mb-2">New</h3>
                     <table class="w-full">
+                        <thead>
+                            <tr class="text-xs text-gray-500 uppercase">
+                                <th class="p-2 text-left">ID</th>
+                                <th class="p-2 text-center">Items</th>
+                                <th class="p-2 text-right">Date</th>
+                            </tr>
+                        </thead>
                         <tbody id="new-orders-table"></tbody>
                     </table>
                 </div>
                 <div class="bg-white rounded-lg shadow p-4">
                     <h3 class="text-md font-semibold text-gray-800 mb-2">Pending</h3>
                     <table class="w-full">
+                        <thead>
+                            <tr class="text-xs text-gray-500 uppercase">
+                                <th class="p-2 text-left">ID</th>
+                                <th class="p-2 text-center">Items</th>
+                                <th class="p-2 text-right">Date</th>
+                            </tr>
+                        </thead>
                         <tbody id="pending-orders-table"></tbody>
                     </table>
                 </div>
                 <div class="bg-white rounded-lg shadow p-4">
                     <h3 class="text-md font-semibold text-gray-800 mb-2">Packed</h3>
                     <table class="w-full">
+                        <thead>
+                            <tr class="text-xs text-gray-500 uppercase">
+                                <th class="p-2 text-left">ID</th>
+                                <th class="p-2 text-center">Items</th>
+                                <th class="p-2 text-right">Date</th>
+                            </tr>
+                        </thead>
                         <tbody id="packed-orders-table"></tbody>
                     </table>
                 </div>
                 <div class="bg-white rounded-lg shadow p-4">
                     <h3 class="text-md font-semibold text-gray-800 mb-2">Ready to Ship</h3>
                     <table class="w-full">
+                        <thead>
+                            <tr class="text-xs text-gray-500 uppercase">
+                                <th class="p-2 text-left">ID</th>
+                                <th class="p-2 text-center">Items</th>
+                                <th class="p-2 text-right">Date</th>
+                            </tr>
+                        </thead>
                         <tbody id="ready-to-ship-orders-table"></tbody>
                     </table>
                 </div>
@@ -345,12 +373,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 const row = `
                     <tr class="border-b">
                         <td class="p-2 text-sm text-gray-700">#${order.id}</td>
+                        <td class="p-2 text-sm text-gray-500 text-center">${order.products_sum_quantity || 0}</td>
+                        <td class="p-2 text-sm text-gray-500 text-right">${new Date(order.created_at).toLocaleDateString()}</td>
                     </tr>
                 `;
                 tableBody.innerHTML += row;
             });
         } else {
-            tableBody.innerHTML = '<tr><td class="p-2 text-sm text-gray-400">No orders</td></tr>';
+            tableBody.innerHTML = '<tr><td colspan="3" class="p-2 text-sm text-gray-400 text-center">No orders</td></tr>';
         }
     }
 
