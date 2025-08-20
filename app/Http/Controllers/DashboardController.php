@@ -199,4 +199,18 @@ class DashboardController extends Controller
 
         return response()->stream($callback, 200, $headers);
     }
+
+    public function getNewOrderCount()
+    {
+        if (!Session::has('userid')) {
+            return response()->json(['count' => 0]);
+        }
+
+        $userId = Session::get('userid');
+        $websiteIds = HeaderFooter::where('user_id', $userId)->pluck('id');
+
+        $newOrderCount = Order::whereIn('header_footer_id', $websiteIds)->where('status', 0)->count();
+
+        return response()->json(['count' => $newOrderCount]);
+    }
 }

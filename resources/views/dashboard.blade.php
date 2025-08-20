@@ -241,6 +241,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     });
                     if (!response.ok) throw new Error('Failed to update status');
                     alert('Order status updated successfully!');
+                    updateNotificationCount();
                 } catch (error) {
                     console.error('Error updating order status:', error);
                     alert('Failed to update order status.');
@@ -290,6 +291,26 @@ document.addEventListener('DOMContentLoaded', () => {
                 fetchAndDisplayStats(currentWebsiteId, page);
             });
         });
+    }
+
+    async function updateNotificationCount() {
+        try {
+            const response = await fetch('/notifications/new-order-count');
+            if (!response.ok) return;
+            const data = await response.json();
+            const count = data.count;
+            const notificationBadge = document.querySelector('#notification-btn .absolute');
+            if (notificationBadge) {
+                if (count > 0) {
+                    notificationBadge.textContent = count;
+                    notificationBadge.classList.remove('hidden');
+                } else {
+                    notificationBadge.classList.add('hidden');
+                }
+            }
+        } catch (error) {
+            console.error('Error fetching new order count:', error);
+        }
     }
 
     function updateExportLink() {
