@@ -16,6 +16,7 @@ use App\Http\Controllers\TemplateSelectionController;
 use App\Http\Controllers\TemplateViewController;
 use App\Http\Controllers\Customer\SiteCustomerAuthController;
 use App\Http\Controllers\Customer\SiteCustomerProfileController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
@@ -38,12 +39,7 @@ Route::post('/logout', function () {
 });
 
 // Dashboard route
-Route::get('/dashboard', function () {
-    if (!session()->has('userid')) {
-        return redirect('/login');
-    }
-    return view('dashboard');
-});
+Route::get('/dashboard', [DashboardController::class, 'index']);
 
 // Profile routes
 Route::get('/profile', [ProfileController::class, 'getProfile'])->name('profile');
