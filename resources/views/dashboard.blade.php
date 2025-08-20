@@ -198,29 +198,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const activityFeed = document.getElementById('activity-feed');
             activityFeed.innerHTML = '';
-            if (stats.activities.length > 0) {
-                stats.activities.forEach(activity => {
-                    let icon = '';
-                    let text = '';
-                    if (activity.type === 'new_order') {
-                        icon = '<i class="fas fa-shopping-cart text-blue-500"></i>';
-                        text = `New order #${activity.data.id} from ${activity.data.customer.name}`;
-                    } else if (activity.type === 'new_customer') {
-                        icon = '<i class="fas fa-user-plus text-green-500"></i>';
-                        text = `New customer: ${activity.data.name}`;
-                    }
-                    const item = `
-                        <div class="flex items-start">
-                            <div class="w-8 text-center mr-3">${icon}</div>
-                            <div>
-                                <p class="text-sm text-gray-800">${text}</p>
-                                <p class="text-xs text-gray-500">${activity.time_ago}</p>
-                            </div>
+            if (stats.latest_order) {
+                const item = `
+                    <div class="flex items-start">
+                        <div class="w-8 text-center mr-3"><i class="fas fa-shopping-cart text-blue-500"></i></div>
+                        <div>
+                            <p class="text-sm text-gray-800">Last order #${stats.latest_order.id}</p>
+                            <p class="text-xs text-gray-500">${stats.latest_order.time_ago}</p>
                         </div>
-                    `;
-                    activityFeed.innerHTML += item;
-                });
-            } else {
+                    </div>
+                `;
+                activityFeed.innerHTML += item;
+            }
+            if (stats.latest_customer) {
+                const item = `
+                    <div class="flex items-start">
+                        <div class="w-8 text-center mr-3"><i class="fas fa-user-plus text-green-500"></i></div>
+                        <div>
+                            <p class="text-sm text-gray-800">Last user registered: ${stats.latest_customer.name}</p>
+                            <p class="text-xs text-gray-500">${stats.latest_customer.time_ago}</p>
+                        </div>
+                    </div>
+                `;
+                activityFeed.innerHTML += item;
+            }
+            if (!stats.latest_order && !stats.latest_customer) {
                 activityFeed.innerHTML = '<p class="text-sm text-gray-500">No recent activity.</p>';
             }
 

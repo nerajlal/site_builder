@@ -89,17 +89,18 @@ class DashboardController extends Controller
         $orders = $ordersQuery->orderBy('created_at', 'desc')->paginate(5);
 
         // Recent Activities
-        $recentOrdersForActivity = Order::where('header_footer_id', $website_id)->with('customer')->orderBy('created_at', 'desc')->take(5)->get();
-        $recentCustomers = SiteCustomer::where('header_footer_id', $website_id)->orderBy('created_at', 'desc')->take(5)->get();
-
-        $activities = $recentOrdersForActivity->map(function($order) {
-            return ['type' => 'new_order', 'data' => $order, 'time_ago' => $order->created_at->diffForHumans()];
-        })->concat($recentCustomers->map(function($customer) {
-            return ['type' => 'new_customer', 'data' => $customer, 'time_ago' => $customer->created_at->diffForHumans()];
-        }))->sortByDesc('created_at')->take(5);
+        $latestOrder = Order::where('header_footer_id', $website_id)->latest()->first();
+        $latestCustomer = SiteCustomer::where('header_footer_id', $website_id)->latest()->first();
 
         return response()->json([
-            'activities' => $activities->values()->all(),
+            'latest_order' => $latestOrder ? [
+                'id' => $latestOrder->id,
+                'time_ago' => $latestOrder->created_at->diffForHumans()
+            ] : null,
+            'latest_customer' => $latestCustomer ? [
+                'name' => $latestCustomer->name,
+                'time_ago' => $latestCustomer->created_at->diffForHumans()
+            ] : null,
             'total_sales' => number_format($totalSales, 2),
             'products_sold' => $productsSoldCount,
             'active_customers' => $activeCustomersCount,
