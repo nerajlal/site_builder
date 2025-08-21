@@ -157,9 +157,9 @@
             <!-- Status-specific Order Tables -->
             <div class="mt-6 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
                 <div class="bg-white rounded-lg shadow p-4">
-                    <h3 class="text-md font-semibold text-gray-800 mb-2">New</h3>
+                    <h3 class="text-md font-semibold text-gray-800 mb-2 text-center">New</h3>
                     <table class="w-full">
-                        <thead>
+                        <thead class="bg-gray-50">
                             <tr class="text-xs text-gray-500 uppercase">
                                 <th class="p-2 text-left">ID</th>
                                 <th class="p-2 text-center">Items</th>
@@ -170,9 +170,9 @@
                     </table>
                 </div>
                 <div class="bg-white rounded-lg shadow p-4">
-                    <h3 class="text-md font-semibold text-gray-800 mb-2">Pending</h3>
+                    <h3 class="text-md font-semibold text-gray-800 mb-2 text-center">Pending</h3>
                     <table class="w-full">
-                        <thead>
+                        <thead class="bg-gray-50">
                             <tr class="text-xs text-gray-500 uppercase">
                                 <th class="p-2 text-left">ID</th>
                                 <th class="p-2 text-center">Items</th>
@@ -183,9 +183,9 @@
                     </table>
                 </div>
                 <div class="bg-white rounded-lg shadow p-4">
-                    <h3 class="text-md font-semibold text-gray-800 mb-2">Packed</h3>
+                    <h3 class="text-md font-semibold text-gray-800 mb-2 text-center">Packed</h3>
                     <table class="w-full">
-                        <thead>
+                        <thead class="bg-gray-50">
                             <tr class="text-xs text-gray-500 uppercase">
                                 <th class="p-2 text-left">ID</th>
                                 <th class="p-2 text-center">Items</th>
@@ -196,9 +196,9 @@
                     </table>
                 </div>
                 <div class="bg-white rounded-lg shadow p-4">
-                    <h3 class="text-md font-semibold text-gray-800 mb-2">Ready to Ship</h3>
+                    <h3 class="text-md font-semibold text-gray-800 mb-2 text-center">Ready to Ship</h3>
                     <table class="w-full">
-                        <thead>
+                        <thead class="bg-gray-50">
                             <tr class="text-xs text-gray-500 uppercase">
                                 <th class="p-2 text-left">ID</th>
                                 <th class="p-2 text-center">Items</th>
@@ -209,9 +209,9 @@
                     </table>
                 </div>
                 <div class="bg-white rounded-lg shadow p-4">
-                    <h3 class="text-md font-semibold text-gray-800 mb-2">Shipped</h3>
+                    <h3 class="text-md font-semibold text-gray-800 mb-2 text-center">Shipped</h3>
                     <table class="w-full">
-                        <thead>
+                        <thead class="bg-gray-50">
                             <tr class="text-xs text-gray-500 uppercase">
                                 <th class="p-2 text-left">ID</th>
                                 <th class="p-2 text-center">Items</th>
