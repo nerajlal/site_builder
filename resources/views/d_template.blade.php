@@ -100,10 +100,10 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
             @php
                 $templates = [
-                    ['title' => 'Pink Boutique', 'desc' => 'Modern boutique with pink accents and clean design', 'img' => '1.png', 'preview' => '/index1', 'blade' => 'template1.index1', 'badge' => 'NEW', 'label' => 'Popular'],
-                    ['title' => 'Dark Luxury', 'desc' => 'Sophisticated dark theme with premium fashion focus', 'img' => '2.png', 'preview' => '/index2', 'blade' => 'template2.index2'],
-                    ['title' => 'Minimalist Elegance', 'desc' => 'Clean white design with subtle pink highlights', 'img' => '3.png', 'preview' => '/index3', 'blade' => 'template3.index3'],
-                    ['title' => 'Vintage Classic', 'desc' => 'Timeless vintage-inspired boutique design', 'img' => '4.png', 'preview' => '/index4', 'blade' => 'template4.index4'],
+                    ['title' => 'Pink Boutique', 'desc' => 'Modern boutique with pink accents and clean design', 'img' => '1.png', 'preview' => route('template.preview', ['templateId' => 1]), 'blade' => 'template1.index1', 'badge' => 'NEW', 'label' => 'Popular'],
+                    ['title' => 'Dark Luxury', 'desc' => 'Sophisticated dark theme with premium fashion focus', 'img' => '2.png', 'preview' => route('template.preview', ['templateId' => 2]), 'blade' => 'template2.index2'],
+                    ['title' => 'Minimalist Elegance', 'desc' => 'Clean white design with subtle pink highlights', 'img' => '3.png', 'preview' => route('template.preview', ['templateId' => 3]), 'blade' => 'template3.index3'],
+                    ['title' => 'Vintage Classic', 'desc' => 'Timeless vintage-inspired boutique design', 'img' => '4.png', 'preview' => route('template.preview', ['templateId' => 4]), 'blade' => 'template4.index4'],
                 ];
             @endphp
 

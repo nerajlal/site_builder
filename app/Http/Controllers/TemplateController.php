@@ -17,6 +17,29 @@ use Illuminate\Support\Facades\File;
 
 class TemplateController extends Controller
 {
+    public function preview($templateId)
+    {
+        $viewName = 'template' . $templateId . '.index';
+
+        if (!view()->exists($viewName)) {
+            abort(404, 'Template view not found');
+        }
+
+        return view($viewName, [
+            'homesetting' => [],
+            'section1' => [],
+            'section2' => [],
+            'categories' => [],
+            'products' => [],
+            'testimonials' => [],
+            'headerFooter' => null,
+            'contactus' => null,
+            'is_default' => true,
+            'cartCount' => 0,
+            'wishlistCount' => 0,
+            'headerFooterId' => 0
+        ]);
+    }
     public function show()
     {
         $userId = session('userid');

@@ -55,6 +55,7 @@ Route::post('/profile/update', [ProfileController::class, 'update'])->name('prof
 // Template view routes
 Route::get('/template', [TemplateController::class, 'showSitesForTemplateSelection']);
 Route::get('/template/select/{website_id}', [TemplateController::class, 'showTemplateSelectionForSite']);
+Route::get('/preview/{templateId}', [TemplateController::class, 'preview'])->name('template.preview');
 Route::post('/select-template', [TemplateSelectionController::class, 'store'])->name('template.select');
 
 Route::get('/template-view/{headerFooterId}', [TemplateViewController::class, 'show']);
