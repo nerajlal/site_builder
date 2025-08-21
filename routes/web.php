@@ -23,6 +23,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\UnifiedProductController;
+use App\Http\Controllers\WebsiteViewController;
 
 // Public routes
 Route::get('/', fn() => view('index'));
