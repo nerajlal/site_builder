@@ -127,6 +127,14 @@
 
                     reviewBtns.forEach(btn => {
                         btn.addEventListener('click', function () {
+                            // Reset form for a new review
+                            reviewForm.reset();
+                            ratingInput.value = '0';
+                            stars.forEach(s => {
+                                s.classList.remove('text-yellow-400');
+                                s.classList.add('text-gray-300');
+                            });
+
                             const productId = this.dataset.productId;
                             productIdInput.value = productId;
                             reviewModal.classList.remove('hidden');
