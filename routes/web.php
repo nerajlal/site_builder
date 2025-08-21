@@ -135,7 +135,7 @@ Route::post('/wishlist/remove/{headerFooterId}', [WishlistController::class, 're
 Route::get('/wishlist/count/{headerFooterId}', [WishlistController::class, 'getWishlistCount'])->name('wishlist.count');
 
 // Review route
-Route::post('/review', [ReviewController::class, 'store'])->name('review.store');
+Route::post('/review', [ReviewController::class, 'store'])->name('review.store')->middleware('auth:site_customer');
 
 // Template save route
 Route::post('/template1/save', [TemplateController::class, 'store'])->name('template1.save');

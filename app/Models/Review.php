@@ -14,6 +14,7 @@ class Review extends Model
         'site_customer_id',
         'rating',
         'review',
+        'header_footer_id',
     ];
 
     public function product()

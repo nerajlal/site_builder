@@ -85,6 +85,7 @@
                                     <div class="mt-2">
                                         <form id="review-form">
                                             <input type="hidden" name="product_id" id="product_id">
+                                             <input type="hidden" name="header_footer_id" value="{{ $headerFooter->id }}">
                                             <div class="mb-4">
                                                 <label for="rating" class="block text-sm font-medium text-gray-300">Rating</label>
                                                 <div id="star-rating" class="flex">
