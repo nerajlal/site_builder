@@ -30,6 +30,40 @@
 
 <div class="flex-1 overflow-y-auto">
     <main class="p-6">
+        @if(session('website_url'))
+            <div id="website-url-container" class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4" role="alert">
+                <strong class="font-bold">Your website is ready!</strong>
+                <span class="block sm:inline">Here is the link to your site:</span>
+                <div class="mt-2">
+                    <input id="website-url-input" type="text" value="{{ session('website_url') }}" class="w-full bg-white p-2 border border-green-300 rounded" readonly>
+                </div>
+                <div class="mt-2">
+                    <button onclick="copyUrlToClipboard()" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                        Copy Link
+                    </button>
+                </div>
+                <span id="close-alert" class="absolute top-0 bottom-0 right-0 px-4 py-3">
+                    <svg class="fill-current h-6 w-6 text-green-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
+                </span>
+            </div>
+
+            <script>
+                function copyUrlToClipboard() {
+                    var copyText = document.getElementById("website-url-input");
+                    copyText.select();
+                    copyText.setSelectionRange(0, 99999); // For mobile devices
+                    navigator.clipboard.writeText(copyText.value).then(function() {
+                        alert("Copied the link: " + copyText.value);
+                    }, function(err) {
+                        console.error('Async: Could not copy text: ', err);
+                    });
+                }
+
+                document.getElementById('close-alert').addEventListener('click', function() {
+                    document.getElementById('website-url-container').style.display = 'none';
+                });
+            </script>
+        @endif
         <!-- Header -->
         <div class="mb-8 flex flex-col md:flex-row justify-between items-start md:items-center">
             <div>

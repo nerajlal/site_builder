@@ -35,8 +35,14 @@ class TemplateSelectionController extends Controller
                 ['template_name' => $validatedData['template_name']]
             );
 
-            // Redirect to the dashboard or a success page for that specific site
-            return redirect('/dashboard')->with('success', 'Template for ' . $headerFooter->site_name . ' selected successfully!');
+            // Generate the website URL
+            $routeName = $validatedData['template_name'] . '.customer';
+            $websiteUrl = route($routeName, ['headerFooterId' => $headerFooter->id]);
+
+            // Redirect back with a success message and the website URL
+            return redirect()->back()
+                             ->with('success', 'Template for ' . $headerFooter->site_name . ' selected successfully!')
+                             ->with('website_url', $websiteUrl);
 
         } catch (\Illuminate\Validation\ValidationException $e) {
             return redirect()->back()->withErrors($e->errors());
