@@ -40,6 +40,11 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+
+        'site_customer' => [
+            'driver' => 'session',
+            'provider' => 'site_customers',
+        ],
     ],
 
     /*
@@ -65,10 +70,10 @@ return [
             'model' => App\Models\User::class,
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'site_customers' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\SiteCustomer::class,
+        ],
     ],
 
     /*
