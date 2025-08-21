@@ -80,6 +80,7 @@
       <button class="text-gray-700 hover:text-pink-600 transition">
         <i class="fas fa-search"></i>
       </button>
+      @if($headerFooter)
       <a href="{{ route('wishlist.view', ['headerFooterId' => $headerFooter->id]) }}" class="text-gray-700 hover:text-pink-600 transition relative">
         <i class="fas fa-heart"></i>
         <span id="wishlist-count" class="absolute -top-2 -right-2 bg-pink-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">{{ $wishlistCount ?? 0 }}</span>
@@ -98,6 +99,7 @@
           <button id="signOutBtn" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sign Out</button>
         </div>
       </div>
+      @endif
     </div>
   </header>
   <div id="mobile-menu" class="hidden md:hidden">
@@ -213,7 +215,7 @@
             if (!headerFooterId) {
                 // Try to extract from URL for customer-facing pages
                 const urlParts = window.location.pathname.split('/');
-                const idIndex = urlParts.indexOf('index') + 1 || urlParts.indexOf('product1') + 1 || urlParts.indexOf('single-product') + 1;
+                const idIndex = urlParts.indexOf('index') + 1 || urlParts.indexOf('products') + 1 || urlParts.indexOf('single-product') + 1;
                 if (idIndex > 0 && urlParts[idIndex]) {
                     const id = parseInt(urlParts[idIndex]);
                     if (!isNaN(id)) {
@@ -238,7 +240,7 @@
             const headerFooterId = {{ $headerFooterId ?? 'null' }};
             if (!headerFooterId) {
                 const urlParts = window.location.pathname.split('/');
-                const idIndex = urlParts.indexOf('index') + 1 || urlParts.indexOf('product1') + 1 || urlParts.indexOf('single-product') + 1;
+                const idIndex = urlParts.indexOf('index') + 1 || urlParts.indexOf('products') + 1 || urlParts.indexOf('single-product') + 1;
                 if (idIndex > 0 && urlParts[idIndex]) {
                     const id = parseInt(urlParts[idIndex]);
                     if (!isNaN(id)) {

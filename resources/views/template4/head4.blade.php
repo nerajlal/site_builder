@@ -85,6 +85,7 @@
           <a href="#" class="text-gray-500 group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
             <i class="fas fa-search"></i>
           </a>
+          @if($headerFooter)
           <a href="{{ route('wishlist.view', ['headerFooterId' => $headerFooter->id]) }}" class="ml-8 text-gray-500 group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
             <i class="fas fa-heart"></i>
             <span id="wishlist-count" class="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">{{ $wishlistCount ?? 0 }}</span>
@@ -103,6 +104,7 @@
               <button id="signOutBtn" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sign Out</button>
             </div>
           </div>
+          @endif
         </div>
       </div>
     </div>
@@ -219,7 +221,7 @@
             if (!headerFooterId) {
                 // Try to extract from URL for customer-facing pages
                 const urlParts = window.location.pathname.split('/');
-                const idIndex = urlParts.indexOf('index') + 1 || urlParts.indexOf('product4') + 1 || urlParts.indexOf('single-product') + 1;
+                const idIndex = urlParts.indexOf('index') + 1 || urlParts.indexOf('products') + 1 || urlParts.indexOf('single-product') + 1;
                 if (idIndex > 0 && urlParts[idIndex]) {
                     const id = parseInt(urlParts[idIndex]);
                     if (!isNaN(id)) {
@@ -244,7 +246,7 @@
             const headerFooterId = {{ $headerFooterId ?? 'null' }};
             if (!headerFooterId) {
                 const urlParts = window.location.pathname.split('/');
-                const idIndex = urlParts.indexOf('index') + 1 || urlParts.indexOf('product4') + 1 || urlParts.indexOf('single-product') + 1;
+                const idIndex = urlParts.indexOf('index') + 1 || urlParts.indexOf('products') + 1 || urlParts.indexOf('single-product') + 1;
                 if (idIndex > 0 && urlParts[idIndex]) {
                     const id = parseInt(urlParts[idIndex]);
                     if (!isNaN(id)) {

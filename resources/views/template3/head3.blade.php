@@ -71,6 +71,7 @@
         </div>
         <div class="flex items-center space-x-4">
             <button class="text-gray-500 hover:text-blue-600"><i class="fas fa-search"></i></button>
+            @if($headerFooter)
             <div class="relative">
               <button id="authButton" class="text-gray-500 hover:text-blue-600"><i class="fas fa-user"></i></button>
               <div id="account-dropdown" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50 text-black">
@@ -87,6 +88,7 @@
                 <i class="fas fa-shopping-cart"></i>
                 <span id="cart-count" class="absolute -top-2 -right-2 bg-blue-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">{{ $cartCount ?? 0 }}</span>
             </a>
+            @endif
         </div>
       </div>
     </div>
@@ -180,7 +182,7 @@
             if (!headerFooterId) {
                 // Try to extract from URL for customer-facing pages
                 const urlParts = window.location.pathname.split('/');
-                const idIndex = urlParts.indexOf('index') + 1 || urlParts.indexOf('product3') + 1 || urlParts.indexOf('single-product') + 1;
+                const idIndex = urlParts.indexOf('index') + 1 || urlParts.indexOf('products') + 1 || urlParts.indexOf('single-product') + 1;
                 if (idIndex > 0 && urlParts[idIndex]) {
                     const id = parseInt(urlParts[idIndex]);
                     if (!isNaN(id)) {
@@ -205,7 +207,7 @@
             const headerFooterId = {{ $headerFooterId ?? 'null' }};
             if (!headerFooterId) {
                 const urlParts = window.location.pathname.split('/');
-                const idIndex = urlParts.indexOf('index') + 1 || urlParts.indexOf('product3') + 1 || urlParts.indexOf('single-product') + 1;
+                const idIndex = urlParts.indexOf('index') + 1 || urlParts.indexOf('products') + 1 || urlParts.indexOf('single-product') + 1;
                 if (idIndex > 0 && urlParts[idIndex]) {
                     const id = parseInt(urlParts[idIndex]);
                     if (!isNaN(id)) {
