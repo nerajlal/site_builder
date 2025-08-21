@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Session;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\SiteCustomer;
+use App\Models\Review;
 
 class DashboardController extends Controller
 {
@@ -102,6 +103,7 @@ class DashboardController extends Controller
         // Recent Activities
         $latestOrder = Order::where('header_footer_id', $website_id)->latest()->first();
         $latestCustomer = SiteCustomer::where('header_footer_id', $website_id)->latest()->first();
+        $latestReview = Review::where('header_footer_id', $website_id)->with(['customer', 'product'])->latest()->first();
 
         return response()->json([
             'new_orders' => $newOrders,
@@ -116,6 +118,12 @@ class DashboardController extends Controller
             'latest_customer' => $latestCustomer ? [
                 'name' => $latestCustomer->name,
                 'time_ago' => $latestCustomer->created_at->diffForHumans()
+            ] : null,
+            'latest_review' => $latestReview ? [
+                'customer_name' => $latestReview->customer->name,
+                'product_name' => $latestReview->product->name,
+                'rating' => $latestReview->rating,
+                'time_ago' => $latestReview->created_at->diffForHumans()
             ] : null,
             'total_sales' => number_format($totalSales, 2),
             'products_sold' => $productsSoldCount,

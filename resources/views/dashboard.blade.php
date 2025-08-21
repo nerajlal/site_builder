@@ -291,7 +291,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 `;
                 activityFeed.innerHTML += item;
             }
-            if (!stats.latest_order && !stats.latest_customer) {
+            if (stats.latest_review) {
+                const item = `
+                    <div class="flex items-start">
+                        <div class="w-8 text-center mr-3"><i class="fas fa-star text-yellow-500"></i></div>
+                        <div>
+                            <p class="text-sm text-gray-800">New review by ${stats.latest_review.customer_name} for ${stats.latest_review.product_name} (${stats.latest_review.rating} stars)</p>
+                            <p class="text-xs text-gray-500">${stats.latest_review.time_ago}</p>
+                        </div>
+                    </div>
+                `;
+                activityFeed.innerHTML += item;
+            }
+            if (!stats.latest_order && !stats.latest_customer && !stats.latest_review) {
                 activityFeed.innerHTML = '<p class="text-sm text-gray-500">No recent activity.</p>';
             }
 
