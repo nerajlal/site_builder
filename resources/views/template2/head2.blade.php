@@ -84,7 +84,7 @@
           <a href="/index2" class="text-gray-300 hover:text-pink-500 transition">Home</a>
           <a href="/product2" class="text-gray-300 hover:text-pink-500 transition">Products</a>
         @else
-          <a href="{{ route('template2.index2.customer', ['headerFooterId' => $headerFooter->id]) }}" class="text-gray-300 hover:text-pink-500 transition">Home</a>
+          <a href="{{ route('index.customer', ['headerFooterId' => $headerFooter->id]) }}" class="text-gray-300 hover:text-pink-500 transition">Home</a>
           <a href="{{ route('products.show', ['headerFooterId' => $headerFooter->id]) }}" class="text-gray-300 hover:text-pink-500 transition">Products</a>
           <a href="#features" id="navFeatures" class="{{ !($headerFooter->features ?? false) ? 'hidden' : '' }} hover:text-pink-500">Features</a>
           <a href="#brands" id="navBrands" class="{{ !($headerFooter->brands ?? false) ? 'hidden' : '' }} hover:text-pink-500">Categories</a>
@@ -128,7 +128,7 @@
         <a href="/index2" class="text-gray-300 hover:text-pink-500 transition">Home</a>
         <a href="/product2" class="text-gray-300 hover:text-pink-500 transition">Products</a>
       @else
-        <a href="{{ route('template2.index2.customer', ['headerFooterId' => $headerFooter->id]) }}" class="text-gray-300 hover:text-pink-500 transition">Home</a>
+        <a href="{{ route('index.customer', ['headerFooterId' => $headerFooter->id]) }}" class="text-gray-300 hover:text-pink-500 transition">Home</a>
         <a href="{{ route('products.show', ['headerFooterId' => $headerFooter->id]) }}" class="text-gray-300 hover:text-pink-500 transition">Products</a>
         <a href="#features" id="navFeatures" class="{{ !($headerFooter->features ?? false) ? 'hidden' : '' }} hover:text-pink-500">Features</a>
         <a href="#brands" id="navBrands" class="{{ !($headerFooter->brands ?? false) ? 'hidden' : '' }} hover:text-pink-500">Categories</a>

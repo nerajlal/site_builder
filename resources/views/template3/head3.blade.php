@@ -56,7 +56,7 @@
               <a href="/index3" class="text-gray-500 hover:text-blue-600">Home</a>
               <a href="/product3" class="text-gray-500 hover:text-blue-600">Products</a>
             @else
-              <a href="{{ route('template3.index3.customer', ['headerFooterId' => $headerFooter->id]) }}" class="text-gray-500 hover:text-blue-600">Home</a>
+              <a href="{{ route('index.customer', ['headerFooterId' => $headerFooter->id]) }}" class="text-gray-500 hover:text-blue-600">Home</a>
               <a href="{{ route('products.show', ['headerFooterId' => $headerFooter->id]) }}" class="text-gray-500 hover:text-blue-600">Products</a>
               <a href="#features" id="navFeatures" class="{{ !($headerFooter->features ?? false) ? 'hidden' : '' }} text-gray-500 hover:text-blue-600">Features</a>
               <a href="#brands" id="navBrands" class="{{ !($headerFooter->brands ?? false) ? 'hidden' : '' }} text-gray-500 hover:text-blue-600">Categories</a>
@@ -97,7 +97,7 @@
         <a href="/index3" class="text-gray-500 hover:text-blue-600">Home</a>
         <a href="/product3" class="text-gray-500 hover:text-blue-600">Products</a>
       @else
-        <a href="{{ route('template3.index3.customer', ['headerFooterId' => $headerFooter->id]) }}" class="text-gray-500 hover:text-blue-600">Home</a>
+        <a href="{{ route('index.customer', ['headerFooterId' => $headerFooter->id]) }}" class="text-gray-500 hover:text-blue-600">Home</a>
         <a href="{{ route('products.show', ['headerFooterId' => $headerFooter->id]) }}" class="text-gray-500 hover:text-blue-600">Products</a>
         <a href="#features" id="navFeatures" class="{{ !($headerFooter->features ?? false) ? 'hidden' : '' }} text-gray-500 hover:text-blue-600">Features</a>
         <a href="#brands" id="navBrands" class="{{ !($headerFooter->brands ?? false) ? 'hidden' : '' }} text-gray-500 hover:text-blue-600">Categories</a>
@@ -180,7 +180,7 @@
             if (!headerFooterId) {
                 // Try to extract from URL for customer-facing pages
                 const urlParts = window.location.pathname.split('/');
-                const idIndex = urlParts.indexOf('index3') + 1 || urlParts.indexOf('product3') + 1 || urlParts.indexOf('single-product') + 1;
+                const idIndex = urlParts.indexOf('index') + 1 || urlParts.indexOf('product3') + 1 || urlParts.indexOf('single-product') + 1;
                 if (idIndex > 0 && urlParts[idIndex]) {
                     const id = parseInt(urlParts[idIndex]);
                     if (!isNaN(id)) {
@@ -205,7 +205,7 @@
             const headerFooterId = {{ $headerFooterId ?? 'null' }};
             if (!headerFooterId) {
                 const urlParts = window.location.pathname.split('/');
-                const idIndex = urlParts.indexOf('index3') + 1 || urlParts.indexOf('product3') + 1 || urlParts.indexOf('single-product') + 1;
+                const idIndex = urlParts.indexOf('index') + 1 || urlParts.indexOf('product3') + 1 || urlParts.indexOf('single-product') + 1;
                 if (idIndex > 0 && urlParts[idIndex]) {
                     const id = parseInt(urlParts[idIndex]);
                     if (!isNaN(id)) {

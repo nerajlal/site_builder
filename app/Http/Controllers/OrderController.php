@@ -24,7 +24,7 @@ class OrderController extends Controller
 
         $siteCustomerId = Session::get('site_customer_id');
         if (!$siteCustomerId) {
-            return redirect()->route('template1.index1.customer', ['headerFooterId' => $headerFooterId]);
+            return redirect()->route('index.customer', ['headerFooterId' => $headerFooterId]);
         }
 
         $orders = Order::where('site_customer_id', $siteCustomerId)

@@ -71,16 +71,7 @@ Route::delete('/delete-product/{id}', [TemplateController::class, 'deleteProduct
 Route::put('/products/update/{id}', [TemplateController::class, 'updateProduct'])->name('updateProduct');
 
 // Template display routes (Luxury)
-Route::get('/index1', [LuxuryController1::class, 'index'])->name('template1.index1');
-Route::get('/index2', [LuxuryController2::class, 'index'])->name('template2.index2');
-Route::get('/index3', [LuxuryController3::class, 'index'])->name('template3.index3');
-Route::get('/index4', [LuxuryController4::class, 'index'])->name('template4.index4');
-
-// Customer-facing template routes with header_footer_id
-Route::get('/index1/{headerFooterId}', [LuxuryController1::class, 'showCustomer'])->name('template1.index1.customer');
-Route::get('/index2/{headerFooterId}', [LuxuryController2::class, 'showCustomer'])->name('template2.index2.customer');
-Route::get('/index3/{headerFooterId}', [LuxuryController3::class, 'showCustomer'])->name('template3.index3.customer');
-Route::get('/index4/{headerFooterId}', [LuxuryController4::class, 'showCustomer'])->name('template4.index4.customer');
+Route::get('/index/{headerFooterId}', [WebsiteViewController::class, 'index'])->name('index.customer');
 
 Route::get('/product1', [ProductController1::class, 'index'])->name('template1.product1');
 Route::get('/product2', [ProductController2::class, 'index'])->name('template2.product2');

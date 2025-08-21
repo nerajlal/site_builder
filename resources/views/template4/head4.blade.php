@@ -68,7 +68,7 @@
                 <a href="/index4" class="text-base font-medium text-gray-500 hover:text-gray-900">Home</a>
                 <a href="/product4" class="text-base font-medium text-gray-500 hover:text-gray-900">Products</a>
             @else
-                <a href="{{ route('template4.index4.customer', ['headerFooterId' => $headerFooter->id]) }}" class="text-base font-medium text-gray-500 hover:text-gray-900">Home</a>
+                <a href="{{ route('index.customer', ['headerFooterId' => $headerFooter->id]) }}" class="text-base font-medium text-gray-500 hover:text-gray-900">Home</a>
                 <a href="{{ route('products.show', ['headerFooterId' => $headerFooter->id]) }}" class="text-base font-medium text-gray-500 hover:text-gray-900">Products</a>
                 <a href="#features" id="navFeatures" class="{{ !($headerFooter->features ?? false) ? 'hidden' : '' }} text-base font-medium text-gray-500 hover:text-gray-900">Features</a>
                 <a href="#brands" id="navBrands" class="{{ !($headerFooter->brands ?? false) ? 'hidden' : '' }} text-base font-medium text-gray-500 hover:text-gray-900">Categories</a>
@@ -113,7 +113,7 @@
         <a href="/index4" class="text-base font-medium text-gray-500 hover:text-gray-900">Home</a>
         <a href="/product4" class="text-base font-medium text-gray-500 hover:text-gray-900">Products</a>
       @else
-        <a href="{{ route('template4.index4.customer', ['headerFooterId' => $headerFooter->id]) }}" class="text-base font-medium text-gray-500 hover:text-gray-900">Home</a>
+        <a href="{{ route('index.customer', ['headerFooterId' => $headerFooter->id]) }}" class="text-base font-medium text-gray-500 hover:text-gray-900">Home</a>
         <a href="{{ route('products.show', ['headerFooterId' => $headerFooter->id]) }}" class="text-base font-medium text-gray-500 hover:text-gray-900">Products</a>
         <a href="#features" id="navFeatures" class="{{ !($headerFooter->features ?? false) ? 'hidden' : '' }} text-base font-medium text-gray-500 hover:text-gray-900">Features</a>
         <a href="#brands" id="navBrands" class="{{ !($headerFooter->brands ?? false) ? 'hidden' : '' }} text-base font-medium text-gray-500 hover:text-gray-900">Categories</a>
@@ -219,7 +219,7 @@
             if (!headerFooterId) {
                 // Try to extract from URL for customer-facing pages
                 const urlParts = window.location.pathname.split('/');
-                const idIndex = urlParts.indexOf('index4') + 1 || urlParts.indexOf('product4') + 1 || urlParts.indexOf('single-product') + 1;
+                const idIndex = urlParts.indexOf('index') + 1 || urlParts.indexOf('product4') + 1 || urlParts.indexOf('single-product') + 1;
                 if (idIndex > 0 && urlParts[idIndex]) {
                     const id = parseInt(urlParts[idIndex]);
                     if (!isNaN(id)) {
@@ -244,7 +244,7 @@
             const headerFooterId = {{ $headerFooterId ?? 'null' }};
             if (!headerFooterId) {
                 const urlParts = window.location.pathname.split('/');
-                const idIndex = urlParts.indexOf('index4') + 1 || urlParts.indexOf('product4') + 1 || urlParts.indexOf('single-product') + 1;
+                const idIndex = urlParts.indexOf('index') + 1 || urlParts.indexOf('product4') + 1 || urlParts.indexOf('single-product') + 1;
                 if (idIndex > 0 && urlParts[idIndex]) {
                     const id = parseInt(urlParts[idIndex]);
                     if (!isNaN(id)) {
