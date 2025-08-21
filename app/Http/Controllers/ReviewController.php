@@ -23,10 +23,7 @@ class ReviewController extends Controller
             return response()->json(['success' => false, 'errors' => $validator->errors()], 422);
         }
 
-        $siteCustomerId = Session::get('site_customer_id');
-        if (!$siteCustomerId) {
-            return response()->json(['success' => false, 'message' => 'You must be logged in to leave a review.'], 401);
-        }
+    $siteCustomerId = $request->user()->id;
 
         // Check if the customer has purchased the product
         $hasPurchased = Order::where('site_customer_id', $siteCustomerId)
