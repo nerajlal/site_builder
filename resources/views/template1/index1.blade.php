@@ -225,7 +225,7 @@
 
         <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
             @foreach($products as $product)
-                <a href="{{ route('template1.single-product1.customer', ['headerFooterId' => $headerFooter->id, 'productId' => $product->id]) }}" class="block">
+                <a href="{{ route('single-product.customer', ['headerFooterId' => $headerFooter->id, 'productId' => $product->id]) }}" class="block">
                     <div class="bg-white rounded-lg overflow-hidden product-card boutique-shadow">
                         <div class="relative">
                             @if($product->is_new)

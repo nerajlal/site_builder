@@ -256,7 +256,7 @@
       </div>
       <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
         @foreach($products as $product)
-        <a href="{{ route('template2.single-product2.customer', ['headerFooterId' => $headerFooter->id, 'productId' => $product->id]) }}" class="block group">
+        <a href="{{ route('single-product.customer', ['headerFooterId' => $headerFooter->id, 'productId' => $product->id]) }}" class="block group">
             <div class="bg-black border border-gray-800 rounded-lg overflow-hidden transition-all duration-300 group-hover:border-pink-600 group-hover:shadow-lg group-hover:shadow-pink-600/20">
                 <div class="relative">
                     @if($product->is_new)

@@ -52,12 +52,12 @@
                         <div class="divide-y divide-gray-700">
                             @foreach($order->products as $orderProduct)
                                 <div class="flex items-center py-4">
-                                    <a href="{{ route('template2.single-product2.customer', ['headerFooterId' => $headerFooter->id, 'productId' => $orderProduct->product->id]) }}" class="w-20 h-20 flex-shrink-0 overflow-hidden rounded-md border border-gray-700">
+                                    <a href="{{ route('single-product.customer', ['headerFooterId' => $headerFooter->id, 'productId' => $orderProduct->product->id]) }}" class="w-20 h-20 flex-shrink-0 overflow-hidden rounded-md border border-gray-700">
                                         <img src="{{ $orderProduct->product->image_url }}" alt="{{ $orderProduct->product->name }}" class="h-full w-full object-cover object-center">
                                     </a>
                                     <div class="ml-4 flex-1">
                                         <h3 class="text-base font-semibold text-white">
-                                            <a href="{{ route('template2.single-product2.customer', ['headerFooterId' => $headerFooter->id, 'productId' => $orderProduct->product->id]) }}">{{ $orderProduct->product->name }}</a>
+                                            <a href="{{ route('single-product.customer', ['headerFooterId' => $headerFooter->id, 'productId' => $orderProduct->product->id]) }}">{{ $orderProduct->product->name }}</a>
                                         </h3>
                                         <div class="flex justify-between mt-2 text-sm">
                                             <p class="text-gray-400">Qty: {{ $orderProduct->quantity }}</p>

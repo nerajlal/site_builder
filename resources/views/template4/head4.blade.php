@@ -219,7 +219,7 @@
             if (!headerFooterId) {
                 // Try to extract from URL for customer-facing pages
                 const urlParts = window.location.pathname.split('/');
-                const idIndex = urlParts.indexOf('index4') + 1 || urlParts.indexOf('product4') + 1 || urlParts.indexOf('single-product4') + 1;
+                const idIndex = urlParts.indexOf('index4') + 1 || urlParts.indexOf('product4') + 1 || urlParts.indexOf('single-product') + 1;
                 if (idIndex > 0 && urlParts[idIndex]) {
                     const id = parseInt(urlParts[idIndex]);
                     if (!isNaN(id)) {
@@ -244,7 +244,7 @@
             const headerFooterId = {{ $headerFooterId ?? 'null' }};
             if (!headerFooterId) {
                 const urlParts = window.location.pathname.split('/');
-                const idIndex = urlParts.indexOf('index4') + 1 || urlParts.indexOf('product4') + 1 || urlParts.indexOf('single-product4') + 1;
+                const idIndex = urlParts.indexOf('index4') + 1 || urlParts.indexOf('product4') + 1 || urlParts.indexOf('single-product') + 1;
                 if (idIndex > 0 && urlParts[idIndex]) {
                     const id = parseInt(urlParts[idIndex]);
                     if (!isNaN(id)) {

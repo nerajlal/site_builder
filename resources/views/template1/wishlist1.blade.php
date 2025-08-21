@@ -9,7 +9,7 @@
                 <div id="wishlist-items-container" class="divide-y divide-gray-200">
                     @foreach($wishlistItems as $item)
                         <div class="wishlist-item flex items-center py-6" data-id="{{ $item->id }}">
-                            <a href="{{ route('template1.single-product1.customer', ['headerFooterId' => $headerFooter->id, 'productId' => $item->product->id]) }}" class="w-24 h-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+                            <a href="{{ route('single-product.customer', ['headerFooterId' => $headerFooter->id, 'productId' => $item->product->id]) }}" class="w-24 h-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                                 <img src="{{ $item->product->image_url }}" alt="{{ $item->product->name }}" class="h-full w-full object-cover object-center">
                             </a>
 
@@ -17,7 +17,7 @@
                                 <div>
                                     <div class="flex justify-between text-base font-medium text-gray-900">
                                         <h3>
-                                            <a href="{{ route('template1.single-product1.customer', ['headerFooterId' => $headerFooter->id, 'productId' => $item->product->id]) }}">{{ $item->product->name }}</a>
+                                            <a href="{{ route('single-product.customer', ['headerFooterId' => $headerFooter->id, 'productId' => $item->product->id]) }}">{{ $item->product->name }}</a>
                                         </h3>
                                         <p class="ml-4">₹{{ number_format($item->product->price, 2) }}</p>
                                     </div>
@@ -27,7 +27,7 @@
                                         <button type="button" class="remove-item-btn font-medium text-pink-600 hover:text-pink-500" data-id="{{ $item->id }}" data-product-id="{{ $item->product->id }}">Remove</button>
                                     </div>
                                     <div class="flex">
-                                        <a href="{{ route('template1.single-product1.customer', ['headerFooterId' => $headerFooter->id, 'productId' => $item->product->id]) }}" class="add-to-cart-btn font-medium text-white bg-pink-600 hover:bg-pink-700 px-4 py-2 rounded-md">View Product</a>
+                                        <a href="{{ route('single-product.customer', ['headerFooterId' => $headerFooter->id, 'productId' => $item->product->id]) }}" class="add-to-cart-btn font-medium text-white bg-pink-600 hover:bg-pink-700 px-4 py-2 rounded-md">View Product</a>
                                     </div>
                                 </div>
                             </div>
