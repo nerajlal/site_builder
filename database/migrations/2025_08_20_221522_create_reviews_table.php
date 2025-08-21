@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('product_id')->constrained()->onDelete('cascade');
             $table->foreignId('site_customer_id')->constrained('site_customers')->onDelete('cascade');
-            $table->foreignId('header_footer_id')->constrained('header_footers')->onDelete('cascade');
+            $table->foreignId('header_footer_id')->constrained('header_footer')->onDelete('cascade');
             $table->unsignedTinyInteger('rating');
             $table->text('review')->nullable();
             $table->timestamps();

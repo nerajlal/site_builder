@@ -16,7 +16,7 @@ class ReviewController extends Controller
             'product_id' => 'required|exists:products,id',
             'rating' => 'required|integer|min:1|max:5',
             'review' => 'required|string|max:1000',
-            'header_footer_id' => 'required|exists:header_footers,id',
+            'header_footer_id' => 'required|exists:header_footer,id',
         ]);
 
         if ($validator->fails()) {
