@@ -12,7 +12,7 @@
                         <div id="cart-items-container" class="divide-y divide-gray-200">
                             @foreach($cartItems as $item)
                                 <div class="cart-item flex items-center py-6" data-id="{{ $item->id }}">
-                                    <a href="{{ route('template3.single-product3.customer', ['headerFooterId' => $headerFooter->id, 'productId' => $item->product->id]) }}" class="w-24 h-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+                                    <a href="{{ route('product.show', ['headerFooterId' => $headerFooter->id, 'productId' => $item->product->id]) }}" class="w-24 h-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                                         <img src="{{ $item->product->image_url }}" alt="{{ $item->product->name }}" class="h-full w-full object-cover object-center">
                                     </a>
 
@@ -20,7 +20,7 @@
                                         <div>
                                             <div class="flex justify-between text-base font-medium text-gray-900">
                                                 <h3>
-                                                    <a href="{{ route('template3.single-product3.customer', ['headerFooterId' => $headerFooter->id, 'productId' => $item->product->id]) }}">{{ $item->product->name }}</a>
+                                                    <a href="{{ route('product.show', ['headerFooterId' => $headerFooter->id, 'productId' => $item->product->id]) }}">{{ $item->product->name }}</a>
                                                 </h3>
                                                 <p class="ml-4">₹{{ number_format($item->product->price * $item->quantity, 2) }}</p>
                                             </div>
