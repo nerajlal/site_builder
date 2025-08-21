@@ -163,9 +163,12 @@
             <p class="text-center mt-6 text-xl font-light text-gray-400 group-hover:text-white transition-colors duration-300">{{ $category['name'] }}</p>
           </a>
         @else
-          <a href="{{ route('template2.product2.customer', ['headerFooterId' => $headerFooter->id, 'category_name' => $category['name']]) }}" class="group text-center p-4 transition-all duration-300 ease-in-out hover:bg-gray-900 rounded-lg">
-            <div class="w-48 h-48 mx-auto rounded-full overflow-hidden border-2 border-gray-800 flex items-center justify-center bg-gray-900 group-hover:border-pink-600 group-hover:shadow-lg group-hover:shadow-pink-600/20 transition-all duration-300 ease-in-out">
-                <h4 class="text-2xl font-light text-white group-hover:text-pink-500 transition-colors">{{ $category['name'] }}</h4>
+          <a href="{{ route('products.show', ['headerFooterId' => $headerFooter->id, 'category_name' => $category['name']]) }}" class="group text-center p-4 transition-all duration-300 ease-in-out hover:bg-gray-900 rounded-lg">
+            <div class="w-48 h-48 mx-auto rounded-full overflow-hidden border-2 border-gray-800 relative group-hover:border-pink-600 group-hover:shadow-lg group-hover:shadow-pink-600/20 transition-all duration-300 ease-in-out">
+                <img src="{{ $category['image'] }}" alt="{{ $category['name'] }}" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+                <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                    <h4 class="text-2xl font-light text-white group-hover:text-pink-500 transition-colors">{{ $category['name'] }}</h4>
+                </div>
             </div>
             <p class="text-center mt-6 text-xl font-light text-gray-400 group-hover:text-white transition-colors duration-300">Shop {{ $category['name'] }}</p>
           </a>
