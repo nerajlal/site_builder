@@ -62,31 +62,12 @@
         <a href="/index1" class="text-gray-700 hover:text-pink-600 transition">Home</a>
         <a href="/product1" class="text-gray-700 hover:text-pink-600 transition">Products</a>
       @else
-        @php
-          $currentUrl = request()->url();
-          $headerFooterId = null;
-          if (preg_match('/\/index1\/(\d+)/', $currentUrl, $matches)) {
-            $headerFooterId = $matches[1];
-          } elseif (preg_match('/\/product1\/(\d+)/', $currentUrl, $matches)) {
-            $headerFooterId = $matches[1];
-          }
-        @endphp
-        
-        @if($headerFooterId)
-          <a href="/index1/{{ $headerFooterId }}" class="text-gray-700 hover:text-pink-600 transition">Home</a>
-          <a href="/product1/{{ $headerFooterId }}" class="text-gray-700 hover:text-pink-600 transition">Products</a>
-          <a href="#features" id="navFeatures" class="{{ !($headerFooter->features ?? false) ? 'hidden' : '' }} hover:text-pink-600">Features</a>
-          <a href="#categories" id="navBrands" class="{{ !($headerFooter->brands ?? false) ? 'hidden' : '' }} hover:text-pink-600">Categories</a>
-          <a href="#products" id="navCollections" class="{{ !($headerFooter->collections ?? false) ? 'hidden' : '' }} hover:text-pink-600">Collection</a>
-          <a href="#contact" id="navContact" class="{{ !($headerFooter->contact ?? false) ? 'hidden' : '' }} hover:text-pink-600">Contact</a>
-        @else
-          <a href="/index1" class="text-gray-700 hover:text-pink-600 transition">Home</a>
-          <a href="/product1" class="text-gray-700 hover:text-pink-600 transition">Products</a>
-          <a href="#features" id="navFeatures" class="{{ !($headerFooter->features ?? false) ? 'hidden' : '' }} hover:text-pink-600">Features</a>
-          <a href="#categories" id="navBrands" class="{{ !($headerFooter->brands ?? false) ? 'hidden' : '' }} hover:text-pink-600">Categories</a>
-          <a href="#products" id="navCollections" class="{{ !($headerFooter->collections ?? false) ? 'hidden' : '' }} hover:text-pink-600">Collection</a>
-          <a href="#contact" id="navContact" class="{{ !($headerFooter->contact ?? false) ? 'hidden' : '' }} hover:text-pink-600">Contact</a>
-        @endif
+        <a href="{{ route('template1.index1.customer', ['headerFooterId' => $headerFooter->id]) }}" class="text-gray-700 hover:text-pink-600 transition">Home</a>
+        <a href="{{ route('template1.product1.customer', ['headerFooterId' => $headerFooter->id]) }}" class="text-gray-700 hover:text-pink-600 transition">Products</a>
+        <a href="#features" id="navFeatures" class="{{ !($headerFooter->features ?? false) ? 'hidden' : '' }} hover:text-pink-600">Features</a>
+        <a href="#categories" id="navBrands" class="{{ !($headerFooter->brands ?? false) ? 'hidden' : '' }} hover:text-pink-600">Categories</a>
+        <a href="#products" id="navCollections" class="{{ !($headerFooter->collections ?? false) ? 'hidden' : '' }} hover:text-pink-600">Collection</a>
+        <a href="#contact" id="navContact" class="{{ !($headerFooter->contact ?? false) ? 'hidden' : '' }} hover:text-pink-600">Contact</a>
       @endif
     </nav>
     <div class="md:hidden">
@@ -125,21 +106,12 @@
         <a href="/index1" class="text-gray-700 hover:text-pink-600 transition">Home</a>
         <a href="/product1" class="text-gray-700 hover:text-pink-600 transition">Products</a>
       @else
-        @if($headerFooterId)
-          <a href="/index1/{{ $headerFooterId }}" class="text-gray-700 hover:text-pink-600 transition">Home</a>
-          <a href="/product1/{{ $headerFooterId }}" class="text-gray-700 hover:text-pink-600 transition">Products</a>
-          <a href="#features" id="navFeatures" class="{{ !($headerFooter->features ?? false) ? 'hidden' : '' }} hover:text-pink-600">Features</a>
-          <a href="#categories" id="navBrands" class="{{ !($headerFooter->brands ?? false) ? 'hidden' : '' }} hover:text-pink-600">Categories</a>
-          <a href="#products" id="navCollections" class="{{ !($headerFooter->collections ?? false) ? 'hidden' : '' }} hover:text-pink-600">Collection</a>
-          <a href="#contact" id="navContact" class="{{ !($headerFooter->contact ?? false) ? 'hidden' : '' }} hover:text-pink-600">Contact</a>
-        @else
-          <a href="/index1" class="text-gray-700 hover:text-pink-600 transition">Home</a>
-          <a href="/product1" class="text-gray-700 hover:text-pink-600 transition">Products</a>
-          <a href="#features" id="navFeatures" class="{{ !($headerFooter->features ?? false) ? 'hidden' : '' }} hover:text-pink-600">Features</a>
-          <a href="#categories" id="navBrands" class="{{ !($headerFooter->brands ?? false) ? 'hidden' : '' }} hover:text-pink-600">Categories</a>
-          <a href="#products" id="navCollections" class="{{ !($headerFooter->collections ?? false) ? 'hidden' : '' }} hover:text-pink-600">Collection</a>
-          <a href="#contact" id="navContact" class="{{ !($headerFooter->contact ?? false) ? 'hidden' : '' }} hover:text-pink-600">Contact</a>
-        @endif
+        <a href="{{ route('template1.index1.customer', ['headerFooterId' => $headerFooter->id]) }}" class="text-gray-700 hover:text-pink-600 transition">Home</a>
+        <a href="{{ route('template1.product1.customer', ['headerFooterId' => $headerFooter->id]) }}" class="text-gray-700 hover:text-pink-600 transition">Products</a>
+        <a href="#features" id="navFeatures" class="{{ !($headerFooter->features ?? false) ? 'hidden' : '' }} hover:text-pink-600">Features</a>
+        <a href="#categories" id="navBrands" class="{{ !($headerFooter->brands ?? false) ? 'hidden' : '' }} hover:text-pink-600">Categories</a>
+        <a href="#products" id="navCollections" class="{{ !($headerFooter->collections ?? false) ? 'hidden' : '' }} hover:text-pink-600">Collection</a>
+        <a href="#contact" id="navContact" class="{{ !($headerFooter->contact ?? false) ? 'hidden' : '' }} hover:text-pink-600">Contact</a>
       @endif
       <button id="authButtonMobile" onclick="openLoginModal()" class="bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded transition">
         <span id="authButtonTextMobile">Sign In</span>
