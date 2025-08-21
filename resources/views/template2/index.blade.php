@@ -148,8 +148,8 @@
       @php
         $categories = [
             ['name' => 'Women', 'image' => 'https://images.unsplash.com/photo-1572804013427-4d7ca7268217?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=765&q=80'],
-            ['name' => 'Men', 'image' => 'https://images.unsplash.com/photo-1559624989-7b9303bd9292?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80'],
-            ['name' => 'Kids', 'image' => 'https://images.unsplash.com/photo-1590422348388-3cf4c6930a59?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80'],
+            ['name' => 'Men', 'image' => 'https://www.ottostore.com/cdn/shop/files/OTTO04copy_500x.jpg?v=1755345886'],
+            ['name' => 'Kids', 'image' => 'https://images.meesho.com/images/products/442076022/nrwdc_512.webp'],
         ];
       @endphp
       @foreach($categories as $category)
@@ -503,7 +503,7 @@
         <p class="text-gray-400 mb-8">{{ $contactus->contact_sub }}</p>
         <div class="space-y-6">
           <div class="flex items-start">
-            <div class="text-yellow-600 text-xl w-10 mr-4 mt-1">
+            <div class="text-white-600 text-xl w-10 mr-4 mt-1">
               <i class="fas fa-phone"></i>
             </div>
             <div>
@@ -513,7 +513,7 @@
             </div>
           </div>
           <div class="flex items-start">
-            <div class="text-yellow-600 text-xl w-10 mr-4 mt-1">
+            <div class="text-white-600 text-xl w-10 mr-4 mt-1">
               <i class="fas fa-envelope"></i>
             </div>
             <div>
@@ -522,7 +522,7 @@
             </div>
           </div>
           <div class="flex items-start">
-            <div class="text-yellow-600 text-xl w-10 mr-4 mt-1">
+            <div class="text-white-600 text-xl w-10 mr-4 mt-1">
               <i class="fas fa-map-marker-alt"></i>
             </div>
             <div>

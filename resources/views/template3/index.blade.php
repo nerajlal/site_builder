@@ -380,7 +380,7 @@
       <p class="text-gray-300 mb-8 max-w-2xl mx-auto">Subscribe for exclusive access to new arrivals, special offers, and private styling events.</p>
       <form class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
         <input type="email" placeholder="Your email address" class="flex-grow px-4 py-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:outline-none focus:ring-1 focus:ring-pink-600">
-        <button type="submit" class="bg-pink-600 hover:bg-pink-700 text-white px-6 py-3 rounded-lg font-medium transition duration-300">
+        <button type="submit" class="bg-grey-800 hover:bg-grey-800 text-white px-6 py-3 rounded-lg font-medium transition duration-300">
           Subscribe
         </button>
       </form>

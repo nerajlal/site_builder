@@ -124,8 +124,8 @@
       @php
         $categories = [
             ['name' => 'Women', 'image' => 'https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80'],
-            ['name' => 'Men', 'image' => 'https://images.unsplash.com/photo-1490114538077-0a7f8cb49891?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80'],
-            ['name' => 'Kids', 'image' => 'https://images.unsplash.com/photo-1529428135324-19341b37517c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80'],
+            ['name' => 'Men', 'image' => 'https://www.yellowbrick.co/wp-content/uploads/2021/02/fbe_landingpage_2.jpg'],
+            ['name' => 'Kids', 'image' => 'https://media.istockphoto.com/id/956002732/photo/little-cute-girl-in-dress.jpg?s=612x612&w=0&k=20&c=zpn86EPE9nttoARCw6OvgxI_t34f0cv35ODBZLYZSRo='],
         ];
       @endphp
       @foreach ($categories as $category)
@@ -138,7 +138,7 @@
             <h4 class="text-2xl font-semibold text-white tracking-wider">{{ $category['name'] }}</h4>
           </div>
           <div class="absolute inset-0 bg-white/80 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <span class="bg-gray-900 text-white px-8 py-3 rounded-lg font-medium">
+            <span class="bg-pink-600 text-white px-8 py-3 rounded-lg font-medium">
               Explore
             </span>
           </div>
@@ -209,7 +209,7 @@
           </div>
         </div>
         <div class="text-center mt-12">
-          <button class="bg-transparent hover:bg-gray-900 text-gray-900 hover:text-white border-2 border-gray-900 px-8 py-3 rounded-lg font-medium transition">
+          <button class="bg-transparent hover:bg-pink-600 text-pink-600 hover:text-white border-2 border-gray-900 px-8 py-3 rounded-lg font-medium transition">
             View Full Collection <i class="fas fa-arrow-right ml-2"></i>
           </button>
         </div>
@@ -261,13 +261,13 @@
         <div class="text-center mt-12">
             @if($headerFooterId)
                 <a href="/product1/{{ $headerFooterId }}">
-                    <button class="bg-transparent hover:bg-gray-900 text-gray-900 hover:text-white border-2 border-gray-900 px-8 py-3 rounded-lg font-medium transition">
+                    <button class="bg-transparent hover:bg-pink-600 text-pink-600 hover:text-white border-2 border-gray-900 px-8 py-3 rounded-lg font-medium transition">
                         View Full Collection <i class="fas fa-arrow-right ml-2"></i>
                     </button>
                 </a>
             @else
                 <a href="/product1">
-                    <button class="bg-transparent hover:bg-gray-900 text-gray-900 hover:text-white border-2 border-gray-900 px-8 py-3 rounded-lg font-medium transition">
+                    <button class="bg-transparent hover:bg-pink-600 text-pink-600 hover:text-white border-2 border-pink-600 px-8 py-3 rounded-lg font-medium transition">
                         View Full Collection <i class="fas fa-arrow-right ml-2"></i>
                     </button>
                 </a>
@@ -497,8 +497,8 @@
           <p class="text-gray-600 mb-8">{{ $contactus->contact_sub }}</p>
           <div class="space-y-6">
             <div class="flex items-start">
-              <div class="bg-yellow-100 w-12 h-12 rounded-full flex items-center justify-center mr-4">
-                <i class="fas fa-phone text-yellow-600"></i>
+              <div class="bg-pink-600 w-12 h-12 rounded-full flex items-center justify-center mr-4">
+                <i class="fas fa-phone text-pink-300"></i>
               </div>
               <div>
                 <h4 class="font-semibold mb-1">Phone</h4>
@@ -507,8 +507,8 @@
               </div>
             </div>
             <div class="flex items-start">
-              <div class="bg-yellow-100 w-12 h-12 rounded-full flex items-center justify-center mr-4">
-                <i class="fas fa-envelope text-yellow-600"></i>
+              <div class="bg-pink-600 w-12 h-12 rounded-full flex items-center justify-center mr-4">
+                <i class="fas fa-envelope text-pink-300"></i>
               </div>
               <div>
                 <h4 class="font-semibold mb-1">Email</h4>
@@ -517,8 +517,8 @@
               </div>
             </div>
             <div class="flex items-start">
-              <div class="bg-yellow-100 w-12 h-12 rounded-full flex items-center justify-center mr-4">
-                <i class="fas fa-map-marker-alt text-yellow-600"></i>
+              <div class="bg-pink-600 w-12 h-12 rounded-full flex items-center justify-center mr-4">
+                <i class="fas fa-map-marker-alt text-pink-300"></i>
               </div>
               <div>
                 <h4 class="font-semibold mb-1">{{ $contactus->contact_building }}</h4>
@@ -529,7 +529,7 @@
           </div>
         </div>
         <div>
-          <form class="bg-gray-50 p-8 rounded-lg watch-shadow">
+          <form class="bg-pink-50 p-8 rounded-lg watch-shadow">
             <h4 class="text-xl font-semibold mb-6">Send Us a Message</h4>
             <div class="space-y-4">
               <div>
@@ -548,7 +548,7 @@
                 <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Message</label>
                 <textarea id="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-600 focus:border-transparent"></textarea>
               </div>
-              <button type="submit" class="w-full bg-gray-900 hover:bg-gray-800 text-white py-3 rounded-lg font-medium transition">
+              <button type="submit" class="w-full bg-pink-600 hover:bg-pink-700 text-white py-3 rounded-lg font-medium transition">
                 Send Message <i class="fas fa-paper-plane ml-2"></i>
               </button>
             </div>
@@ -559,13 +559,13 @@
   @endif
 
   <!-- Newsletter -->
-  <section class="py-16 px-6 bg-gray-900 text-white">
+  <section class="py-16 px-6 bg-pink-600 text-white">
     <div class="max-w-4xl mx-auto text-center">
       <h3 class="text-3xl font-bold mb-4">Join Our Style Circle</h3>
       <p class="text-gray-300 mb-8 max-w-2xl mx-auto">Subscribe to receive exclusive access to new arrivals, private styling sessions, and fashion insights.</p>
       <form class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
         <input type="email" placeholder="Your email address" class="flex-grow px-4 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-pink-600">
-        <button type="submit" class="bg-pink-600 hover:bg-pink-700 text-white px-6 py-3 rounded-lg font-medium transition">
+        <button type="submit" class="bg-pink-500 hover:bg-pink-700 text-white px-6 py-3 rounded-lg font-medium transition">
           Subscribe
         </button>
       </form>

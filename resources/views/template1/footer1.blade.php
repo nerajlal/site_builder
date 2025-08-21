@@ -10,16 +10,16 @@
         </h4>
         <p class="text-gray-600 mb-4">Your destination for curated fashion and timeless elegance.</p>
         <div class="flex space-x-4">
-          <a href="#" class="text-gray-600 hover:text-pink-600 transition">
+          <a href="#" class="text-pink-600 hover:text-pink-700 transition">
             <i class="fab fa-facebook-f"></i>
           </a>
-          <a href="#" class="text-gray-600 hover:text-pink-600 transition">
+          <a href="#" class="text-pink-600 hover:text-pink-700 transition">
             <i class="fab fa-instagram"></i>
           </a>
-          <a href="#" class="text-gray-600 hover:text-pink-600 transition">
+          <a href="#" class="text-pink-600 hover:text-pink-700 transition">
             <i class="fab fa-twitter"></i>
           </a>
-          <a href="#" class="text-gray-600 hover:text-pink-600 transition">
+          <a href="#" class="text-pink-600 hover:text-pink-700 transition">
             <i class="fab fa-pinterest"></i>
           </a>
         </div>
@@ -65,16 +65,16 @@
         </h4>
         <p class="text-gray-600 mb-4">{{ $headerFooter->footer_text }}</p>
         <div class="flex space-x-4">
-          <a href="#" class="text-gray-600 hover:text-pink-600 transition">
+          <a href="#" class="text-pink-600 hover:text-pink-700 transition">
             <i class="fab fa-facebook-f"></i>
           </a>
-          <a href="#" class="text-gray-600 hover:text-pink-600 transition">
+          <a href="#" class="text-pink-600 hover:text-pink-700 transition">
             <i class="fab fa-instagram"></i>
           </a>
-          <a href="#" class="text-gray-600 hover:text-pink-600 transition">
+          <a href="#" class="text-pink-600 hover:text-pink-700 transition">
             <i class="fab fa-twitter"></i>
           </a>
-          <a href="#" class="text-gray-600 hover:text-pink-600 transition">
+          <a href="#" class="text-pink-600 hover:text-pink-700 transition">
             <i class="fab fa-pinterest"></i>
           </a>
         </div>

@@ -146,8 +146,8 @@
 
         if (signedIn) {
             authButtonText.textContent = 'Account';
-            authButton.classList.remove('bg-pink-600', 'hover:bg-pink-700');
-            authButton.classList.add('bg-green-600', 'hover:bg-green-700');
+            authButton.classList.remove('bg-pink-800', 'hover:bg-pink-900');
+            authButton.classList.add('bg-pink-600', 'hover:bg-pink-700');
             authButton.onclick = () => {
                 accountDropdown.classList.toggle('hidden');
             };
