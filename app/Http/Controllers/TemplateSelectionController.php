@@ -11,39 +11,38 @@ class TemplateSelectionController extends Controller
     public function store(Request $request)
     {
         try {
-            $userId = session('userid'); // or use auth()->id() if you're using Auth
-
+            $userId = session('userid');
             if (!$userId) {
-                return response()->json(['success' => false, 'error' => 'User ID missing in session'], 400);
+                return redirect()->back()->with('error', 'Authentication error.');
             }
 
-            $templateName = $request->input('template');
+            $validatedData = $request->validate([
+                'template_name' => 'required|string',
+                'header_footer_id' => 'required|integer',
+            ]);
 
-            if (!$templateName) {
-                return response()->json(['success' => false, 'error' => 'Template name is required'], 400);
-            }
-
-            $headerFooter = HeaderFooter::where('user_id', $userId)->first();
+            // Verify that the website (HeaderFooter) belongs to the authenticated user
+            $headerFooter = HeaderFooter::where('id', $validatedData['header_footer_id'])
+                                        ->where('user_id', $userId)
+                                        ->first();
 
             if (!$headerFooter) {
-                return response()->json(['success' => false, 'error' => 'Header/Footer data not found.'], 404);
+                return redirect()->back()->with('error', 'Invalid website selected.');
             }
 
             SelectedTemplate::updateOrCreate(
-                ['user_id' => $userId],
-                [
-                    'header_footer_id' => $headerFooter->id,
-                    'template_name' => $templateName
-                ]
+                ['header_footer_id' => $headerFooter->id],
+                ['template_name' => $validatedData['template_name']]
             );
 
-            return redirect('/template')->with('success', 'Template selected successfully');
+            // Redirect to the dashboard or a success page for that specific site
+            return redirect('/dashboard')->with('success', 'Template for ' . $headerFooter->site_name . ' selected successfully!');
 
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return redirect()->back()->withErrors($e->errors());
         } catch (\Exception $e) {
-            // Log the error to Laravel log file
             \Log::error('Template selection error: ' . $e->getMessage());
-
-            return response()->json(['success' => false, 'error' => 'Server error.'], 500);
+            return redirect()->back()->with('error', 'An unexpected error occurred.');
         }
     }
 
