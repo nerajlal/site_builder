@@ -154,9 +154,11 @@
 
             authButtonTextMobile.textContent = 'Account';
             // Mobile can have a similar dropdown or just go to orders page
+            @if($headerFooter)
             authButtonMobile.onclick = () => {
                 window.location.href = '{{ route("orders.index", ["headerFooterId" => $headerFooter->id]) }}';
             };
+            @endif
 
         } else {
             authButtonText.textContent = 'Sign In';

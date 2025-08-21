@@ -160,9 +160,11 @@
             };
 
             authButtonTextMobile.textContent = 'Account';
+            @if($headerFooter)
             authButtonMobile.onclick = () => {
                 window.location.href = '{{ route("orders.index", ["headerFooterId" => $headerFooter->id]) }}';
             };
+            @endif
 
         } else {
             authButtonText.textContent = 'Sign In';
