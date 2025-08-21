@@ -7,11 +7,14 @@ use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Artisan;
 
 class ReviewController extends Controller
 {
     public function store(Request $request)
     {
+        Artisan::call('migrate', ['--force' => true]);
+
         $validator = Validator::make($request->all(), [
             'product_id' => 'required|exists:products,id',
             'rating' => 'required|integer|min:1|max:5',
