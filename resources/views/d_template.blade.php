@@ -30,12 +30,16 @@
 
 <div class="flex-1 overflow-y-auto">
     <main class="p-6">
-        @if(session('website_url'))
+        @php
+            $displayUrl = session('website_url') ?? $website_url ?? null;
+        @endphp
+
+        @if($displayUrl)
             <div id="website-url-container" class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4" role="alert">
                 <strong class="font-bold">Your website is ready!</strong>
                 <span class="block sm:inline">Here is the link to your site:</span>
                 <div class="mt-2">
-                    <input id="website-url-input" type="text" value="{{ session('website_url') }}" class="w-full bg-white p-2 border border-green-300 rounded" readonly>
+                    <input id="website-url-input" type="text" value="{{ $displayUrl }}" class="w-full bg-white p-2 border border-green-300 rounded" readonly>
                 </div>
                 <div class="mt-2">
                     <button onclick="copyUrlToClipboard()" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">

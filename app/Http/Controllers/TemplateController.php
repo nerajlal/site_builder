@@ -164,7 +164,12 @@ class TemplateController extends Controller
 
     public function showTemplateSelectionForSite($website_id)
     {
-        return view('d_template', ['website_id' => $website_id]);
+        $selectedTemplate = \App\Models\SelectedTemplate::where('header_footer_id', $website_id)->first();
+        $websiteUrl = null;
+        if ($selectedTemplate) {
+            $websiteUrl = route('index.customer', ['headerFooterId' => $website_id]);
+        }
+        return view('d_template', ['website_id' => $website_id, 'website_url' => $websiteUrl]);
     }
 
     public function showSites()
