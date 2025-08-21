@@ -12,7 +12,7 @@
                         <div id="cart-items-container" class="divide-y divide-gray-800">
                             @foreach($cartItems as $item)
                                 <div class="cart-item flex items-center py-6" data-id="{{ $item->id }}">
-                                    <a href="{{ route('template2.single-product2.customer', ['headerFooterId' => $headerFooter->id, 'productId' => $item->product->id]) }}" class="w-24 h-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-700">
+                                    <a href="{{ route('products.single', ['websiteId' => $headerFooter->id, 'productId' => $item->product->id]) }}" class="w-24 h-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-700">
                                         <img src="{{ $item->product->image_url }}" alt="{{ $item->product->name }}" class="h-full w-full object-cover object-center">
                                     </a>
 
@@ -20,7 +20,7 @@
                                         <div>
                                             <div class="flex justify-between text-base font-medium text-white">
                                                 <h3>
-                                                    <a href="{{ route('template2.single-product2.customer', ['headerFooterId' => $headerFooter->id, 'productId' => $item->product->id]) }}" class="hover:text-pink-500">{{ $item->product->name }}</a>
+                                                    <a href="{{ route('products.single', ['websiteId' => $headerFooter->id, 'productId' => $item->product->id]) }}" class="hover:text-pink-500">{{ $item->product->name }}</a>
                                                 </h3>
                                                 <p class="ml-4">₹{{ number_format($item->product->price * $item->quantity, 2) }}</p>
                                             </div>
@@ -47,7 +47,7 @@
                         <i class="fas fa-shopping-cart text-6xl text-gray-700"></i>
                         <h3 class="mt-4 text-2xl font-light text-white">Your cart is empty.</h3>
                         <p class="text-gray-400 mt-2">Looks like you haven't added anything to your cart yet.</p>
-                        <a href="{{ route('template2.product2.customer', ['headerFooterId' => $headerFooter->id]) }}" class="mt-6 inline-block px-6 py-3 bg-pink-600 text-white rounded-lg hover:bg-pink-700 font-medium">
+                        <a href="{{ route('products.show', ['websiteId' => $headerFooter->id]) }}" class="mt-6 inline-block px-6 py-3 bg-pink-600 text-white rounded-lg hover:bg-pink-700 font-medium">
                             Continue Shopping
                         </a>
                     </div>
@@ -73,7 +73,7 @@
                     <button id="checkout-btn" class="w-full mt-6 bg-pink-600 hover:bg-pink-700 text-white py-3 px-4 rounded-lg font-bold text-lg transition">
                         Proceed to Checkout
                     </button>
-                    <a href="{{ route('template2.product2.customer', ['headerFooterId' => $headerFooter->id]) }}" class="block text-center mt-4 text-pink-500 hover:text-pink-400 font-medium">
+                    <a href="{{ route('products.show', ['websiteId' => $headerFooter->id]) }}" class="block text-center mt-4 text-pink-500 hover:text-pink-400 font-medium">
                         or Continue Shopping
                     </a>
                 </div>

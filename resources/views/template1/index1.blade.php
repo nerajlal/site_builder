@@ -32,17 +32,17 @@
             @endphp
             <div class="flex flex-col sm:flex-row justify-center gap-4">
               @if($headerFooterId)
-                <a href="/product1/{{ $headerFooterId }}" class="bg-pink-600 hover:bg-pink-700 text-white px-8 py-3 rounded-lg font-medium transition">
+                <a href="{{ route('products.show', ['websiteId' => $headerFooterId]) }}" class="bg-pink-600 hover:bg-pink-700 text-white px-8 py-3 rounded-lg font-medium transition">
                   {{ $homesetting->button1_text }} <i class="fas fa-arrow-right ml-2"></i>
                 </a>
-                <a href="/product1/{{ $headerFooterId }}" class="bg-transparent hover:bg-white hover:text-gray-900 border-2 border-white text-white px-8 py-3 rounded-lg font-medium transition">
+                <a href="{{ route('products.show', ['websiteId' => $headerFooterId]) }}" class="bg-transparent hover:bg-white hover:text-gray-900 border-2 border-white text-white px-8 py-3 rounded-lg font-medium transition">
                   {{ $homesetting->button2_text }}
                 </a>
               @else
-                <a href="/product1" class="bg-pink-600 hover:bg-pink-700 text-white px-8 py-3 rounded-lg font-medium transition">
+                <a href="{{ route('products.show', ['websiteId' => $headerFooter->id]) }}" class="bg-pink-600 hover:bg-pink-700 text-white px-8 py-3 rounded-lg font-medium transition">
                   {{ $homesetting->button1_text }} <i class="fas fa-arrow-right ml-2"></i>
                 </a>
-                <a href="/product1" class="bg-transparent hover:bg-white hover:text-gray-900 border-2 border-white text-white px-8 py-3 rounded-lg font-medium transition">
+                <a href="{{ route('products.show', ['websiteId' => $headerFooter->id]) }}" class="bg-transparent hover:bg-white hover:text-gray-900 border-2 border-white text-white px-8 py-3 rounded-lg font-medium transition">
                   {{ $homesetting->button2_text }}
                 </a>
               @endif
@@ -129,7 +129,7 @@
         ];
       @endphp
       @foreach ($categories as $category)
-        <a href="{{ $is_default ? '#' : route('template1.product1.customer', ['headerFooterId' => $headerFooter->id, 'category_name' => $category['name']]) }}" class="relative group overflow-hidden rounded-xl border border-gray-200/50 shadow-sm hover:shadow-xl transition-all duration-300 ease-in-out">
+        <a href="{{ $is_default ? '#' : route('products.show', ['websiteId' => $headerFooter->id, 'category_name' => $category['name']]) }}" class="relative group overflow-hidden rounded-xl border border-gray-200/50 shadow-sm hover:shadow-xl transition-all duration-300 ease-in-out">
           <div class="aspect-w-1 aspect-h-1">
             <img src="{{ $category['image'] }}" alt="{{ $category['name'] }}" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
           </div>
@@ -225,7 +225,7 @@
 
         <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
             @foreach($products as $product)
-                <a href="{{ route('template1.single-product1.customer', ['headerFooterId' => $headerFooter->id, 'productId' => $product->id]) }}" class="block">
+                <a href="{{ route('products.single', ['websiteId' => $headerFooter->id, 'productId' => $product->id]) }}" class="block">
                     <div class="bg-white rounded-lg overflow-hidden product-card boutique-shadow">
                         <div class="relative">
                             @if($product->is_new)
@@ -260,13 +260,13 @@
 
         <div class="text-center mt-12">
             @if($headerFooterId)
-                <a href="/product1/{{ $headerFooterId }}">
+                <a href="{{ route('products.show', ['websiteId' => $headerFooterId]) }}">
                     <button class="bg-transparent hover:bg-gray-900 text-gray-900 hover:text-white border-2 border-gray-900 px-8 py-3 rounded-lg font-medium transition">
                         View Full Collection <i class="fas fa-arrow-right ml-2"></i>
                     </button>
                 </a>
             @else
-                <a href="/product1">
+                <a href="{{ route('products.show', ['websiteId' => $headerFooter->id]) }}">
                     <button class="bg-transparent hover:bg-gray-900 text-gray-900 hover:text-white border-2 border-gray-900 px-8 py-3 rounded-lg font-medium transition">
                         View Full Collection <i class="fas fa-arrow-right ml-2"></i>
                     </button>

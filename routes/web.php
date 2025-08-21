@@ -8,6 +8,7 @@ use App\Http\Controllers\LuxuryController1;
 use App\Http\Controllers\LuxuryController2;
 use App\Http\Controllers\LuxuryController3;
 use App\Http\Controllers\LuxuryController4;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductController1;
 use App\Http\Controllers\ProductController2;
 use App\Http\Controllers\ProductController3;
@@ -80,26 +81,9 @@ Route::get('/index2/{headerFooterId}', [LuxuryController2::class, 'showCustomer'
 Route::get('/index3/{headerFooterId}', [LuxuryController3::class, 'showCustomer'])->name('template3.index3.customer');
 Route::get('/index4/{headerFooterId}', [LuxuryController4::class, 'showCustomer'])->name('template4.index4.customer');
 
-Route::get('/product1', [ProductController1::class, 'index'])->name('template1.product1');
-Route::get('/product2', [ProductController2::class, 'index'])->name('template2.product2');
-Route::get('/product3', [ProductController3::class, 'index'])->name('template3.product3');
-Route::get('/product4', [ProductController4::class, 'index'])->name('template4.product4');
-
-Route::get('/single-product1', [ProductController1::class, 'index'])->name('template1.single-product1');
-Route::get('/single-product2', [ProductController2::class, 'index'])->name('template2.single-product2');
-Route::get('/single-product3', [ProductController3::class, 'index'])->name('template3.single-product3');
-Route::get('/single-product4', [ProductController4::class, 'index'])->name('template4.single-product4');
-
-// Customer-facing product routes with header_footer_id
-Route::get('/product1/{headerFooterId}', [ProductController1::class, 'showCustomer'])->name('template1.product1.customer');
-Route::get('/product2/{headerFooterId}', [ProductController2::class, 'showCustomer'])->name('template2.product2.customer');
-Route::get('/product3/{headerFooterId}', [ProductController3::class, 'showCustomer'])->name('template3.product3.customer');
-Route::get('/product4/{headerFooterId}', [ProductController4::class, 'showCustomer'])->name('template4.product4.customer');
-
-Route::get('/single-product1/{headerFooterId}/{productId}', [ProductController1::class, 'showSingleProduct'])->name('template1.single-product1.customer');
-Route::get('/single-product2/{headerFooterId}/{productId}', [ProductController2::class, 'showSingleProduct'])->name('template2.single-product2.customer');
-Route::get('/single-product3/{headerFooterId}/{productId}', [ProductController3::class, 'showSingleProduct'])->name('template3.single-product3.customer');
-Route::get('/single-product4/{headerFooterId}/{productId}', [ProductController4::class, 'showSingleProduct'])->name('template4.single-product4.customer');
+// Generic Product Routes
+Route::get('/products/{websiteId}', [ProductController::class, 'showProducts'])->name('products.show');
+Route::get('/products/{websiteId}/{productId}', [ProductController::class, 'showSingleProduct'])->name('products.single');
 
 
 // Site customer auth endpoints (AJAX)
