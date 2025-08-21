@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(data => {
                 if (data.success) {
                     alert('Order placed successfully!');
-                    window.location.href = '{{ route("template3.index3.customer", ["headerFooterId" => $headerFooter->id]) }}';
+                    window.location.href = '{{ route("site.show", ["headerFooterId" => $headerFooter->id]) }}';
                 } else {
                     if (data.redirect_to_profile) {
                         alert(data.message);
