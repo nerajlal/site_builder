@@ -70,7 +70,7 @@
                                 <i class="fas fa-star"></i>
                                 <i class="far fa-star"></i>
                             </div>
-                            <span class="text-gray-600">(128 reviews)</span>
+                            <span class="text-gray-600">({{ $product->reviews->count() }} reviews)</span>
                         </button>
                     </div>
                 </div>
@@ -242,7 +242,7 @@
                 <nav class="-mb-px flex space-x-8 overflow-x-auto">
                     <button class="tab-btn active py-4 px-1 border-b-2 border-[#9333ea] text-[#7e22ce] font-medium whitespace-nowrap" onclick="showTab('description')">Description</button>
                     <button class="tab-btn py-4 px-1 border-b-2 border-transparent text-gray-500 hover:text-gray-700 whitespace-nowrap" onclick="showTab('fit')">Fit & Materials</button>
-                    <button class="tab-btn py-4 px-1 border-b-2 border-transparent text-gray-500 hover:text-gray-700 whitespace-nowrap" onclick="showTab('reviews')">Reviews (128)</button>
+                    <button class="tab-btn py-4 px-1 border-b-2 border-transparent text-gray-500 hover:text-gray-700 whitespace-nowrap" onclick="showTab('reviews')">Reviews ({{ $product->reviews->count() }})</button>
                     <button class="tab-btn py-4 px-1 border-b-2 border-transparent text-gray-500 hover:text-gray-700 whitespace-nowrap" onclick="showTab('shipping')">Shipping & Returns</button>
                     <button class="tab-btn py-4 px-1 border-b-2 border-transparent text-gray-500 hover:text-gray-700 whitespace-nowrap" onclick="showTab('faq')">FAQ</button>
                 </nav>
@@ -386,196 +386,75 @@
 
                 <!-- Reviews Tab -->
                 <div id="reviews" class="tab-content hidden">
+                    @php
+                        $totalReviews = $product->reviews->count();
+                        $averageRating = $totalReviews > 0 ? $product->reviews->avg('rating') : 0;
+                        $ratingDistribution = $totalReviews > 0 ? $product->reviews->groupBy('rating')->map->count() : collect();
+                    @endphp
                     <div class="space-y-8">
                         <!-- Review Summary -->
                         <div class="grid md:grid-cols-3 gap-8">
                             <div class="bg-gray-50 p-6 rounded-lg text-center">
-                                <div class="text-4xl font-bold mb-2">4.2</div>
+                                <div class="text-4xl font-bold mb-2">{{ number_format($averageRating, 1) }}</div>
                                 <div class="flex justify-center text-yellow-400 mb-2">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="far fa-star"></i>
+                                    @for ($i = 1; $i <= 5; $i++)
+                                        @if ($i <= $averageRating)
+                                            <i class="fas fa-star"></i>
+                                        @elseif ($i - 0.5 <= $averageRating)
+                                            <i class="fas fa-star-half-alt"></i>
+                                        @else
+                                            <i class="far fa-star"></i>
+                                        @endif
+                                    @endfor
                                 </div>
-                                <p class="text-sm text-gray-600">Based on 128 reviews</p>
-                                <button class="mt-4 text-[#7e22ce] hover:underline">Write a Review</button>
+                                <p class="text-sm text-gray-600">Based on {{ $totalReviews }} reviews</p>
                             </div>
                             
                             <div class="md:col-span-2">
                                 <h3 class="font-semibold mb-4">Rating Breakdown</h3>
                                 <div class="space-y-2">
-                                    <div class="flex items-center space-x-2">
-                                        <span class="text-sm w-8">5★</span>
-                                        <div class="flex-1 bg-gray-200 rounded-full h-2">
-                                            <div class="bg-yellow-400 h-2 rounded-full" style="width: 65%"></div>
+                                    @for ($i = 5; $i >= 1; $i--)
+                                        <div class="flex items-center space-x-2">
+                                            <span class="text-sm w-8">{{ $i }}★</span>
+                                            <div class="flex-1 bg-gray-200 rounded-full h-2">
+                                                <div class="bg-yellow-400 h-2 rounded-full" style="width: {{ $totalReviews > 0 ? ($ratingDistribution->get($i, 0) / $totalReviews) * 100 : 0 }}%"></div>
+                                            </div>
+                                            <span class="text-sm text-gray-600">{{ $totalReviews > 0 ? round(($ratingDistribution->get($i, 0) / $totalReviews) * 100) : 0 }}%</span>
                                         </div>
-                                        <span class="text-sm text-gray-600">65%</span>
-                                    </div>
-                                    <div class="flex items-center space-x-2">
-                                        <span class="text-sm w-8">4★</span>
-                                        <div class="flex-1 bg-gray-200 rounded-full h-2">
-                                            <div class="bg-yellow-400 h-2 rounded-full" style="width: 25%"></div>
-                                        </div>
-                                        <span class="text-sm text-gray-600">25%</span>
-                                    </div>
-                                    <div class="flex items-center space-x-2">
-                                        <span class="text-sm w-8">3★</span>
-                                        <div class="flex-1 bg-gray-200 rounded-full h-2">
-                                            <div class="bg-yellow-400 h-2 rounded-full" style="width: 8%"></div>
-                                        </div>
-                                        <span class="text-sm text-gray-600">8%</span>
-                                    </div>
-                                    <div class="flex items-center space-x-2">
-                                        <span class="text-sm w-8">2★</span>
-                                        <div class="flex-1 bg-gray-200 rounded-full h-2">
-                                            <div class="bg-yellow-400 h-2 rounded-full" style="width: 2%"></div>
-                                        </div>
-                                        <span class="text-sm text-gray-600">2%</span>
-                                    </div>
-                                    <div class="flex items-center space-x-2">
-                                        <span class="text-sm w-8">1★</span>
-                                        <div class="flex-1 bg-gray-200 rounded-full h-2">
-                                            <div class="bg-yellow-400 h-2 rounded-full" style="width: 0%"></div>
-                                        </div>
-                                        <span class="text-sm text-gray-600">0%</span>
-                                    </div>
+                                    @endfor
                                 </div>
                             </div>
-                        </div>
-
-                        <!-- Review Filters -->
-                        <div class="flex flex-wrap gap-2 py-4 border-y">
-                            <button class="px-4 py-2 bg-[#7e22ce] text-white rounded-full text-sm">All Reviews</button>
-                            <button class="px-4 py-2 border rounded-full text-sm hover:bg-gray-50">With Photos (45)</button>
-                            <button class="px-4 py-2 border rounded-full text-sm hover:bg-gray-50">Size M (38)</button>
-                            <button class="px-4 py-2 border rounded-full text-sm hover:bg-gray-50">Size L (29)</button>
-                            <button class="px-4 py-2 border rounded-full text-sm hover:bg-gray-50">Fit: True to Size</button>
                         </div>
 
                         <!-- Individual Reviews -->
                         <div class="space-y-6">
-                            <!-- Review 1 with Photos -->
-                            <div class="border-b pb-6">
-                                <div class="flex items-start space-x-4">
-                                    <div class="w-12 h-12 bg-[#7e22ce] text-white rounded-full flex items-center justify-center font-semibold">P</div>
-                                    <div class="flex-1">
-                                        <div class="flex items-center justify-between mb-2">
-                                            <div>
-                                                <h4 class="font-semibold">Priya S.</h4>
-                                                <div class="flex items-center space-x-2 mt-1">
-                                                    <div class="flex text-yellow-400 text-sm">
-                                                        <i class="fas fa-star"></i>
-                                                        <i class="fas fa-star"></i>
-                                                        <i class="fas fa-star"></i>
-                                                        <i class="fas fa-star"></i>
-                                                        <i class="fas fa-star"></i>
+                            @forelse($product->reviews as $review)
+                                <div class="border-b pb-6">
+                                    <div class="flex items-start space-x-4">
+                                        <div class="w-12 h-12 bg-[#7e22ce] text-white rounded-full flex items-center justify-center font-semibold">{{ strtoupper(substr($review->customer->name, 0, 1)) }}</div>
+                                        <div class="flex-1">
+                                            <div class="flex items-center justify-between mb-2">
+                                                <div>
+                                                    <h4 class="font-semibold">{{ $review->customer->name }}</h4>
+                                                    <div class="flex items-center space-x-2 mt-1">
+                                                        <div class="flex text-yellow-400 text-sm">
+                                                            @for ($i = 1; $i <= 5; $i++)
+                                                                <i class="{{ $i <= $review->rating ? 'fas' : 'far' }} fa-star"></i>
+                                                            @endfor
+                                                        </div>
+                                                        <span class="text-sm text-green-600">✓ Verified Purchase</span>
                                                     </div>
-                                                    <span class="text-sm text-gray-500">Size M</span>
-                                                    <span class="text-sm text-green-600">✓ Verified Purchase</span>
                                                 </div>
+                                                <span class="text-sm text-gray-500">{{ $review->created_at->diffForHumans() }}</span>
                                             </div>
-                                            <span class="text-sm text-gray-500">2 days ago</span>
-                                        </div>
-                                        
-                                        <p class="text-gray-700 mb-3">Beautiful dress with excellent quality! The fabric is soft and breathable, perfect for summer weather. The floral print is vibrant and the fit is just right. Highly recommend!</p>
-                                        
 
-                                        <!-- Review Tags -->
-                                        <div class="flex flex-wrap gap-2 mb-3">
-                                            <span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs">True to Size</span>
-                                            <span class="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs">Great Quality</span>
-                                            <span class="px-2 py-1 bg-purple-100 text-purple-800 rounded-full text-xs">Comfortable</span>
-                                        </div>
-
-                                        <div class="flex items-center space-x-4 text-sm text-gray-500">
-                                            <button class="hover:text-[#7e22ce]">👍 Helpful (12)</button>
-                                            <button class="hover:text-[#7e22ce]">Reply</button>
+                                            <p class="text-gray-700 mb-3">{{ $review->review }}</p>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-
-                            <!-- Review 2 -->
-                            <div class="border-b pb-6">
-                                <div class="flex items-start space-x-4">
-                                    <div class="w-12 h-12 bg-[#7e22ce] text-white rounded-full flex items-center justify-center font-semibold">A</div>
-                                    <div class="flex-1">
-                                        <div class="flex items-center justify-between mb-2">
-                                            <div>
-                                                <h4 class="font-semibold">Ananya M.</h4>
-                                                <div class="flex items-center space-x-2 mt-1">
-                                                    <div class="flex text-yellow-400 text-sm">
-                                                        <i class="fas fa-star"></i>
-                                                        <i class="fas fa-star"></i>
-                                                        <i class="fas fa-star"></i>
-                                                        <i class="fas fa-star"></i>
-                                                        <i class="far fa-star"></i>
-                                                    </div>
-                                                    <span class="text-sm text-gray-500">Size L</span>
-                                                    <span class="text-sm text-green-600">✓ Verified Purchase</span>
-                                                </div>
-                                            </div>
-                                            <span class="text-sm text-gray-500">1 week ago</span>
-                                        </div>
-                                        
-                                        <p class="text-gray-700 mb-3">Good quality dress, colors are vibrant as shown in pictures. The length is perfect for midi style. Only issue is that it wrinkles easily, but overall satisfied with the purchase.</p>
-                                        
-                                        <div class="flex flex-wrap gap-2 mb-3">
-                                            <span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs">True to Size</span>
-                                            <span class="px-2 py-1 bg-orange-100 text-orange-800 rounded-full text-xs">Wrinkles Easily</span>
-                                        </div>
-
-                                        <div class="flex items-center space-x-4 text-sm text-gray-500">
-                                            <button class="hover:text-[#7e22ce]">👍 Helpful (8)</button>
-                                            <button class="hover:text-[#7e22ce]">Reply</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Review 3 -->
-                            <div class="border-b pb-6">
-                                <div class="flex items-start space-x-4">
-                                    <div class="w-12 h-12 bg-[#7e22ce] text-white rounded-full flex items-center justify-center font-semibold">S</div>
-                                    <div class="flex-1">
-                                        <div class="flex items-center justify-between mb-2">
-                                            <div>
-                                                <h4 class="font-semibold">Sneha K.</h4>
-                                                <div class="flex items-center space-x-2 mt-1">
-                                                    <div class="flex text-yellow-400 text-sm">
-                                                        <i class="fas fa-star"></i>
-                                                        <i class="fas fa-star"></i>
-                                                        <i class="fas fa-star"></i>
-                                                        <i class="fas fa-star"></i>
-                                                        <i class="fas fa-star"></i>
-                                                    </div>
-                                                    <span class="text-sm text-gray-500">Size S</span>
-                                                    <span class="text-sm text-green-600">✓ Verified Purchase</span>
-                                                </div>
-                                            </div>
-                                            <span class="text-sm text-gray-500">2 weeks ago</span>
-                                        </div>
-                                        
-                                        <p class="text-gray-700 mb-3">Absolutely love this dress! Perfect for summer occasions. The fabric is breathable and the cut is flattering. Received many compliments wearing this. Will definitely order in other colors.</p>
-                                        
-                                        <div class="flex flex-wrap gap-2 mb-3">
-                                            <span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs">Perfect Fit</span>
-                                            <span class="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs">Breathable</span>
-                                            <span class="px-2 py-1 bg-purple-100 text-purple-800 rounded-full text-xs">Flattering</span>
-                                        </div>
-
-                                        <div class="flex items-center space-x-4 text-sm text-gray-500">
-                                            <button class="hover:text-[#7e22ce]">👍 Helpful (15)</button>
-                                            <button class="hover:text-[#7e22ce]">Reply</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="text-center">
-                            <button class="px-8 py-3 border border-[#9333ea] text-[#7e22ce] rounded-lg hover:bg-[#7e22ce] hover:text-white transition-colors">Load More Reviews</button>
+                            @empty
+                                <p>No reviews yet.</p>
+                            @endforelse
                         </div>
                     </div>
                 </div>

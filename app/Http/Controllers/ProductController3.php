@@ -110,7 +110,8 @@ class ProductController3 extends Controller
             'sizeChart',
             'fabricDetails',
             'careInstructions',
-            'faqs'
+            'faqs',
+            'reviews'
         ])->find($productId);
 
         if (!$headerFooter || !$product) {

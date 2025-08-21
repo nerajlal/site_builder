@@ -21,6 +21,7 @@ use App\Http\Controllers\ImageController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\WishlistController;
+use App\Http\Controllers\ReviewController;
 
 // Public routes
 Route::get('/', fn() => view('index'));
@@ -132,6 +133,9 @@ Route::get('/wishlist/{headerFooterId}', [WishlistController::class, 'getWishlis
 Route::post('/wishlist/add/{headerFooterId}', [WishlistController::class, 'addToWishlist'])->name('wishlist.add');
 Route::post('/wishlist/remove/{headerFooterId}', [WishlistController::class, 'removeFromWishlist'])->name('wishlist.remove');
 Route::get('/wishlist/count/{headerFooterId}', [WishlistController::class, 'getWishlistCount'])->name('wishlist.count');
+
+// Review route
+Route::post('/review', [ReviewController::class, 'store'])->name('review.store');
 
 // Template save route
 Route::post('/template1/save', [TemplateController::class, 'store'])->name('template1.save');

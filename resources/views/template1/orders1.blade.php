@@ -63,6 +63,7 @@
                                             <p class="text-gray-600">Qty: {{ $orderProduct->quantity }}</p>
                                             <p class="font-medium text-gray-900">Price: ₹{{ number_format($orderProduct->price, 2) }}</p>
                                         </div>
+                                        <button class="text-sm text-blue-500 hover:underline review-btn" data-product-id="{{ $orderProduct->product->id }}">Add Review</button>
                                     </div>
                                 </div>
                             @endforeach
@@ -70,6 +71,117 @@
                     </div>
                 @endforeach
             </div>
+
+            <!-- Review Modal -->
+            <div id="review-modal" class="fixed z-10 inset-0 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+                <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+                    <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+                    <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+                    <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                        <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                            <div class="sm:flex sm:items-start">
+                                <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                                    <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">Write a Review</h3>
+                                    <div class="mt-2">
+                                        <form id="review-form">
+                                            <input type="hidden" name="product_id" id="product_id">
+                                            <div class="mb-4">
+                                                <label for="rating" class="block text-sm font-medium text-gray-700">Rating</label>
+                                                <div id="star-rating" class="flex">
+                                                    <i class="fas fa-star text-gray-300 cursor-pointer" data-rating="1"></i>
+                                                    <i class="fas fa-star text-gray-300 cursor-pointer" data-rating="2"></i>
+                                                    <i class="fas fa-star text-gray-300 cursor-pointer" data-rating="3"></i>
+                                                    <i class="fas fa-star text-gray-300 cursor-pointer" data-rating="4"></i>
+                                                    <i class="fas fa-star text-gray-300 cursor-pointer" data-rating="5"></i>
+                                                </div>
+                                                <input type="hidden" name="rating" id="rating" value="0">
+                                            </div>
+                                            <div class="mb-4">
+                                                <label for="review" class="block text-sm font-medium text-gray-700">Review</label>
+                                                <textarea name="review" id="review" rows="4" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"></textarea>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                            <button type="button" id="submit-review" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm">Submit</button>
+                            <button type="button" id="close-modal" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    const reviewModal = document.getElementById('review-modal');
+                    const closeModal = document.getElementById('close-modal');
+                    const reviewBtns = document.querySelectorAll('.review-btn');
+                    const productIdInput = document.getElementById('product_id');
+                    const ratingInput = document.getElementById('rating');
+                    const stars = document.querySelectorAll('#star-rating i');
+                    const submitReviewBtn = document.getElementById('submit-review');
+                    const reviewForm = document.getElementById('review-form');
+
+                    reviewBtns.forEach(btn => {
+                        btn.addEventListener('click', function () {
+                            const productId = this.dataset.productId;
+                            productIdInput.value = productId;
+                            reviewModal.classList.remove('hidden');
+                        });
+                    });
+
+                    closeModal.addEventListener('click', function () {
+                        reviewModal.classList.add('hidden');
+                    });
+
+                    stars.forEach(star => {
+                        star.addEventListener('click', function () {
+                            const rating = this.dataset.rating;
+                            ratingInput.value = rating;
+                            stars.forEach(s => {
+                                if (s.dataset.rating <= rating) {
+                                    s.classList.remove('text-gray-300');
+                                    s.classList.add('text-yellow-400');
+                                } else {
+                                    s.classList.remove('text-yellow-400');
+                                    s.classList.add('text-gray-300');
+                                }
+                            });
+                        });
+                    });
+
+                    submitReviewBtn.addEventListener('click', function () {
+                        const formData = new FormData(reviewForm);
+                        fetch('{{ route('review.store') }}', {
+                            method: 'POST',
+                            headers: {
+                                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                                'Accept': 'application/json',
+                            },
+                            body: formData
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                reviewModal.classList.add('hidden');
+                                alert(data.message);
+                            } else {
+                                let errorMessage = '';
+                                for (const error in data.errors) {
+                                    errorMessage += data.errors[error].join('\\n') + '\\n';
+                                }
+                                alert(errorMessage || data.message);
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            alert('An error occurred. Please try again.');
+                        });
+                    });
+                });
+            </script>
         @else
             <div class="text-center py-16 bg-white rounded-lg shadow-lg">
                 <i class="fas fa-box-open text-6xl text-gray-300"></i>

@@ -127,6 +127,11 @@ class Product extends Model
         return $this->hasMany(ProductFaq::class);
     }
 
+    public function reviews()
+    {
+        return $this->hasMany(Review::class)->with('customer');
+    }
+
     public function getImageUrlAttribute($value)
     {
         if (str_starts_with($value, 'http')) {
