@@ -36,8 +36,7 @@ class TemplateSelectionController extends Controller
             );
 
             // Generate the website URL
-            $routeName = $validatedData['template_name'] . '.customer';
-            $websiteUrl = route($routeName, ['headerFooterId' => $headerFooter->id]);
+            $websiteUrl = route('index.customer', ['headerFooterId' => $headerFooter->id]);
 
             // Redirect back with a success message and the website URL
             return redirect()->back()
