@@ -52,12 +52,12 @@
                         <div class="divide-y divide-gray-700">
                             @foreach($order->products as $orderProduct)
                                 <div class="flex items-center py-4">
-                                    <a href="{{ route('template2.single-product2.customer', ['headerFooterId' => $headerFooter->id, 'productId' => $orderProduct->product->id]) }}" class="w-20 h-20 flex-shrink-0 overflow-hidden rounded-md border border-gray-700">
+                                    <a href="{{ route('products.single', ['websiteId' => $headerFooter->id, 'productId' => $orderProduct->product->id]) }}" class="w-20 h-20 flex-shrink-0 overflow-hidden rounded-md border border-gray-700">
                                         <img src="{{ $orderProduct->product->image_url }}" alt="{{ $orderProduct->product->name }}" class="h-full w-full object-cover object-center">
                                     </a>
                                     <div class="ml-4 flex-1">
                                         <h3 class="text-base font-semibold text-white">
-                                            <a href="{{ route('template2.single-product2.customer', ['headerFooterId' => $headerFooter->id, 'productId' => $orderProduct->product->id]) }}">{{ $orderProduct->product->name }}</a>
+                                            <a href="{{ route('products.single', ['websiteId' => $headerFooter->id, 'productId' => $orderProduct->product->id]) }}">{{ $orderProduct->product->name }}</a>
                                         </h3>
                                         <div class="flex justify-between mt-2 text-sm">
                                             <p class="text-gray-400">Qty: {{ $orderProduct->quantity }}</p>
@@ -75,7 +75,7 @@
                 <i class="fas fa-box-open text-6xl text-gray-700"></i>
                 <h3 class="mt-4 text-2xl font-light text-pink-500">You have no orders yet.</h3>
                 <p class="text-gray-400 mt-2">Looks like you haven't placed any orders with us.</p>
-                <a href="{{ route('template2.product2.customer', ['headerFooterId' => $headerFooter->id]) }}" class="mt-6 inline-block px-6 py-3 bg-pink-600 text-white rounded-lg hover:bg-pink-700 font-medium">
+                <a href="{{ route('products.show', ['websiteId' => $headerFooter->id]) }}" class="mt-6 inline-block px-6 py-3 bg-pink-600 text-white rounded-lg hover:bg-pink-700 font-medium">
                     Continue Shopping
                 </a>
             </div>
