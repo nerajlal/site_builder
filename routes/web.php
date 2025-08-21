@@ -22,6 +22,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\UnifiedProductController;
 
 // Public routes
 Route::get('/', fn() => view('index'));
@@ -92,6 +93,7 @@ Route::get('/single-product3', [ProductController3::class, 'index'])->name('temp
 Route::get('/single-product4', [ProductController4::class, 'index'])->name('template4.single-product4');
 
 // Customer-facing product routes with header_footer_id
+Route::get('/products/{headerFooterId}', [UnifiedProductController::class, 'show'])->name('products.show');
 Route::get('/product1/{headerFooterId}', [ProductController1::class, 'showCustomer'])->name('template1.product1.customer');
 Route::get('/product2/{headerFooterId}', [ProductController2::class, 'showCustomer'])->name('template2.product2.customer');
 Route::get('/product3/{headerFooterId}', [ProductController3::class, 'showCustomer'])->name('template3.product3.customer');

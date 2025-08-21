@@ -57,7 +57,7 @@
               <a href="/product3" class="text-gray-500 hover:text-blue-600">Products</a>
             @else
               <a href="{{ route('template3.index3.customer', ['headerFooterId' => $headerFooter->id]) }}" class="text-gray-500 hover:text-blue-600">Home</a>
-              <a href="{{ route('template3.product3.customer', ['headerFooterId' => $headerFooter->id]) }}" class="text-gray-500 hover:text-blue-600">Products</a>
+              <a href="{{ route('products.show', ['headerFooterId' => $headerFooter->id]) }}" class="text-gray-500 hover:text-blue-600">Products</a>
               <a href="#features" id="navFeatures" class="{{ !($headerFooter->features ?? false) ? 'hidden' : '' }} text-gray-500 hover:text-blue-600">Features</a>
               <a href="#brands" id="navBrands" class="{{ !($headerFooter->brands ?? false) ? 'hidden' : '' }} text-gray-500 hover:text-blue-600">Categories</a>
               <a href="#collection" id="navCollections" class="{{ !($headerFooter->collections ?? false) ? 'hidden' : '' }} text-gray-500 hover:text-blue-600">Collection</a>
@@ -98,7 +98,7 @@
         <a href="/product3" class="text-gray-500 hover:text-blue-600">Products</a>
       @else
         <a href="{{ route('template3.index3.customer', ['headerFooterId' => $headerFooter->id]) }}" class="text-gray-500 hover:text-blue-600">Home</a>
-        <a href="{{ route('template3.product3.customer', ['headerFooterId' => $headerFooter->id]) }}" class="text-gray-500 hover:text-blue-600">Products</a>
+        <a href="{{ route('products.show', ['headerFooterId' => $headerFooter->id]) }}" class="text-gray-500 hover:text-blue-600">Products</a>
         <a href="#features" id="navFeatures" class="{{ !($headerFooter->features ?? false) ? 'hidden' : '' }} text-gray-500 hover:text-blue-600">Features</a>
         <a href="#brands" id="navBrands" class="{{ !($headerFooter->brands ?? false) ? 'hidden' : '' }} text-gray-500 hover:text-blue-600">Categories</a>
         <a href="#collection" id="navCollections" class="{{ !($headerFooter->collections ?? false) ? 'hidden' : '' }} text-gray-500 hover:text-blue-600">Collection</a>

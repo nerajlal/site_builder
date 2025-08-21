@@ -39,7 +39,7 @@
                 <i class="fas fa-heart text-6xl text-gray-300"></i>
                 <h3 class="mt-4 text-2xl font-bold text-gray-800">Your wishlist is empty.</h3>
                 <p class="text-gray-500 mt-2">Looks like you haven't added anything to your wishlist yet.</p>
-                <a href="{{ route('template3.product3.customer', ['headerFooterId' => $headerFooter->id]) }}" class="mt-6 inline-block px-6 py-3 bg-pink-600 text-white rounded-lg hover:bg-pink-700 font-medium">
+                <a href="{{ route('products.show', ['headerFooterId' => $headerFooter->id]) }}" class="mt-6 inline-block bg-blue-600 text-white px-8 py-3 rounded-md hover:bg-blue-700 transition-colors">
                     Continue Shopping
                 </a>
             </div>
