@@ -12,7 +12,6 @@ class SelectedTemplate extends Model
     protected $table = 'selected_templates'; // Adjust this to your actual table name
 
     protected $fillable = [
-        'user_id',
         'template_name',
         'header_footer_id',
         'created_at',
