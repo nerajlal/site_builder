@@ -97,13 +97,22 @@ document.addEventListener('DOMContentLoaded', function () {
             })
             .then(response => {
                 if (response.status === 401) {
-                    // User not logged in
-                    alert('Error placing order: User not logged in.'); // Or use a custom toast
-                    openLoginModal(); // Open the login modal
-                    return Promise.reject('User not logged in'); // Stop further processing
+                    alert('Error placing order: User not logged in.');
+                    openLoginModal();
+                    return Promise.reject('User not logged in');
+                }
+                if (response.status === 400) {
+                    return response.json().then(data => {
+                        if (data.redirect_to_profile) {
+                            alert(data.message);
+                            openProfileModal();
+                        } else {
+                            alert('Error placing order: ' + data.message);
+                        }
+                        return Promise.reject('Profile update required');
+                    });
                 }
                 if (!response.ok) {
-                    // Other errors (e.g., server error)
                     return response.json().then(errorData => {
                         throw new Error(errorData.message || 'An unknown error occurred.');
                     });
@@ -115,19 +124,15 @@ document.addEventListener('DOMContentLoaded', function () {
                     alert('Order placed successfully!');
                     window.location.href = '{{ route("index.customer", ["headerFooterId" => $headerFooter->id]) }}';
                 } else {
-                    if (data.redirect_to_profile) {
-                        alert(data.message);
-                        openProfileModal();
-                    } else {
-                        alert('Error placing order: ' + data.message);
-                    }
+                    // This part might now be redundant but kept as a fallback.
+                    alert('Error placing order: ' + data.message);
                 }
             })
             .catch(error => {
-                // Only log errors that are not the "User not logged in" case, which is handled
-                if (error !== 'User not logged in') {
+                const errorMessage = error.message || error;
+                if (errorMessage !== 'User not logged in' && errorMessage !== 'Profile update required') {
                     console.error('Error:', error);
-                    alert('An error occurred while placing the order: ' + error.message);
+                    alert('An error occurred while placing the order: ' + errorMessage);
                 }
             });
         });
