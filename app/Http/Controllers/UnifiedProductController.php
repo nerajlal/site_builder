@@ -62,7 +62,7 @@ class UnifiedProductController extends Controller
         $products = $query->get();
 
         // Construct the view name dynamically
-        $viewName = 'template' . $templateId . '.product' . $templateId;
+        $viewName = 'template' . $templateId . '.product';
 
         // We also need cart and wishlist counts for the header
         $siteCustomerId = Session::get('site_customer_id');
