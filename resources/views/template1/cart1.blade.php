@@ -97,14 +97,12 @@ document.addEventListener('DOMContentLoaded', function () {
             })
             .then(response => {
                 if (response.status === 401) {
-                    alert('Error placing order: User not logged in.');
                     openLoginModal();
                     return Promise.reject('User not logged in');
                 }
                 if (response.status === 400) {
                     return response.json().then(data => {
                         if (data.redirect_to_profile) {
-                            alert(data.message);
                             openProfileModal();
                         } else {
                             alert('Error placing order: ' + data.message);
