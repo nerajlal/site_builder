@@ -321,7 +321,7 @@
                                                 <tr>
                                                     <th class="border border-gray-700 p-2 font-medium">Size</th>
                                                     @if($product->sizeChart->count() > 0)
-                                                        @foreach(json_decode($product->sizeChart[0]->measurements, true) as $key => $value)
+                                                        @foreach($product->sizeChart[0]->measurements as $key => $value)
                                                             <th class="border border-gray-700 p-2 font-medium">{{ ucfirst($key) }}</th>
                                                         @endforeach
                                                     @endif
@@ -331,7 +331,7 @@
                                                 @foreach($product->sizeChart ?? [] as $size)
                                                 <tr>
                                                     <td class="border border-gray-700 p-2">{{ $size->size }}</td>
-                                                    @foreach(json_decode($size->measurements, true) as $key => $value)
+                                                    @foreach($size->measurements as $key => $value)
                                                         <td class="border border-gray-700 p-2">{{ $value }}</td>
                                                     @endforeach
                                                 </tr>
