@@ -329,7 +329,7 @@ class TemplateController extends Controller
                 if (!empty($size['size']) && !empty($size['measurements'])) {
                     $product->sizeChart()->create([
                         'size' => $size['size'],
-                        'measurements' => $size['measurements'],
+                        'measurements' => json_decode($size['measurements'], true),
                     ]);
                 }
             }
@@ -519,7 +519,7 @@ class TemplateController extends Controller
                 if (!empty($size['size']) && !empty($size['measurements'])) {
                     $product->sizeChart()->create([
                         'size' => $size['size'],
-                        'measurements' => $size['measurements'],
+                        'measurements' => json_decode($size['measurements'], true),
                     ]);
                 }
             }
