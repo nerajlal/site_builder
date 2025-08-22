@@ -220,13 +220,13 @@
         </div>
         <div class="text-center mt-12">
           @if($headerFooterId)
-            <a href="/product3/{{ $headerFooterId }}">
+            <a href="/products/{{ $headerFooterId }}">
               <button class="border border-gray-900 hover:bg-gray-900 hover:text-white text-gray-900 px-8 py-3 rounded-lg font-medium transition duration-300">
                 Discover More
               </button>
             </a>
           @else
-            <a href="/product3">
+            <a href="/products">
               <button class="border border-gray-900 hover:bg-gray-900 hover:text-white text-gray-900 px-8 py-3 rounded-lg font-medium transition duration-300">
                 Discover More
               </button>
