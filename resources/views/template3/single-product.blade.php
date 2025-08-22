@@ -744,7 +744,47 @@
             }
         }
 
-        // Add to cart
+        // A new robust function to handle adding items to the cart
+        async function addItemToCart(productData) {
+            try {
+                const response = await fetch(`/cart/add/{{ $headerFooterId }}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                    },
+                    body: JSON.stringify(productData)
+                });
+
+                // Handle non-ok responses first
+                if (!response.ok) {
+                    if (response.status === 401) {
+                        openLoginModal();
+                        return null; // Indicate failure
+                    }
+                    // Try to get more specific error message
+                    const errorData = await response.json().catch(() => null);
+                    showToast(errorData?.message || 'An error occurred.', 'error');
+                    return null; // Indicate failure
+                }
+
+                // Handle successful response
+                const data = await response.json();
+                if (data.success) {
+                    return data; // Indicate success, return data
+                } else {
+                    showToast(data.message || 'Something went wrong!', 'error');
+                    return null; // Indicate failure
+                }
+
+            } catch (error) {
+                console.error('Error adding item to cart:', error);
+                showToast('An error occurred. Please try again.', 'error');
+                return null;
+            }
+        }
+
+        // Rewritten addToCart
         async function addToCart() {
             if (!currentState.selectedColor || !currentState.selectedSize) {
                 showToast('Please select a color and size.', 'error');
@@ -760,31 +800,13 @@
                 }
             };
 
-            try {
-                const response = await fetch(`/cart/add/{{ $headerFooterId }}`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-                    },
-                    body: JSON.stringify(productData)
-                });
+            const result = await addItemToCart(productData);
 
-                const data = await response.json();
-
-                if (data.success) {
-                    showToast(data.message, 'success');
-                    updateCartCount(); // Update cart count in header
-                } else {
-                    showToast(data.message || 'Something went wrong!', 'error');
-                }
-            } catch (error) {
-                console.error('Error adding to cart:', error);
-                showToast('An error occurred. Please try again.', 'error');
+            if (result) {
+                showToast(result.message, 'success');
+                updateCartCount(); // Update cart count in header
+                trackEvent('add_to_cart', productData);
             }
-
-            // Analytics event
-            trackEvent('add_to_cart', productData);
         }
 
         // Update wishlist count in header
@@ -801,23 +823,28 @@
             }
         }
 
-        // Buy now
-        function buyNow() {
+        // Rewritten buyNow
+        async function buyNow() {
+            if (!currentState.selectedColor || !currentState.selectedSize) {
+                showToast('Please select a color and size.', 'error');
+                return;
+            }
+
             const productData = {
-                id: 'summer-floral-midi-dress',
-                name: 'Summer Floral Midi Dress',
-                price: 2199,
-                color: currentState.selectedColor,
-                size: currentState.selectedSize,
-                quantity: currentState.quantity
+                product_id: {{ $product->id }},
+                quantity: currentState.quantity,
+                options: {
+                    color: currentState.selectedColor,
+                    size: currentState.selectedSize,
+                }
             };
-            
-            // Analytics event
-            trackEvent('begin_checkout', productData);
-            
-            // Redirect to checkout
-            console.log('Redirecting to checkout with:', productData);
-            showToast('Redirecting to checkout...', 'info');
+
+            const result = await addItemToCart(productData);
+
+            if (result) {
+                trackEvent('begin_checkout', productData);
+                window.location.href = `/cart/{{ $headerFooterId }}`;
+            }
         }
 
         // WhatsApp chat
