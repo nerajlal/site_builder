@@ -22,30 +22,13 @@
         <p class="text-gray-700 mb-8">
           {{ $is_default ? 'Where classic style meets modern sophistication' : $homesetting->sub_text }}
         </p>
-        @php
-          $currentUrl = request()->url();
-          $headerFooterId = null;
-          if (preg_match('/\/index4\/(\d+)/', $currentUrl, $matches)) {
-            $headerFooterId = $matches[1];
-          }
-        @endphp
-        
         <div class="flex space-x-4">
-          @if($headerFooterId)
-            <button class="btn-pink px-8 py-3 rounded font-medium" onclick="window.location.href='/product4/{{ $headerFooterId }}'">
+            <button class="btn-pink px-8 py-3 rounded font-medium" onclick="window.location.href='/products/{{ $headerFooter->id }}'">
               {{ $is_default ? 'Shop Collection' : $homesetting->button1_text }}
             </button>
-            <button class="btn-outline px-8 py-3 rounded font-medium" onclick="window.location.href='/product4/{{ $headerFooterId }}'">
+            <button class="btn-outline px-8 py-3 rounded font-medium" onclick="window.location.href='/products/{{ $headerFooter->id }}'">
               {{ $is_default ? 'Book Styling' : $homesetting->button2_text }}
             </button>
-          @else
-            <button class="btn-pink px-8 py-3 rounded font-medium" onclick="window.location.href='/product4'">
-              {{ $is_default ? 'Shop Collection' : $homesetting->button1_text }}
-            </button>
-            <button class="btn-outline px-8 py-3 rounded font-medium" onclick="window.location.href='/product4'">
-              {{ $is_default ? 'Book Styling' : $homesetting->button2_text }}
-            </button>
-          @endif
         </div>
       </div>
     </div>
@@ -285,8 +268,8 @@
             @endforeach
         </div>
         <div class="text-center mt-12">
-          @if($headerFooterId)
-            <a href="/products/{{ $headerFooterId }}">
+          @if($headerFooter)
+            <a href="/products/{{ $headerFooter->id }}">
               <button class="btn-outline px-8 py-3 rounded font-medium">
                 View Full Collection
               </button>

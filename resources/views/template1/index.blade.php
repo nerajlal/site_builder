@@ -23,29 +23,13 @@
         <div class="relative z-10 text-white px-4">
             <h2 class="text-5xl md:text-6xl font-bold mb-6">{{ $homesetting->main_text }}</h2>
             <p class="text-xl md:text-2xl mb-8">{{ $homesetting->sub_text }}</p>
-            @php
-              $currentUrl = request()->url();
-              $headerFooterId = null;
-              if (preg_match('/\/index1\/(\d+)/', $currentUrl, $matches)) {
-                $headerFooterId = $matches[1];
-              }
-            @endphp
             <div class="flex flex-col sm:flex-row justify-center gap-4">
-              @if($headerFooterId)
-                <a href="/product1/{{ $headerFooterId }}" class="bg-pink-600 hover:bg-pink-700 text-white px-8 py-3 rounded-lg font-medium transition">
+                <a href="/products/{{ $headerFooter->id }}" class="bg-pink-600 hover:bg-pink-700 text-white px-8 py-3 rounded-lg font-medium transition">
                   {{ $homesetting->button1_text }} <i class="fas fa-arrow-right ml-2"></i>
                 </a>
-                <a href="/product1/{{ $headerFooterId }}" class="bg-transparent hover:bg-white hover:text-gray-900 border-2 border-white text-white px-8 py-3 rounded-lg font-medium transition">
+                <a href="/products/{{ $headerFooter->id }}" class="bg-transparent hover:bg-white hover:text-gray-900 border-2 border-white text-white px-8 py-3 rounded-lg font-medium transition">
                   {{ $homesetting->button2_text }}
                 </a>
-              @else
-                <a href="/product1" class="bg-pink-600 hover:bg-pink-700 text-white px-8 py-3 rounded-lg font-medium transition">
-                  {{ $homesetting->button1_text }} <i class="fas fa-arrow-right ml-2"></i>
-                </a>
-                <a href="/product1" class="bg-transparent hover:bg-white hover:text-gray-900 border-2 border-white text-white px-8 py-3 rounded-lg font-medium transition">
-                  {{ $homesetting->button2_text }}
-                </a>
-              @endif
             </div>
         </div>
     </section>
@@ -259,8 +243,8 @@
         </div>
 
         <div class="text-center mt-12">
-            @if($headerFooterId)
-                <a href="/products/{{ $headerFooterId }}">
+            @if($headerFooter)
+                <a href="/products/{{ $headerFooter->id }}">
                     <button class="bg-transparent hover:bg-pink-600 text-pink-600 hover:text-white border-2 border-gray-900 px-8 py-3 rounded-lg font-medium transition">
                         View Full Collection <i class="fas fa-arrow-right ml-2"></i>
                     </button>
