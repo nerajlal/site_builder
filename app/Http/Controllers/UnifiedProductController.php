@@ -40,17 +40,17 @@ class UnifiedProductController extends Controller
         // Sorting
         if ($request->has('sort')) {
             if ($request->get('sort') == 'price_asc') {
-                $query->orderBy('price', 'asc');
+                $query->orderByRaw('CAST(price AS DECIMAL(10, 2)) ASC');
             } elseif ($request->get('sort') == 'price_desc') {
-                $query->orderBy('price', 'desc');
+                $query->orderByRaw('CAST(price AS DECIMAL(10, 2)) DESC');
             }
         }
 
         // Filtering by price range
-        if ($request->has('min_price')) {
+        if ($request->filled('min_price')) {
             $query->where('price', '>=', $request->get('min_price'));
         }
-        if ($request->has('max_price')) {
+        if ($request->filled('max_price')) {
             $query->where('price', '<=', $request->get('max_price'));
         }
 
