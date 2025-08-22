@@ -73,7 +73,7 @@
                         @elseif($product->is_limited)
                              <span class="absolute top-3 left-3 bg-red-600 text-white px-3 py-1 rounded-full text-xs font-medium z-10">LIMITED</span>
                         @endif
-                        <div class="aspect-w-1 aspect-h-1 bg-gray-900 flex items-center justify-center">
+                        <div class="aspect-w-1 aspect-h-1 bg-gray-900 flex items-center justify-center h-80">
                              <img src="{{$product->image_url}}" alt="{{ $product->name }}" class="w-full h-full object-cover">
                         </div>
                     </div>
