@@ -46,19 +46,19 @@
         
         <div class="flex space-x-4">
           @if($headerFooterId)
-            <button class="bg-pink-600 hover:bg-pink-700 text-white px-8 py-3 font-medium transition duration-300" onclick="window.location.href='/product2/{{ $headerFooterId }}'">
+            <a href="{{ route('products.show', ['headerFooterId' => $headerFooterId]) }}" class="bg-pink-600 hover:bg-pink-700 text-white px-8 py-3 font-medium transition duration-300">
               {{ $homesetting->button1_text }}
-            </button>
-            <button class="border border-gray-400 hover:border-white text-white px-8 py-3 font-medium transition duration-300" onclick="window.location.href='/product2/{{ $headerFooterId }}'">
+            </a>
+            <a href="{{ route('products.show', ['headerFooterId' => $headerFooterId]) }}" class="border border-gray-400 hover:border-white text-white px-8 py-3 font-medium transition duration-300">
               {{ $homesetting->button2_text }}
-            </button>
+            </a>
           @else
-            <button class="bg-pink-600 hover:bg-pink-700 text-white px-8 py-3 font-medium transition duration-300" onclick="window.location.href='/product2'">
+            <a href="#" class="bg-pink-600 hover:bg-pink-700 text-white px-8 py-3 font-medium transition duration-300">
               {{ $homesetting->button1_text }}
-            </button>
-            <button class="border border-gray-400 hover:border-white text-white px-8 py-3 font-medium transition duration-300" onclick="window.location.href='/product2'">
+            </a>
+            <a href="#" class="border border-gray-400 hover:border-white text-white px-8 py-3 font-medium transition duration-300">
               {{ $homesetting->button2_text }}
-            </button>
+            </a>
           @endif
         </div>
       </div>
@@ -146,33 +146,22 @@
     </div>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
       @php
-        $categories = [
+        $displayCategories = $is_default ? [
             ['name' => 'Women', 'image' => 'https://images.unsplash.com/photo-1572804013427-4d7ca7268217?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=765&q=80'],
             ['name' => 'Men', 'image' => 'https://www.ottostore.com/cdn/shop/files/OTTO04copy_500x.jpg?v=1755345886'],
             ['name' => 'Kids', 'image' => 'https://images.meesho.com/images/products/442076022/nrwdc_512.webp'],
-        ];
+        ] : $categories;
       @endphp
-      @foreach($categories as $category)
-        @if ($is_default)
-          <a href="#" class="group text-center p-4 transition-all duration-300 ease-in-out hover:bg-gray-900 rounded-lg">
-            <div class="w-48 h-48 mx-auto rounded-lg overflow-hidden border-2 border-gray-800 group-hover:border-pink-600 transition-all duration-300 ease-in-out">
-              <img src="{{ $category['image'] }}"
-                   alt="{{ $category['name'] }}'s Fashion"
-                   class="w-full h-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-110">
-            </div>
-            <p class="text-center mt-6 text-xl font-light text-gray-400 group-hover:text-white transition-colors duration-300">{{ $category['name'] }}</p>
-          </a>
-        @else
-          <a href="{{ route('products.show', ['headerFooterId' => $headerFooter->id, 'category_name' => $category['name']]) }}" class="group text-center p-4 transition-all duration-300 ease-in-out hover:bg-gray-900 rounded-lg">
+      @foreach($displayCategories as $category)
+        <a href="{{ $is_default ? '#' : route('products.show', ['headerFooterId' => $headerFooter->id, 'category_name' => $category->name]) }}" class="group text-center p-4 transition-all duration-300 ease-in-out hover:bg-gray-900 rounded-lg">
             <div class="w-48 h-48 mx-auto rounded-full overflow-hidden border-2 border-gray-800 relative group-hover:border-pink-600 group-hover:shadow-lg group-hover:shadow-pink-600/20 transition-all duration-300 ease-in-out">
-                <img src="{{ $category['image'] }}" alt="{{ $category['name'] }}" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+                <img src="{{ $is_default ? $category['image'] : $category->image_url }}" alt="{{ $category->name }}" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
                 <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-                    <h4 class="text-2xl font-light text-white group-hover:text-pink-500 transition-colors">{{ $category['name'] }}</h4>
+                    <h4 class="text-2xl font-light text-white group-hover:text-pink-500 transition-colors">{{ $category->name }}</h4>
                 </div>
             </div>
-            <p class="text-center mt-6 text-xl font-light text-gray-400 group-hover:text-white transition-colors duration-300">Shop {{ $category['name'] }}</p>
-          </a>
-        @endif
+            <p class="text-center mt-6 text-xl font-light text-gray-400 group-hover:text-white transition-colors duration-300">Shop {{ $category->name }}</p>
+        </a>
       @endforeach
     </div>
   </div>
@@ -290,13 +279,13 @@
       </div>
       <div class="text-center mt-12">
         @if($headerFooterId)
-          <a href="/product2/{{ $headerFooterId }}">
+          <a href="{{ route('products.show', ['headerFooterId' => $headerFooterId]) }}">
             <button class="border border-gray-600 hover:border-white text-white px-8 py-3 rounded-lg font-medium transition duration-300">
               View Full Collection
             </button>
           </a>
         @else
-          <a href="/product2">
+          <a href="#">
             <button class="border border-gray-600 hover:border-white text-white px-8 py-3 rounded-lg font-medium transition duration-300">
               View Full Collection
             </button>

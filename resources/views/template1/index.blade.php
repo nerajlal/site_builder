@@ -32,17 +32,17 @@
             @endphp
             <div class="flex flex-col sm:flex-row justify-center gap-4">
               @if($headerFooterId)
-                <a href="/product1/{{ $headerFooterId }}" class="bg-pink-600 hover:bg-pink-700 text-white px-8 py-3 rounded-lg font-medium transition">
+                <a href="{{ route('products.show', ['headerFooterId' => $headerFooterId]) }}" class="bg-pink-600 hover:bg-pink-700 text-white px-8 py-3 rounded-lg font-medium transition">
                   {{ $homesetting->button1_text }} <i class="fas fa-arrow-right ml-2"></i>
                 </a>
-                <a href="/product1/{{ $headerFooterId }}" class="bg-transparent hover:bg-white hover:text-gray-900 border-2 border-white text-white px-8 py-3 rounded-lg font-medium transition">
+                <a href="{{ route('products.show', ['headerFooterId' => $headerFooterId]) }}" class="bg-transparent hover:bg-white hover:text-gray-900 border-2 border-white text-white px-8 py-3 rounded-lg font-medium transition">
                   {{ $homesetting->button2_text }}
                 </a>
               @else
-                <a href="/product1" class="bg-pink-600 hover:bg-pink-700 text-white px-8 py-3 rounded-lg font-medium transition">
+                <a href="#" class="bg-pink-600 hover:bg-pink-700 text-white px-8 py-3 rounded-lg font-medium transition">
                   {{ $homesetting->button1_text }} <i class="fas fa-arrow-right ml-2"></i>
                 </a>
-                <a href="/product1" class="bg-transparent hover:bg-white hover:text-gray-900 border-2 border-white text-white px-8 py-3 rounded-lg font-medium transition">
+                <a href="#" class="bg-transparent hover:bg-white hover:text-gray-900 border-2 border-white text-white px-8 py-3 rounded-lg font-medium transition">
                   {{ $homesetting->button2_text }}
                 </a>
               @endif
@@ -122,16 +122,16 @@
     </div>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
       @php
-        $categories = [
-            ['name' => 'Women', 'image' => 'https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80'],
-            ['name' => 'Men', 'image' => 'https://www.yellowbrick.co/wp-content/uploads/2021/02/fbe_landingpage_2.jpg'],
-            ['name' => 'Kids', 'image' => 'https://media.istockphoto.com/id/956002732/photo/little-cute-girl-in-dress.jpg?s=612x612&w=0&k=20&c=zpn86EPE9nttoARCw6OvgxI_t34f0cv35ODBZLYZSRo='],
-        ];
+        $displayCategories = $is_default ? [
+            ['name' => 'Women', 'image' => 'https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80', 'category_name' => 'Women'],
+            ['name' => 'Men', 'image' => 'https://www.yellowbrick.co/wp-content/uploads/2021/02/fbe_landingpage_2.jpg', 'category_name' => 'Men'],
+            ['name' => 'Kids', 'image' => 'https://media.istockphoto.com/id/956002732/photo/little-cute-girl-in-dress.jpg?s=612x612&w=0&k=20&c=zpn86EPE9nttoARCw6OvgxI_t34f0cv35ODBZLYZSRo=', 'category_name' => 'Kids'],
+        ] : $categories;
       @endphp
-      @foreach ($categories as $category)
-        <a href="{{ $is_default ? '#' : route('template1.product1.customer', ['headerFooterId' => $headerFooter->id, 'category_name' => $category['name']]) }}" class="relative group overflow-hidden rounded-xl border border-gray-200/50 shadow-sm hover:shadow-xl transition-all duration-300 ease-in-out">
+      @foreach ($displayCategories as $category)
+        <a href="{{ $is_default ? '#' : route('products.show', ['headerFooterId' => $headerFooter->id, 'category_name' => $category->name]) }}" class="relative group overflow-hidden rounded-xl border border-gray-200/50 shadow-sm hover:shadow-xl transition-all duration-300 ease-in-out">
           <div class="aspect-w-1 aspect-h-1">
-            <img src="{{ $category['image'] }}" alt="{{ $category['name'] }}" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+            <img src="{{ $is_default ? $category['image'] : $category->image_url }}" alt="{{ $category->name }}" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
           </div>
           <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
           <div class="absolute bottom-0 left-0 p-6">
@@ -260,13 +260,13 @@
 
         <div class="text-center mt-12">
             @if($headerFooterId)
-                <a href="/product1/{{ $headerFooterId }}">
+                <a href="{{ route('products.show', ['headerFooterId' => $headerFooterId]) }}">
                     <button class="bg-transparent hover:bg-pink-600 text-pink-600 hover:text-white border-2 border-gray-900 px-8 py-3 rounded-lg font-medium transition">
                         View Full Collection <i class="fas fa-arrow-right ml-2"></i>
                     </button>
                 </a>
             @else
-                <a href="/product1">
+                <a href="#">
                     <button class="bg-transparent hover:bg-pink-600 text-pink-600 hover:text-white border-2 border-pink-600 px-8 py-3 rounded-lg font-medium transition">
                         View Full Collection <i class="fas fa-arrow-right ml-2"></i>
                     </button>

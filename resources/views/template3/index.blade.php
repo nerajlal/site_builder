@@ -46,19 +46,19 @@
           
           <div class="flex space-x-4">
             @if($headerFooterId)
-              <button class="bg-[#2d3748] hover:bg-[#4a5568] text-white px-8 py-3 font-medium transition duration-300" onclick="window.location.href='/product3/{{ $headerFooter->id }}'">
-                {{ $homesetting->button1_text }}
-              </button>
-              <button class="border border-gray-300 hover:border-[#2d3748] text-gray-900 px-8 py-3 font-medium transition duration-300" onclick="window.location.href='/product3/{{$headerFooter->id }}'">{{ $homesetting->button2_text }}
-              </button>
-
+                <a href="{{ route('products.show', ['headerFooterId' => $headerFooterId]) }}" class="bg-[#2d3748] hover:bg-[#4a5568] text-white px-8 py-3 font-medium transition duration-300">
+                    {{ $homesetting->button1_text }}
+                </a>
+                <a href="{{ route('products.show', ['headerFooterId' => $headerFooterId]) }}" class="border border-gray-300 hover:border-[#2d3748] text-gray-900 px-8 py-3 font-medium transition duration-300">
+                    {{ $homesetting->button2_text }}
+                </a>
             @else
-              <button class="bg-[#2d3748] hover:bg-[#4a5568] text-white px-8 py-3 font-medium transition duration-300" onclick="window.location.href='/product3'">
-                {{ $homesetting->button1_text }}
-              </button>
-              <button class="border border-gray-300 hover:border-[#2d3748] text-gray-900 px-8 py-3 font-medium transition duration-300" onclick="window.location.href='/product3'">
-                {{ $homesetting->button2_text }}
-              </button>
+                <a href="#" class="bg-[#2d3748] hover:bg-[#4a5568] text-white px-8 py-3 font-medium transition duration-300">
+                    {{ $homesetting->button1_text }}
+                </a>
+                <a href="#" class="border border-gray-300 hover:border-[#2d3748] text-gray-900 px-8 py-3 font-medium transition duration-300">
+                    {{ $homesetting->button2_text }}
+                </a>
             @endif
           </div>
         </div>
@@ -144,17 +144,17 @@
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
       @php
-        $categories = [
+        $displayCategories = $is_default ? [
             ['name' => 'Women', 'image' => 'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80'],
             ['name' => 'Men', 'image' => 'https://images.unsplash.com/photo-1504593811423-6dd665756598?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80'],
             ['name' => 'Kids', 'image' => 'https://i.etsystatic.com/23196141/r/il/bdbc34/4123811975/il_fullxfull.4123811975_1w6o.jpg'],
-        ];
+        ] : $categories;
       @endphp
-      @foreach($categories as $category)
-        <a href="{{ $is_default ? '#' : route('template3.product3.customer', ['headerFooterId' => $headerFooter->id, 'category_name' => $category['name']]) }}" class="relative group h-96 overflow-hidden rounded-lg shadow-sm hover:shadow-xl transition-shadow duration-300">
+      @foreach($displayCategories as $category)
+        <a href="{{ $is_default ? '#' : route('products.show', ['headerFooterId' => $headerFooter->id, 'category_name' => $category->name]) }}" class="relative group h-96 overflow-hidden rounded-lg shadow-sm hover:shadow-xl transition-shadow duration-300">
           <img
-            src="{{ $category['image'] }}"
-            alt="{{ $category['name'] }}'s Fashion"
+            src="{{ $is_default ? $category['image'] : $category->image_url }}"
+            alt="{{ $category->name }}'s Fashion"
             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out"
           >
           <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent flex items-end justify-start p-6">
@@ -220,13 +220,13 @@
         </div>
         <div class="text-center mt-12">
           @if($headerFooterId)
-            <a href="/product3/{{ $headerFooterId }}">
+            <a href="{{ route('products.show', ['headerFooterId' => $headerFooterId]) }}">
               <button class="border border-gray-900 hover:bg-gray-900 hover:text-white text-gray-900 px-8 py-3 rounded-lg font-medium transition duration-300">
                 Discover More
               </button>
             </a>
           @else
-            <a href="/product3">
+            <a href="#">
               <button class="border border-gray-900 hover:bg-gray-900 hover:text-white text-gray-900 px-8 py-3 rounded-lg font-medium transition duration-300">
                 Discover More
               </button>

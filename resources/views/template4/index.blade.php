@@ -32,19 +32,19 @@
         
         <div class="flex space-x-4">
           @if($headerFooterId)
-            <button class="btn-pink px-8 py-3 rounded font-medium" onclick="window.location.href='/product4/{{ $headerFooterId }}'">
+            <a href="{{ route('products.show', ['headerFooterId' => $headerFooterId]) }}" class="btn-pink px-8 py-3 rounded font-medium">
               {{ $is_default ? 'Shop Collection' : $homesetting->button1_text }}
-            </button>
-            <button class="btn-outline px-8 py-3 rounded font-medium" onclick="window.location.href='/product4/{{ $headerFooterId }}'">
+            </a>
+            <a href="{{ route('products.show', ['headerFooterId' => $headerFooterId]) }}" class="btn-outline px-8 py-3 rounded font-medium">
               {{ $is_default ? 'Book Styling' : $homesetting->button2_text }}
-            </button>
+            </a>
           @else
-            <button class="btn-pink px-8 py-3 rounded font-medium" onclick="window.location.href='/product4'">
+            <a href="#" class="btn-pink px-8 py-3 rounded font-medium">
               {{ $is_default ? 'Shop Collection' : $homesetting->button1_text }}
-            </button>
-            <button class="btn-outline px-8 py-3 rounded font-medium" onclick="window.location.href='/product4'">
+            </a>
+            <a href="#" class="btn-outline px-8 py-3 rounded font-medium">
               {{ $is_default ? 'Book Styling' : $homesetting->button2_text }}
-            </button>
+            </a>
           @endif
         </div>
       </div>
@@ -135,30 +135,18 @@
     </div>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
       @php
-        $categories = [
+        $displayCategories = $is_default ? [
             ['name' => 'Women', 'image' => 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=720&q=80'],
             ['name' => 'Men', 'image' => 'https://images.unsplash.com/photo-1521119989659-a83eee488004?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=723&q=80'],
             ['name' => 'Kids', 'image' => 'https://images.unsplash.com/photo-1519340241574-2cec6a12a52d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80'],
-        ];
+        ] : $categories;
       @endphp
-      @foreach ($categories as $category)
-        @if ($is_default)
-          <div class="relative group overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-            <img src="{{ $category['image'] }}" alt="{{ $category['name'] }}" class="w-full h-96 object-cover transition-transform duration-300 group-hover:scale-105">
-            <div class="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition-colors duration-300"></div>
-            <div class="absolute bottom-0 left-0 right-0 p-6">
-              <h4 class="text-white text-2xl font-serif font-semibold drop-shadow-md">{{ $category['name'] }}</h4>
-              <div class="h-0.5 bg-[#7e22ce] w-16 mt-2 transition-all duration-300 group-hover:w-24"></div>
-            </div>
-            <a href="#" class="absolute inset-0" aria-label="Shop {{ $category['name'] }}"></a>
-          </div>
-        @else
-          <a href="{{ route('template4.product4.customer', ['headerFooterId' => $headerFooter->id, 'category_name' => $category['name']]) }}" class="group block text-center p-8 rounded-lg">
-            <h4 class="text-3xl font-serif text-gray-800 group-hover:text-[#7e22ce] transition-colors duration-300">{{ $category['name'] }}
+      @foreach ($displayCategories as $category)
+        <a href="{{ $is_default ? '#' : route('products.show', ['headerFooterId' => $headerFooterId, 'category_name' => $category->name]) }}" class="group block text-center p-8 rounded-lg">
+            <h4 class="text-3xl font-serif text-gray-800 group-hover:text-[#7e22ce] transition-colors duration-300">{{ $category->name }}
             </h4>
             <div class="w-24 h-1 bg-gray-200 mx-auto mt-4 group-hover:bg-[#7e22ce] transition-colors duration-300"></div>
-          </a>
-        @endif
+        </a>
       @endforeach
     </div>
   </div>
@@ -286,13 +274,13 @@
         </div>
         <div class="text-center mt-12">
           @if($headerFooterId)
-            <a href="/product4/{{ $headerFooterId }}">
+            <a href="{{ route('products.show', ['headerFooterId' => $headerFooterId]) }}">
               <button class="btn-outline px-8 py-3 rounded font-medium">
                 View Full Collection
               </button>
             </a>
           @else
-            <a href="/product4">
+            <a href="#">
               <button class="btn-outline px-8 py-3 rounded font-medium">
                 View Full Collection
               </button>
