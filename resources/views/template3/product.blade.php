@@ -10,8 +10,8 @@
 
         <!-- Filters Bar -->
         <div class="flex flex-col md:flex-row items-center justify-between mb-8 pb-4 border-b border-blue-200">
-            <form action="{{ url()->current() }}" method="GET" class="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-6 w-full">
-                <div class="relative w-full md:w-auto">
+            <form action="{{ url()->current() }}" method="GET" class="grid grid-cols-2 md:flex md:flex-row items-center gap-4 md:space-x-6 w-full">
+                <div class="relative w-full">
                     <select name="sort" onchange="this.form.submit()" class="w-full text-gray-600 hover:text-gray-900 nav-link bg-transparent border-b-2 border-blue-200 focus:border-blue-500">
                         <option value="">Sort by</option>
                         <option value="price_asc" {{ request('sort') == 'price_asc' ? 'selected' : '' }}>Price: Low to High</option>
@@ -19,7 +19,7 @@
                         <option value="rating_desc" {{ request('sort') == 'rating_desc' ? 'selected' : '' }}>Rating: High to Low</option>
                     </select>
                 </div>
-                <div class="relative w-full md:w-auto">
+                <div class="relative w-full">
                     <select name="min_rating" onchange="this.form.submit()" class="w-full text-gray-600 hover:text-gray-900 nav-link bg-transparent border-b-2 border-blue-200 focus:border-blue-500">
                         <option value="">By Rating</option>
                         <option value="4.5" {{ request('min_rating') == '4.5' ? 'selected' : '' }}>4.5+ stars</option>
@@ -27,13 +27,13 @@
                         <option value="3" {{ request('min_rating') == '3' ? 'selected' : '' }}>3+ stars</option>
                     </select>
                 </div>
-                <div class="relative w-full md:w-auto">
+                <div class="relative w-full">
                     <input type="number" name="min_price" value="{{ request('min_price') }}" placeholder="Min Price" class="w-full text-gray-600 hover:text-gray-900 nav-link bg-transparent border-b-2 border-blue-200 focus:border-blue-500">
                 </div>
-                <div class="relative w-full md:w-auto">
+                <div class="relative w-full">
                     <input type="number" name="max_price" value="{{ request('max_price') }}" placeholder="Max Price" class="w-full text-gray-600 hover:text-gray-900 nav-link bg-transparent border-b-2 border-blue-200 focus:border-blue-500">
                 </div>
-                <button type="submit" class="w-full md:w-auto px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Filter</button>
+                <button type="submit" class="w-full md:w-auto px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 col-span-2">Filter</button>
             </form>
         </div>
 
@@ -53,8 +53,8 @@
 
         <!-- Filters Bar -->
         <div class="flex flex-col md:flex-row items-center justify-between mb-8 pb-4 border-b border-blue-200">
-            <form action="{{ url()->current() }}" method="GET" class="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-6 w-full">
-                <div class="relative w-full md:w-auto">
+            <form action="{{ url()->current() }}" method="GET" class="grid grid-cols-2 md:flex md:flex-row items-center gap-4 md:space-x-6 w-full">
+                <div class="relative w-full">
                     <select name="sort" onchange="this.form.submit()" class="w-full text-gray-600 hover:text-gray-900 nav-link bg-transparent border-b-2 border-blue-200 focus:border-blue-500">
                         <option value="">Sort by</option>
                         <option value="price_asc" {{ request('sort') == 'price_asc' ? 'selected' : '' }}>Price: Low to High</option>
@@ -62,7 +62,7 @@
                         <option value="rating_desc" {{ request('sort') == 'rating_desc' ? 'selected' : '' }}>Rating: High to Low</option>
                     </select>
                 </div>
-                <div class="relative w-full md:w-auto">
+                <div class="relative w-full">
                     <select name="min_rating" onchange="this.form.submit()" class="w-full text-gray-600 hover:text-gray-900 nav-link bg-transparent border-b-2 border-blue-200 focus:border-blue-500">
                         <option value="">By Rating</option>
                         <option value="4.5" {{ request('min_rating') == '4.5' ? 'selected' : '' }}>4.5+ stars</option>
@@ -70,13 +70,13 @@
                         <option value="3" {{ request('min_rating') == '3' ? 'selected' : '' }}>3+ stars</option>
                     </select>
                 </div>
-                <div class="relative w-full md:w-auto">
+                <div class="relative w-full">
                     <input type="number" name="min_price" value="{{ request('min_price') }}" placeholder="Min Price" class="w-full text-gray-600 hover:text-gray-900 nav-link bg-transparent border-b-2 border-blue-200 focus:border-blue-500">
                 </div>
-                <div class="relative w-full md:w-auto">
+                <div class="relative w-full">
                     <input type="number" name="max_price" value="{{ request('max_price') }}" placeholder="Max Price" class="w-full text-gray-600 hover:text-gray-900 nav-link bg-transparent border-b-2 border-blue-200 focus:border-blue-500">
                 </div>
-                <button type="submit" class="w-full md:w-auto px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Filter</button>
+                <button type="submit" class="w-full md:w-auto px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 col-span-2">Filter</button>
             </form>
         </div>
 
