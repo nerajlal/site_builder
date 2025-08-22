@@ -95,7 +95,21 @@ document.addEventListener('DOMContentLoaded', function () {
                     'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
                 },
             })
-            .then(response => response.json())
+            .then(response => {
+                if (response.status === 401) {
+                    // User not logged in
+                    alert('Error placing order: User not logged in.'); // Or use a custom toast
+                    openLoginModal(); // Open the login modal
+                    return Promise.reject('User not logged in'); // Stop further processing
+                }
+                if (!response.ok) {
+                    // Other errors (e.g., server error)
+                    return response.json().then(errorData => {
+                        throw new Error(errorData.message || 'An unknown error occurred.');
+                    });
+                }
+                return response.json();
+            })
             .then(data => {
                 if (data.success) {
                     alert('Order placed successfully!');
@@ -110,8 +124,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             })
             .catch(error => {
-                console.error('Error:', error);
-                alert('An error occurred while placing the order.');
+                // Only log errors that are not the "User not logged in" case, which is handled
+                if (error !== 'User not logged in') {
+                    console.error('Error:', error);
+                    alert('An error occurred while placing the order: ' + error.message);
+                }
             });
         });
     }
