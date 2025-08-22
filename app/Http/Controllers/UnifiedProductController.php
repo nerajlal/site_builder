@@ -61,6 +61,11 @@ class UnifiedProductController extends Controller
             $query->where('category_name', $request->get('category_name'));
         }
 
+        // Filtering by minimum rating
+        if ($request->filled('min_rating')) {
+            $query->having('reviews_avg_rating', '>=', $request->get('min_rating'));
+        }
+
         $products = $query->get();
 
         // Construct the view name dynamically

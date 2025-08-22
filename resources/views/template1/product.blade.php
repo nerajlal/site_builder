@@ -20,6 +20,14 @@
                     </select>
                 </div>
                 <div class="relative w-full md:w-auto">
+                    <select name="min_rating" onchange="this.form.submit()" class="w-full px-4 py-2 bg-white border border-pink-200 rounded-lg hover:bg-pink-100 focus:border-pink-500 focus:ring-pink-500">
+                        <option value="">By Rating</option>
+                        <option value="4.5" {{ request('min_rating') == '4.5' ? 'selected' : '' }}>4.5+ stars</option>
+                        <option value="4" {{ request('min_rating') == '4' ? 'selected' : '' }}>4+ stars</option>
+                        <option value="3" {{ request('min_rating') == '3' ? 'selected' : '' }}>3+ stars</option>
+                    </select>
+                </div>
+                <div class="relative w-full md:w-auto">
                     <input type="number" name="min_price" value="{{ request('min_price') }}" placeholder="Min Price" class="w-full px-4 py-2 bg-white border border-pink-200 rounded-lg focus:border-pink-500 focus:ring-pink-500">
                 </div>
                 <div class="relative w-full md:w-auto">
@@ -149,6 +157,14 @@
                     </select>
                 </div>
                 <div class="relative w-full md:w-auto">
+                    <select name="min_rating" onchange="this.form.submit()" class="w-full px-4 py-2 bg-white border border-pink-200 rounded-lg hover:bg-pink-100 focus:border-pink-500 focus:ring-pink-500">
+                        <option value="">By Rating</option>
+                        <option value="4.5" {{ request('min_rating') == '4.5' ? 'selected' : '' }}>4.5+ stars</option>
+                        <option value="4" {{ request('min_rating') == '4' ? 'selected' : '' }}>4+ stars</option>
+                        <option value="3" {{ request('min_rating') == '3' ? 'selected' : '' }}>3+ stars</option>
+                    </select>
+                </div>
+                <div class="relative w-full md:w-auto">
                     <input type="number" name="min_price" value="{{ request('min_price') }}" placeholder="Min Price" class="w-full px-4 py-2 bg-white border border-pink-200 rounded-lg focus:border-pink-500 focus:ring-pink-500">
                 </div>
                 <div class="relative w-full md:w-auto">
@@ -180,23 +196,10 @@
                             </div>
                             <div class="flex items-center mb-3">
                                 <div class="flex items-center">
-                                    @php
-                                        $averageRating = $product->reviews_avg_rating ?? 0;
-                                        $fullStars = floor($averageRating);
-                                        $halfStar = $averageRating - $fullStars >= 0.5;
-                                        $emptyStars = 5 - $fullStars - ($halfStar ? 1 : 0);
-                                    @endphp
-                                    @for ($i = 0; $i < $fullStars; $i++)
-                                        <i class="fas fa-star text-yellow-500 text-sm"></i>
-                                    @endfor
-                                    @if ($halfStar)
-                                        <i class="fas fa-star-half-alt text-yellow-500 text-sm"></i>
-                                    @endif
-                                    @for ($i = 0; $i < $emptyStars; $i++)
-                                        <i class="far fa-star text-yellow-500 text-sm"></i>
-                                    @endfor
+                                    <span class="text-yellow-500 text-sm">★★★★</span>
+                                    <span class="text-gray-300 text-sm">★</span>
                                 </div>
-                                <span class="ml-2 text-sm text-gray-500">({{ $product->reviews_count }})</span>
+                                <span class="ml-2 text-sm text-gray-500">76</span> <!-- Placeholder for reviews -->
                             </div>
                                 <button class="w-full bg-pink-600 hover:bg-pink-700 text-white py-2 px-4 rounded-lg font-medium transition flex items-center justify-center">
                                     <i class="fas fa-shopping-cart mr-2"></i> Add to Cart
