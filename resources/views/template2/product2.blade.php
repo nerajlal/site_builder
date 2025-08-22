@@ -73,7 +73,7 @@
                         @elseif($product->is_limited)
                              <span class="absolute top-3 left-3 bg-red-600 text-white px-3 py-1 rounded-full text-xs font-medium z-10">LIMITED</span>
                         @endif
-                        <div class="aspect-w-1 aspect-h-1 bg-gray-900 flex items-center justify-center h-80">
+                        <div class="aspect-w-1 aspect-h-1 bg-gray-900 flex items-center justify-center">
                              <img src="{{$product->image_url}}" alt="{{ $product->name }}" class="w-full h-full object-cover">
                         </div>
                     </div>
@@ -84,23 +84,10 @@
                         </div>
                         <div class="flex items-center mb-3">
                             <div class="flex items-center">
-                                @php
-                                    $averageRating = $product->reviews_avg_rating ?? 0;
-                                    $fullStars = floor($averageRating);
-                                    $halfStar = $averageRating - $fullStars >= 0.5;
-                                    $emptyStars = 5 - $fullStars - ($halfStar ? 1 : 0);
-                                @endphp
-                                @for ($i = 0; $i < $fullStars; $i++)
-                                    <i class="fas fa-star text-yellow-500 text-sm"></i>
-                                @endfor
-                                @if ($halfStar)
-                                    <i class="fas fa-star-half-alt text-yellow-500 text-sm"></i>
-                                @endif
-                                @for ($i = 0; $i < $emptyStars; $i++)
-                                    <i class="far fa-star text-yellow-500 text-sm"></i>
-                                @endfor
+                                <span class="text-yellow-500 text-sm">★★★★</span>
+                                <span class="text-gray-600 text-sm">★</span>
                             </div>
-                            <span class="ml-2 text-sm text-gray-500">({{ $product->reviews_count }})</span>
+                            <span class="ml-2 text-sm text-gray-500">76</span> <!-- Placeholder for reviews -->
                         </div>
                             <button class="w-full border-2 border-yellow-500 text-yellow-500 hover:bg-yellow-500 hover:text-black py-2 px-4 rounded-lg transition-colors flex items-center justify-center">
                                 <i class="fas fa-shopping-cart mr-2"></i> Add to Cart

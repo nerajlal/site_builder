@@ -75,6 +75,10 @@ Route::put('/products/update/{id}', [TemplateController::class, 'updateProduct']
 // Template display routes (Luxury)
 Route::get('/index/{headerFooterId}', [WebsiteViewController::class, 'index'])->name('index.customer');
 
+Route::get('/product1', [ProductController1::class, 'index'])->name('template1.product1');
+Route::get('/product2', [ProductController2::class, 'index'])->name('template2.product2');
+Route::get('/product3', [ProductController3::class, 'index'])->name('template3.product3');
+Route::get('/product4', [ProductController4::class, 'index'])->name('template4.product4');
 
 
 // Customer-facing product routes with header_footer_id

@@ -136,7 +136,7 @@
             <a href="#" class="absolute inset-0" aria-label="Shop {{ $category['name'] }}"></a>
           </div>
         @else
-          <a href="{{ route('template4.product4.customer', ['headerFooterId' => $headerFooter->id, 'category_name' => $category['name']]) }}" class="group block text-center p-8 rounded-lg">
+          <a href="{{ route('products.show', ['headerFooterId' => $headerFooter->id, 'category_name' => $category['name']]) }}" class="group block text-center p-8 rounded-lg">
             <h4 class="text-3xl font-serif text-gray-800 group-hover:text-[#7e22ce] transition-colors duration-300">{{ $category['name'] }}
             </h4>
             <div class="w-24 h-1 bg-gray-200 mx-auto mt-4 group-hover:bg-[#7e22ce] transition-colors duration-300"></div>
