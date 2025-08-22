@@ -75,19 +75,10 @@ Route::put('/products/update/{id}', [TemplateController::class, 'updateProduct']
 // Template display routes (Luxury)
 Route::get('/index/{headerFooterId}', [WebsiteViewController::class, 'index'])->name('index.customer');
 
-Route::get('/product1', [ProductController1::class, 'index'])->name('template1.product1');
-Route::get('/product2', [ProductController2::class, 'index'])->name('template2.product2');
-Route::get('/product3', [ProductController3::class, 'index'])->name('template3.product3');
-Route::get('/product4', [ProductController4::class, 'index'])->name('template4.product4');
 
 
 // Customer-facing product routes with header_footer_id
 Route::get('/products/{headerFooterId}', [UnifiedProductController::class, 'show'])->name('products.show');
-Route::get('/product1/{headerFooterId}', [ProductController1::class, 'showCustomer'])->name('template1.product1.customer');
-Route::get('/product2/{headerFooterId}', [ProductController2::class, 'showCustomer'])->name('template2.product2.customer');
-Route::get('/product3/{headerFooterId}', [ProductController3::class, 'showCustomer'])->name('template3.product3.customer');
-Route::get('/product4/{headerFooterId}', [ProductController4::class, 'showCustomer'])->name('template4.product4.customer');
-
 Route::get('/single-product/{headerFooterId}/{productId}', [UnifiedProductController::class, 'showSingleProduct'])->name('single-product.customer');
 
 

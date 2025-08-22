@@ -113,7 +113,7 @@
         ];
       @endphp
       @foreach ($categories as $category)
-        <a href="{{ $is_default ? '#' : route('template1.product1.customer', ['headerFooterId' => $headerFooter->id, 'category_name' => $category['name']]) }}" class="relative group overflow-hidden rounded-xl border border-gray-200/50 shadow-sm hover:shadow-xl transition-all duration-300 ease-in-out">
+        <a href="{{ $is_default ? '#' : route('products.show', ['headerFooterId' => $headerFooter->id, 'category_name' => $category['name']]) }}" class="relative group overflow-hidden rounded-xl border border-gray-200/50 shadow-sm hover:shadow-xl transition-all duration-300 ease-in-out">
           <div class="aspect-w-1 aspect-h-1">
             <img src="{{ $category['image'] }}" alt="{{ $category['name'] }}" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
           </div>

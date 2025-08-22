@@ -90,7 +90,7 @@ class UnifiedProductController extends Controller
     public function showSingleProduct($headerFooterId, $productId)
     {
         $headerFooter = HeaderFooter::find($headerFooterId);
-        $product = Product::with([
+        $product = Product::withCount('reviews')->withAvg('reviews', 'rating')->with([
             'brand',
             'stylingTips',
             'modelInfo',
