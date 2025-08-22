@@ -43,6 +43,8 @@ class UnifiedProductController extends Controller
                 $query->orderByRaw('CAST(price AS DECIMAL(10, 2)) ASC');
             } elseif ($request->get('sort') == 'price_desc') {
                 $query->orderByRaw('CAST(price AS DECIMAL(10, 2)) DESC');
+            } elseif ($request->get('sort') == 'rating_desc') {
+                $query->orderBy('reviews_avg_rating', 'desc');
             }
         }
 
