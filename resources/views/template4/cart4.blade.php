@@ -188,4 +188,5 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 </script>
 
+@include('includes.customer_profile_modal4')
 @include('template4.footer4')
