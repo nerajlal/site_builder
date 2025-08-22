@@ -22,14 +22,6 @@
         <p class="text-gray-700 mb-8">
           {{ $is_default ? 'Where classic style meets modern sophistication' : $homesetting->sub_text }}
         </p>
-        @php
-          $currentUrl = request()->url();
-          $headerFooterId = null;
-          if (preg_match('/\/index4\/(\d+)/', $currentUrl, $matches)) {
-            $headerFooterId = $matches[1];
-          }
-        @endphp
-        
         <div class="flex space-x-4">
           @if($headerFooterId)
             <a href="{{ route('products.show', ['headerFooterId' => $headerFooterId]) }}" class="btn-pink px-8 py-3 rounded font-medium">

@@ -36,14 +36,6 @@
         <div class="max-w-xl">
           <h2 class="text-5xl font-medium mb-6 leading-tight">{{ $homesetting->main_text }}</h2>
           <p class="text-gray-600 mb-8">{{ $homesetting->sub_text }}</p>
-          @php
-            $currentUrl = request()->url();
-            $headerFooterId = null;
-            if (preg_match('/\/index3\/(\d+)/', $currentUrl, $matches)) {
-              $headerFooterId = $matches[1];
-            }
-          @endphp
-          
           <div class="flex space-x-4">
             @if($headerFooterId)
                 <a href="{{ route('products.show', ['headerFooterId' => $headerFooterId]) }}" class="bg-[#2d3748] hover:bg-[#4a5568] text-white px-8 py-3 font-medium transition duration-300">

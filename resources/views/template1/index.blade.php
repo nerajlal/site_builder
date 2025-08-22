@@ -23,13 +23,6 @@
         <div class="relative z-10 text-white px-4">
             <h2 class="text-5xl md:text-6xl font-bold mb-6">{{ $homesetting->main_text }}</h2>
             <p class="text-xl md:text-2xl mb-8">{{ $homesetting->sub_text }}</p>
-            @php
-              $currentUrl = request()->url();
-              $headerFooterId = null;
-              if (preg_match('/\/index1\/(\d+)/', $currentUrl, $matches)) {
-                $headerFooterId = $matches[1];
-              }
-            @endphp
             <div class="flex flex-col sm:flex-row justify-center gap-4">
               @if($headerFooterId)
                 <a href="{{ route('products.show', ['headerFooterId' => $headerFooterId]) }}" class="bg-pink-600 hover:bg-pink-700 text-white px-8 py-3 rounded-lg font-medium transition">
