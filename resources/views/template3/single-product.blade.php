@@ -64,13 +64,23 @@
                     <div class="flex items-center space-x-4 mb-4">
                         <button class="flex items-center space-x-2 hover:bg-gray-50 p-1 rounded" onclick="scrollToReviews()">
                             <div class="flex text-yellow-400">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="far fa-star"></i>
+                                @php
+                                    $averageRating = $product->reviews_avg_rating ?? 0;
+                                    $fullStars = floor($averageRating);
+                                    $halfStar = $averageRating - $fullStars >= 0.5;
+                                    $emptyStars = 5 - $fullStars - ($halfStar ? 1 : 0);
+                                @endphp
+                                @for ($i = 0; $i < $fullStars; $i++)
+                                    <i class="fas fa-star"></i>
+                                @endfor
+                                @if ($halfStar)
+                                    <i class="fas fa-star-half-alt"></i>
+                                @endif
+                                @for ($i = 0; $i < $emptyStars; $i++)
+                                    <i class="far fa-star"></i>
+                                @endfor
                             </div>
-                            <span class="text-gray-600">(128 reviews)</span>
+                            <span class="text-gray-600">({{ $product->reviews_count }} reviews)</span>
                         </button>
                     </div>
                 </div>

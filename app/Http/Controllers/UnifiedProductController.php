@@ -35,7 +35,7 @@ class UnifiedProductController extends Controller
         $templateId = $matches[1] ?? '1'; // Default to 1 if not found
 
         // Fetch products
-        $query = Product::where('header_footer_id', $headerFooterId);
+        $query = Product::withCount('reviews')->withAvg('reviews', 'rating')->where('header_footer_id', $headerFooterId);
 
         // Sorting
         if ($request->has('sort')) {

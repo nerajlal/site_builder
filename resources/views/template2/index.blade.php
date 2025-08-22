@@ -260,7 +260,21 @@
                     <div class="flex items-baseline justify-between">
                         <p class="text-xl font-bold text-pink-600">₹{{ number_format($product->price, 2) }}</p>
                         <div class="flex items-center">
-                            <span class="text-yellow-500 text-sm">★★★★</span><span class="text-gray-600 text-sm">★</span>
+                            @php
+                                $averageRating = $product->reviews_avg_rating ?? 0;
+                                $fullStars = floor($averageRating);
+                                $halfStar = $averageRating - $fullStars >= 0.5;
+                                $emptyStars = 5 - $fullStars - ($halfStar ? 1 : 0);
+                            @endphp
+                            @for ($i = 0; $i < $fullStars; $i++)
+                                <i class="fas fa-star text-yellow-500 text-sm"></i>
+                            @endfor
+                            @if ($halfStar)
+                                <i class="fas fa-star-half-alt text-yellow-500 text-sm"></i>
+                            @endif
+                            @for ($i = 0; $i < $emptyStars; $i++)
+                                <i class="far fa-star text-yellow-500 text-sm"></i>
+                            @endfor
                         </div>
                     </div>
                     <button class="mt-4 w-full bg-gray-800 group-hover:bg-pink-600 text-white py-2 px-4 rounded-lg font-medium transition flex items-center justify-center">

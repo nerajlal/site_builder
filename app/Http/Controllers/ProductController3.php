@@ -26,7 +26,7 @@ class ProductController3 extends Controller
             ]);
         }
 
-        $query = Product::where('header_footer_id', $headerFooter->id);
+        $query = Product::withCount('reviews')->withAvg('reviews', 'rating')->where('header_footer_id', $headerFooter->id);
 
         // Sorting
         if ($request->has('sort')) {
@@ -68,7 +68,7 @@ class ProductController3 extends Controller
             abort(404, 'Template not found');
         }
 
-        $query = Product::where('header_footer_id', $headerFooterId);
+        $query = Product::withCount('reviews')->withAvg('reviews', 'rating')->where('header_footer_id', $headerFooterId);
 
         // Sorting
         if ($request->has('sort')) {
