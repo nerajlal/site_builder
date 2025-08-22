@@ -185,7 +185,7 @@
             <!-- Media -->
             <div>
                 <label class="block text-sm font-medium text-gray-700">Main Image</label>
-                <input type="file" name="image_url" class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md" accept="image/webp">
+                <input type="file" name="image_url" class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md" accept="image/webp" onchange="validateImage(this)">
             </div>
             <div>
                 <label class="block text-sm font-medium text-gray-700">Additional Images</label>
@@ -521,7 +521,7 @@
             const imageInput = document.createElement('div');
             imageInput.classList.add('flex', 'items-center', 'space-x-2');
             imageInput.innerHTML = `
-                <input type="file" name="images[]" class="w-full px-2 py-1 border border-gray-300 rounded-md" accept="image/webp">
+                <input type="file" name="images[]" class="w-full px-2 py-1 border border-gray-300 rounded-md" accept="image/webp" onchange="validateImage(this)">
                 <button type="button" class="remove-image-btn px-2 py-1 bg-red-500 text-white rounded-md text-sm">X</button>
             `;
             imagesContainer.appendChild(imageInput);
@@ -717,4 +717,25 @@
         });
     });
 
+    function validateImage(input) {
+        const file = input.files[0];
+        if (!file) {
+            return;
+        }
+
+        const allowedType = 'image/webp';
+        const maxSize = 10 * 1024 * 1024; // 10MB
+
+        if (file.type !== allowedType) {
+            alert('Error: Please select a .webp image file.');
+            input.value = ''; // Clear the input
+            return;
+        }
+
+        if (file.size > maxSize) {
+            alert('Error: The image size cannot exceed 10MB.');
+            input.value = ''; // Clear the input
+            return;
+        }
+    }
 </script>
