@@ -10,34 +10,48 @@
 
                     @if(count($cartItems) > 0)
                         <div id="cart-items-container" class="divide-y divide-gray-200">
-                            @foreach($cartItems as $item)
-                                <div class="cart-item flex items-center py-6" data-id="{{ $item->id }}">
-                                    <a href="{{ route('single-product.customer', ['headerFooterId' => $headerFooter->id, 'productId' => $item->product->id]) }}" class="w-24 h-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
-                                        <img src="{{ $item->product->image_url }}" alt="{{ $item->product->name }}" class="h-full w-full object-cover object-center">
-                                    </a>
-
-                                    <div class="ml-4 flex flex-1 flex-col">
-                                        <div>
-                                            <div class="flex justify-between text-base font-medium text-gray-900">
-                                                <h3>
-                                                    <a href="{{ route('single-product.customer', ['headerFooterId' => $headerFooter->id, 'productId' => $item->product->id]) }}">{{ $item->product->name }}</a>
-                                                </h3>
-                                                <p class="ml-4">₹{{ number_format($item->product->price * $item->quantity, 2) }}</p>
-                                            </div>
+                            @foreach($cartItems as $items)
+                                @php
+                                    $product = $items->first()->product;
+                                @endphp
+                                <div class="product-group py-6">
+                                    <div class="flex">
+                                        <a href="{{ route('single-product.customer', ['headerFooterId' => $headerFooter->id, 'productId' => $product->id]) }}" class="w-24 h-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+                                            <img src="{{ $product->image_url }}" alt="{{ $product->name }}" class="h-full w-full object-cover object-center">
+                                        </a>
+                                        <div class="ml-4 flex flex-1 flex-col justify-center">
+                                            <h3 class="text-base font-medium text-gray-900">
+                                                <a href="{{ route('single-product.customer', ['headerFooterId' => $headerFooter->id, 'productId' => $product->id]) }}">{{ $product->name }}</a>
+                                            </h3>
                                             <p class="mt-1 text-sm text-gray-500">
-                                                Unit Price: ₹{{ number_format($item->product->price, 2) }}
+                                                Unit Price: ₹{{ number_format($product->price, 2) }}
                                             </p>
                                         </div>
-                                        <div class="flex flex-1 items-end justify-between text-sm mt-4">
-                                            <div class="flex items-center">
-                                                <label for="quantity-{{$item->id}}" class="mr-2 text-gray-500">Qty:</label>
-                                                <input type="number" id="quantity-{{$item->id}}" name="quantity" value="{{ $item->quantity }}" class="w-16 rounded-md border border-gray-300 py-1.5 text-left text-base font-medium leading-5 text-gray-700 shadow-sm focus:border-pink-500 focus:ring-1 focus:ring-pink-500 sm:text-sm" min="1">
-                                            </div>
+                                    </div>
 
-                                            <div class="flex">
-                                                <button type="button" class="remove-item-btn font-medium text-pink-600 hover:text-pink-500" data-id="{{ $item->id }}">Remove</button>
+                                    <div class="ml-28 mt-4 space-y-4">
+                                        @foreach($items as $item)
+                                            <div class="cart-item flex items-end justify-between text-sm" data-id="{{ $item->id }}">
+                                                <div class="flex-1">
+                                                    @if(isset($item->options['color']))
+                                                        <p class="text-gray-500">Color: <span class="font-medium text-gray-800">{{ $item->options['color'] }}</span></p>
+                                                    @endif
+                                                    @if(isset($item->options['size']))
+                                                        <p class="text-gray-500">Size: <span class="font-medium text-gray-800">{{ $item->options['size'] }}</span></p>
+                                                    @endif
+                                                </div>
+                                                <div class="flex items-center">
+                                                    <label for="quantity-{{$item->id}}" class="mr-2 text-gray-500">Qty:</label>
+                                                    <input type="number" id="quantity-{{$item->id}}" name="quantity" value="{{ $item->quantity }}" class="w-16 rounded-md border border-gray-300 py-1.5 text-left text-base font-medium leading-5 text-gray-700 shadow-sm focus:border-pink-500 focus:ring-1 focus:ring-pink-500 sm:text-sm" min="1">
+                                                </div>
+                                                <div class="w-24 text-right">
+                                                    <p class="font-medium text-gray-900">₹{{ number_format($item->product->price * $item->quantity, 2) }}</p>
+                                                </div>
+                                                <div class="w-20 text-right">
+                                                    <button type="button" class="remove-item-btn font-medium text-pink-600 hover:text-pink-500" data-id="{{ $item->id }}">Remove</button>
+                                                </div>
                                             </div>
-                                        </div>
+                                        @endforeach
                                     </div>
                                 </div>
                             @endforeach

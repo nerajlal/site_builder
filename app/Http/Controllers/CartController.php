@@ -32,6 +32,9 @@ class CartController extends Controller
 
         $cartItems = $cartQuery->with('product')->get();
 
+        // Group items by product ID for the view
+        $groupedCartItems = $cartItems->groupBy('product_id');
+
         $totalPrice = $cartItems->sum(function($item) {
             return $item->product->price * $item->quantity;
         });
@@ -51,7 +54,7 @@ class CartController extends Controller
         return view($viewName, [
             'is_default' => false,
             'headerFooter' => $headerFooter,
-            'cartItems' => $cartItems,
+            'cartItems' => $groupedCartItems,
             'totalPrice' => $totalPrice,
         ]);
     }
