@@ -6,6 +6,7 @@ use App\Models\Cart;
 use App\Models\Order;
 use App\Models\OrderProduct;
 use App\Models\Product;
+use App\Models\ProductColor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
@@ -31,6 +32,48 @@ class OrderController extends Controller
             ->with('products.product')
             ->orderBy('created_at', 'desc')
             ->get();
+
+        // Collect all product_id/color_value pairs from all orders
+        $productColorPairs = collect();
+        foreach ($orders as $order) {
+            foreach ($order->products as $orderProduct) {
+                if (isset($orderProduct->options['color'])) {
+                    $productColorPairs->push([
+                        'product_id' => $orderProduct->product_id,
+                        'color_value' => $orderProduct->options['color']
+                    ]);
+                }
+            }
+        }
+        $productColorPairs = $productColorPairs->filter()->unique();
+
+        if ($productColorPairs->isNotEmpty()) {
+            // Fetch all relevant product colors in a single query
+            $productColors = ProductColor::where(function ($query) use ($productColorPairs) {
+                foreach ($productColorPairs as $pair) {
+                    $query->orWhere(function ($q) use ($pair) {
+                        $q->where('product_id', $pair['product_id'])
+                            ->where('value', $pair['color_value']);
+                    });
+                }
+            })->get()->keyBy(function ($item) {
+                return $item->product_id . '-' . $item->value;
+            });
+
+            // Replace color code with color name in order products
+            foreach ($orders as $order) {
+                foreach ($order->products as $orderProduct) {
+                    if (isset($orderProduct->options['color'])) {
+                        $key = $orderProduct->product_id . '-' . $orderProduct->options['color'];
+                        if (isset($productColors[$key])) {
+                            $options = $orderProduct->options;
+                            $options['color'] = $productColors[$key]->name;
+                            $orderProduct->options = $options;
+                        }
+                    }
+                }
+            }
+        }
 
         // Group products within each order
         foreach ($orders as $order) {

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cart;
 use App\Models\Product;
 use App\Models\HeaderFooter;
+use App\Models\ProductColor;
 use App\Models\SelectedTemplate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -31,6 +32,43 @@ class CartController extends Controller
             });
 
         $cartItems = $cartQuery->with('product.comboOffers')->get();
+
+        // Get all unique product_id and color_value pairs from the cart
+        $productColorPairs = $cartItems->map(function ($item) {
+            if (isset($item->options['color'])) {
+                return [
+                    'product_id' => $item->product_id,
+                    'color_value' => $item->options['color']
+                ];
+            }
+            return null;
+        })->filter()->unique();
+
+        if ($productColorPairs->isNotEmpty()) {
+            // Fetch all relevant product colors in a single query
+            $productColors = ProductColor::where(function ($query) use ($productColorPairs) {
+                foreach ($productColorPairs as $pair) {
+                    $query->orWhere(function ($q) use ($pair) {
+                        $q->where('product_id', $pair['product_id'])
+                            ->where('value', $pair['color_value']);
+                    });
+                }
+            })->get()->keyBy(function ($item) {
+                return $item->product_id . '-' . $item->value;
+            });
+
+            // Replace color code with color name in cart items
+            foreach ($cartItems as $item) {
+                if (isset($item->options['color'])) {
+                    $key = $item->product_id . '-' . $item->options['color'];
+                    if (isset($productColors[$key])) {
+                        $options = $item->options;
+                        $options['color'] = $productColors[$key]->name;
+                        $item->options = $options;
+                    }
+                }
+            }
+        }
 
         // Group items by product ID for the view
         $groupedCartItems = $cartItems->groupBy('product_id');

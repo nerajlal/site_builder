@@ -101,11 +101,24 @@
                             <span class="text-lg font-bold text-gray-900">₹{{ number_format($product->price, 2) }}</span>
                         </div>
                         <div class="flex items-center mb-3">
-                            <div class="flex items-center">
-                                <span class="text-yellow-500 text-sm">★★★★</span>
-                                <span class="text-gray-300 text-sm">★</span>
+                            <div class="flex items-center text-yellow-400">
+                                @php
+                                    $averageRating = $product->reviews_avg_rating ?? 0;
+                                    $fullStars = floor($averageRating);
+                                    $halfStar = $averageRating - $fullStars >= 0.5;
+                                    $emptyStars = 5 - $fullStars - ($halfStar ? 1 : 0);
+                                @endphp
+                                @for ($i = 0; $i < $fullStars; $i++)
+                                    <i class="fas fa-star"></i>
+                                @endfor
+                                @if ($halfStar)
+                                    <i class="fas fa-star-half-alt"></i>
+                                @endif
+                                @for ($i = 0; $i < $emptyStars; $i++)
+                                    <i class="far fa-star text-gray-300"></i>
+                                @endfor
                             </div>
-                            <span class="ml-2 text-sm text-gray-500">76</span> <!-- Placeholder for reviews -->
+                            <span class="ml-2 text-sm text-gray-500">({{ $product->reviews_count }} reviews)</span>
                         </div>
                             <button class="w-full bg-blue-800 hover:bg-blue-900 text-white py-2 px-4 rounded-lg font-medium transition duration-300 flex items-center justify-center">
                                 <i class="fas fa-shopping-cart mr-2"></i> Add to Cart
