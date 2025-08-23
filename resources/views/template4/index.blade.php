@@ -467,7 +467,7 @@
             <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Message</label>
             <textarea id="message" rows="4" class="w-full px-4 py-2 bg-white border border-gray-200 rounded focus:outline-none focus:ring-1 focus:ring-[#7e22ce]"></textarea>
           </div>
-          <button type="submit" class="w-full btn-pink py-3 rounded font-medium">
+          <button type="submit" class="w-full btn-pink py-3 rounded font-medium text-purple-600">
             Send Message
           </button>
         </form>
@@ -528,7 +528,7 @@
             <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Message</label>
             <textarea id="message" rows="4" class="w-full px-4 py-2 bg-white border border-gray-200 rounded focus:outline-none focus:ring-1 focus:ring-[#7e22ce]"></textarea>
           </div>
-          <button type="submit" class="w-full btn-pink py-3 rounded font-medium">
+          <button type="submit" class="w-full btn-pink py-3 rounded font-medium text-purple-600">
             Send Message
           </button>
         </form>
