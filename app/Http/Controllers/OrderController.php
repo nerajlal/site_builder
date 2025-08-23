@@ -89,43 +89,67 @@ class OrderController extends Controller
 
         try {
             $groupedCartItems = $cartItems->groupBy('product_id');
-            $totalAmount = 0;
+            $finalTotalAmount = 0;
+            $orderProductsData = [];
+
+            // First, calculate all prices and prepare order product data
             foreach ($groupedCartItems as $productId => $items) {
                 $product = $items->first()->product;
                 $totalQuantity = $items->sum('quantity');
                 $productPrice = $product->price;
+                $groupTotalPrice = 0;
 
                 $offers = $product->comboOffers->sortByDesc('buy_quantity');
+                $remainingQuantity = $totalQuantity;
 
                 foreach ($offers as $offer) {
-                    if ($totalQuantity >= $offer->buy_quantity) {
-                        $numDeals = floor($totalQuantity / $offer->buy_quantity);
-                        $totalAmount += $numDeals * $offer->offer_price;
-                        $totalQuantity %= $offer->buy_quantity;
+                    if ($remainingQuantity >= $offer->buy_quantity) {
+                        $numDeals = floor($remainingQuantity / $offer->buy_quantity);
+                        $groupTotalPrice += $numDeals * $offer->offer_price;
+                        $remainingQuantity %= $offer->buy_quantity;
                     }
                 }
 
-                if ($totalQuantity > 0) {
-                    $totalAmount += $totalQuantity * $productPrice;
+                if ($remainingQuantity > 0) {
+                    $groupTotalPrice += $remainingQuantity * $productPrice;
+                }
+
+                $finalTotalAmount += $groupTotalPrice;
+                $effectivePrice = $totalQuantity > 0 ? $groupTotalPrice / $totalQuantity : 0;
+
+                foreach ($items as $item) {
+                    $orderProductsData[] = [
+                        'product_id' => $item->product_id,
+                        'quantity' => $item->quantity,
+                        'price' => $effectivePrice,
+                        'options' => $item->options,
+                    ];
                 }
             }
 
+            // Create the main order record
             $order = Order::create([
                 'header_footer_id' => $headerFooterId,
                 'site_customer_id' => $siteCustomerId,
-                'total_amount' => $totalAmount,
+                'total_amount' => $finalTotalAmount,
                 'status' => 0,
             ]);
 
+            // Create order product records and update stock
             foreach ($cartItems as $item) {
+                // Find the corresponding prepared data to get the correct price
+                $productData = collect($orderProductsData)->first(function ($data) use ($item) {
+                    return $data['product_id'] == $item->product_id && $data['options'] == $item->options;
+                });
+
                 OrderProduct::create([
                     'order_id' => $order->id,
                     'product_id' => $item->product_id,
                     'quantity' => $item->quantity,
-                    'price' => $item->product->price,
+                    'price' => $productData['price'] ?? $item->product->price, // Fallback to original price
+                    'options' => $item->options,
                 ]);
 
-                // Decrease product stock
                 $product = $item->product;
                 if ($product->quantity < $item->quantity) {
                     throw new \Exception('Not enough stock for product: ' . $product->name);
