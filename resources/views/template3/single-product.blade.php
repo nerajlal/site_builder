@@ -139,7 +139,7 @@
 
                 <!-- Combo Offers -->
                 @if($product->comboOffers->count() > 0)
-                <div class="bg-purple-50 border border-purple-200 p-4 rounded-lg">
+                <div class="bg-purple-50 border border-purple-200 p-4 rounded-lg combo-offer-pulse">
                     <h3 class="text-sm font-semibold mb-3 text-purple-800">Combo Deals!</h3>
                     <ul class="space-y-2 text-sm">
                         @foreach($product->comboOffers as $offer)

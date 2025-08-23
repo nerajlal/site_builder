@@ -59,6 +59,15 @@
       filter: grayscale(0%);
       opacity: 1;
     }
+    @keyframes pulse-animation {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.03); }
+      100% { transform: scale(1); }
+    }
+    .combo-offer-pulse {
+      animation: pulse-animation 1.5s ease-in-out 2;
+      animation-delay: 1s;
+    }
   </style>
 </head>
 
