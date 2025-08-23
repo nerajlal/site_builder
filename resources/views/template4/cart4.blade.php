@@ -16,10 +16,13 @@
                                 @endphp
                                 <div class="product-group py-6">
                                     <div class="flex flex-col sm:flex-row">
+                                        <!-- Product Image -->
                                         <a href="{{ route('single-product.customer', ['headerFooterId' => $headerFooter->id, 'productId' => $product->id]) }}" class="w-24 h-24 sm:w-32 sm:h-32 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                                             <img src="{{ $product->image_url }}" alt="{{ $product->name }}" class="h-full w-full object-cover object-center">
                                         </a>
-                                        <div class="ml-0 sm:ml-4 mt-4 sm:mt-0 flex flex-1 flex-col justify-center">
+                                        <!-- Product Details and Variations -->
+                                        <div class="ml-0 sm:ml-6 mt-4 sm:mt-0 flex flex-1 flex-col">
+                                            <!-- Top section: Name, Price, Combo -->
                                             <div>
                                                 <h3 class="text-base font-medium text-gray-900">
                                                     <a href="{{ route('single-product.customer', ['headerFooterId' => $headerFooter->id, 'productId' => $product->id]) }}">{{ $product->name }}</a>
@@ -27,43 +30,43 @@
                                                 <p class="mt-1 text-sm text-gray-500">
                                                     Unit Price: ₹{{ number_format($product->price, 2) }}
                                                 </p>
+                                                @if(!$product->comboOffers->isEmpty())
+                                                    <div class="mt-2 bg-purple-50 border border-purple-200 p-2 rounded-lg text-xs">
+                                                        <h4 class="font-semibold text-purple-800">Combo Deals Available!</h4>
+                                                        <ul class="text-purple-700">
+                                                            @foreach($product->comboOffers as $offer)
+                                                                <li>Buy <strong>{{ $offer->buy_quantity }}</strong> for ₹{{ number_format($offer->offer_price, 2) }}</li>
+                                                            @endforeach
+                                                        </ul>
+                                                    </div>
+                                                @endif
                                             </div>
-                                            @if(!$product->comboOffers->isEmpty())
-                                                <div class="mt-2 bg-purple-50 border border-purple-200 p-2 rounded-lg">
-                                                    <h4 class="text-xs font-semibold text-purple-800">Combo Deals Available!</h4>
-                                                    <ul class="text-xs text-purple-700">
-                                                        @foreach($product->comboOffers as $offer)
-                                                            <li>Buy <strong>{{ $offer->buy_quantity }}</strong> for ₹{{ number_format($offer->offer_price, 2) }}</li>
-                                                        @endforeach
-                                                    </ul>
-                                                </div>
-                                            @endif
+                                            <!-- Variations Section -->
+                                            <div class="mt-4 divide-y divide-gray-100 border-t border-b border-gray-100">
+                                                @foreach($items as $item)
+                                                    <div class="cart-item py-3 flex flex-col sm:flex-row items-start sm:items-center justify-between text-sm" data-id="{{ $item->id }}">
+                                                        <div class="flex-1 mb-2 sm:mb-0 pr-4">
+                                                            @if(isset($item->options['color']))
+                                                                <p class="text-gray-500">Color: <span class="font-medium text-gray-800">{{ $item->options['color'] }}</span></p>
+                                                            @endif
+                                                            @if(isset($item->options['size']))
+                                                                <p class="text-gray-500">Size: <span class="font-medium text-gray-800">{{ $item->options['size'] }}</span></p>
+                                                            @endif
+                                                        </div>
+                                                        <div class="flex items-center">
+                                                            <label for="quantity-{{$item->id}}" class="mr-2 text-gray-500">Qty:</label>
+                                                            <input type="number" id="quantity-{{$item->id}}" name="quantity" value="{{ $item->quantity }}" class="w-16 rounded-md border border-gray-300 py-1 text-left text-base font-medium leading-5 text-gray-700 shadow-sm focus:border-purple-500 focus:ring-1 focus:ring-purple-500 sm:text-sm" min="1">
+                                                        </div>
+                                                        <div class="w-full sm:w-24 text-left sm:text-right mt-2 sm:mt-0">
+                                                            <p class="font-medium text-gray-900">₹{{ number_format($item->product->price * $item->quantity, 2) }}</p>
+                                                        </div>
+                                                        <div class="w-full sm:w-20 text-left sm:text-right mt-2 sm:mt-0">
+                                                            <button type="button" class="remove-item-btn font-medium text-purple-600 hover:text-purple-500" data-id="{{ $item->id }}">Remove</button>
+                                                        </div>
+                                                    </div>
+                                                @endforeach
+                                            </div>
                                         </div>
-                                    </div>
-
-                                    <div class="pl-0 sm:pl-36 mt-4 space-y-4">
-                                        @foreach($items as $item)
-                                            <div class="cart-item flex flex-col sm:flex-row items-start sm:items-end justify-between text-sm" data-id="{{ $item->id }}">
-                                                <div class="flex-1 mb-2 sm:mb-0">
-                                                    @if(isset($item->options['color']))
-                                                        <p class="text-gray-500">Color: <span class="font-medium text-gray-800">{{ $item->options['color'] }}</span></p>
-                                                    @endif
-                                                    @if(isset($item->options['size']))
-                                                        <p class="text-gray-500">Size: <span class="font-medium text-gray-800">{{ $item->options['size'] }}</span></p>
-                                                    @endif
-                                                </div>
-                                                <div class="flex items-center">
-                                                    <label for="quantity-{{$item->id}}" class="mr-2 text-gray-500">Qty:</label>
-                                                    <input type="number" id="quantity-{{$item->id}}" name="quantity" value="{{ $item->quantity }}" class="w-16 rounded-md border border-gray-300 py-1.5 text-left text-base font-medium leading-5 text-gray-700 shadow-sm focus:border-purple-500 focus:ring-1 focus:ring-purple-500 sm:text-sm" min="1">
-                                                </div>
-                                                <div class="w-full sm:w-24 text-left sm:text-right mt-2 sm:mt-0">
-                                                    <p class="font-medium text-gray-900">₹{{ number_format($item->product->price * $item->quantity, 2) }}</p>
-                                                </div>
-                                                <div class="w-full sm:w-20 text-left sm:text-right mt-2 sm:mt-0">
-                                                    <button type="button" class="remove-item-btn font-medium text-purple-600 hover:text-purple-500" data-id="{{ $item->id }}">Remove</button>
-                                                </div>
-                                            </div>
-                                        @endforeach
                                     </div>
                                 </div>
                             @endforeach
