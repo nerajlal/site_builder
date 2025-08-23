@@ -50,20 +50,37 @@
                         </div>
 
                         <div class="divide-y divide-gray-700">
-                            @foreach($order->products as $orderProduct)
-                                <div class="flex items-center py-4">
-                                    <a href="{{ route('single-product.customer', ['headerFooterId' => $headerFooter->id, 'productId' => $orderProduct->product->id]) }}" class="w-20 h-20 flex-shrink-0 overflow-hidden rounded-md border border-gray-700">
-                                        <img src="{{ $orderProduct->product->image_url }}" alt="{{ $orderProduct->product->name }}" class="h-full w-full object-cover object-center">
-                                    </a>
-                                    <div class="ml-4 flex-1">
-                                        <h3 class="text-base font-semibold text-white">
-                                            <a href="{{ route('single-product.customer', ['headerFooterId' => $headerFooter->id, 'productId' => $orderProduct->product->id]) }}">{{ $orderProduct->product->name }}</a>
-                                        </h3>
-                                        <div class="flex justify-between mt-2 text-sm">
-                                            <p class="text-gray-400">Qty: {{ $orderProduct->quantity }}</p>
-                                            <p class="font-medium text-white">Price: ₹{{ number_format($orderProduct->price, 2) }}</p>
+                            @foreach($order->grouped_products as $items)
+                                @php
+                                    $product = $items->first()->product;
+                                @endphp
+                                <div class="py-4">
+                                    <div class="flex items-center">
+                                        <a href="{{ route('single-product.customer', ['headerFooterId' => $headerFooter->id, 'productId' => $product->id]) }}" class="w-20 h-20 flex-shrink-0 overflow-hidden rounded-md border border-gray-700">
+                                            <img src="{{ $product->image_url }}" alt="{{ $product->name }}" class="h-full w-full object-cover object-center">
+                                        </a>
+                                        <div class="ml-4 flex-1">
+                                            <h3 class="text-base font-semibold text-white">
+                                                <a href="{{ route('single-product.customer', ['headerFooterId' => $headerFooter->id, 'productId' => $product->id]) }}">{{ $product->name }}</a>
+                                            </h3>
+                                            <button class="text-sm text-pink-500 hover:underline review-btn" data-product-id="{{ $product->id }}">Add Review</button>
                                         </div>
-                                        <button class="text-sm text-pink-500 hover:underline review-btn" data-product-id="{{ $orderProduct->product->id }}">Add Review</button>
+                                    </div>
+                                    <div class="ml-24 mt-2 pl-2 border-l border-gray-700">
+                                        @foreach($items as $item)
+                                            <div class="text-sm text-gray-400 py-1">
+                                                @if(isset($item->options['color']))
+                                                    <p>Color: <span class="font-medium text-gray-200">{{ $item->options['color'] }}</span></p>
+                                                @endif
+                                                @if(isset($item->options['size']))
+                                                    <p>Size: <span class="font-medium text-gray-200">{{ $item->options['size'] }}</span></p>
+                                                @endif
+                                                <div class="flex justify-between">
+                                                    <span>Qty: {{ $item->quantity }}</span>
+                                                    <span class="font-medium text-white">Price: ₹{{ number_format($item->price * $item->quantity, 2) }}</span>
+                                                </div>
+                                            </div>
+                                        @endforeach
                                     </div>
                                 </div>
                             @endforeach

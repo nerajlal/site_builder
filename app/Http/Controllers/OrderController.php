@@ -32,6 +32,11 @@ class OrderController extends Controller
             ->orderBy('created_at', 'desc')
             ->get();
 
+        // Group products within each order
+        foreach ($orders as $order) {
+            $order->grouped_products = $order->products->groupBy('product_id');
+        }
+
         $selectedTemplate = SelectedTemplate::where('header_footer_id', $headerFooterId)->first();
         $templateId = '1'; // Default to 1
         if ($selectedTemplate) {
