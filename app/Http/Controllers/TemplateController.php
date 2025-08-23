@@ -180,11 +180,12 @@ class TemplateController extends Controller
         return view('d_add', compact('headerFooters'));
     }
 
-    public function showAddProducts($id)
+    public function showAddProducts(Request $request, $id)
     {
         $headerFooter = HeaderFooter::findOrFail($id);
         $brands = Brand::where('header_footer_id', $id)->get();
-        $products = Product::with([
+
+        $productsQuery = Product::with([
             'brand',
             'colors',
             'comboOffers',
@@ -195,7 +196,17 @@ class TemplateController extends Controller
             'sizeChart',
             'fabricDetails',
             'careInstructions'
-        ])->where('header_footer_id', $id)->get();
+        ])->where('header_footer_id', $id);
+
+        if ($request->has('search_name')) {
+            $productsQuery->where('name', 'like', '%' . $request->search_name . '%');
+        }
+
+        if ($request->has('search_category') && $request->search_category != '') {
+            $productsQuery->where('category_name', $request->search_category);
+        }
+
+        $products = $productsQuery->get();
         
         return view('d_add_product', compact('headerFooter', 'brands', 'products'));
     }

@@ -47,6 +47,31 @@
         </div>
 
 
+        <!-- Search and Filter Section -->
+        <div class="mt-10 p-6 bg-white rounded-lg shadow">
+            <h2 class="text-lg font-semibold text-gray-800 mb-4">Search Products</h2>
+            <form action="{{ route('addproducts.show', $headerFooter->id) }}" method="GET">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div>
+                        <label for="search_name" class="block text-sm font-medium text-gray-700">Product Name</label>
+                        <input type="text" name="search_name" id="search_name" value="{{ request('search_name') }}" class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md">
+                    </div>
+                    <div>
+                        <label for="search_category" class="block text-sm font-medium text-gray-700">Category</label>
+                        <select name="search_category" id="search_category" class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md">
+                            <option value="">All Categories</option>
+                            <option value="Men" {{ request('search_category') == 'Men' ? 'selected' : '' }}>Men</option>
+                            <option value="Women" {{ request('search_category') == 'Women' ? 'selected' : '' }}>Women</option>
+                            <option value="Kids" {{ request('search_category') == 'Kids' ? 'selected' : '' }}>Kids</option>
+                        </select>
+                    </div>
+                    <div class="flex items-end">
+                        <button type="submit" class="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors">Search</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
         <!-- Recently Added Products -->
         <div class="mt-10">
             <div class="bg-white rounded-lg shadow overflow-hidden">
