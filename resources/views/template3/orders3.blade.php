@@ -68,17 +68,17 @@
                                     </div>
                                     <div class="ml-24 mt-2 pl-2 border-l border-gray-200">
                                         @foreach($items as $item)
-                                            <div class="text-sm text-gray-600 py-1">
-                                                @if(isset($item->options['color']))
-                                                    <p>Color: <span class="font-medium text-gray-800">{{ $item->options['color'] }}</span></p>
-                                                @endif
-                                                @if(isset($item->options['size']))
-                                                    <p>Size: <span class="font-medium text-gray-800">{{ $item->options['size'] }}</span></p>
-                                                @endif
-                                                <div class="flex justify-between">
-                                                    <span>Qty: {{ $item->quantity }}</span>
-                                                    <span class="font-medium text-gray-900">Price: ₹{{ number_format($item->price * $item->quantity, 2) }}</span>
+                                            <div class="text-sm text-gray-600 py-1 flex justify-between">
+                                                <div>
+                                                    @if(isset($item->options['color']))
+                                                        <span>Color: <span class="font-medium text-gray-800">{{ $item->options['color'] }}</span></span>
+                                                    @endif
+                                                    @if(isset($item->options['size']))
+                                                        <span class="ml-2">Size: <span class="font-medium text-gray-800">{{ $item->options['size'] }}</span></span>
+                                                    @endif
+                                                    <span class="ml-2">Qty: {{ $item->quantity }}</span>
                                                 </div>
+                                                <span class="font-medium text-gray-900">Price: ₹{{ number_format($item->price * $item->quantity, 2) }}</span>
                                             </div>
                                         @endforeach
                                     </div>
