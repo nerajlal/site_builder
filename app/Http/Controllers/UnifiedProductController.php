@@ -35,7 +35,7 @@ class UnifiedProductController extends Controller
         $templateId = $matches[1] ?? '1'; // Default to 1 if not found
 
         // Fetch products
-        $query = Product::withCount('reviews')->withAvg('reviews', 'rating')->where('header_footer_id', $headerFooterId);
+        $query = Product::withCount('reviews')->withAvg('reviews', 'rating')->where('header_footer_id', $headerFooterId)->where('status', 0);
 
         // Sorting
         if ($request->has('sort')) {
@@ -109,7 +109,7 @@ class UnifiedProductController extends Controller
             'reviews'
         ])->find($productId);
 
-        if (!$headerFooter || !$product) {
+        if (!$headerFooter || !$product || $product->status != 0) {
             abort(404, 'Product not found');
         }
 

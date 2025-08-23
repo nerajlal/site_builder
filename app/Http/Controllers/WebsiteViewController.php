@@ -39,7 +39,7 @@ class WebsiteViewController extends Controller
         $section1 = section1::where('header_footer_id', $headerFooter->id)->first();
         $section2 = section2::where('header_footer_id', $headerFooter->id)->first();
         $categories = Category::where('header_footer_id', $headerFooter->id)->get();
-        $products = Product::withCount('reviews')->withAvg('reviews', 'rating')->where('header_footer_id', $headerFooter->id)->take(4)->get();
+        $products = Product::withCount('reviews')->withAvg('reviews', 'rating')->where('header_footer_id', $headerFooter->id)->where('status', 0)->take(4)->get();
         $testimonials = Testimonial::where('header_footer_id', $headerFooter->id)->first();
         $contactus = ContactUs::where('header_footer_id', $headerFooter->id)->first();
 
