@@ -65,7 +65,7 @@ Route::get('/view/{headerFooterId}', [WebsiteViewController::class, 'show']);
 Route::get('/data', [TemplateController::class, 'show'])->name('d.storedata');
 
 Route::get('/add', [TemplateController::class, 'showSites']);
-Route::get('/addproducts/{id}', [TemplateController::class, 'showAddProducts']);
+Route::get('/addproducts/{id}', [TemplateController::class, 'showAddProducts'])->name('addproducts.show');
 Route::post('/add-brand/{siteId}', [TemplateController::class, 'storeBrand'])->name('storeBrand');
 Route::post('/add-product/{siteId}', [TemplateController::class, 'storeProduct'])->name('storeProduct');
 Route::delete('/delete-brand/{id}', [TemplateController::class, 'deleteBrand'])->name('deleteBrand');
