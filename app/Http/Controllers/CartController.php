@@ -35,9 +35,29 @@ class CartController extends Controller
         // Group items by product ID for the view
         $groupedCartItems = $cartItems->groupBy('product_id');
 
-        $totalPrice = $cartItems->sum(function($item) {
-            return $item->product->price * $item->quantity;
-        });
+        $totalPrice = 0;
+        foreach ($groupedCartItems as $productId => $items) {
+            $product = $items->first()->product;
+            $totalQuantity = $items->sum('quantity');
+            $productPrice = $product->price;
+
+            // Sort offers by buy_quantity descending to apply best offers first
+            $offers = $product->comboOffers->sortByDesc('buy_quantity');
+            $appliedOffer = false;
+
+            foreach ($offers as $offer) {
+                if ($totalQuantity >= $offer->buy_quantity) {
+                    $numDeals = floor($totalQuantity / $offer->buy_quantity);
+                    $totalPrice += $numDeals * $offer->offer_price;
+                    $totalQuantity %= $offer->buy_quantity;
+                }
+            }
+
+            // Add price of remaining items
+            if ($totalQuantity > 0) {
+                $totalPrice += $totalQuantity * $productPrice;
+            }
+        }
 
         // Determine the template to use
         $selectedTemplate = SelectedTemplate::where('header_footer_id', $headerFooterId)->first();
@@ -171,11 +191,31 @@ class CartController extends Controller
                 }
             });
 
-        $cartItems = $cartQuery->with('product')->get();
+        $cartItems = $cartQuery->with('product.comboOffers')->get();
+        $groupedCartItems = $cartItems->groupBy('product_id');
 
-        return $cartItems->sum(function($item) {
-            return $item->product->price * $item->quantity;
-        });
+        $totalPrice = 0;
+        foreach ($groupedCartItems as $productId => $items) {
+            $product = $items->first()->product;
+            $totalQuantity = $items->sum('quantity');
+            $productPrice = $product->price;
+
+            $offers = $product->comboOffers->sortByDesc('buy_quantity');
+
+            foreach ($offers as $offer) {
+                if ($totalQuantity >= $offer->buy_quantity) {
+                    $numDeals = floor($totalQuantity / $offer->buy_quantity);
+                    $totalPrice += $numDeals * $offer->offer_price;
+                    $totalQuantity %= $offer->buy_quantity;
+                }
+            }
+
+            if ($totalQuantity > 0) {
+                $totalPrice += $totalQuantity * $productPrice;
+            }
+        }
+
+        return $totalPrice;
     }
 
     private function getCartItemCount($headerFooterId, $siteCustomerId, $sessionId)

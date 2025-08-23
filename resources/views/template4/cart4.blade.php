@@ -15,11 +15,12 @@
                                     $product = $items->first()->product;
                                 @endphp
                                 <div class="product-group py-6">
-                                    <div class="flex flex-col sm:flex-row">
-                                        <a href="{{ route('single-product.customer', ['headerFooterId' => $headerFooter->id, 'productId' => $product->id]) }}" class="w-24 h-24 sm:w-32 sm:h-32 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+                                    <!-- Desktop Layout -->
+                                    <div class="hidden sm:flex flex-col sm:flex-row">
+                                        <a href="{{ route('single-product.customer', ['headerFooterId' => $headerFooter->id, 'productId' => $product->id]) }}" class="w-32 h-32 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                                             <img src="{{ $product->image_url }}" alt="{{ $product->name }}" class="h-full w-full object-cover object-center">
                                         </a>
-                                        <div class="ml-0 sm:ml-6 mt-4 sm:mt-0 flex flex-1 flex-col">
+                                        <div class="ml-6 flex flex-1 flex-col">
                                             <div>
                                                 <h3 class="text-base font-medium text-gray-900">
                                                     <a href="{{ route('single-product.customer', ['headerFooterId' => $headerFooter->id, 'productId' => $product->id]) }}">{{ $product->name }}</a>
@@ -40,8 +41,8 @@
                                             </div>
                                             <div class="mt-4 divide-y divide-gray-100 border-t border-b border-gray-100">
                                                 @foreach($items as $item)
-                                                    <div class="cart-item py-3 flex flex-col sm:flex-row items-start sm:items-center justify-between text-sm" data-id="{{ $item->id }}">
-                                                        <div class="flex-1 mb-2 sm:mb-0 pr-4">
+                                                    <div class="cart-item py-3 flex items-center justify-between text-sm" data-id="{{ $item->id }}">
+                                                        <div class="flex-1 pr-4">
                                                             @if(isset($item->options['color']))
                                                                 <p class="text-gray-500">Color: <span class="font-medium text-gray-800">{{ $item->options['color'] }}</span></p>
                                                             @endif
@@ -50,18 +51,68 @@
                                                             @endif
                                                         </div>
                                                         <div class="flex items-center">
-                                                            <label for="quantity-{{$item->id}}" class="mr-2 text-gray-500">Qty:</label>
-                                                            <input type="number" id="quantity-{{$item->id}}" name="quantity" value="{{ $item->quantity }}" class="w-16 rounded-md border border-gray-300 py-1 text-left text-base font-medium leading-5 text-gray-700 shadow-sm focus:border-purple-500 focus:ring-1 focus:ring-purple-500 sm:text-sm" min="1">
+                                                            <label for="quantity-{{$item->id}}-desktop" class="mr-2 text-gray-500">Qty:</label>
+                                                            <input type="number" id="quantity-{{$item->id}}-desktop" name="quantity" value="{{ $item->quantity }}" class="w-16 rounded-md border border-gray-300 py-1 text-left text-base font-medium leading-5 text-gray-700 shadow-sm focus:border-purple-500 focus:ring-1 focus:ring-purple-500 sm:text-sm" min="1">
                                                         </div>
-                                                        <div class="w-full sm:w-24 text-left sm:text-right mt-2 sm:mt-0">
+                                                        <div class="w-24 text-right">
                                                             <p class="font-medium text-gray-900">₹{{ number_format($item->product->price * $item->quantity, 2) }}</p>
                                                         </div>
-                                                        <div class="w-full sm:w-20 text-left sm:text-right mt-2 sm:mt-0">
+                                                        <div class="w-20 text-right">
                                                             <button type="button" class="remove-item-btn font-medium text-purple-600 hover:text-purple-500" data-id="{{ $item->id }}">Remove</button>
                                                         </div>
                                                     </div>
                                                 @endforeach
                                             </div>
+                                        </div>
+                                    </div>
+                                    <!-- Mobile Layout -->
+                                    <div class="sm:hidden">
+                                        <div class="flex flex-row">
+                                            <a href="{{ route('single-product.customer', ['headerFooterId' => $headerFooter->id, 'productId' => $product->id]) }}" class="w-24 h-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+                                                <img src="{{ $product->image_url }}" alt="{{ $product->name }}" class="h-full w-full object-cover object-center">
+                                            </a>
+                                            <div class="ml-4 flex flex-1 flex-col">
+                                                <h3 class="text-base font-medium text-gray-900">
+                                                    <a href="{{ route('single-product.customer', ['headerFooterId' => $headerFooter->id, 'productId' => $product->id]) }}">{{ $product->name }}</a>
+                                                </h3>
+                                                <p class="mt-1 text-sm text-gray-500">
+                                                    Unit Price: ₹{{ number_format($product->price, 2) }}
+                                                </p>
+                                                @if(!$product->comboOffers->isEmpty())
+                                                    <div class="mt-2 bg-purple-50 border border-purple-200 p-2 rounded-lg text-xs">
+                                                        <h4 class="font-semibold text-purple-800">Combo Deals Available!</h4>
+                                                        <ul class="text-purple-700">
+                                                            @foreach($product->comboOffers as $offer)
+                                                                <li>Buy <strong>{{ $offer->buy_quantity }}</strong> for ₹{{ number_format($offer->offer_price, 2) }}</li>
+                                                            @endforeach
+                                                        </ul>
+                                                    </div>
+                                                @endif
+                                            </div>
+                                        </div>
+                                        <div class="mt-4 divide-y divide-gray-100 border-t border-gray-200">
+                                            @foreach($items as $item)
+                                                <div class="cart-item py-3" data-id="{{ $item->id }}">
+                                                    <div class="flex items-center justify-between text-sm">
+                                                        <div class="flex-1 pr-4">
+                                                            @if(isset($item->options['color']))
+                                                                <p class="text-gray-500">Color: <span class="font-medium text-gray-800">{{ $item->options['color'] }}</span></p>
+                                                            @endif
+                                                            @if(isset($item->options['size']))
+                                                                <p class="text-gray-500">Size: <span class="font-medium text-gray-800">{{ $item->options['size'] }}</span></p>
+                                                            @endif
+                                                        </div>
+                                                        <p class="font-medium text-gray-900">₹{{ number_format($item->product->price * $item->quantity, 2) }}</p>
+                                                    </div>
+                                                    <div class="mt-2 flex items-center justify-between">
+                                                        <div class="flex items-center">
+                                                            <label for="quantity-{{$item->id}}-mobile" class="mr-2 text-gray-500">Qty:</label>
+                                                            <input type="number" id="quantity-{{$item->id}}-mobile" name="quantity" value="{{ $item->quantity }}" class="w-16 rounded-md border border-gray-300 py-1 text-left text-base font-medium leading-5 text-gray-700 shadow-sm focus:border-purple-500 focus:ring-1 focus:ring-purple-500 sm:text-sm" min="1">
+                                                        </div>
+                                                        <button type="button" class="remove-item-btn font-medium text-purple-600 hover:text-purple-500" data-id="{{ $item->id }}">Remove</button>
+                                                    </div>
+                                                </div>
+                                            @endforeach
                                         </div>
                                     </div>
                                 </div>
