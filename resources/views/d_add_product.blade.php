@@ -77,31 +77,10 @@
                             <td class="px-6 py-4">{{ $product->quantity > 0 ? 'Available' : 'Out of Stock' }}</td>
                             <td class="px-6 py-4 flex gap-2">
                                 <!-- Edit Button -->
-                                <button 
-                                    type="button" 
+                                <button
+                                    type="button"
                                     class="text-blue-600 hover:underline edit-product-btn"
-                                    data-id="{{ $product->id }}"
-                                    data-name="{{ $product->name }}"
-                                    data-sku="{{ $product->sku }}"
-                                    data-price="{{ $product->price }}"
-                                    data-original_price="{{ $product->original_price }}"
-                                    data-quantity="{{ $product->quantity }}"
-                                    data-category_name="{{ $product->category_name }}"
-                                    data-brand_id="{{ $product->brand_id }}"
-                                    data-image_url="{{ $product->image_url }}"
-                                    data-images="{{ json_encode($product->productImages) }}"
-                                    data-video_url="{{ $product->video_url }}"
-                                    data-description="{{ $product->description }}"
-                                    data-colors="{{ json_encode($product->colors) }}"
-                                    data-sizes="{{ json_encode($product->sizes) }}"
-                                    data-styling_tips="{{ json_encode($product->stylingTips) }}"
-                                    data-model_info="{{ json_encode($product->modelInfo) }}"
-                                    data-garment_details="{{ json_encode($product->garmentDetails) }}"
-                                    data-size_chart="{{ json_encode($product->sizeChart) }}"
-                                    data-fabric_details="{{ json_encode($product->fabricDetails) }}"
-                                    data-care_instructions="{{ json_encode($product->careInstructions) }}"
-                                    data-faqs="{{ json_encode($product->faqs) }}"
-                                    data-details="{{ json_encode($product->details) }}">
+                                    data-product="{{ $product->toJson() }}">
                                     Edit
                                 </button>
 
@@ -135,12 +114,13 @@
 <div id="product-modal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
     <div class="relative top-10 mx-auto p-5 border w-full md:w-3/4 lg:w-2/3 shadow-lg rounded-md bg-white">
         <div class="flex justify-between items-center pb-3">
-            <h3 class="text-xl font-semibold text-gray-800">Add Product</h3>
+            <h3 id="product-modal-title" class="text-xl font-semibold text-gray-800">Add Product</h3>
             <button class="close-modal text-gray-500 hover:text-gray-700 text-lg">&times;</button>
         </div>
 
         <form id="product-form" method="POST" action="{{ route('storeProduct', $headerFooter->id) }}" class="space-y-4 max-h-[80vh] overflow-y-auto pr-2" enctype="multipart/form-data">
             @csrf
+            <input type="hidden" name="product_id" id="product_id">
 
             <!-- Core Product Info -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -176,20 +156,18 @@
                     <label class="block text-sm font-medium text-gray-700">Original Price</label>
                     <input type="number" name="original_price" step="0.01" class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md">
                 </div>
-                <!-- <div>
-                    <label class="block text-sm font-medium text-gray-700">Quantity</label>
-                    <input type="number" name="quantity" required class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md">
-                </div> -->
             </div>
 
             <!-- Media -->
             <div>
                 <label class="block text-sm font-medium text-gray-700">Main Image</label>
                 <input type="file" name="image_url" class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md" accept="image/webp" onchange="validateImage(this)">
+                <div id="main-image-preview" class="mt-2"></div>
             </div>
             <div>
                 <label class="block text-sm font-medium text-gray-700">Additional Images</label>
-                <div id="images-container" class="space-y-2">
+                <div id="additional-images-preview" class="grid grid-cols-3 gap-2 mt-2"></div>
+                <div id="images-container" class="space-y-2 mt-2">
                     <!-- Dynamic image inputs will be added here -->
                 </div>
                 <button type="button" id="add-image-btn" class="mt-2 px-3 py-1 bg-blue-500 text-white rounded-md text-sm">Add Image</button>
@@ -293,7 +271,7 @@
 
             <div class="flex justify-end space-x-3 pt-4 border-t">
                 <button type="button" class="close-modal px-4 py-2 text-gray-700 bg-gray-100 rounded-md hover:bg-gray-200">Cancel</button>
-                <button type="submit" class="px-4 py-2 text-white bg-indigo-600 rounded-md hover:bg-indigo-700">Add Product</button>
+                <button id="product-form-submit-btn" type="submit" class="px-4 py-2 text-white bg-indigo-600 rounded-md hover:bg-indigo-700">Add Product</button>
             </div>
         </form>
     </div>
@@ -343,6 +321,33 @@
         function closeModal() {
             Object.values(modals).forEach(m => m.classList.add('hidden'));
             document.body.style.overflow = 'auto';
+            resetProductForm();
+        }
+
+        function resetProductForm() {
+            const productForm = document.getElementById('product-form');
+            productForm.reset();
+            document.getElementById('product-modal-title').textContent = 'Add Product';
+            document.getElementById('product-form-submit-btn').textContent = 'Add Product';
+            productForm.action = "{{ route('storeProduct', $headerFooter->id) }}";
+
+            // Remove method spoofing
+            const methodInput = productForm.querySelector('input[name="_method"]');
+            if (methodInput) {
+                methodInput.remove();
+            }
+
+            // Clear all dynamic fields
+            const containers = [
+                'colors-container', 'images-container', 'styling-tips-container',
+                'model-info-container', 'garment-details-container', 'size-chart-container',
+                'fabric-details-container', 'care-instructions-container', 'faqs-container',
+                'main-image-preview', 'additional-images-preview'
+            ];
+            containers.forEach(id => document.getElementById(id).innerHTML = '');
+
+            // Reset size inputs
+            document.querySelectorAll('input[name^="sizes"]').forEach(input => input.value = 0);
         }
 
         // Close buttons
@@ -356,29 +361,23 @@
     document.addEventListener('DOMContentLoaded', function () {
         const productModal = document.getElementById('product-modal');
         const productForm = document.getElementById('product-form');
-        const modalTitle = productModal.querySelector('h3');
+        const modalTitle = document.getElementById('product-modal-title');
+        const submitBtn = document.getElementById('product-form-submit-btn');
         const addProductBtn = document.getElementById('add-product-btn');
         const editProductBtns = document.querySelectorAll('.edit-product-btn');
 
         addProductBtn.addEventListener('click', function () {
-            modalTitle.textContent = 'Add Product';
-            productForm.action = "{{ route('storeProduct', $headerFooter->id) }}";
-            productForm.reset();
-            // Reset sizes to 0
-            document.querySelectorAll('input[name^="sizes"]').forEach(input => input.value = 0);
-            const methodInput = productForm.querySelector('input[name="_method"]');
-            if (methodInput) {
-                methodInput.remove();
-            }
+            resetProductForm();
         });
 
         editProductBtns.forEach(btn => {
             btn.addEventListener('click', function () {
-                const data = this.dataset;
-                modalTitle.textContent = 'Edit Product';
-                productForm.action = `/products/update/${data.id}`;
+                const product = JSON.parse(this.dataset.product);
 
-                // Add method spoofing for PUT request
+                modalTitle.textContent = 'Edit Product';
+                submitBtn.textContent = 'Update Product';
+                productForm.action = `/products/update/${product.id}`;
+
                 if (!productForm.querySelector('input[name="_method"]')) {
                     const methodInput = document.createElement('input');
                     methodInput.type = 'hidden';
@@ -387,88 +386,55 @@
                     productForm.prepend(methodInput);
                 }
 
-                // Populate fields
-                productForm.querySelector('[name="name"]').value = data.name;
-                productForm.querySelector('[name="sku"]').value = data.sku;
-                productForm.querySelector('[name="category_name"]').value = data.category_name;
-                productForm.querySelector('[name="brand_id"]').value = data.brand_id;
-                productForm.querySelector('[name="price"]').value = data.price;
-                productForm.querySelector('[name="original_price"]').value = data.original_price;
-                productForm.querySelector('[name="quantity"]').value = data.quantity;
-                productForm.querySelector('[name="image_url"]').value = data.image_url;
-                productForm.querySelector('[name="video_url"]').value = data.video_url;
-                productForm.querySelector('[name="description"]').value = data.description;
-
-                // Clear and populate colors
-                const colorsContainer = document.getElementById('colors-container');
-                colorsContainer.innerHTML = '';
-                JSON.parse(data.colors).forEach(c => addColorInput(c.name, c.value));
-
-                // Clear and populate images
-                const imagesContainer = document.getElementById('images-container');
-                imagesContainer.innerHTML = '';
-                JSON.parse(data.images).forEach(i => addImageInput(i.image_url));
-
-                // Clear and populate styling tips
-                const stylingTipsContainer = document.getElementById('styling-tips-container');
-                stylingTipsContainer.innerHTML = '';
-                JSON.parse(data.styling_tips).forEach(st => addStylingTipInput(st.title, st.description));
-
-                // Clear and populate model info
-                const modelInfoContainer = document.getElementById('model-info-container');
-                modelInfoContainer.innerHTML = '';
-                JSON.parse(data.model_info).forEach(mi => addModelInfoInput(mi.key, mi.value));
-
-                // Clear and populate garment details
-                const garmentDetailsContainer = document.getElementById('garment-details-container');
-                garmentDetailsContainer.innerHTML = '';
-                JSON.parse(data.garment_details).forEach(gd => addGarmentDetailInput(gd.key, gd.value));
-
-                // Clear and populate size chart
-                const sizeChartContainer = document.getElementById('size-chart-container');
-                sizeChartContainer.innerHTML = '';
-                JSON.parse(data.size_chart).forEach(sc => addSizeChartInput(sc.size, JSON.stringify(sc.measurements, null, 2)));
-
-                // Clear and populate fabric details
-                const fabricDetailsContainer = document.getElementById('fabric-details-container');
-                fabricDetailsContainer.innerHTML = '';
-                JSON.parse(data.fabric_details).forEach(fd => addFabricDetailInput(fd.key, fd.value));
-
-                // Clear and populate care instructions
-                const careInstructionsContainer = document.getElementById('care-instructions-container');
-                careInstructionsContainer.innerHTML = '';
-                JSON.parse(data.care_instructions).forEach(ci => addCareInstructionInput(ci.instruction));
-
-                // Clear and populate FAQs
-                const faqsContainer = document.getElementById('faqs-container');
-                faqsContainer.innerHTML = '';
-                if (data.faqs) {
-                    JSON.parse(data.faqs).forEach(f => addFaqInput(f.question, f.answer));
-                }
-
-                // Handle details
-                const details = data.details ? JSON.parse(data.details) : {};
-                // Reset all detail fields
-                document.querySelectorAll('[name^="details["]').forEach(input => input.value = '');
-
-                if (details.key_features) {
-                    productForm.querySelector('[name="details[key_features]"]').value = details.key_features.join('\\n');
-                }
-                if (details.care_tips) {
-                    productForm.querySelector('[name="details[care_tips]"]').value = details.care_tips.join('\\n');
-                }
-
-                // Handle sizes
-                const sizes = data.sizes ? JSON.parse(data.sizes) : [];
-                document.querySelectorAll('input[name^="sizes"]').forEach(input => input.value = 0); // Reset all to 0 first
-                sizes.forEach(item => {
-                    const sizeInput = productForm.querySelector(`[name="sizes[${item.size}]"]`);
-                    if (sizeInput) {
-                        sizeInput.value = item.stock;
+                // Populate main form fields
+                for (const key in product) {
+                    const field = productForm.querySelector(`[name="${key}"]`);
+                    if (field && field.type !== 'file') {
+                        field.value = product[key];
                     }
-                });
+                }
 
-                // Open the modal
+                // Populate textareas for details
+                if (product.details) {
+                    if (product.details.key_features) {
+                        productForm.querySelector('[name="details[key_features]"]').value = product.details.key_features.join('\n');
+                    }
+                    if (product.details.care_tips) {
+                        productForm.querySelector('[name="details[care_tips]"]').value = product.details.care_tips.join('\n');
+                    }
+                }
+
+                // Populate sizes
+                document.querySelectorAll('input[name^="sizes"]').forEach(input => input.value = 0);
+                if (product.sizes) {
+                    JSON.parse(product.sizes).forEach(item => {
+                        const sizeInput = productForm.querySelector(`[name="sizes[${item.size}]"]`);
+                        if (sizeInput) sizeInput.value = item.stock;
+                    });
+                }
+
+                // Previews for images
+                if (product.image_url) {
+                    document.getElementById('main-image-preview').innerHTML = `<img src="${product.image_url}" class="w-20 h-20 object-cover rounded">`;
+                }
+                if (product.product_images) {
+                    const additionalImagesPreview = document.getElementById('additional-images-preview');
+                    additionalImagesPreview.innerHTML = '';
+                    product.product_images.forEach(img => {
+                        additionalImagesPreview.innerHTML += `<img src="${img.image_url}" class="w-20 h-20 object-cover rounded">`;
+                    });
+                }
+
+                // Populate dynamic sections
+                if(product.colors) product.colors.forEach(c => addColorInput(c.name, c.value));
+                if(product.styling_tips) product.styling_tips.forEach(st => addStylingTipInput(st.title, st.description));
+                if(product.model_info) product.model_info.forEach(mi => addModelInfoInput(mi.key, mi.value));
+                if(product.garment_details) product.garment_details.forEach(gd => addGarmentDetailInput(gd.key, gd.value));
+                if(product.size_chart) product.size_chart.forEach(sc => addSizeChartInput(sc.size, JSON.stringify(sc.measurements, null, 2)));
+                if(product.fabric_details) product.fabric_details.forEach(fd => addFabricDetailInput(fd.key, fd.value));
+                if(product.care_instructions) product.care_instructions.forEach(ci => addCareInstructionInput(ci.instruction));
+                if(product.faqs) product.faqs.forEach(f => addFaqInput(f.question, f.answer));
+
                 productModal.classList.remove('hidden');
                 document.body.style.overflow = 'hidden';
             });
@@ -481,240 +447,153 @@
             addProductBtn.title = "Add a brand first!";
         }
 
-        // Color management
-        const addColorBtn = document.getElementById('add-color-btn');
-        const colorsContainer = document.getElementById('colors-container');
-        let colorIndex = 0;
+        // Generic function to add dynamic inputs
+        function addDynamicInput(container, innerHTMLCallback, index) {
+            const inputDiv = document.createElement('div');
+            inputDiv.innerHTML = innerHTMLCallback(index);
+            container.appendChild(inputDiv);
+            return inputDiv;
+        }
 
-        function addColorInput(name = '', value = '') {
-            const colorInput = document.createElement('div');
-            colorInput.classList.add('flex', 'items-center', 'space-x-2');
-            colorInput.innerHTML = `
+        // Generic function to handle adding and removing dynamic inputs
+        function manageDynamicSection(buttonId, containerId, innerHTMLCallback) {
+            const addButton = document.getElementById(buttonId);
+            const container = document.getElementById(containerId);
+            let index = 0;
+
+            addButton.addEventListener('click', () => {
+                const newIndex = Date.now(); // Use timestamp for unique index
+                addDynamicInput(container, innerHTMLCallback, newIndex);
+            });
+
+            container.addEventListener('click', function (e) {
+                if (e.target.classList.contains('remove-btn')) {
+                    e.target.closest('.dynamic-input-item').remove();
+                }
+            });
+
+            // Return a function to add inputs programmatically (for editing)
+            return (...args) => {
+                const newIndex = Date.now();
+                const inputDiv = addDynamicInput(container, innerHTMLCallback, newIndex);
+                // This is a simplification. For full functionality, you'd need to populate the fields here.
+                // The functions below handle this properly.
+            };
+        }
+
+        // Color management
+        let colorIndex = 0;
+        const colorsContainer = document.getElementById('colors-container');
+        document.getElementById('add-color-btn').addEventListener('click', () => addColorInput());
+        function addColorInput(name = '', value = '#000000') {
+            const div = document.createElement('div');
+            div.className = 'flex items-center space-x-2 dynamic-input-item';
+            div.innerHTML = `
                 <input type="text" name="colors[${colorIndex}][name]" placeholder="Color Name" class="w-full px-2 py-1 border border-gray-300 rounded-md" value="${name}">
-                <input type="color" name="colors[${colorIndex}][value]" placeholder="Color Value" class="w-full px-2 py-1 border border-gray-300 rounded-md" value="${value}">
-                <button type="button" class="remove-color-btn px-2 py-1 bg-red-500 text-white rounded-md text-sm">X</button>
+                <input type="color" name="colors[${colorIndex}][value]" class="p-1 h-8 w-14 block bg-white border border-gray-200 cursor-pointer rounded-lg disabled:opacity-50 disabled:pointer-events-none" value="${value}">
+                <button type="button" class="remove-btn px-2 py-1 bg-red-500 text-white rounded-md text-sm">X</button>
             `;
-            colorsContainer.appendChild(colorInput);
+            colorsContainer.appendChild(div);
             colorIndex++;
         }
-
-        addColorBtn.addEventListener('click', () => addColorInput());
-
-        colorsContainer.addEventListener('click', function (e) {
-            if (e.target.classList.contains('remove-color-btn')) {
-                e.target.parentElement.remove();
-            }
+        colorsContainer.addEventListener('click', e => {
+            if (e.target.classList.contains('remove-btn')) e.target.parentElement.remove();
         });
 
-        // When opening the "Add Product" modal, clear the colors
-        addProductBtn.addEventListener('click', function () {
-            colorsContainer.innerHTML = '';
-            imagesContainer.innerHTML = '';
-        });
 
         // Image management
-        const addImageBtn = document.getElementById('add-image-btn');
-        const imagesContainer = document.getElementById('images-container');
         let imageIndex = 0;
-
-        function addImageInput(url = '') {
-            const imageInput = document.createElement('div');
-            imageInput.classList.add('flex', 'items-center', 'space-x-2');
-            imageInput.innerHTML = `
+        const imagesContainer = document.getElementById('images-container');
+        document.getElementById('add-image-btn').addEventListener('click', () => addImageInput());
+        function addImageInput() {
+            const div = document.createElement('div');
+            div.className = 'flex items-center space-x-2 dynamic-input-item';
+            div.innerHTML = `
                 <input type="file" name="images[]" class="w-full px-2 py-1 border border-gray-300 rounded-md" accept="image/webp" onchange="validateImage(this)">
-                <button type="button" class="remove-image-btn px-2 py-1 bg-red-500 text-white rounded-md text-sm">X</button>
+                <button type="button" class="remove-btn px-2 py-1 bg-red-500 text-white rounded-md text-sm">X</button>
             `;
-            imagesContainer.appendChild(imageInput);
+            imagesContainer.appendChild(div);
             imageIndex++;
         }
-
-        addImageBtn.addEventListener('click', () => addImageInput());
-
-        imagesContainer.addEventListener('click', function (e) {
-            if (e.target.classList.contains('remove-image-btn')) {
-                e.target.parentElement.remove();
-            }
+        imagesContainer.addEventListener('click', e => {
+            if (e.target.classList.contains('remove-btn')) e.target.parentElement.remove();
         });
 
-        // Styling Tip management
-        const addStylingTipBtn = document.getElementById('add-styling-tip-btn');
-        const stylingTipsContainer = document.getElementById('styling-tips-container');
-        let stylingTipIndex = 0;
+        // Simplified dynamic section management
+        function setupDynamicSection(btnId, containerId, templateCallback) {
+            let index = 0;
+            const container = document.getElementById(containerId);
+            document.getElementById(btnId).addEventListener('click', () => {
+                const div = document.createElement('div');
+                div.className = 'dynamic-input-item';
+                div.innerHTML = templateCallback(index++);
+                container.appendChild(div);
+            });
+            container.addEventListener('click', e => {
+                if (e.target.classList.contains('remove-btn')) e.target.closest('.dynamic-input-item').remove();
+            });
+            return (data) => {
+                const div = document.createElement('div');
+                div.className = 'dynamic-input-item';
+                div.innerHTML = templateCallback(index++, data);
+                container.appendChild(div);
+            };
+        }
 
-        function addStylingTipInput(title = '', description = '') {
-            const stylingTipInput = document.createElement('div');
-            stylingTipInput.classList.add('space-y-1');
-            stylingTipInput.innerHTML = `
+        const addStylingTipInput = setupDynamicSection('add-styling-tip-btn', 'styling-tips-container', (i, d={}) => `
+            <div class="space-y-1 p-2 border rounded">
                 <div class="flex items-center space-x-2">
-                    <input type="text" name="details[styling_tips][${stylingTipIndex}][title]" placeholder="Title" class="w-full px-2 py-1 border border-gray-300 rounded-md" value="${title}">
-                    <button type="button" class="remove-styling-tip-btn px-2 py-1 bg-red-500 text-white rounded-md text-sm">X</button>
+                    <input type="text" name="details[styling_tips][${i}][title]" placeholder="Title" class="w-full px-2 py-1 border border-gray-300 rounded-md" value="${d.title || ''}">
+                    <button type="button" class="remove-btn px-2 py-1 bg-red-500 text-white rounded-md text-sm">X</button>
                 </div>
-                <textarea name="details[styling_tips][${stylingTipIndex}][description]" placeholder="Description" rows="2" class="w-full px-2 py-1 border border-gray-300 rounded-md">${description}</textarea>
-            `;
-            stylingTipsContainer.appendChild(stylingTipInput);
-            stylingTipIndex++;
-        }
+                <textarea name="details[styling_tips][${i}][description]" placeholder="Description" rows="2" class="w-full px-2 py-1 border border-gray-300 rounded-md">${d.description || ''}</textarea>
+            </div>`);
 
-        addStylingTipBtn.addEventListener('click', () => addStylingTipInput());
+        const addModelInfoInput = setupDynamicSection('add-model-info-btn', 'model-info-container', (i, d={}) => `
+            <div class="flex items-center space-x-2 p-2 border rounded">
+                <input type="text" name="details[model_info][${i}][key]" placeholder="Key" class="w-full px-2 py-1 border border-gray-300 rounded-md" value="${d.key || ''}">
+                <input type="text" name="details[model_info][${i}][value]" placeholder="Value" class="w-full px-2 py-1 border border-gray-300 rounded-md" value="${d.value || ''}">
+                <button type="button" class="remove-btn px-2 py-1 bg-red-500 text-white rounded-md text-sm">X</button>
+            </div>`);
 
-        stylingTipsContainer.addEventListener('click', function (e) {
-            if (e.target.classList.contains('remove-styling-tip-btn')) {
-                e.target.parentElement.parentElement.remove();
-            }
-        });
+        const addGarmentDetailInput = setupDynamicSection('add-garment-detail-btn', 'garment-details-container', (i, d={}) => `
+            <div class="flex items-center space-x-2 p-2 border rounded">
+                <input type="text" name="details[garment_details][${i}][key]" placeholder="Key" class="w-full px-2 py-1 border border-gray-300 rounded-md" value="${d.key || ''}">
+                <input type="text" name="details[garment_details][${i}][value]" placeholder="Value" class="w-full px-2 py-1 border border-gray-300 rounded-md" value="${d.value || ''}">
+                <button type="button" class="remove-btn px-2 py-1 bg-red-500 text-white rounded-md text-sm">X</button>
+            </div>`);
 
-        // Model Info management
-        const addModelInfoBtn = document.getElementById('add-model-info-btn');
-        const modelInfoContainer = document.getElementById('model-info-container');
-        let modelInfoIndex = 0;
-
-        function addModelInfoInput(key = '', value = '') {
-            const modelInfoInput = document.createElement('div');
-            modelInfoInput.classList.add('flex', 'items-center', 'space-x-2');
-            modelInfoInput.innerHTML = `
-                <input type="text" name="details[model_info][${modelInfoIndex}][key]" placeholder="Key" class="w-full px-2 py-1 border border-gray-300 rounded-md" value="${key}">
-                <input type="text" name="details[model_info][${modelInfoIndex}][value]" placeholder="Value" class="w-full px-2 py-1 border border-gray-300 rounded-md" value="${value}">
-                <button type="button" class="remove-model-info-btn px-2 py-1 bg-red-500 text-white rounded-md text-sm">X</button>
-            `;
-            modelInfoContainer.appendChild(modelInfoInput);
-            modelInfoIndex++;
-        }
-
-        addModelInfoBtn.addEventListener('click', () => addModelInfoInput());
-
-        modelInfoContainer.addEventListener('click', function (e) {
-            if (e.target.classList.contains('remove-model-info-btn')) {
-                e.target.parentElement.remove();
-            }
-        });
-
-        // Garment Detail management
-        const addGarmentDetailBtn = document.getElementById('add-garment-detail-btn');
-        const garmentDetailsContainer = document.getElementById('garment-details-container');
-        let garmentDetailIndex = 0;
-
-        function addGarmentDetailInput(key = '', value = '') {
-            const garmentDetailInput = document.createElement('div');
-            garmentDetailInput.classList.add('flex', 'items-center', 'space-x-2');
-            garmentDetailInput.innerHTML = `
-                <input type="text" name="details[garment_details][${garmentDetailIndex}][key]" placeholder="Key" class="w-full px-2 py-1 border border-gray-300 rounded-md" value="${key}">
-                <input type="text" name="details[garment_details][${garmentDetailIndex}][value]" placeholder="Value" class="w-full px-2 py-1 border border-gray-300 rounded-md" value="${value}">
-                <button type="button" class="remove-garment-detail-btn px-2 py-1 bg-red-500 text-white rounded-md text-sm">X</button>
-            `;
-            garmentDetailsContainer.appendChild(garmentDetailInput);
-            garmentDetailIndex++;
-        }
-
-        addGarmentDetailBtn.addEventListener('click', () => addGarmentDetailInput());
-
-        garmentDetailsContainer.addEventListener('click', function (e) {
-            if (e.target.classList.contains('remove-garment-detail-btn')) {
-                e.target.parentElement.remove();
-            }
-        });
-
-        // Size Chart management
-        const addSizeChartBtn = document.getElementById('add-size-chart-btn');
-        const sizeChartContainer = document.getElementById('size-chart-container');
-        let sizeChartIndex = 0;
-
-        function addSizeChartInput(size = '', measurements = '') {
-            const sizeChartInput = document.createElement('div');
-            sizeChartInput.classList.add('space-y-1');
-            sizeChartInput.innerHTML = `
+        const addSizeChartInput = setupDynamicSection('add-size-chart-btn', 'size-chart-container', (i, d={}) => `
+            <div class="space-y-1 p-2 border rounded">
                 <div class="flex items-center space-x-2">
-                    <input type="text" name="details[size_chart][${sizeChartIndex}][size]" placeholder="Size (e.g., S, M, L)" class="w-full px-2 py-1 border border-gray-300 rounded-md" value="${size}">
-                    <button type="button" class="remove-size-chart-btn px-2 py-1 bg-red-500 text-white rounded-md text-sm">X</button>
+                    <input type="text" name="details[size_chart][${i}][size]" placeholder="Size (e.g., S, M, L)" class="w-full px-2 py-1 border border-gray-300 rounded-md" value="${d.size || ''}">
+                    <button type="button" class="remove-btn px-2 py-1 bg-red-500 text-white rounded-md text-sm">X</button>
                 </div>
-                <textarea name="details[size_chart][${sizeChartIndex}][measurements]" placeholder='Measurements (JSON format, e.g., {"bust": "34", "waist": "28"})' rows="3" class="w-full px-2 py-1 border border-gray-300 rounded-md font-mono text-xs">${measurements}</textarea>
-            `;
-            sizeChartContainer.appendChild(sizeChartInput);
-            sizeChartIndex++;
-        }
+                <textarea name="details[size_chart][${i}][measurements]" placeholder='Measurements (JSON format)' rows="3" class="w-full px-2 py-1 border border-gray-300 rounded-md font-mono text-xs">${d.measurements ? JSON.stringify(d.measurements, null, 2) : ''}</textarea>
+            </div>`);
 
-        addSizeChartBtn.addEventListener('click', () => addSizeChartInput());
+        const addFabricDetailInput = setupDynamicSection('add-fabric-detail-btn', 'fabric-details-container', (i, d={}) => `
+            <div class="flex items-center space-x-2 p-2 border rounded">
+                <input type="text" name="details[fabric_details][${i}][key]" placeholder="Key" class="w-full px-2 py-1 border border-gray-300 rounded-md" value="${d.key || ''}">
+                <input type="text" name="details[fabric_details][${i}][value]" placeholder="Value" class="w-full px-2 py-1 border border-gray-300 rounded-md" value="${d.value || ''}">
+                <button type="button" class="remove-btn px-2 py-1 bg-red-500 text-white rounded-md text-sm">X</button>
+            </div>`);
 
-        sizeChartContainer.addEventListener('click', function (e) {
-            if (e.target.classList.contains('remove-size-chart-btn')) {
-                e.target.parentElement.parentElement.remove();
-            }
-        });
+        const addCareInstructionInput = setupDynamicSection('add-care-instruction-btn', 'care-instructions-container', (i, d={}) => `
+            <div class="flex items-center space-x-2 p-2 border rounded">
+                <input type="text" name="details[care_instructions][${i}][instruction]" placeholder="Instruction" class="w-full px-2 py-1 border border-gray-300 rounded-md" value="${d.instruction || ''}">
+                <button type="button" class="remove-btn px-2 py-1 bg-red-500 text-white rounded-md text-sm">X</button>
+            </div>`);
 
-        // Fabric Detail management
-        const addFabricDetailBtn = document.getElementById('add-fabric-detail-btn');
-        const fabricDetailsContainer = document.getElementById('fabric-details-container');
-        let fabricDetailIndex = 0;
-
-        function addFabricDetailInput(key = '', value = '') {
-            const fabricDetailInput = document.createElement('div');
-            fabricDetailInput.classList.add('flex', 'items-center', 'space-x-2');
-            fabricDetailInput.innerHTML = `
-                <input type="text" name="details[fabric_details][${fabricDetailIndex}][key]" placeholder="Key" class="w-full px-2 py-1 border border-gray-300 rounded-md" value="${key}">
-                <input type="text" name="details[fabric_details][${fabricDetailIndex}][value]" placeholder="Value" class="w-full px-2 py-1 border border-gray-300 rounded-md" value="${value}">
-                <button type="button" class="remove-fabric-detail-btn px-2 py-1 bg-red-500 text-white rounded-md text-sm">X</button>
-            `;
-            fabricDetailsContainer.appendChild(fabricDetailInput);
-            fabricDetailIndex++;
-        }
-
-        addFabricDetailBtn.addEventListener('click', () => addFabricDetailInput());
-
-        fabricDetailsContainer.addEventListener('click', function (e) {
-            if (e.target.classList.contains('remove-fabric-detail-btn')) {
-                e.target.parentElement.remove();
-            }
-        });
-
-        // Care Instruction management
-        const addCareInstructionBtn = document.getElementById('add-care-instruction-btn');
-        const careInstructionsContainer = document.getElementById('care-instructions-container');
-        let careInstructionIndex = 0;
-
-        function addCareInstructionInput(instruction = '') {
-            const careInstructionInput = document.createElement('div');
-            careInstructionInput.classList.add('flex', 'items-center', 'space-x-2');
-            careInstructionInput.innerHTML = `
-                <input type="text" name="details[care_instructions][${careInstructionIndex}][instruction]" placeholder="Instruction" class="w-full px-2 py-1 border border-gray-300 rounded-md" value="${instruction}">
-                <button type="button" class="remove-care-instruction-btn px-2 py-1 bg-red-500 text-white rounded-md text-sm">X</button>
-            `;
-            careInstructionsContainer.appendChild(careInstructionInput);
-            careInstructionIndex++;
-        }
-
-        addCareInstructionBtn.addEventListener('click', () => addCareInstructionInput());
-
-        careInstructionsContainer.addEventListener('click', function (e) {
-            if (e.target.classList.contains('remove-care-instruction-btn')) {
-                e.target.parentElement.remove();
-            }
-        });
-
-        // FAQ management
-        const addFaqBtn = document.getElementById('add-faq-btn');
-        const faqsContainer = document.getElementById('faqs-container');
-        let faqIndex = 0;
-
-        function addFaqInput(question = '', answer = '') {
-            const faqInput = document.createElement('div');
-            faqInput.classList.add('space-y-1');
-            faqInput.innerHTML = `
+        const addFaqInput = setupDynamicSection('add-faq-btn', 'faqs-container', (i, d={}) => `
+            <div class="space-y-1 p-2 border rounded">
                 <div class="flex items-center space-x-2">
-                    <input type="text" name="details[faqs][${faqIndex}][question]" placeholder="Question" class="w-full px-2 py-1 border border-gray-300 rounded-md" value="${question}">
-                    <button type="button" class="remove-faq-btn px-2 py-1 bg-red-500 text-white rounded-md text-sm">X</button>
+                    <input type="text" name="details[faqs][${i}][question]" placeholder="Question" class="w-full px-2 py-1 border border-gray-300 rounded-md" value="${d.question || ''}">
+                    <button type="button" class="remove-btn px-2 py-1 bg-red-500 text-white rounded-md text-sm">X</button>
                 </div>
-                <textarea name="details[faqs][${faqIndex}][answer]" placeholder="Answer" rows="2" class="w-full px-2 py-1 border border-gray-300 rounded-md">${answer}</textarea>
-            `;
-            faqsContainer.appendChild(faqInput);
-            faqIndex++;
-        }
+                <textarea name="details[faqs][${i}][answer]" placeholder="Answer" rows="2" class="w-full px-2 py-1 border border-gray-300 rounded-md">${d.answer || ''}</textarea>
+            </div>`);
 
-        addFaqBtn.addEventListener('click', () => addFaqInput());
-
-        faqsContainer.addEventListener('click', function (e) {
-            if (e.target.classList.contains('remove-faq-btn')) {
-                e.target.parentElement.parentElement.remove();
-            }
-        });
     });
 
     function validateImage(input) {
