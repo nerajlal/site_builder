@@ -1063,6 +1063,28 @@
         });
     </script>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const comboDealsBox = document.querySelector('.combo-offer-pulse');
+            if (comboDealsBox) {
+                setTimeout(() => {
+                    const boxRect = comboDealsBox.getBoundingClientRect();
+                    const origin = {
+                        x: (boxRect.left + boxRect.right) / 2 / window.innerWidth,
+                        y: (boxRect.top + boxRect.bottom) / 2 / window.innerHeight
+                    };
+
+                    confetti({
+                        particleCount: 150,
+                        spread: 90,
+                        origin: origin,
+                        colors: ['#DB2777', '#ec4899', '#a855f7', '#d8b4fe', '#ffffff']
+                    });
+                }, 1200);
+            }
+        });
+    </script>
+
     <script type="application/ld+json">
     {
         "@context": "https://schema.org/",
