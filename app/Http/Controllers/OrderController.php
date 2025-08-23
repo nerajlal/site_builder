@@ -78,7 +78,7 @@ class OrderController extends Controller
 
         $cartItems = Cart::where('header_footer_id', $headerFooterId)
             ->where('site_customer_id', $siteCustomerId)
-            ->with('product')
+            ->with('product.comboOffers')
             ->get();
 
         if ($cartItems->isEmpty()) {
@@ -88,9 +88,27 @@ class OrderController extends Controller
         DB::beginTransaction();
 
         try {
-            $totalAmount = $cartItems->sum(function ($item) {
-                return $item->product->price * $item->quantity;
-            });
+            $groupedCartItems = $cartItems->groupBy('product_id');
+            $totalAmount = 0;
+            foreach ($groupedCartItems as $productId => $items) {
+                $product = $items->first()->product;
+                $totalQuantity = $items->sum('quantity');
+                $productPrice = $product->price;
+
+                $offers = $product->comboOffers->sortByDesc('buy_quantity');
+
+                foreach ($offers as $offer) {
+                    if ($totalQuantity >= $offer->buy_quantity) {
+                        $numDeals = floor($totalQuantity / $offer->buy_quantity);
+                        $totalAmount += $numDeals * $offer->offer_price;
+                        $totalQuantity %= $offer->buy_quantity;
+                    }
+                }
+
+                if ($totalQuantity > 0) {
+                    $totalAmount += $totalQuantity * $productPrice;
+                }
+            }
 
             $order = Order::create([
                 'header_footer_id' => $headerFooterId,
