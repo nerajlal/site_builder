@@ -57,6 +57,7 @@
                             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Product</th>
                             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
                             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Price</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Inventory</th>
                             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
                             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                         </tr>
@@ -75,6 +76,12 @@
                             <td class="px-6 py-4">{{ $product->category_name ?? '-' }}</td>
                             <td class="px-6 py-4">{{ $product->price }}</td>
                             <td class="px-6 py-4">{{ $product->quantity > 0 ? 'Available' : 'Out of Stock' }}</td>
+                            <td class="px-6 py-4">
+                                <label class="relative inline-flex items-center cursor-pointer">
+                                    <input type="checkbox" value="" class="sr-only peer product-status-toggle" data-product-id="{{ $product->id }}" {{ $product->status ? 'checked' : '' }}>
+                                    <div class="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                                </label>
+                            </td>
                             <td class="px-6 py-4 flex gap-2">
                                 {{-- <!-- Edit Button -->
                                 <button
@@ -738,4 +745,39 @@
             return;
         }
     }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const statusToggles = document.querySelectorAll('.product-status-toggle');
+
+        statusToggles.forEach(toggle => {
+            toggle.addEventListener('change', function () {
+                const productId = this.dataset.productId;
+                const status = this.checked ? 1 : 0;
+
+                fetch(`/products/${productId}/status`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                    },
+                    body: JSON.stringify({ status: status })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Optionally, show a success message
+                        console.log(data.message);
+                    } else {
+                        // Handle error, maybe revert the toggle
+                        console.error('Failed to update status');
+                        this.checked = !status; // Revert the toggle on failure
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    this.checked = !status; // Revert the toggle on failure
+                });
+            });
+        });
+    });
 </script>

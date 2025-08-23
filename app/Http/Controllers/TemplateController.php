@@ -563,6 +563,19 @@ class TemplateController extends Controller
         return redirect()->back()->with('success', 'Product updated successfully!');
     }
 
+    public function updateStatus(Request $request, $id)
+    {
+        $request->validate([
+            'status' => 'required|boolean',
+        ]);
+
+        $product = Product::findOrFail($id);
+        $product->status = $request->status;
+        $product->save();
+
+        return response()->json(['success' => true, 'message' => 'Product status updated successfully.']);
+    }
+
     public function temp_save(Request $request)
     {
         $request->validate([
