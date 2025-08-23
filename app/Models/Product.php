@@ -132,6 +132,11 @@ class Product extends Model
         return $this->hasMany(Review::class)->with('customer');
     }
 
+    public function comboOffers()
+    {
+        return $this->hasMany(ComboOffer::class);
+    }
+
     public function getImageUrlAttribute($value)
     {
         if (str_starts_with($value, 'http')) {

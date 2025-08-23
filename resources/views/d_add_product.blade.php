@@ -59,6 +59,7 @@
                             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Price</th>
                             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Inventory</th>
                             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Offer</th>
                             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                         </tr>
                     </thead>
@@ -81,6 +82,11 @@
                                     <input type="checkbox" value="" class="sr-only peer product-status-toggle" data-product-id="{{ $product->id }}" {{ $product->status ? 'checked' : '' }}>
                                     <div class="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
                                 </label>
+                            </td>
+                            <td class="px-6 py-4">
+                                <button type="button" class="add-combo-btn text-indigo-600 hover:text-indigo-900" data-product-id="{{ $product->id }}" data-offers='@json($product->comboOffers)'>
+                                    Add Combo
+                                </button>
                             </td>
                             <td class="px-6 py-4 flex gap-2">
                                 {{-- <!-- Edit Button -->
@@ -326,6 +332,30 @@
             </div>
         </form>
 
+    </div>
+</div>
+
+<!-- Combo Offer Modal -->
+<div id="combo-offer-modal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
+    <div class="relative top-20 mx-auto p-5 border w-11/12 md:w-1/2 shadow-lg rounded-md bg-white">
+        <div class="flex justify-between items-center pb-3">
+            <h3 class="text-xl font-semibold text-gray-800">Add/Edit Combo Offers</h3>
+            <button class="close-modal text-gray-500 hover:text-gray-700 text-lg">&times;</button>
+        </div>
+
+        <form id="combo-offer-form">
+            <input type="hidden" id="combo-product-id" value="">
+            <div id="combo-offers-container" class="space-y-4 mb-4">
+                <!-- Dynamic offer rows will be inserted here -->
+            </div>
+            <button type="button" id="add-offer-row" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 text-sm">
+                + Add Offer
+            </button>
+            <div class="flex justify-end space-x-3 pt-4 border-t border-gray-200 mt-4">
+                <button type="button" class="close-modal px-4 py-2 text-gray-700 bg-gray-100 rounded-md hover:bg-gray-200">Cancel</button>
+                <button type="submit" class="px-4 py-2 text-white bg-indigo-600 rounded-md hover:bg-indigo-700">Save Offers</button>
+            </div>
+        </form>
     </div>
 </div>
 
@@ -777,6 +807,113 @@
                     console.error('Error:', error);
                     this.checked = !status; // Revert the toggle on failure
                 });
+            });
+        });
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const comboOfferModal = document.getElementById('combo-offer-modal');
+        const comboOfferForm = document.getElementById('combo-offer-form');
+        const comboOffersContainer = document.getElementById('combo-offers-container');
+        const addOfferRowBtn = document.getElementById('add-offer-row');
+        const comboProductIdInput = document.getElementById('combo-product-id');
+
+        // Function to open the modal
+        function openComboOfferModal() {
+            comboOfferModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Function to close the modal
+        function closeComboOfferModal() {
+            comboOfferModal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Add event listeners to all "Add Combo" buttons
+        document.querySelectorAll('.add-combo-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+                const productId = this.dataset.productId;
+                const offers = JSON.parse(this.dataset.offers || '[]');
+                comboProductIdInput.value = productId;
+
+                comboOffersContainer.innerHTML = ''; // Clear existing rows
+                if (offers.length > 0) {
+                    offers.forEach(offer => addOfferRow(offer));
+                } else {
+                    addOfferRow(); // Add one empty row if no offers exist
+                }
+
+                openComboOfferModal();
+            });
+        });
+
+        // Event listener for closing the modal
+        comboOfferModal.querySelectorAll('.close-modal').forEach(btn => {
+            btn.addEventListener('click', closeComboOfferModal);
+        });
+
+        // Function to add a new offer row
+        function addOfferRow(offer = {}) {
+            const offerRow = document.createElement('div');
+            offerRow.className = 'flex items-center space-x-2 offer-row';
+            offerRow.innerHTML = `
+                <input type="number" name="buy_quantity[]" placeholder="Buy Quantity" class="w-full px-2 py-1 border border-gray-300 rounded-md" value="${offer.buy_quantity || ''}" required>
+                <input type="number" name="offer_price[]" placeholder="Offer Price" class="w-full px-2 py-1 border border-gray-300 rounded-md" step="0.01" value="${offer.offer_price || ''}" required>
+                <button type="button" class="remove-offer-row px-2 py-1 bg-red-500 text-white rounded-md text-sm">X</button>
+            `;
+            comboOffersContainer.appendChild(offerRow);
+        }
+
+        // Event listener for adding a new offer row
+        addOfferRowBtn.addEventListener('click', () => addOfferRow());
+
+        // Event listener for removing an offer row
+        comboOffersContainer.addEventListener('click', function(e) {
+            if (e.target.classList.contains('remove-offer-row')) {
+                e.target.parentElement.remove();
+            }
+        });
+
+        // Handle form submission
+        comboOfferForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const productId = comboProductIdInput.value;
+            const offerRows = comboOffersContainer.querySelectorAll('.offer-row');
+            const offers = [];
+
+            offerRows.forEach(row => {
+                const buyQuantity = row.querySelector('[name="buy_quantity[]"]').value;
+                const offerPrice = row.querySelector('[name="offer_price[]"]').value;
+                if (buyQuantity && offerPrice) {
+                    offers.push({
+                        buy_quantity: buyQuantity,
+                        offer_price: offerPrice
+                    });
+                }
+            });
+
+            fetch(`/products/${productId}/combo-offers`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                },
+                body: JSON.stringify({ offers: offers })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    closeComboOfferModal();
+                    alert('Combo offers updated successfully!');
+                } else {
+                    alert('Failed to update combo offers.');
+                    console.error(data);
+                }
+            })
+            .catch(error => {
+                alert('An error occurred.');
+                console.error('Error:', error);
             });
         });
     });

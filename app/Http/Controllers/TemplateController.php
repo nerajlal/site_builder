@@ -187,6 +187,7 @@ class TemplateController extends Controller
         $products = Product::with([
             'brand',
             'colors',
+            'comboOffers',
             'productImages',
             'stylingTips',
             'modelInfo',
@@ -574,6 +575,30 @@ class TemplateController extends Controller
         $product->save();
 
         return response()->json(['success' => true, 'message' => 'Product status updated successfully.']);
+    }
+
+    public function updateComboOffers(Request $request, $id)
+    {
+        $request->validate([
+            'offers' => 'present|array',
+            'offers.*.buy_quantity' => 'required|integer|min:1',
+            'offers.*.offer_price' => 'required|numeric|min:0',
+        ]);
+
+        $product = Product::findOrFail($id);
+
+        // Delete existing offers
+        $product->comboOffers()->delete();
+
+        // Create new offers
+        foreach ($request->offers as $offerData) {
+            $product->comboOffers()->create([
+                'buy_quantity' => $offerData['buy_quantity'],
+                'offer_price' => $offerData['offer_price'],
+            ]);
+        }
+
+        return response()->json(['success' => true, 'message' => 'Combo offers updated successfully.']);
     }
 
     public function temp_save(Request $request)

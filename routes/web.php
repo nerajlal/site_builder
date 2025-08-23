@@ -72,6 +72,7 @@ Route::delete('/delete-brand/{id}', [TemplateController::class, 'deleteBrand'])-
 Route::delete('/delete-product/{id}', [TemplateController::class, 'deleteProduct'])->name('deleteProduct');
 Route::put('/products/update/{id}', [TemplateController::class, 'updateProduct'])->name('updateProduct');
 Route::post('/products/{id}/status', [TemplateController::class, 'updateStatus'])->name('products.updateStatus');
+Route::post('/products/{id}/combo-offers', [TemplateController::class, 'updateComboOffers'])->name('products.updateComboOffers');
 
 // Template display routes (Luxury)
 Route::get('/index/{headerFooterId}', [WebsiteViewController::class, 'index'])->name('index.customer');
