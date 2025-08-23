@@ -21,21 +21,11 @@
   </script>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <style>
     body {
       font-family: 'Open Sans', sans-serif;
       background-color: #f7fafc;
       color: #2d3748;
-    }
-    @keyframes pulse-animation {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.03); }
-      100% { transform: scale(1); }
-    }
-    .combo-offer-pulse {
-      animation: pulse-animation 1.5s ease-in-out 2;
-      animation-delay: 1s;
     }
   </style>
 </head>

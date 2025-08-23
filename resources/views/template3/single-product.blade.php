@@ -139,16 +139,19 @@
 
                 <!-- Combo Offers -->
                 @if($product->comboOffers->count() > 0)
-                <div class="bg-purple-50 border border-purple-200 p-4 rounded-lg combo-offer-pulse">
-                    <h3 class="text-sm font-semibold mb-3 text-purple-800">Combo Deals!</h3>
-                    <ul class="space-y-2 text-sm">
-                        @foreach($product->comboOffers as $offer)
-                        <li class="flex items-center space-x-2">
-                            <i class="fas fa-tags text-purple-600"></i>
-                            <span>Buy <strong>{{ $offer->buy_quantity }}</strong> for ₹{{ number_format($offer->offer_price, 2) }}</span>
-                        </li>
-                        @endforeach
-                    </ul>
+                <div class="relative bg-purple-50 border border-purple-200 p-4 rounded-lg combo-offer-pulse overflow-hidden">
+                    <canvas id="confetti-canvas-3" class="absolute top-0 left-0 w-full h-full z-10 pointer-events-none"></canvas>
+                    <div class="relative z-20">
+                        <h3 class="text-sm font-semibold mb-3 text-purple-800">Combo Deals!</h3>
+                        <ul class="space-y-2 text-sm">
+                            @foreach($product->comboOffers as $offer)
+                            <li class="flex items-center space-x-2">
+                                <i class="fas fa-tags text-purple-600"></i>
+                                <span>Buy <strong>{{ $offer->buy_quantity }}</strong> for ₹{{ number_format($offer->offer_price, 2) }}</span>
+                            </li>
+                            @endforeach
+                        </ul>
+                    </div>
                 </div>
                 @endif
 
@@ -1063,28 +1066,6 @@
         });
     </script>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const comboDealsBox = document.querySelector('.combo-offer-pulse');
-            if (comboDealsBox) {
-                setTimeout(() => {
-                    const boxRect = comboDealsBox.getBoundingClientRect();
-                    const origin = {
-                        x: (boxRect.left + boxRect.right) / 2 / window.innerWidth,
-                        y: (boxRect.top + boxRect.bottom) / 2 / window.innerHeight
-                    };
-
-                    confetti({
-                        particleCount: 150,
-                        spread: 90,
-                        origin: origin,
-                        colors: ['#DB2777', '#ec4899', '#a855f7', '#d8b4fe', '#ffffff']
-                    });
-                }, 1200);
-            }
-        });
-    </script>
-
     <script type="application/ld+json">
     {
         "@context": "https://schema.org/",
@@ -1429,6 +1410,31 @@
             });
 
             console.log('Product page fully initialized');
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const canvas = document.getElementById('confetti-canvas-3');
+            if (canvas) {
+                const myConfetti = confetti.create(canvas, {
+                    resize: true,
+                    useWorker: true
+                });
+
+                setInterval(function() {
+                    myConfetti({
+                        particleCount: 50,
+                        startVelocity: 20,
+                        spread: 360,
+                        origin: {
+                            x: 0.5,
+                            y: 0.5
+                        },
+                        colors: ['#DB2777', '#ec4899', '#a855f7', '#d8b4fe', '#ffffff']
+                    });
+                }, 2000);
+            }
         });
     </script>
 @include('template3.footer3')

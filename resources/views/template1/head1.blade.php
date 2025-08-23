@@ -21,7 +21,6 @@
   </script>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <style>
     body {
       font-family: 'Poppins', sans-serif;
@@ -43,15 +42,6 @@
     .product-card:hover {
       transform: translateY(-5px);
       box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-    }
-    @keyframes pulse-animation {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.03); }
-      100% { transform: scale(1); }
-    }
-    .combo-offer-pulse {
-      animation: pulse-animation 1.5s ease-in-out 2;
-      animation-delay: 1s;
     }
   </style>
 </head>

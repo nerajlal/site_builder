@@ -21,7 +21,6 @@
   </script>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Work+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <style>
     body {
         font-family: 'Work Sans', sans-serif;
@@ -30,15 +29,6 @@
     }
     h1, h2, h3, h4, h5, h6 {
         font-family: 'Playfair Display', serif;
-    }
-    @keyframes pulse-animation {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.03); }
-      100% { transform: scale(1); }
-    }
-    .combo-offer-pulse {
-      animation: pulse-animation 1.5s ease-in-out 2;
-      animation-delay: 1s;
     }
   </style>
 </head>
