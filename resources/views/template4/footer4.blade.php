@@ -7,16 +7,16 @@
         <h4 class="text-2xl font-semibold mb-4">BoutiqueStyle</h4>
         <p class="text-gray-600 mb-4">Vintage elegance for the modern woman.</p>
         <div class="flex space-x-4">
-          <a href="#" class="text-gray-600 hover:text-purple-600 transition">
+          <a href="#" class="text-purple-600 hover:text-purple-700 transition">
             <i class="fab fa-facebook-f"></i>
           </a>
-          <a href="#" class="text-gray-600 hover:text-purple-600 transition">
+          <a href="#" class="text-purple-600 hover:text-purple-700 transition">
             <i class="fab fa-instagram"></i>
           </a>
-          <a href="#" class="text-gray-600 hover:text-purple-600 transition">
+          <a href="#" class="text-purple-600 hover:text-purple-700 transition">
             <i class="fab fa-twitter"></i>
           </a>
-          <a href="#" class="text-gray-600 hover:text-purple-600 transition">
+          <a href="#" class="text-purple-600 hover:text-purple-700 transition">
             <i class="fab fa-pinterest"></i>
           </a>
         </div>
@@ -60,16 +60,16 @@
         <h4 class="text-2xl font-semibold mb-4">{{ $headerFooter->site_name }}</h4>
         <p class="text-gray-600 mb-4">{{ $headerFooter->footer_text }}</p>
         <div class="flex space-x-4">
-          <a href="#" class="text-gray-600 hover:text-purple-600 transition">
+          <a href="#" class="text-purple-600 hover:text-purple-700 transition">
             <i class="fab fa-facebook-f"></i>
           </a>
-          <a href="#" class="text-gray-600 hover:text-purple-600 transition">
+          <a href="#" class="text-purple-600 hover:text-purple-700 transition">
             <i class="fab fa-instagram"></i>
           </a>
-          <a href="#" class="text-gray-600 hover:text-purple-600 transition">
+          <a href="#" class="text-purple-600 hover:text-purple-700 transition">
             <i class="fab fa-twitter"></i>
           </a>
-          <a href="#" class="text-gray-600 hover:text-purple-600 transition">
+          <a href="#" class="text-purple-600 hover:text-purple-700 transition">
             <i class="fab fa-pinterest"></i>
           </a>
         </div>
@@ -102,7 +102,7 @@
         </ul>
       </div>
     </div>
-    <div class="border-t border-gray-200 mt-12 pt-8 text-center text-gray-500">
+    <div class="border-t border-purple-400 mt-12 pt-8 text-center text-gray-500">
       <p>&copy; 2025 {{ $headerFooter->site_name }}. All rights reserved.</p>
     </div>
   </footer>

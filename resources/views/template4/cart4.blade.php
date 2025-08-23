@@ -68,12 +68,12 @@
                     </div>
                     <div class="border-t pt-4 flex justify-between font-bold text-lg">
                         <span class="text-gray-900">Total</span>
-                        <span id="cart-total" class="text-pink-600">₹{{ number_format($totalPrice, 2) }}</span>
+                        <span id="cart-total" class="text-purple-600">₹{{ number_format($totalPrice, 2) }}</span>
                     </div>
-                    <button id="checkout-btn" class="w-full mt-6 bg-pink-600 hover:bg-pink-700 text-white py-3 px-4 rounded-lg font-bold text-lg transition">
+                    <button id="checkout-btn" class="w-full mt-6 bg-purple-700 hover:bg-purple-600 text-white py-3 px-4 rounded-lg font-bold text-lg transition">
                         Proceed to Checkout
                     </button>
-                    <a href="{{ route('products.show', ['headerFooterId' => $headerFooter->id]) }}" class="block text-center mt-4 text-pink-600 hover:text-pink-500 font-medium">
+                    <a href="{{ route('products.show', ['headerFooterId' => $headerFooter->id]) }}" class="block text-center mt-4 text-purple-600 hover:text-purple-700 font-medium">
                         or Continue Shopping
                     </a>
                 </div>
