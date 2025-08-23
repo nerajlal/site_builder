@@ -44,6 +44,7 @@
       box-shadow: 0 10px 25px rgba(0,0,0,0.15);
     }
   </style>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
 </head>
 
 <body class="bg-gray-50 text-gray-800">

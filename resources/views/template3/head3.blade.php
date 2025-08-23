@@ -28,6 +28,7 @@
       color: #2d3748;
     }
   </style>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
 </head>
 
 <body class="bg-gray-100">
