@@ -30,7 +30,7 @@ class CartController extends Controller
                 }
             });
 
-        $cartItems = $cartQuery->with('product')->get();
+        $cartItems = $cartQuery->with('product.comboOffers')->get();
 
         // Group items by product ID for the view
         $groupedCartItems = $cartItems->groupBy('product_id');
