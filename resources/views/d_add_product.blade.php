@@ -65,16 +65,16 @@
                     @forelse($products as $product)
                         <tr>
                             <td class="px-6 py-4">
-                                @if($product->image_url)
-                                    <img src="{{ $product->image_url }}" alt="Product Image" class="w-12 h-12 object-cover rounded">
+                                @if($product['image_url'])
+                                    <img src="{{ $product['image_url'] }}" alt="Product Image" class="w-12 h-12 object-cover rounded">
                                 @else
                                     <span class="text-gray-400">No Image</span>
                                 @endif
                             </td>
-                            <td class="px-6 py-4">{{ $product->name }}</td>
-                            <td class="px-6 py-4">{{ $product->category_name ?? '-' }}</td>
-                            <td class="px-6 py-4">{{ $product->price }}</td>
-                            <td class="px-6 py-4">{{ $product->quantity > 0 ? 'Available' : 'Out of Stock' }}</td>
+                            <td class="px-6 py-4">{{ $product['name'] }}</td>
+                            <td class="px-6 py-4">{{ $product['category_name'] ?? '-' }}</td>
+                            <td class="px-6 py-4">{{ $product['price'] }}</td>
+                            <td class="px-6 py-4">{{ $product['quantity'] > 0 ? 'Available' : 'Out of Stock' }}</td>
                             <td class="px-6 py-4 flex gap-2">
                                 <!-- Edit Button -->
                                 <button
@@ -85,7 +85,7 @@
                                 </button>
 
                                 <!-- Delete Button -->
-                                <form action="{{ route('deleteProduct', $product->id) }}" method="POST" onsubmit="return confirm('Delete this product?');">
+                                <form action="{{ route('deleteProduct', $product['id']) }}" method="POST" onsubmit="return confirm('Delete this product?');">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="text-red-600 hover:underline">Delete</button>
@@ -394,23 +394,25 @@
                     }
                 }
 
-                // Populate textareas for details
-                if (product.details) {
-                    if (product.details.key_features) {
-                        productForm.querySelector('[name="details[key_features]"]').value = product.details.key_features.join('\n');
-                    }
-                    if (product.details.care_tips) {
-                        productForm.querySelector('[name="details[care_tips]"]').value = product.details.care_tips.join('\n');
-                    }
+                // Populate textareas for details that are arrays
+                if (product.key_features) {
+                    productForm.querySelector('[name="details[key_features]"]').value = product.key_features.join('\\n');
+                }
+                if (product.care_tips) {
+                    productForm.querySelector('[name="details[care_tips]"]').value = product.care_tips.join('\\n');
                 }
 
                 // Populate sizes
                 document.querySelectorAll('input[name^="sizes"]').forEach(input => input.value = 0);
                 if (product.sizes) {
-                    JSON.parse(product.sizes).forEach(item => {
-                        const sizeInput = productForm.querySelector(`[name="sizes[${item.size}]"]`);
-                        if (sizeInput) sizeInput.value = item.stock;
-                    });
+                    // Sizes might be a JSON string, parse if so
+                    const sizes = typeof product.sizes === 'string' ? JSON.parse(product.sizes) : product.sizes;
+                    if (Array.isArray(sizes)) {
+                        sizes.forEach(item => {
+                            const sizeInput = productForm.querySelector(`[name="sizes[${item.size}]"]`);
+                            if (sizeInput) sizeInput.value = item.stock;
+                        });
+                    }
                 }
 
                 // Previews for images
@@ -427,13 +429,13 @@
 
                 // Populate dynamic sections
                 if(product.colors) product.colors.forEach(c => addColorInput(c.name, c.value));
-                if(product.styling_tips) product.styling_tips.forEach(st => addStylingTipInput(st.title, st.description));
-                if(product.model_info) product.model_info.forEach(mi => addModelInfoInput(mi.key, mi.value));
-                if(product.garment_details) product.garment_details.forEach(gd => addGarmentDetailInput(gd.key, gd.value));
-                if(product.size_chart) product.size_chart.forEach(sc => addSizeChartInput(sc.size, JSON.stringify(sc.measurements, null, 2)));
-                if(product.fabric_details) product.fabric_details.forEach(fd => addFabricDetailInput(fd.key, fd.value));
-                if(product.care_instructions) product.care_instructions.forEach(ci => addCareInstructionInput(ci.instruction));
-                if(product.faqs) product.faqs.forEach(f => addFaqInput(f.question, f.answer));
+                if(product.styling_tips) product.styling_tips.forEach(st => addStylingTipInput(st));
+                if(product.model_info) product.model_info.forEach(mi => addModelInfoInput(mi));
+                if(product.garment_details) product.garment_details.forEach(gd => addGarmentDetailInput(gd));
+                if(product.size_chart) product.size_chart.forEach(sc => addSizeChartInput(sc));
+                if(product.fabric_details) product.fabric_details.forEach(fd => addFabricDetailInput(fd));
+                if(product.care_instructions) product.care_instructions.forEach(ci => addCareInstructionInput(ci));
+                if(product.faqs) product.faqs.forEach(f => addFaqInput(f));
 
                 productModal.classList.remove('hidden');
                 document.body.style.overflow = 'hidden';
@@ -448,9 +450,10 @@
         }
 
         // Generic function to add dynamic inputs
-        function addDynamicInput(container, innerHTMLCallback, index) {
+        function addDynamicInput(container, innerHTMLCallback, index, data) {
             const inputDiv = document.createElement('div');
-            inputDiv.innerHTML = innerHTMLCallback(index);
+            inputDiv.className = 'dynamic-input-item';
+            inputDiv.innerHTML = innerHTMLCallback(index, data);
             container.appendChild(inputDiv);
             return inputDiv;
         }
@@ -463,7 +466,7 @@
 
             addButton.addEventListener('click', () => {
                 const newIndex = Date.now(); // Use timestamp for unique index
-                addDynamicInput(container, innerHTMLCallback, newIndex);
+                addDynamicInput(container, innerHTMLCallback, newIndex, {});
             });
 
             container.addEventListener('click', function (e) {
@@ -472,12 +475,9 @@
                 }
             });
 
-            // Return a function to add inputs programmatically (for editing)
-            return (...args) => {
+            return (data) => {
                 const newIndex = Date.now();
-                const inputDiv = addDynamicInput(container, innerHTMLCallback, newIndex);
-                // This is a simplification. For full functionality, you'd need to populate the fields here.
-                // The functions below handle this properly.
+                addDynamicInput(container, innerHTMLCallback, newIndex, data);
             };
         }
 
@@ -519,28 +519,7 @@
             if (e.target.classList.contains('remove-btn')) e.target.parentElement.remove();
         });
 
-        // Simplified dynamic section management
-        function setupDynamicSection(btnId, containerId, templateCallback) {
-            let index = 0;
-            const container = document.getElementById(containerId);
-            document.getElementById(btnId).addEventListener('click', () => {
-                const div = document.createElement('div');
-                div.className = 'dynamic-input-item';
-                div.innerHTML = templateCallback(index++);
-                container.appendChild(div);
-            });
-            container.addEventListener('click', e => {
-                if (e.target.classList.contains('remove-btn')) e.target.closest('.dynamic-input-item').remove();
-            });
-            return (data) => {
-                const div = document.createElement('div');
-                div.className = 'dynamic-input-item';
-                div.innerHTML = templateCallback(index++, data);
-                container.appendChild(div);
-            };
-        }
-
-        const addStylingTipInput = setupDynamicSection('add-styling-tip-btn', 'styling-tips-container', (i, d={}) => `
+        const addStylingTipInput = manageDynamicSection('add-styling-tip-btn', 'styling-tips-container', (i, d={}) => `
             <div class="space-y-1 p-2 border rounded">
                 <div class="flex items-center space-x-2">
                     <input type="text" name="details[styling_tips][${i}][title]" placeholder="Title" class="w-full px-2 py-1 border border-gray-300 rounded-md" value="${d.title || ''}">
@@ -549,21 +528,21 @@
                 <textarea name="details[styling_tips][${i}][description]" placeholder="Description" rows="2" class="w-full px-2 py-1 border border-gray-300 rounded-md">${d.description || ''}</textarea>
             </div>`);
 
-        const addModelInfoInput = setupDynamicSection('add-model-info-btn', 'model-info-container', (i, d={}) => `
+        const addModelInfoInput = manageDynamicSection('add-model-info-btn', 'model-info-container', (i, d={}) => `
             <div class="flex items-center space-x-2 p-2 border rounded">
                 <input type="text" name="details[model_info][${i}][key]" placeholder="Key" class="w-full px-2 py-1 border border-gray-300 rounded-md" value="${d.key || ''}">
                 <input type="text" name="details[model_info][${i}][value]" placeholder="Value" class="w-full px-2 py-1 border border-gray-300 rounded-md" value="${d.value || ''}">
                 <button type="button" class="remove-btn px-2 py-1 bg-red-500 text-white rounded-md text-sm">X</button>
             </div>`);
 
-        const addGarmentDetailInput = setupDynamicSection('add-garment-detail-btn', 'garment-details-container', (i, d={}) => `
+        const addGarmentDetailInput = manageDynamicSection('add-garment-detail-btn', 'garment-details-container', (i, d={}) => `
             <div class="flex items-center space-x-2 p-2 border rounded">
                 <input type="text" name="details[garment_details][${i}][key]" placeholder="Key" class="w-full px-2 py-1 border border-gray-300 rounded-md" value="${d.key || ''}">
                 <input type="text" name="details[garment_details][${i}][value]" placeholder="Value" class="w-full px-2 py-1 border border-gray-300 rounded-md" value="${d.value || ''}">
                 <button type="button" class="remove-btn px-2 py-1 bg-red-500 text-white rounded-md text-sm">X</button>
             </div>`);
 
-        const addSizeChartInput = setupDynamicSection('add-size-chart-btn', 'size-chart-container', (i, d={}) => `
+        const addSizeChartInput = manageDynamicSection('add-size-chart-btn', 'size-chart-container', (i, d={}) => `
             <div class="space-y-1 p-2 border rounded">
                 <div class="flex items-center space-x-2">
                     <input type="text" name="details[size_chart][${i}][size]" placeholder="Size (e.g., S, M, L)" class="w-full px-2 py-1 border border-gray-300 rounded-md" value="${d.size || ''}">
@@ -572,20 +551,20 @@
                 <textarea name="details[size_chart][${i}][measurements]" placeholder='Measurements (JSON format)' rows="3" class="w-full px-2 py-1 border border-gray-300 rounded-md font-mono text-xs">${d.measurements ? JSON.stringify(d.measurements, null, 2) : ''}</textarea>
             </div>`);
 
-        const addFabricDetailInput = setupDynamicSection('add-fabric-detail-btn', 'fabric-details-container', (i, d={}) => `
+        const addFabricDetailInput = manageDynamicSection('add-fabric-detail-btn', 'fabric-details-container', (i, d={}) => `
             <div class="flex items-center space-x-2 p-2 border rounded">
                 <input type="text" name="details[fabric_details][${i}][key]" placeholder="Key" class="w-full px-2 py-1 border border-gray-300 rounded-md" value="${d.key || ''}">
                 <input type="text" name="details[fabric_details][${i}][value]" placeholder="Value" class="w-full px-2 py-1 border border-gray-300 rounded-md" value="${d.value || ''}">
                 <button type="button" class="remove-btn px-2 py-1 bg-red-500 text-white rounded-md text-sm">X</button>
             </div>`);
 
-        const addCareInstructionInput = setupDynamicSection('add-care-instruction-btn', 'care-instructions-container', (i, d={}) => `
+        const addCareInstructionInput = manageDynamicSection('add-care-instruction-btn', 'care-instructions-container', (i, d={}) => `
             <div class="flex items-center space-x-2 p-2 border rounded">
                 <input type="text" name="details[care_instructions][${i}][instruction]" placeholder="Instruction" class="w-full px-2 py-1 border border-gray-300 rounded-md" value="${d.instruction || ''}">
                 <button type="button" class="remove-btn px-2 py-1 bg-red-500 text-white rounded-md text-sm">X</button>
             </div>`);
 
-        const addFaqInput = setupDynamicSection('add-faq-btn', 'faqs-container', (i, d={}) => `
+        const addFaqInput = manageDynamicSection('add-faq-btn', 'faqs-container', (i, d={}) => `
             <div class="space-y-1 p-2 border rounded">
                 <div class="flex items-center space-x-2">
                     <input type="text" name="details[faqs][${i}][question]" placeholder="Question" class="w-full px-2 py-1 border border-gray-300 rounded-md" value="${d.question || ''}">

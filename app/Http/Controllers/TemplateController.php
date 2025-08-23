@@ -184,17 +184,38 @@ class TemplateController extends Controller
     {
         $headerFooter = HeaderFooter::findOrFail($id);
         $brands = Brand::where('header_footer_id', $id)->get();
-        $products = Product::with([
-            'brand',
-            'colors',
-            'productImages',
-            'stylingTips',
-            'modelInfo',
-            'garmentDetails',
-            'sizeChart',
-            'fabricDetails',
-            'careInstructions'
+        $productsCollection = Product::with([
+            'brand', 'colors', 'productImages', 'stylingTips', 'modelInfo',
+            'garmentDetails', 'sizeChart', 'fabricDetails', 'careInstructions', 'faqs'
         ])->where('header_footer_id', $id)->get();
+
+        $products = $productsCollection->map(function($product) {
+            return [
+                'id' => $product->id,
+                'name' => $product->name,
+                'sku' => $product->sku,
+                'price' => $product->price,
+                'original_price' => $product->original_price,
+                'quantity' => $product->quantity,
+                'category_name' => $product->category_name,
+                'brand_id' => $product->brand_id,
+                'image_url' => $product->image_url,
+                'video_url' => $product->video_url,
+                'description' => $product->description,
+                'sizes' => $product->sizes,
+                'key_features' => $product->key_features,
+                'care_tips' => $product->care_tips,
+                'colors' => $product->colors->map->only(['name', 'value']),
+                'product_images' => $product->productImages->map->only(['image_url']),
+                'styling_tips' => $product->stylingTips->map->only(['title', 'description']),
+                'model_info' => $product->modelInfo->map->only(['key', 'value']),
+                'garment_details' => $product->garmentDetails->map->only(['key', 'value']),
+                'size_chart' => $product->sizeChart->map->only(['size', 'measurements']),
+                'fabric_details' => $product->fabricDetails->map->only(['key', 'value']),
+                'care_instructions' => $product->careInstructions->map->only(['instruction']),
+                'faqs' => $product->faqs->map->only(['question', 'answer']),
+            ];
+        });
         
         return view('d_add_product', compact('headerFooter', 'brands', 'products'));
     }
