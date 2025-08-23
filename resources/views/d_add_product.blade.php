@@ -80,7 +80,7 @@
                                 <button
                                     type="button"
                                     class="text-blue-600 hover:underline edit-product-btn"
-                                    data-product="{{ $product->toJson() }}">
+                                    data-product='@json($product)'>
                                     Edit
                                 </button>
 
