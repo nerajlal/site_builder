@@ -15,15 +15,12 @@
                                     $product = $items->first()->product;
                                 @endphp
                                 <div class="product-group py-6">
-                                    <div class="flex flex-row sm:flex-col sm:items-center">
-                                        <!-- Product Image -->
-                                        <a href="{{ route('single-product.customer', ['headerFooterId' => $headerFooter->id, 'productId' => $product->id]) }}" class="w-24 h-24 sm:w-48 sm:h-48 flex-shrink-0 overflow-hidden rounded-md border border-gray-700">
+                                    <div class="flex flex-col sm:flex-row">
+                                        <a href="{{ route('single-product.customer', ['headerFooterId' => $headerFooter->id, 'productId' => $product->id]) }}" class="w-24 h-24 sm:w-32 sm:h-32 flex-shrink-0 overflow-hidden rounded-md border border-gray-700">
                                             <img src="{{ $product->image_url }}" alt="{{ $product->name }}" class="h-full w-full object-cover object-center">
                                         </a>
-                                        <!-- Product Details and Variations -->
-                                        <div class="ml-4 sm:ml-0 mt-0 sm:mt-4 flex flex-1 flex-col">
-                                            <!-- Top section: Name, Price, Combo -->
-                                            <div class="sm:text-center">
+                                        <div class="ml-0 sm:ml-6 mt-4 sm:mt-0 flex flex-1 flex-col">
+                                            <div>
                                                 <h3 class="text-base font-medium text-white">
                                                     <a href="{{ route('single-product.customer', ['headerFooterId' => $headerFooter->id, 'productId' => $product->id]) }}" class="hover:text-pink-500">{{ $product->name }}</a>
                                                 </h3>
@@ -41,7 +38,6 @@
                                                     </div>
                                                 @endif
                                             </div>
-                                            <!-- Variations Section -->
                                             <div class="mt-4 divide-y divide-gray-700 border-t border-b border-gray-700">
                                                 @foreach($items as $item)
                                                     <div class="cart-item py-3 flex flex-col sm:flex-row items-start sm:items-center justify-between text-sm" data-id="{{ $item->id }}">
