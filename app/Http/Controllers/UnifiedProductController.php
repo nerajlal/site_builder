@@ -106,7 +106,8 @@ class UnifiedProductController extends Controller
             'fabricDetails',
             'careInstructions',
             'faqs',
-            'reviews'
+            'reviews',
+            'comboOffers'
         ])->find($productId);
 
         if (!$headerFooter || !$product || $product->status != 0) {

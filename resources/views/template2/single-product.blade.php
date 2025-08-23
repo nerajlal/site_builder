@@ -160,6 +160,19 @@
                 <div class="bg-green-900/20 p-4 rounded-lg border border-green-800">
                     <h3 class="text-sm font-semibold mb-3 text-green-400">Available Offers</h3>
                     <div class="space-y-2 text-sm text-gray-300">
+                        @if($product->comboOffers->count() > 0)
+                        <div class="mt-4 border-t border-gray-700 pt-4">
+                            <h4 class="font-semibold mb-2 text-purple-400">Combo Deals!</h4>
+                            <ul class="space-y-2 text-sm">
+                                @foreach($product->comboOffers as $offer)
+                                <li class="flex items-center space-x-2">
+                                    <i class="fas fa-tags text-purple-500"></i>
+                                    <span>Buy <strong>{{ $offer->buy_quantity }}</strong> for ₹{{ number_format($offer->offer_price, 2) }}</span>
+                                </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        @endif
                         <div class="flex items-center space-x-2">
                             <i class="fas fa-percentage text-green-500"></i>
                             <span>Get 10% off on orders above ₹1,999. Code: <strong>SAVE10</strong></span>
